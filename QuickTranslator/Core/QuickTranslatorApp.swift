@@ -27,8 +27,8 @@ struct QuickTranslatorApp: App {
                     .buttonStyle(.plain)
                     .padding(6)
                 }
-                .frame(width: 450, height: 250)
+                .frame(width: 400, height: 400)
         }
-        .menuBarExtraStyle(.window)        
+        .menuBarExtraStyle(.window)
     }
 }

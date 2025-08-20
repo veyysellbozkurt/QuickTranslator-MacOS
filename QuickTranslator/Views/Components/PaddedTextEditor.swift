@@ -16,28 +16,50 @@ struct PaddedTextEditor: NSViewRepresentable {
         let scrollView = NSScrollView()
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
-        scrollView.borderType = .bezelBorder
+        scrollView.borderType = .noBorder
         scrollView.drawsBackground = false
-        
+
         let textView = NSTextView()
         textView.isRichText = false
         textView.isEditable = true
         textView.isSelectable = true
+        textView.drawsBackground = false
         textView.font = NSFont.systemFont(ofSize: 14)
         textView.textContainerInset = CGSize(width: insets.left, height: insets.top)
-                
         textView.isVerticallyResizable = true
         textView.isHorizontallyResizable = false
         textView.autoresizingMask = [.width]
-                
-        scrollView.documentView = textView
 
+        // Text değişikliklerini SwiftUI binding’e aktar
+        textView.delegate = context.coordinator
+
+        scrollView.documentView = textView
         return scrollView
     }
 
     func updateNSView(_ nsView: NSScrollView, context: Context) {
         if let textView = nsView.documentView as? NSTextView {
-            textView.string = text
+            if textView.string != text {  // infinite loop önlemek için kontrol
+                textView.string = text
+            }
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject, NSTextViewDelegate {
+        var parent: PaddedTextEditor
+
+        init(_ parent: PaddedTextEditor) {
+            self.parent = parent
+        }
+
+        func textDidChange(_ notification: Notification) {
+            if let textView = notification.object as? NSTextView {
+                parent.text = textView.string
+            }
         }
     }
 }
