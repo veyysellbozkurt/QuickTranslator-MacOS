@@ -9,11 +9,17 @@ import SwiftUI
 import Translation
 
 struct ContentView: View {
-    @State private var textInput: String = ""
+    
+    @StateObject private var viewModel: ContentViewModel
+    @State private var inputText: String = ""
     @State private var translatedText: String = ""
     @State private var configuration: TranslationSession.Configuration?
     @State private var isTranslating: Bool = false
     @State private var errorMessage: String?
+    
+    init(viewModel: ContentViewModel) {
+        _viewModel = .init(wrappedValue: viewModel)
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -22,9 +28,9 @@ struct ContentView: View {
                 .padding(6)
             
             PaddedTextViewRepresentable(
-                text: $textInput,
+                text: $inputText,
                 onEnterKeyPress: {
-                    triggerTranslation()
+                    viewModel.triggerTranslation()
                 })
             .font(.headline)
             .scrollContentBackground(.hidden)
@@ -56,51 +62,42 @@ struct ContentView: View {
                     .padding(4)
             }
             
-            Button(action: {
-                triggerTranslation()
-            }, label: {
-                Label("Translate", systemImage: "square.on.square")
-                    .bold()
-                    .foregroundStyle(.blue)
-            })
-            .keyboardShortcut(
-                .init("t"),
-                modifiers: [.control])
-            .buttonStyle(.plain)
-            .padding(.top, 8)
+            translateButton
         }
         .padding(8)
         .translationTask(configuration) { session in
-            guard !textInput.isEmpty else { return }
-            toggleTranslating(to: true)
+            guard !inputText.isEmpty else { return }
+            viewModel.toggleTranslating(to: true)
             errorMessage = nil
             do {
-                let response = try await session.translate(textInput)
+                let response = try await session.translate(inputText)
                 translatedText = response.targetText
             } catch {
                 errorMessage = error.localizedDescription
             }
-            toggleTranslating(to: false)
-        }
-    }
-    
-    private func triggerTranslation() {
-        guard configuration == nil, !textInput.isEmpty else {
-            configuration?.invalidate()
-            return
-        }
-        toggleTranslating(to: true)
-        configuration = .init(source: .init(identifier: "tr"), target: .init(identifier: "en"))
-    }
-    
-    private func toggleTranslating(to newValue: Bool) {
-        withAnimation {
-            isTranslating = newValue
+            viewModel.toggleTranslating(to: false)
         }
     }
 }
+ 
+// MARK: - UI Elements
+private extension ContentView {
+    var translateButton: some View {
+        Button {
+            viewModel.triggerTranslation()
+        } label: {
+            Label("Translate", systemImage: "square.on.square")
+                .bold()
+                .foregroundStyle(.blue)
+        }
+        .keyboardShortcut(.init("t"), modifiers: [.control])
+        .buttonStyle(.plain)
+        .padding(.top, 8)
+    }
+}
 
+// MARK: - Preview
 #Preview {
-    ContentView()
+    ContentView(viewModel: ContentViewModel())
         .frame(width: 400, height: 400)
 }
