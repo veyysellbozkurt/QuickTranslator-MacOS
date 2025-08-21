@@ -25,7 +25,7 @@ struct QuickTranslatorApp: App {
                     }
                     .labelStyle(.iconOnly)
                     .buttonStyle(.plain)
-                    .padding(6)
+                    .padding(10)
                 }
                 .frame(width: 400, height: 400)
         }

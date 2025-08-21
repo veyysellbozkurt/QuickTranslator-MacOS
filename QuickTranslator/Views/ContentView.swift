@@ -14,19 +14,23 @@ struct ContentView: View {
     @State private var configuration: TranslationSession.Configuration?
     @State private var isTranslating: Bool = false
     @State private var errorMessage: String?
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Add your text below:")
                 .foregroundStyle(.secondary)
                 .padding(6)
             
-            PaddedTextEditor(text: $textInput)
-                .font(.headline)
-                .scrollContentBackground(.hidden)
-                .background(.bar)
-                .clipShape(.rect(cornerRadius: 12))
-                .padding(4)
+            PaddedTextViewRepresentable(
+                text: $textInput,
+                onEnterKeyPress: {
+                    triggerTranslation()
+                })
+            .font(.headline)
+            .scrollContentBackground(.hidden)
+            .background(.bar)
+            .clipShape(.rect(cornerRadius: 12))
+            .padding(4)
             
             Spacer()
             
@@ -38,7 +42,7 @@ struct ContentView: View {
                     .foregroundStyle(.secondary)
                     .padding(6)
                 
-                PaddedTextEditor(text: $translatedText)
+                PaddedTextViewRepresentable(text: $translatedText)
                     .font(.headline)
                     .scrollContentBackground(.hidden)
                     .background(.bar)
@@ -59,6 +63,9 @@ struct ContentView: View {
                     .bold()
                     .foregroundStyle(.blue)
             })
+            .keyboardShortcut(
+                .init("t"),
+                modifiers: [.control])
             .buttonStyle(.plain)
             .padding(.top, 8)
         }
