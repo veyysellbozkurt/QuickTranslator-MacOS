@@ -15,7 +15,7 @@ struct QuickTranslatorApp: App {
     
     var body: some Scene {
         MenuBarExtra("Menu Bar Example", systemImage: SFIcons.captionsBubble.rawValue) {
-            ContentView()
+            ContentView(viewModel: ContentViewModel())
                 .overlay(alignment: .topTrailing) {
                     Button(
                         "Quit",

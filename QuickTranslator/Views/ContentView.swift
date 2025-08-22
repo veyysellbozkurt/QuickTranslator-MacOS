@@ -11,11 +11,6 @@ import Translation
 struct ContentView: View {
     
     @StateObject private var viewModel: ContentViewModel
-    @State private var inputText: String = ""
-    @State private var translatedText: String = ""
-    @State private var configuration: TranslationSession.Configuration?
-    @State private var isTranslating: Bool = false
-    @State private var errorMessage: String?
     
     init(viewModel: ContentViewModel) {
         _viewModel = .init(wrappedValue: viewModel)
@@ -28,10 +23,11 @@ struct ContentView: View {
                 .padding(6)
             
             PaddedTextViewRepresentable(
-                text: $inputText,
+                text: $viewModel.inputText,
                 onEnterKeyPress: {
                     viewModel.triggerTranslation()
-                })
+                }
+            )
             .font(.headline)
             .scrollContentBackground(.hidden)
             .background(.bar)
@@ -40,7 +36,7 @@ struct ContentView: View {
             
             Spacer()
             
-            if isTranslating {
+            if viewModel.isTranslating {
                 ProgressView("Translating...")
                     .padding()
             } else {
@@ -48,15 +44,15 @@ struct ContentView: View {
                     .foregroundStyle(.secondary)
                     .padding(6)
                 
-                PaddedTextViewRepresentable(text: $translatedText)
-                    .font(.headline)
-                    .scrollContentBackground(.hidden)
-                    .background(.bar)
-                    .clipShape(.rect(cornerRadius: 12))
-                    .padding(4)
+                PaddedTextViewRepresentable(text: $viewModel.translatedText)
+                .font(.headline)
+                .scrollContentBackground(.hidden)
+                .background(.bar)
+                .clipShape(.rect(cornerRadius: 12))
+                .padding(4)
             }
             
-            if let error = errorMessage {
+            if let error = viewModel.errorMessage {
                 Text("Error: \(error)")
                     .foregroundColor(.red)
                     .padding(4)
@@ -65,17 +61,9 @@ struct ContentView: View {
             translateButton
         }
         .padding(8)
-        .translationTask(configuration) { session in
-            guard !inputText.isEmpty else { return }
-            viewModel.toggleTranslating(to: true)
-            errorMessage = nil
-            do {
-                let response = try await session.translate(inputText)
-                translatedText = response.targetText
-            } catch {
-                errorMessage = error.localizedDescription
-            }
-            viewModel.toggleTranslating(to: false)
+        .animation(.default, value: viewModel.isTranslating)
+        .translationTask(viewModel.configuration) { session in
+            await viewModel.makeTranslation(session: session)
         }
     }
 }
