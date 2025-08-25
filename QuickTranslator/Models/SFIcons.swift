@@ -9,5 +9,6 @@ import SwiftUI
 
 enum SFIcons: String {
     case captionsBubble = "captions.bubble"
+    case changer = "arrow.left.arrow.right"
     
 }

@@ -17,57 +17,40 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Add your text below:")
-                .foregroundStyle(.secondary)
-                .padding(6)
-            
-            PaddedTextViewRepresentable(
+        VStack {
+
+            InputView(
                 text: $viewModel.inputText,
-                onEnterKeyPress: {
-                    viewModel.triggerTranslation()
-                }
-            )
-            .font(.headline)
-            .scrollContentBackground(.hidden)
-            .background(.bar)
-            .clipShape(.rect(cornerRadius: 12))
-            .padding(4)
-            
-            Spacer()
-            
+                language: $viewModel.sourceLanguage
+            ) {
+                viewModel.triggerTranslation()
+            }
+            .padding(.horizontal, 8)
+                        
+            swapButton
+                       
             if viewModel.isTranslating {
                 ProgressView("Translating...")
                     .padding()
             } else {
-                Text("The translated text is:")
-                    .foregroundStyle(.secondary)
-                    .padding(6)
-                
-                PaddedTextViewRepresentable(text: $viewModel.translatedText)
-                .font(.headline)
-                .scrollContentBackground(.hidden)
-                .background(.bar)
-                .clipShape(.rect(cornerRadius: 12))
-                .padding(4)
+                InputView(
+                    text: $viewModel.translatedText,
+                    language: $viewModel.targetLanguage
+                )
+                .padding(.horizontal, 8)
             }
-            
-            if let error = viewModel.errorMessage {
-                Text("Error: \(error)")
-                    .foregroundColor(.red)
-                    .padding(4)
-            }
-            
+                        
             translateButton
+                .padding(.top, 8)
         }
-        .padding(8)
+        .padding()
         .animation(.default, value: viewModel.isTranslating)
         .translationTask(viewModel.configuration) { session in
             await viewModel.makeTranslation(session: session)
         }
     }
 }
- 
+
 // MARK: - UI Elements
 private extension ContentView {
     var translateButton: some View {
@@ -81,6 +64,25 @@ private extension ContentView {
         .keyboardShortcut(.init("t"), modifiers: [.control])
         .buttonStyle(.plain)
         .padding(.top, 8)
+    }
+    
+    var swapButton: some View {
+        Button {
+            viewModel.swapInputs()
+        } label: {
+            Image(.swap)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 24, height: 24)
+                .foregroundStyle(Color.blue)
+                .padding(6)
+                .background(.ultraThickMaterial)
+                .clipShape(Circle())
+        }
+        .clipShape(Circle())
+        .padding(.vertical, 8)
+        .buttonStyle(BounceButtonStyle())
+        .shadow(color: .white.opacity(0.4), radius: 3)
     }
 }
 

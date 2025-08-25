@@ -10,11 +10,19 @@ import Translation
 
 final class ContentViewModel: ObservableObject {
     
+    @Published var configuration: TranslationSession.Configuration?
+    @Published var sourceLanguage: Language = .turkish
+    @Published var targetLanguage: Language = .english
+    
     @Published var inputText: String = ""
     @Published var translatedText: String = ""
+    
     @Published var isTranslating: Bool = false
     @Published var errorMessage: String?
-    @Published var configuration: TranslationSession.Configuration?
+    
+    init() {
+        // TODO: source, target language set et UserDefaults tan
+    }
 }
 
 extension ContentViewModel {
@@ -39,7 +47,26 @@ extension ContentViewModel {
             configuration?.invalidate()
             return
         }
-        configuration = .init(source: .init(identifier: "en"),
-                              target: .init(identifier: "tr"))
+        updateConfiguration()
+    }
+    
+    func swapInputs() {
+        let tempLang = sourceLanguage
+        sourceLanguage = targetLanguage
+        targetLanguage = tempLang
+        
+        let tempText = inputText
+        inputText = translatedText
+        translatedText = tempText
+        
+        updateConfiguration()
+    }
+}
+
+// MARK: - Helper Methods
+private extension ContentViewModel {
+    func updateConfiguration() {
+        configuration = .init(source: .init(identifier: sourceLanguage.code),
+                              target: .init(identifier: targetLanguage.code))
     }
 }
