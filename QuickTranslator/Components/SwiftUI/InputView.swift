@@ -22,7 +22,7 @@ struct InputView: View {
                 showLanguagePicker.toggle()
             } label: {
                 HStack {
-                    Text(language.rawValue.capitalized)
+                    Text(language.title)
                         .font(.body)
                     Spacer()
                     Image(systemName: "chevron.down")
@@ -46,7 +46,7 @@ struct InputView: View {
                                 language = lang
                                 showLanguagePicker = false
                             } label: {
-                                Text(lang.rawValue.capitalized)
+                                Text(lang.title)
                                     .padding(.vertical, 10)
                                     .padding(.horizontal, 12)
                                     .frame(maxWidth: .infinity, alignment: .leading)

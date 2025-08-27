@@ -11,8 +11,8 @@ import Translation
 final class ContentViewModel: ObservableObject {
         
     @Published var configuration: TranslationSession.Configuration?
-    @Published var sourceLanguage: Language = .english { didSet { updateConfiguration() }}
-    @Published var targetLanguage: Language = .spanish { didSet { updateConfiguration() }}
+    @Published var sourceLanguage: Language = .englishUS { didSet { updateConfiguration() }}
+    @Published var targetLanguage: Language = .spanishES { didSet { updateConfiguration() }}
     
     @Published var inputText: String = ""
     @Published var translatedText: String = ""
@@ -28,8 +28,8 @@ final class ContentViewModel: ObservableObject {
         guard let savedSource = Storage.string(forKey: .sourceLanguage),
               let savedTarget = Storage.string(forKey: .targetLanguage) else { return }
         
-        sourceLanguage = Language(rawValue: savedSource) ?? .english
-        targetLanguage = Language(rawValue: savedTarget) ?? .spanish
+        sourceLanguage = Language(rawValue: savedSource) ?? .englishUS
+        targetLanguage = Language(rawValue: savedTarget) ?? .spanishES
     }
 }
 
