@@ -11,6 +11,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem!
     var popover: NSPopover!
     @State private var isPinned = false
+    private let viewModel = ContentViewModel()
+    private var quickActionController: QuickActionController!
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         popover = NSPopover()
@@ -18,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popover.behavior = .transient
         popover.contentViewController = NSHostingController(
             rootView: VStack {
-                ContentView(viewModel: ContentViewModel())
+                ContentView(viewModel: viewModel)
                 PopoverControls(popover: popover)
             }
                 .background(Color.accentColor.opacity(0.1))
@@ -33,6 +35,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.action = #selector(togglePopover(_:))
             button.target = self
         }
+        
+        quickActionController = QuickActionController(appDelegate: self, viewModel: viewModel)
+        quickActionController.start()
     }
     
     @objc func togglePopover(_ sender: AnyObject?) {
