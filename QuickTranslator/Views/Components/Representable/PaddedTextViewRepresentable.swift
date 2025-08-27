@@ -14,6 +14,7 @@ struct PaddedTextViewRepresentable: NSViewRepresentable {
     @Binding var text: String
     var inset: CGSize = .init(width: 8, height: 8)
     var onEnterKeyPress: (() -> Void)? = nil
+    var placeholder: String = ""
     
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
@@ -22,16 +23,17 @@ struct PaddedTextViewRepresentable: NSViewRepresentable {
     func makeNSView(context: Context) -> NSScrollView {
         let textView = EnterKeyHandlerTextView()
         textView.string = text
+        textView.placeholder = placeholder
         textView.isRichText = false
         textView.textContainerInset = inset
         textView.autoresizingMask = [.width]
         textView.delegate = context.coordinator
-        textView.font = NSFont.systemFont(ofSize: 16, weight: .medium)
+        textView.font = NSFont.systemFont(ofSize: 15, weight: .medium)
         textView.onEnterKeyPress = onEnterKeyPress
         
         let scrollView = NSScrollView()
         scrollView.hasVerticalScroller = true
-        scrollView.drawsBackground = false
+        scrollView.drawsBackground = true
         
         scrollView.documentView = textView
         

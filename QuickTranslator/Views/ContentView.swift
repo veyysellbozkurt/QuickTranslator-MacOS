@@ -21,13 +21,15 @@ struct ContentView: View {
 
             InputView(
                 text: $viewModel.inputText,
-                language: $viewModel.sourceLanguage
+                language: $viewModel.sourceLanguage,
+                placeholder: Constants.Strings.inputPlaceholder
             ) {
                 viewModel.triggerTranslation()
             }
             .padding(.horizontal, 8)
                         
             swapButton
+                .padding(.vertical, 6)
                        
             if viewModel.isTranslating {
                 ProgressView("Translating...")
@@ -43,7 +45,7 @@ struct ContentView: View {
             translateButton
                 .padding(.top, 8)
         }
-        .padding()
+        .padding(8)
         .animation(.default, value: viewModel.isTranslating)
         .translationTask(viewModel.configuration) { session in
             await viewModel.makeTranslation(session: session)
@@ -57,13 +59,16 @@ private extension ContentView {
         Button {
             viewModel.triggerTranslation()
         } label: {
-            Label("Translate", systemImage: "square.on.square")
-                .bold()
-                .foregroundStyle(.blue)
+            Text("Translate")
+                .font(.title3)
+                .foregroundStyle(.white)
         }
+        .frame(width: 180, height: 40)
+        .background(Color(nsColor: .app))
+        .clipShape(.buttonBorder)
         .keyboardShortcut(.init("t"), modifiers: [.control])
-        .buttonStyle(.plain)
-        .padding(.top, 8)
+        .buttonStyle(BounceButtonStyle())
+        .shadow(color: Color(nsColor: .app.withAlphaComponent(0.4)), radius: 3)
     }
     
     var swapButton: some View {
@@ -76,11 +81,10 @@ private extension ContentView {
                 .frame(width: 24, height: 24)
                 .foregroundStyle(Color.blue)
                 .padding(6)
-                .background(.ultraThickMaterial)
+                .background(.white)
                 .clipShape(Circle())
         }
         .clipShape(Circle())
-        .padding(.vertical, 8)
         .buttonStyle(BounceButtonStyle())
         .shadow(color: .white.opacity(0.4), radius: 3)
     }

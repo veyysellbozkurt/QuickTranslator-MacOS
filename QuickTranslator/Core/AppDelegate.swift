@@ -8,9 +8,40 @@
 import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
+    var statusItem: NSStatusItem!
+    var popover: NSPopover!
+    @State private var isPinned = false
     
-    static private(set) var shared: AppDelegate!    
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        popover = NSPopover()
+        popover.contentSize = NSSize(width: 400, height: 550)
+        popover.behavior = .transient
+        popover.contentViewController = NSHostingController(
+            rootView: VStack {
+                ContentView(viewModel: ContentViewModel())
+                PopoverControls(popover: popover)
+            }
+                .background(Color.accentColor.opacity(0.1))
+        )
+        
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        if let button = statusItem.button {
+            let img = NSImage(resource: .language)
+            img.size = NSSize(width: 18, height: 18)
+            img.isTemplate = false
+            button.image = img
+            button.action = #selector(togglePopover(_:))
+            button.target = self
+        }
+    }
     
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
+    @objc func togglePopover(_ sender: AnyObject?) {
+        guard let button = statusItem.button else { return }
+        if popover.isShown {
+            popover.performClose(sender)
+        } else {
+            popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+            popover.contentViewController?.view.window?.becomeKey()
+        }
     }
 }

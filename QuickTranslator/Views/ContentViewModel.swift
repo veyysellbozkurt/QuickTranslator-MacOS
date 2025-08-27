@@ -9,10 +9,10 @@ import SwiftUI
 import Translation
 
 final class ContentViewModel: ObservableObject {
-    
+        
     @Published var configuration: TranslationSession.Configuration?
-    @Published var sourceLanguage: Language = .turkish
-    @Published var targetLanguage: Language = .english
+    @Published var sourceLanguage: Language = .english { didSet { updateConfiguration() }}
+    @Published var targetLanguage: Language = .spanish { didSet { updateConfiguration() }}
     
     @Published var inputText: String = ""
     @Published var translatedText: String = ""
@@ -20,8 +20,16 @@ final class ContentViewModel: ObservableObject {
     @Published var isTranslating: Bool = false
     @Published var errorMessage: String?
     
+    private var canTranslate: Bool {
+        !inputText.isEmpty && !isTranslating
+    }
+    
     init() {
-        // TODO: source, target language set et UserDefaults tan
+        guard let savedSource = Storage.string(forKey: .sourceLanguage),
+              let savedTarget = Storage.string(forKey: .targetLanguage) else { return }
+        
+        sourceLanguage = Language(rawValue: savedSource) ?? .english
+        targetLanguage = Language(rawValue: savedTarget) ?? .spanish
     }
 }
 
@@ -29,8 +37,10 @@ extension ContentViewModel {
     @MainActor
     func makeTranslation(session: TranslationSession) async {
         guard !inputText.isEmpty else { return }
+        
         isTranslating = true
         errorMessage = nil
+        defer { isTranslating = false }
         
         do {
             let response = try await session.translate(inputText)
@@ -38,8 +48,6 @@ extension ContentViewModel {
         } catch {
             errorMessage = error.localizedDescription
         }
-        
-        isTranslating = false
     }
     
     func triggerTranslation() {
@@ -51,13 +59,8 @@ extension ContentViewModel {
     }
     
     func swapInputs() {
-        let tempLang = sourceLanguage
-        sourceLanguage = targetLanguage
-        targetLanguage = tempLang
-        
-        let tempText = inputText
+        swap(&sourceLanguage, &targetLanguage)
         inputText = translatedText
-        translatedText = tempText
         
         updateConfiguration()
     }
@@ -68,5 +71,7 @@ private extension ContentViewModel {
     func updateConfiguration() {
         configuration = .init(source: .init(identifier: sourceLanguage.code),
                               target: .init(identifier: targetLanguage.code))
+        Storage.set(sourceLanguage.rawValue, forKey: .sourceLanguage)
+        Storage.set(targetLanguage.rawValue, forKey: .targetLanguage)
     }
 }

@@ -11,18 +11,19 @@ struct InputView: View {
     
     @Binding var text: String
     @Binding var language: Language
+    var placeholder: String?
     var onEnterKeyPress: (() -> Void)? = nil
     
     @State private var showLanguagePicker = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {            
+        VStack(alignment: .leading, spacing: 4) {
             Button {
                 showLanguagePicker.toggle()
             } label: {
                 HStack {
                     Text(language.rawValue.capitalized)
-                        .font(.headline)
+                        .font(.body)
                     Spacer()
                     Image(systemName: "chevron.down")
                         .font(.subheadline)
@@ -31,10 +32,12 @@ struct InputView: View {
                 .padding(.vertical, 6)
                 .padding(.horizontal, 10)
                 .frame(maxWidth: .infinity)
+                .frame(height: 32)
                 .background(Color.secondary.opacity(0.2))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
             }
-            .buttonStyle(.plain)
+            .padding(.horizontal, 2)
+            .buttonStyle(BounceButtonStyle())
             .popover(isPresented: $showLanguagePicker) {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0) {
@@ -57,11 +60,17 @@ struct InputView: View {
                 }
                 .frame(width: 200, height: 250)
             }
-                        
-            PaddedTextViewRepresentable(text: $text, onEnterKeyPress: onEnterKeyPress)
-                .scrollContentBackground(.hidden)
-                .background(Color(nsColor: .windowBackgroundColor))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+            
+            PaddedTextViewRepresentable(
+                text: $text,
+                onEnterKeyPress: onEnterKeyPress,
+                placeholder: placeholder ?? ""
+            )
+            .scrollContentBackground(.hidden)
+            .background(.clear)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .padding(.top, 0)
         }
+        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
     }
 }
