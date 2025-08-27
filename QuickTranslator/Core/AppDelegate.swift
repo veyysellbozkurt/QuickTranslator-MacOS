@@ -11,7 +11,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem!
     var popover: NSPopover!
     @State private var isPinned = false
-    private let viewModel = ContentViewModel()
+    private let viewModel = TranslateViewModel()
     private var quickActionController: QuickActionController!
     
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popover.behavior = .transient
         popover.contentViewController = NSHostingController(
             rootView: VStack {
-                ContentView(viewModel: viewModel)
+                TranslateView(viewModel: viewModel)
                 PopoverControls(popover: popover)
             }
                 .background(Color.accentColor.opacity(0.1))

@@ -1,5 +1,5 @@
 //
-//  ContentViewModel.swift
+//  TranslateViewModel.swift
 //  QuickTranslator
 //
 //  Created by Veysel Bozkurt on 21.08.2025.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Translation
 
-final class ContentViewModel: ObservableObject {
+final class TranslateViewModel: ObservableObject {
         
     @Published var configuration: TranslationSession.Configuration?
     @Published var sourceLanguage: Language = .englishUS { didSet { updateConfiguration() }}
@@ -33,7 +33,7 @@ final class ContentViewModel: ObservableObject {
     }
 }
 
-extension ContentViewModel {
+extension TranslateViewModel {
     @MainActor
     func makeTranslation(session: TranslationSession) async {
         guard !inputText.isEmpty else { return }
@@ -67,7 +67,7 @@ extension ContentViewModel {
 }
 
 // MARK: - Helper Methods
-private extension ContentViewModel {
+private extension TranslateViewModel {
     func updateConfiguration() {
         configuration = .init(source: .init(identifier: sourceLanguage.code),
                               target: .init(identifier: targetLanguage.code))

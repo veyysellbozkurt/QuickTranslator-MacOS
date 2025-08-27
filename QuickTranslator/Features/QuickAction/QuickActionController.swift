@@ -9,12 +9,12 @@ import AppKit
 
 final class QuickActionController: FloatingIconWindowDelegate {
     private let clipboard = ClipboardMonitor()
-    private let floating = FloatingIconWindow()
+    private let floating = QuickActionPopup()
     private weak var appDelegate: AppDelegate?
-    private let viewModel: ContentViewModel
+    private let viewModel: TranslateViewModel
     private var pendingText: String?
 
-    init(appDelegate: AppDelegate, viewModel: ContentViewModel) {
+    init(appDelegate: AppDelegate, viewModel: TranslateViewModel) {
         self.appDelegate = appDelegate
         self.viewModel = viewModel
         floating.actionDelegate = self
@@ -34,7 +34,7 @@ final class QuickActionController: FloatingIconWindowDelegate {
     }
 
     // MARK: - FloatingIconWindowDelegate
-    func floatingIconDidConfirmTranslate(_ window: FloatingIconWindow) {
+    func floatingIconDidConfirmTranslate(_ window: QuickActionPopup) {
         guard let appDelegate else { return }
         if let text = pendingText {
             viewModel.inputText = text
@@ -44,7 +44,7 @@ final class QuickActionController: FloatingIconWindowDelegate {
         appDelegate.togglePopover(appDelegate.statusItem.button)
     }
 
-    func floatingIconDidCancel(_ window: FloatingIconWindow) {
+    func floatingIconDidCancel(_ window: QuickActionPopup) {
         // İstersen no-op
     }
 }

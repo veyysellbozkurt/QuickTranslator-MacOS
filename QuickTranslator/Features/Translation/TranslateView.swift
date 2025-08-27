@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  TranslateView.swift
 //  QuickTranslator
 //
 //  Created by Veysel Bozkurt on 18.08.2025.
@@ -8,11 +8,11 @@
 import SwiftUI
 import Translation
 
-struct ContentView: View {
+struct TranslateView: View {
     
-    @StateObject private var viewModel: ContentViewModel
+    @StateObject private var viewModel: TranslateViewModel
     
-    init(viewModel: ContentViewModel) {
+    init(viewModel: TranslateViewModel) {
         _viewModel = .init(wrappedValue: viewModel)
     }
     
@@ -54,7 +54,7 @@ struct ContentView: View {
 }
 
 // MARK: - UI Elements
-private extension ContentView {
+private extension TranslateView {
     var translateButton: some View {
         Button {
             viewModel.triggerTranslation()
@@ -92,6 +92,6 @@ private extension ContentView {
 
 // MARK: - Preview
 #Preview {
-    ContentView(viewModel: ContentViewModel())
+    TranslateView(viewModel: TranslateViewModel())
         .frame(width: 400, height: 400)
 }

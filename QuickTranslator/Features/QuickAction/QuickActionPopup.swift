@@ -1,5 +1,5 @@
 //
-//  FloatingIconWindowDelegate.swift
+//  QuickActionPopup.swift
 //  QuickTranslator
 //
 //  Created by Veysel Bozkurt on 27.08.2025.
@@ -8,11 +8,11 @@
 import AppKit
 
 protocol FloatingIconWindowDelegate: AnyObject {
-    func floatingIconDidConfirmTranslate(_ window: FloatingIconWindow)
-    func floatingIconDidCancel(_ window: FloatingIconWindow)
+    func floatingIconDidConfirmTranslate(_ window: QuickActionPopup)
+    func floatingIconDidCancel(_ window: QuickActionPopup)
 }
 
-final class FloatingIconWindow: NSPanel {
+final class QuickActionPopup: NSPanel {
     weak var actionDelegate: FloatingIconWindowDelegate?
 
     private let escKeyCode = 53
