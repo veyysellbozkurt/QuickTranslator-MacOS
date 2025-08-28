@@ -1,5 +1,5 @@
 //
-//  QuickActionPopup.swift
+//  FloatingQuickActionPanel.swift
 //  QuickTranslator
 //
 //  Created by Veysel Bozkurt on 27.08.2025.
@@ -7,14 +7,14 @@
 
 import AppKit
 
-protocol FloatingIconWindowDelegate: AnyObject {
-    func floatingIconDidConfirmTranslate(_ window: QuickActionPopup)
-    func floatingIconDidCancel(_ window: QuickActionPopup)
+protocol FloatingQuickActionPanelDelegate: AnyObject {
+    func floatingTranslateIconDidConfirmTranslate(_ popup: FloatingQuickActionPanel)
+    func floatingTranslateIconDidCancel(_ popup: FloatingQuickActionPanel)
 }
 
-final class QuickActionPopup: NSPanel {
+final class FloatingQuickActionPanel: NSPanel {
     
-    weak var actionDelegate: FloatingIconWindowDelegate?
+    weak var actionDelegate: FloatingQuickActionPanelDelegate?
 
     private let escKeyCode = 53
     private let button = NSButton()
@@ -60,10 +60,10 @@ final class QuickActionPopup: NSPanel {
         button.autoresizingMask = [.width, .height]
         contentView?.addSubview(button)
       
-        let esc = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] ev in
+        let _ = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] ev in
             guard let self = self else { return .none }
             if ev.keyCode == self.escKeyCode {
-                self.actionDelegate?.floatingIconDidCancel(self)
+                self.actionDelegate?.floatingTranslateIconDidCancel(self)
                 self.orderOut(nil)
                 return nil
             }
@@ -72,7 +72,7 @@ final class QuickActionPopup: NSPanel {
     }
 
     @objc private func onClick() {
-        actionDelegate?.floatingIconDidConfirmTranslate(self)
+        actionDelegate?.floatingTranslateIconDidConfirmTranslate(self)
         orderOut(nil)
     }
 

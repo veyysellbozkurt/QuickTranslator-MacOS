@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2B4AB4A52E5F256B005DF24C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B4AB49E2E5F256B005DF24C /* Assets.xcassets */; };
 		2B4AB4A62E5F256B005DF24C /* EnterKeyHandlerTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4832E5F256B005DF24C /* EnterKeyHandlerTextView.swift */; };
-		2B4AB4A72E5F256B005DF24C /* QuickActionPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4842E5F256B005DF24C /* QuickActionPopup.swift */; };
+		2B4AB4A72E5F256B005DF24C /* FloatingQuickActionPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4842E5F256B005DF24C /* FloatingQuickActionPanel.swift */; };
 		2B4AB4A82E5F256B005DF24C /* PaddedTextViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4862E5F256B005DF24C /* PaddedTextViewRepresentable.swift */; };
 		2B4AB4A92E5F256B005DF24C /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4882E5F256B005DF24C /* InputView.swift */; };
 		2B4AB4AA2E5F256B005DF24C /* PopoverControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4892E5F256B005DF24C /* PopoverControls.swift */; };
@@ -19,7 +19,7 @@
 		2B4AB4AE2E5F256B005DF24C /* UserDefaults+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4912E5F256B005DF24C /* UserDefaults+Ext.swift */; };
 		2B4AB4AF2E5F256B005DF24C /* BounceButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4932E5F256B005DF24C /* BounceButtonStyle.swift */; };
 		2B4AB4B02E5F256B005DF24C /* ClipboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4962E5F256B005DF24C /* ClipboardMonitor.swift */; };
-		2B4AB4B12E5F256B005DF24C /* QuickActionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4972E5F256B005DF24C /* QuickActionController.swift */; };
+		2B4AB4B12E5F256B005DF24C /* FloatingQuickActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4972E5F256B005DF24C /* FloatingQuickActionManager.swift */; };
 		2B4AB4B32E5F256B005DF24C /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB49B2E5F256B005DF24C /* Language.swift */; };
 		2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB49C2E5F256B005DF24C /* SFIcons.swift */; };
 		2B4AB4B52E5F256B005DF24C /* TranslateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4A02E5F256B005DF24C /* TranslateView.swift */; };
@@ -51,7 +51,7 @@
 		2B12E79C2E5351040029301B /* QuickTranslatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTranslatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B12E7A62E5351040029301B /* QuickTranslatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTranslatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B4AB4832E5F256B005DF24C /* EnterKeyHandlerTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterKeyHandlerTextView.swift; sourceTree = "<group>"; };
-		2B4AB4842E5F256B005DF24C /* QuickActionPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionPopup.swift; sourceTree = "<group>"; };
+		2B4AB4842E5F256B005DF24C /* FloatingQuickActionPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingQuickActionPanel.swift; sourceTree = "<group>"; };
 		2B4AB4862E5F256B005DF24C /* PaddedTextViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextViewRepresentable.swift; sourceTree = "<group>"; };
 		2B4AB4882E5F256B005DF24C /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		2B4AB4892E5F256B005DF24C /* PopoverControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverControls.swift; sourceTree = "<group>"; };
@@ -61,7 +61,7 @@
 		2B4AB4912E5F256B005DF24C /* UserDefaults+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Ext.swift"; sourceTree = "<group>"; };
 		2B4AB4932E5F256B005DF24C /* BounceButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceButtonStyle.swift; sourceTree = "<group>"; };
 		2B4AB4962E5F256B005DF24C /* ClipboardMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardMonitor.swift; sourceTree = "<group>"; };
-		2B4AB4972E5F256B005DF24C /* QuickActionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionController.swift; sourceTree = "<group>"; };
+		2B4AB4972E5F256B005DF24C /* FloatingQuickActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingQuickActionManager.swift; sourceTree = "<group>"; };
 		2B4AB49B2E5F256B005DF24C /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		2B4AB49C2E5F256B005DF24C /* SFIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFIcons.swift; sourceTree = "<group>"; };
 		2B4AB49E2E5F256B005DF24C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -280,8 +280,8 @@
 		2B4AB4BB2E5F3416005DF24C /* QuickAction */ = {
 			isa = PBXGroup;
 			children = (
-				2B4AB4842E5F256B005DF24C /* QuickActionPopup.swift */,
-				2B4AB4972E5F256B005DF24C /* QuickActionController.swift */,
+				2B4AB4842E5F256B005DF24C /* FloatingQuickActionPanel.swift */,
+				2B4AB4972E5F256B005DF24C /* FloatingQuickActionManager.swift */,
 			);
 			path = QuickAction;
 			sourceTree = "<group>";
@@ -446,7 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B4AB4A62E5F256B005DF24C /* EnterKeyHandlerTextView.swift in Sources */,
-				2B4AB4A72E5F256B005DF24C /* QuickActionPopup.swift in Sources */,
+				2B4AB4A72E5F256B005DF24C /* FloatingQuickActionPanel.swift in Sources */,
 				2B4AB4A82E5F256B005DF24C /* PaddedTextViewRepresentable.swift in Sources */,
 				2B4AB4A92E5F256B005DF24C /* InputView.swift in Sources */,
 				2B4AB4BE2E606AC6005DF24C /* MainPopover.swift in Sources */,
@@ -457,7 +457,7 @@
 				2B4AB4AE2E5F256B005DF24C /* UserDefaults+Ext.swift in Sources */,
 				2B4AB4AF2E5F256B005DF24C /* BounceButtonStyle.swift in Sources */,
 				2B4AB4B02E5F256B005DF24C /* ClipboardMonitor.swift in Sources */,
-				2B4AB4B12E5F256B005DF24C /* QuickActionController.swift in Sources */,
+				2B4AB4B12E5F256B005DF24C /* FloatingQuickActionManager.swift in Sources */,
 				2B4AB4C12E607667005DF24C /* StatusBarController.swift in Sources */,
 				2B4AB4B32E5F256B005DF24C /* Language.swift in Sources */,
 				2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */,
