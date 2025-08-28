@@ -13,6 +13,7 @@ protocol FloatingIconWindowDelegate: AnyObject {
 }
 
 final class QuickActionPopup: NSPanel {
+    
     weak var actionDelegate: FloatingIconWindowDelegate?
 
     private let escKeyCode = 53
@@ -38,17 +39,26 @@ final class QuickActionPopup: NSPanel {
         button.isBordered = false
         button.bezelStyle = .regularSquare
         button.wantsLayer = true
-        button.layer?.cornerRadius = size/2
-        button.layer?.backgroundColor = NSColor.windowBackgroundColor.withAlphaComponent(0.95).cgColor
-        button.contentTintColor = .systemBlue
-        button.image = NSImage(systemSymbolName: "globe", accessibilityDescription: nil)
+        if let layer = button.layer {
+            layer.masksToBounds = false
+            layer.backgroundColor = NSColor.white.cgColor
+            layer.cornerRadius = 16
+            layer.shadowColor = NSColor.labelColor.cgColor
+            layer.shadowOpacity = 0.8
+            layer.shadowOffset = CGSize(width: 0, height: 0)
+            layer.shadowRadius = 5
+        }
+
+        let buttonImage = NSImage(resource: .language)
+        buttonImage.size = NSSize(width: 32, height: 32)
+        buttonImage.isTemplate = false
+        button.image = buttonImage
         button.imagePosition = .imageOnly
         button.target = self
         button.action = #selector(onClick)
         button.frame = rect.insetBy(dx: 2, dy: 2)
         button.autoresizingMask = [.width, .height]
         contentView?.addSubview(button)
-
       
         let esc = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] ev in
             guard let self = self else { return .none }
@@ -66,7 +76,7 @@ final class QuickActionPopup: NSPanel {
         orderOut(nil)
     }
 
-    func showNearMouse(offset: NSPoint = NSPoint(x: 12, y: -24), autoHideAfter seconds: TimeInterval = 2) {
+    func showNearMouse(offset: NSPoint = NSPoint(x: 16, y: -48), autoHideAfter seconds: TimeInterval = 2) {
         let mouse = NSEvent.mouseLocation
         let origin = NSPoint(x: mouse.x + offset.x, y: mouse.y + offset.y)
         setFrameOrigin(origin)

@@ -24,6 +24,9 @@
 		2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB49C2E5F256B005DF24C /* SFIcons.swift */; };
 		2B4AB4B52E5F256B005DF24C /* TranslateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4A02E5F256B005DF24C /* TranslateView.swift */; };
 		2B4AB4B62E5F256B005DF24C /* TranslateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4A12E5F256B005DF24C /* TranslateViewModel.swift */; };
+		2B4AB4BE2E606AC6005DF24C /* MainPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4BD2E606AC6005DF24C /* MainPopover.swift */; };
+		2B4AB4C12E607667005DF24C /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4C02E607667005DF24C /* StatusBarController.swift */; };
+		2B4AB4C32E607BD6005DF24C /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4C22E607BD6005DF24C /* DIContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,9 @@
 		2B4AB4A02E5F256B005DF24C /* TranslateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateView.swift; sourceTree = "<group>"; };
 		2B4AB4A12E5F256B005DF24C /* TranslateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewModel.swift; sourceTree = "<group>"; };
 		2B4AB4A32E5F256B005DF24C /* QuickTranslator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickTranslator.entitlements; sourceTree = "<group>"; };
+		2B4AB4BD2E606AC6005DF24C /* MainPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopover.swift; sourceTree = "<group>"; };
+		2B4AB4C02E607667005DF24C /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		2B4AB4C22E607BD6005DF24C /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -144,7 +150,6 @@
 		2B4AB48A2E5F256B005DF24C /* SwiftUIComponents */ = {
 			isa = PBXGroup;
 			children = (
-				2B4AB4892E5F256B005DF24C /* PopoverControls.swift */,
 			);
 			path = SwiftUIComponents;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 			children = (
 				2B4AB48D2E5F256B005DF24C /* Constants */,
 				2B4AB48E2E5F256B005DF24C /* AppDelegate.swift */,
+				2B4AB4C22E607BD6005DF24C /* DIContainer.swift */,
 				2B4AB48F2E5F256B005DF24C /* QuickTranslatorApp.swift */,
 			);
 			path = Core;
@@ -230,6 +236,8 @@
 		2B4AB4A22E5F256B005DF24C /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				2B4AB4BF2E607506005DF24C /* StatusBar */,
+				2B4AB4BC2E606A9C005DF24C /* MainPopover */,
 				2B4AB4BB2E5F3416005DF24C /* QuickAction */,
 				2B4AB4B72E5F2C71005DF24C /* Translation */,
 			);
@@ -276,6 +284,23 @@
 				2B4AB4972E5F256B005DF24C /* QuickActionController.swift */,
 			);
 			path = QuickAction;
+			sourceTree = "<group>";
+		};
+		2B4AB4BC2E606A9C005DF24C /* MainPopover */ = {
+			isa = PBXGroup;
+			children = (
+				2B4AB4BD2E606AC6005DF24C /* MainPopover.swift */,
+				2B4AB4892E5F256B005DF24C /* PopoverControls.swift */,
+			);
+			path = MainPopover;
+			sourceTree = "<group>";
+		};
+		2B4AB4BF2E607506005DF24C /* StatusBar */ = {
+			isa = PBXGroup;
+			children = (
+				2B4AB4C02E607667005DF24C /* StatusBarController.swift */,
+			);
+			path = StatusBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,6 +449,7 @@
 				2B4AB4A72E5F256B005DF24C /* QuickActionPopup.swift in Sources */,
 				2B4AB4A82E5F256B005DF24C /* PaddedTextViewRepresentable.swift in Sources */,
 				2B4AB4A92E5F256B005DF24C /* InputView.swift in Sources */,
+				2B4AB4BE2E606AC6005DF24C /* MainPopover.swift in Sources */,
 				2B4AB4AA2E5F256B005DF24C /* PopoverControls.swift in Sources */,
 				2B4AB4AB2E5F256B005DF24C /* Constants.swift in Sources */,
 				2B4AB4AC2E5F256B005DF24C /* AppDelegate.swift in Sources */,
@@ -432,9 +458,11 @@
 				2B4AB4AF2E5F256B005DF24C /* BounceButtonStyle.swift in Sources */,
 				2B4AB4B02E5F256B005DF24C /* ClipboardMonitor.swift in Sources */,
 				2B4AB4B12E5F256B005DF24C /* QuickActionController.swift in Sources */,
+				2B4AB4C12E607667005DF24C /* StatusBarController.swift in Sources */,
 				2B4AB4B32E5F256B005DF24C /* Language.swift in Sources */,
 				2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */,
 				2B4AB4B52E5F256B005DF24C /* TranslateView.swift in Sources */,
+				2B4AB4C32E607BD6005DF24C /* DIContainer.swift in Sources */,
 				2B4AB4B62E5F256B005DF24C /* TranslateViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

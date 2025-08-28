@@ -25,7 +25,7 @@ struct InputView: View {
                     Text(language.title)
                         .font(.body)
                     Spacer()
-                    Image(systemName: "chevron.down")
+                    Image(systemName: SFIcons.chevronDown)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }

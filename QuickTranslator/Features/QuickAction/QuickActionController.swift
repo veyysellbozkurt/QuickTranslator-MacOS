@@ -8,18 +8,19 @@
 import AppKit
 
 final class QuickActionController: FloatingIconWindowDelegate {
+    
     private let clipboard = ClipboardMonitor()
     private let floating = QuickActionPopup()
-    private weak var appDelegate: AppDelegate?
     private let viewModel: TranslateViewModel
+    private let popover: MainPopover
     private var pendingText: String?
-
-    init(appDelegate: AppDelegate, viewModel: TranslateViewModel) {
-        self.appDelegate = appDelegate
+    
+    init(viewModel: TranslateViewModel, popover: MainPopover) {
         self.viewModel = viewModel
+        self.popover = popover
         floating.actionDelegate = self
     }
-
+    
     func start() {
         clipboard.onCopy = { [weak self] text in
             guard let self else { return }
@@ -28,22 +29,23 @@ final class QuickActionController: FloatingIconWindowDelegate {
         }
         clipboard.start(interval: 0.4)
     }
-
+    
     func stop() {
         clipboard.stop()
     }
-
+    
     // MARK: - FloatingIconWindowDelegate
     func floatingIconDidConfirmTranslate(_ window: QuickActionPopup) {
-        guard let appDelegate else { return }
         if let text = pendingText {
             viewModel.inputText = text
             viewModel.triggerTranslation()
             viewModel.translatedText = ""
         }
-        appDelegate.togglePopover(appDelegate.statusItem.button)
+        if let button = popover.statusBarButton {
+            popover.toggle(from: button)
+        }
     }
-
+    
     func floatingIconDidCancel(_ window: QuickActionPopup) {
         // İstersen no-op
     }

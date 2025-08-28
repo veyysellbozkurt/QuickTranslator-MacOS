@@ -17,7 +17,7 @@ struct PopoverControls: View {
                 isPinned.toggle()
                 popover.behavior = isPinned ? .applicationDefined : .transient
             } label: {
-                Image(systemName: isPinned ? "pin.fill" : "pin")
+                Image(systemName: isPinned ? SFIcons.pinFill : SFIcons.pin)
                     .resizable()
             }
             .frame(width: 16, height: 24)
@@ -28,7 +28,7 @@ struct PopoverControls: View {
             Button {
                 NSApp.terminate(nil)
             } label: {
-                Label("Quit", systemImage: "power")
+                Label(Constants.Strings.quit, systemImage: SFIcons.power)
                     .contentShape(Rectangle())
             }
             .font(.title3)

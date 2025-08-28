@@ -7,6 +7,10 @@
 
 import SwiftUI
 
-enum SFIcons: String {
-    case captionsBubble = "captions.bubble"
+enum SFIcons {
+    static let captionsBubble = "captions.bubble"
+    static let chevronDown = "chevron.down"
+    static let pinFill = "pin.fill"
+    static let pin = "pin"
+    static let power = "power"
 }

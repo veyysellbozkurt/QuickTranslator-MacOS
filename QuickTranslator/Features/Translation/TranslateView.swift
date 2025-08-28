@@ -32,7 +32,7 @@ struct TranslateView: View {
                 .padding(.vertical, 6)
                        
             if viewModel.isTranslating {
-                ProgressView("Translating...")
+                ProgressView(Constants.Strings.translating)
                     .padding()
             } else {
                 InputView(
@@ -59,7 +59,7 @@ private extension TranslateView {
         Button {
             viewModel.triggerTranslation()
         } label: {
-            Text("Translate")
+            Text(Constants.Strings.translateButton)
                 .font(.title3)
                 .foregroundStyle(.white)
         }
