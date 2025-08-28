@@ -11,7 +11,6 @@ import AppKit
 final class MainPopover {
     
     private let popover: NSPopover
-    var statusBarButton: NSStatusBarButton?
     
     init(viewModel: TranslateViewModel) {
         popover = NSPopover()
@@ -23,7 +22,6 @@ final class MainPopover {
     
     @objc
     func toggle(from button: NSStatusBarButton) {
-        self.statusBarButton = button
         if popover.isShown {
             popover.performClose(button)
         } else {

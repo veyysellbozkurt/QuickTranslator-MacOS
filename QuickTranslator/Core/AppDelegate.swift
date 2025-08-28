@@ -9,10 +9,8 @@ import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    private var container: DIContainer!
-    
     func applicationDidFinishLaunching(_ notification: Notification) {
-        container = DIContainer()
-        container.quickActionController.start()
+        
+        DIContainer.shared.quickActionController.start()
     }
 }

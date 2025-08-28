@@ -7,17 +7,23 @@
 
 import AppKit
 
+/// It manages the Clipboard -> Floating Panel -> ViewModel/Popover flow
 final class FloatingQuickActionManager {
     
     private let clipboardMonitor = ClipboardMonitor()
-    private let floatingPanel = FloatingQuickActionPanel()
+    private let floatingPanel: FloatingQuickActionPanel
     private let viewModel: TranslateViewModel
     private let popover: MainPopover
     private var copiedText: String?
     
-    init(viewModel: TranslateViewModel, popover: MainPopover) {
+    init(
+        viewModel: TranslateViewModel,
+        popover: MainPopover,
+        panel: FloatingQuickActionPanel = FloatingQuickActionPanel()
+    ) {
         self.viewModel = viewModel
         self.popover = popover
+        self.floatingPanel = panel
         floatingPanel.actionDelegate = self
     }
     
@@ -37,17 +43,17 @@ final class FloatingQuickActionManager {
 
 // MARK: - Floating Quick Action Panel Delegate
 extension FloatingQuickActionManager: FloatingQuickActionPanelDelegate {
-    func floatingTranslateIconDidConfirmTranslate(_ popup: FloatingQuickActionPanel) {
+    func quickActionPanelDidConfirm(_ panel: FloatingQuickActionPanel) {
         if let text = copiedText {
+            viewModel.translatedText = ""
             viewModel.inputText = text
             viewModel.triggerTranslation()
-            viewModel.translatedText = ""
         }
-        if let button = popover.statusBarButton {
+        if let button = DIContainer.shared.statusBarController.statusItem.button {
             popover.toggle(from: button)
         }
     }
     
-    func floatingTranslateIconDidCancel(_ popup: FloatingQuickActionPanel) {
+    func quickActionPanelDidCancel(_ panel: FloatingQuickActionPanel) {
     }
 }

@@ -7,6 +7,8 @@
 
 final class DIContainer {
     
+    static let shared = DIContainer()
+    
     let viewModel = TranslateViewModel()
     let mainPopover: MainPopover
     let statusBarController: StatusBarController
@@ -16,6 +18,6 @@ final class DIContainer {
     
     init() {
         mainPopover = MainPopover(viewModel: viewModel)
-        statusBarController = StatusBarController(popover: mainPopover)
+        statusBarController = StatusBarController(popover: mainPopover)        
     }
 }

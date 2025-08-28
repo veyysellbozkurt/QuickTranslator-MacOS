@@ -8,8 +8,8 @@
 import AppKit
 
 protocol FloatingQuickActionPanelDelegate: AnyObject {
-    func floatingTranslateIconDidConfirmTranslate(_ popup: FloatingQuickActionPanel)
-    func floatingTranslateIconDidCancel(_ popup: FloatingQuickActionPanel)
+    func quickActionPanelDidConfirm(_ popup: FloatingQuickActionPanel)
+    func quickActionPanelDidCancel(_ popup: FloatingQuickActionPanel)
 }
 
 final class FloatingQuickActionPanel: NSPanel {
@@ -63,7 +63,7 @@ final class FloatingQuickActionPanel: NSPanel {
         let _ = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] ev in
             guard let self = self else { return .none }
             if ev.keyCode == self.escKeyCode {
-                self.actionDelegate?.floatingTranslateIconDidCancel(self)
+                self.actionDelegate?.quickActionPanelDidCancel(self)
                 self.orderOut(nil)
                 return nil
             }
@@ -72,7 +72,7 @@ final class FloatingQuickActionPanel: NSPanel {
     }
 
     @objc private func onClick() {
-        actionDelegate?.floatingTranslateIconDidConfirmTranslate(self)
+        actionDelegate?.quickActionPanelDidConfirm(self)
         orderOut(nil)
     }
 
