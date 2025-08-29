@@ -28,6 +28,6 @@ final class StatusBarController {
     
     @objc private func buttonClicked(_ sender: AnyObject?) {
         guard let button = statusItem.button else { return }
-        popover.toggle(from: button)
+        popover.show(from: button)
     }
 }

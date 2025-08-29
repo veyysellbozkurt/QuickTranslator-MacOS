@@ -202,6 +202,7 @@
 		2B4AB4952E5F256B005DF24C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				2B4AB4C62E61D5A0005DF24C /* AppKit */,
 				2B4AB4922E5F256B005DF24C /* Foundation */,
 				2B4AB4942E5F256B005DF24C /* SwiftUI */,
 			);
@@ -301,6 +302,13 @@
 				2B4AB4C02E607667005DF24C /* StatusBarController.swift */,
 			);
 			path = StatusBar;
+			sourceTree = "<group>";
+		};
+		2B4AB4C62E61D5A0005DF24C /* AppKit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AppKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

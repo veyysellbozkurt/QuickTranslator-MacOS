@@ -26,7 +26,20 @@ struct PopoverControls: View {
             Spacer()
             
             Button {
-                NSApp.terminate(nil)
+                NSWorkspace.shared.open(URL(string: "https://buymeacoffee.com/veyselbozkurt")!)
+            } label: {
+                Image(.buyMeCoffee)
+                    .resizable()
+                    .scaledToFit()
+            }
+            .frame(width: 200, height: 28)
+            .clipShape(.buttonBorder)
+            .buttonStyle(BounceButtonStyle())
+                
+            Spacer()
+            
+            Button {
+                NSApp.terminate(nil)    
             } label: {
                 Label(Constants.Strings.quit, systemImage: SFIcons.power)
                     .contentShape(Rectangle())

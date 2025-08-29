@@ -43,7 +43,7 @@ struct TranslateView: View {
             }
                         
             translateButton
-                .padding(.top, 8)
+                .padding([.top, .horizontal], 8)
         }
         .padding(8)
         .animation(.default, value: viewModel.isTranslating)
@@ -63,7 +63,8 @@ private extension TranslateView {
                 .font(.title3)
                 .foregroundStyle(.white)
         }
-        .frame(width: 180, height: 40)
+        .frame(height: 40)
+        .frame(maxWidth: .infinity)
         .background(Color(nsColor: .app))
         .clipShape(.buttonBorder)
         .keyboardShortcut(.init("t"), modifiers: [.control])

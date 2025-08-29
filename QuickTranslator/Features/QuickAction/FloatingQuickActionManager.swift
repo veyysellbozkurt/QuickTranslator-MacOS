@@ -50,7 +50,7 @@ extension FloatingQuickActionManager: FloatingQuickActionPanelDelegate {
             viewModel.triggerTranslation()
         }
         if let button = DIContainer.shared.statusBarController.statusItem.button {
-            popover.toggle(from: button)
+            popover.show(from: button)
         }
     }
     

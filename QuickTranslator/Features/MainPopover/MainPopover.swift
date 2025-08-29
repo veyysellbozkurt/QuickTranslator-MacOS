@@ -21,13 +21,9 @@ final class MainPopover {
     }
     
     @objc
-    func toggle(from button: NSStatusBarButton) {
-        if popover.isShown {
-            popover.performClose(button)
-        } else {
-            popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
-            popover.contentViewController?.view.window?.becomeKey()
-        }
+    func show(from button: NSStatusBarButton) {
+        popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+        popover.contentViewController?.view.window?.becomeKey()
     }
 }
 

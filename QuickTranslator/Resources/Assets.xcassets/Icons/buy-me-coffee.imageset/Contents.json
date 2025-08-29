@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "buy-me-coffee.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

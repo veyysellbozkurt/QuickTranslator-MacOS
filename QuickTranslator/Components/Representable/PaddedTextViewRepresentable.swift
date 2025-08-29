@@ -28,7 +28,8 @@ struct PaddedTextViewRepresentable: NSViewRepresentable {
         textView.textContainerInset = inset
         textView.autoresizingMask = [.width]
         textView.delegate = context.coordinator
-        textView.font = NSFont.systemFont(ofSize: 15, weight: .medium)
+        textView.textColor = textView.textColor?.withAlphaComponent(0.85)
+        textView.font = NSFont.systemFont(ofSize: 14, weight: .regular)
         textView.onEnterKeyPress = onEnterKeyPress
         
         let scrollView = NSScrollView()
