@@ -30,6 +30,11 @@ final class FloatingQuickActionManager {
     func start() {
         clipboardMonitor.onCopy = { [weak self] text in
             guard let self else { return }
+            
+            if self.isCopiedFromApp(text) {
+                return
+            }
+            
             self.copiedText = text
             self.floatingPanel.showNearMouse()
         }
@@ -55,5 +60,17 @@ extension FloatingQuickActionManager: FloatingQuickActionPanelDelegate {
     }
     
     func quickActionPanelDidCancel(_ panel: FloatingQuickActionPanel) {
+    }
+}
+
+private extension FloatingQuickActionManager {
+    func isCopiedFromApp(_ text: String) -> Bool {
+        let pasteboard = NSPasteboard.general
+        if pasteboard.string(forType: PasteboardMarker.type) == PasteboardMarker.value {
+            pasteboard.clearContents()
+            pasteboard.setString(text, forType: .string)
+            return true
+        }
+        return false
     }
 }

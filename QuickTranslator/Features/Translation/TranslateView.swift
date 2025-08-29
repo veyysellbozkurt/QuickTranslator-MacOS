@@ -18,7 +18,7 @@ struct TranslateView: View {
     
     var body: some View {
         VStack {
-
+            
             InputView(
                 text: $viewModel.inputText,
                 language: $viewModel.sourceLanguage,
@@ -26,13 +26,13 @@ struct TranslateView: View {
             ) {
                 viewModel.triggerTranslation()
             }
-                        
+            
             swapButton
                 .padding(.vertical, 4)
-                       
+            
             if viewModel.isTranslating {
                 ProgressView(Constants.Strings.translating)
-                    
+                
             } else {
                 InputView(
                     text: $viewModel.translatedText,
@@ -59,6 +59,7 @@ private extension TranslateView {
             Text(Constants.Strings.translateButton)
                 .font(.title3)
                 .foregroundStyle(.white)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .frame(height: 40)
         .frame(maxWidth: .infinity)

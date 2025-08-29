@@ -27,6 +27,7 @@
 		2B4AB4BE2E606AC6005DF24C /* MainPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4BD2E606AC6005DF24C /* MainPopover.swift */; };
 		2B4AB4C12E607667005DF24C /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4C02E607667005DF24C /* StatusBarController.swift */; };
 		2B4AB4C32E607BD6005DF24C /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4C22E607BD6005DF24C /* DIContainer.swift */; };
+		2B4AB4CA2E61F743005DF24C /* PasteboardMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4C92E61F743005DF24C /* PasteboardMarker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		2B4AB4BD2E606AC6005DF24C /* MainPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopover.swift; sourceTree = "<group>"; };
 		2B4AB4C02E607667005DF24C /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		2B4AB4C22E607BD6005DF24C /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		2B4AB4C92E61F743005DF24C /* PasteboardMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardMarker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -220,6 +222,7 @@
 		2B4AB49D2E5F256B005DF24C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2B4AB4C92E61F743005DF24C /* PasteboardMarker.swift */,
 				2B4AB49B2E5F256B005DF24C /* Language.swift */,
 				2B4AB49C2E5F256B005DF24C /* SFIcons.swift */,
 			);
@@ -469,6 +472,7 @@
 				2B4AB4C12E607667005DF24C /* StatusBarController.swift in Sources */,
 				2B4AB4B32E5F256B005DF24C /* Language.swift in Sources */,
 				2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */,
+				2B4AB4CA2E61F743005DF24C /* PasteboardMarker.swift in Sources */,
 				2B4AB4B52E5F256B005DF24C /* TranslateView.swift in Sources */,
 				2B4AB4C32E607BD6005DF24C /* DIContainer.swift in Sources */,
 				2B4AB4B62E5F256B005DF24C /* TranslateViewModel.swift in Sources */,
