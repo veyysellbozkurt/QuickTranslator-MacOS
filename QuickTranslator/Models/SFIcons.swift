@@ -13,4 +13,5 @@ enum SFIcons {
     static let pinFill = "pin.fill"
     static let pin = "pin"
     static let power = "power"
+    static let gear = "gear"
 }

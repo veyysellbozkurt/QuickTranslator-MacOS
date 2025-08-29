@@ -14,4 +14,8 @@ enum Constants {
         static let translating = "Translating..."
         static let quit = "Quit"
     }
+    
+    enum Urls {
+        static let buyMeCoffee = URL(string: "https://buymeacoffee.com/veyselbozkurt")!
+    }
 }

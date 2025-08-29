@@ -29,10 +29,9 @@ struct InputView: View {
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
-                .padding(.vertical, 6)
                 .padding(.horizontal, 10)
                 .frame(maxWidth: .infinity)
-                .frame(height: 32)
+                .frame(height: 28)
                 .background(Color.secondary.opacity(0.2))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
             }

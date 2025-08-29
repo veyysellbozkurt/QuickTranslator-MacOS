@@ -26,26 +26,23 @@ struct TranslateView: View {
             ) {
                 viewModel.triggerTranslation()
             }
-            .padding(.horizontal, 8)
                         
             swapButton
-                .padding(.vertical, 6)
+                .padding(.vertical, 4)
                        
             if viewModel.isTranslating {
                 ProgressView(Constants.Strings.translating)
-                    .padding()
+                    
             } else {
                 InputView(
                     text: $viewModel.translatedText,
                     language: $viewModel.targetLanguage
                 )
-                .padding(.horizontal, 8)
             }
-                        
             translateButton
-                .padding([.top, .horizontal], 8)
+                .padding(.horizontal, 3)
         }
-        .padding(8)
+        .padding(12)
         .animation(.default, value: viewModel.isTranslating)
         .translationTask(viewModel.configuration) { session in
             await viewModel.makeTranslation(session: session)
@@ -69,7 +66,6 @@ private extension TranslateView {
         .clipShape(.buttonBorder)
         .keyboardShortcut(.init("t"), modifiers: [.control])
         .buttonStyle(BounceButtonStyle())
-        .shadow(color: Color(nsColor: .app.withAlphaComponent(0.4)), radius: 3)
     }
     
     var swapButton: some View {
