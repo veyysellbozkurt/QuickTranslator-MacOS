@@ -10,10 +10,8 @@ import AppKit
 final class StatusBarController {
     
     let statusItem: NSStatusItem
-    private let popover: MainPopover
     
-    init(popover: MainPopover) {
-        self.popover = popover
+    init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
         if let button = statusItem.button {
@@ -28,6 +26,6 @@ final class StatusBarController {
     
     @objc private func buttonClicked(_ sender: AnyObject?) {
         guard let button = statusItem.button else { return }
-        popover.show(from: button)
+        DIContainer.shared.mainPopover.show(from: button)
     }
 }

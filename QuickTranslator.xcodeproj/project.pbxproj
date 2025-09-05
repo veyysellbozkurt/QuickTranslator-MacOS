@@ -18,7 +18,7 @@
 		2B4AB4AD2E5F256B005DF24C /* QuickTranslatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB48F2E5F256B005DF24C /* QuickTranslatorApp.swift */; };
 		2B4AB4AE2E5F256B005DF24C /* UserDefaults+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4912E5F256B005DF24C /* UserDefaults+Ext.swift */; };
 		2B4AB4AF2E5F256B005DF24C /* BounceButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4932E5F256B005DF24C /* BounceButtonStyle.swift */; };
-		2B4AB4B02E5F256B005DF24C /* ClipboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4962E5F256B005DF24C /* ClipboardMonitor.swift */; };
+		2B4AB4B02E5F256B005DF24C /* DoubleKeyMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4962E5F256B005DF24C /* DoubleKeyMonitor.swift */; };
 		2B4AB4B12E5F256B005DF24C /* FloatingQuickActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4972E5F256B005DF24C /* FloatingQuickActionManager.swift */; };
 		2B4AB4B32E5F256B005DF24C /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB49B2E5F256B005DF24C /* Language.swift */; };
 		2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB49C2E5F256B005DF24C /* SFIcons.swift */; };
@@ -28,6 +28,11 @@
 		2B4AB4C12E607667005DF24C /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4C02E607667005DF24C /* StatusBarController.swift */; };
 		2B4AB4C32E607BD6005DF24C /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4C22E607BD6005DF24C /* DIContainer.swift */; };
 		2B4AB4CA2E61F743005DF24C /* PasteboardMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4C92E61F743005DF24C /* PasteboardMarker.swift */; };
+		2B4AB4DE2E674163005DF24C /* SwiftyTranslationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4DD2E674163005DF24C /* SwiftyTranslationSession.swift */; };
+		2B4AB4E02E6741AE005DF24C /* SwiftyTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4DF2E6741AE005DF24C /* SwiftyTranslate.swift */; };
+		2B4AB4E22E686E06005DF24C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B4AB4E12E686E06005DF24C /* Info.plist */; };
+		2B62A1EA2E6B07D9000ADA9E /* FeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */; };
+		2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +66,7 @@
 		2B4AB48F2E5F256B005DF24C /* QuickTranslatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTranslatorApp.swift; sourceTree = "<group>"; };
 		2B4AB4912E5F256B005DF24C /* UserDefaults+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Ext.swift"; sourceTree = "<group>"; };
 		2B4AB4932E5F256B005DF24C /* BounceButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceButtonStyle.swift; sourceTree = "<group>"; };
-		2B4AB4962E5F256B005DF24C /* ClipboardMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardMonitor.swift; sourceTree = "<group>"; };
+		2B4AB4962E5F256B005DF24C /* DoubleKeyMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleKeyMonitor.swift; sourceTree = "<group>"; };
 		2B4AB4972E5F256B005DF24C /* FloatingQuickActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingQuickActionManager.swift; sourceTree = "<group>"; };
 		2B4AB49B2E5F256B005DF24C /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		2B4AB49C2E5F256B005DF24C /* SFIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFIcons.swift; sourceTree = "<group>"; };
@@ -73,6 +78,11 @@
 		2B4AB4C02E607667005DF24C /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		2B4AB4C22E607BD6005DF24C /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		2B4AB4C92E61F743005DF24C /* PasteboardMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardMarker.swift; sourceTree = "<group>"; };
+		2B4AB4DD2E674163005DF24C /* SwiftyTranslationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTranslationSession.swift; sourceTree = "<group>"; };
+		2B4AB4DF2E6741AE005DF24C /* SwiftyTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTranslate.swift; sourceTree = "<group>"; };
+		2B4AB4E12E686E06005DF24C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureManager.swift; sourceTree = "<group>"; };
+		2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -177,6 +187,7 @@
 		2B4AB4902E5F256B005DF24C /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				2B62A1E82E6B07CB000ADA9E /* Managers */,
 				2B4AB48D2E5F256B005DF24C /* Constants */,
 				2B4AB48E2E5F256B005DF24C /* AppDelegate.swift */,
 				2B4AB4C22E607BD6005DF24C /* DIContainer.swift */,
@@ -211,12 +222,12 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		2B4AB4992E5F256B005DF24C /* Helpers */ = {
+		2B4AB4992E5F256B005DF24C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				2B4AB4962E5F256B005DF24C /* ClipboardMonitor.swift */,
+				2B62A1EB2E6B2017000ADA9E /* DoubleKeyMonitor */,
 			);
-			path = Helpers;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		2B4AB49D2E5F256B005DF24C /* Models */ = {
@@ -233,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				2B4AB49E2E5F256B005DF24C /* Assets.xcassets */,
+				2B4AB4E12E686E06005DF24C /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -253,10 +265,11 @@
 			children = (
 				2B4AB4902E5F256B005DF24C /* Core */,
 				2B4AB4A22E5F256B005DF24C /* Features */,
+				2B4AB4E52E69B3F9005DF24C /* Services */,
 				2B4AB48B2E5F256B005DF24C /* Components */,
 				2B4AB49D2E5F256B005DF24C /* Models */,
 				2B4AB4952E5F256B005DF24C /* Extension */,
-				2B4AB4992E5F256B005DF24C /* Helpers */,
+				2B4AB4992E5F256B005DF24C /* Utilities */,
 				2B4AB49F2E5F256B005DF24C /* Resources */,
 				2B4AB4A32E5F256B005DF24C /* QuickTranslator.entitlements */,
 			);
@@ -312,6 +325,40 @@
 			children = (
 			);
 			path = AppKit;
+			sourceTree = "<group>";
+		};
+		2B4AB4E42E69B3E2005DF24C /* SwiftyTranslateService */ = {
+			isa = PBXGroup;
+			children = (
+				2B4AB4DF2E6741AE005DF24C /* SwiftyTranslate.swift */,
+				2B4AB4DD2E674163005DF24C /* SwiftyTranslationSession.swift */,
+			);
+			path = SwiftyTranslateService;
+			sourceTree = "<group>";
+		};
+		2B4AB4E52E69B3F9005DF24C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2B4AB4E42E69B3E2005DF24C /* SwiftyTranslateService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2B62A1E82E6B07CB000ADA9E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		2B62A1EB2E6B2017000ADA9E /* DoubleKeyMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */,
+				2B4AB4962E5F256B005DF24C /* DoubleKeyMonitor.swift */,
+			);
+			path = DoubleKeyMonitor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -431,6 +478,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B4AB4E22E686E06005DF24C /* Info.plist in Resources */,
 				2B4AB4A52E5F256B005DF24C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,16 +510,20 @@
 				2B4AB4A92E5F256B005DF24C /* InputView.swift in Sources */,
 				2B4AB4BE2E606AC6005DF24C /* MainPopover.swift in Sources */,
 				2B4AB4AA2E5F256B005DF24C /* PopoverControls.swift in Sources */,
+				2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */,
+				2B4AB4E02E6741AE005DF24C /* SwiftyTranslate.swift in Sources */,
 				2B4AB4AB2E5F256B005DF24C /* Constants.swift in Sources */,
 				2B4AB4AC2E5F256B005DF24C /* AppDelegate.swift in Sources */,
 				2B4AB4AD2E5F256B005DF24C /* QuickTranslatorApp.swift in Sources */,
 				2B4AB4AE2E5F256B005DF24C /* UserDefaults+Ext.swift in Sources */,
 				2B4AB4AF2E5F256B005DF24C /* BounceButtonStyle.swift in Sources */,
-				2B4AB4B02E5F256B005DF24C /* ClipboardMonitor.swift in Sources */,
+				2B4AB4B02E5F256B005DF24C /* DoubleKeyMonitor.swift in Sources */,
 				2B4AB4B12E5F256B005DF24C /* FloatingQuickActionManager.swift in Sources */,
 				2B4AB4C12E607667005DF24C /* StatusBarController.swift in Sources */,
 				2B4AB4B32E5F256B005DF24C /* Language.swift in Sources */,
+				2B62A1EA2E6B07D9000ADA9E /* FeatureManager.swift in Sources */,
 				2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */,
+				2B4AB4DE2E674163005DF24C /* SwiftyTranslationSession.swift in Sources */,
 				2B4AB4CA2E61F743005DF24C /* PasteboardMarker.swift in Sources */,
 				2B4AB4B52E5F256B005DF24C /* TranslateView.swift in Sources */,
 				2B4AB4C32E607BD6005DF24C /* DIContainer.swift in Sources */,
@@ -641,6 +693,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuickTranslator/Resources/Info.plist;
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -648,7 +701,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = veyselBozkurt.QuickTranslator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -670,6 +723,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuickTranslator/Resources/Info.plist;
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -677,7 +731,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = veyselBozkurt.QuickTranslator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

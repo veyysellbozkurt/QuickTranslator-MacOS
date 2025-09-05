@@ -48,6 +48,12 @@ extension TranslateViewModel {
         } catch {
             errorMessage = error.localizedDescription
         }
+        
+        translateViaWeb(text: inputText, from: "tr", to: "en") { translatedText in
+#if DEBUG
+            print("\nVEYSEL <<<< Translated:  in \(#function)-> ", translatedText ?? "-")
+#endif
+        }
     }
     
     func triggerTranslation() {
@@ -74,4 +80,53 @@ private extension TranslateViewModel {
         Storage.set(sourceLanguage.rawValue, forKey: .sourceLanguage)
         Storage.set(targetLanguage.rawValue, forKey: .targetLanguage)
     }
+}
+
+
+
+import Foundation
+
+func translateViaWeb(text: String, from source: String = "tr", to target: String = "en", completion: @escaping (String?) -> Void) {
+    let encodedText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+    let urlStr = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=\(source)&tl=\(target)&dt=t&q=\(encodedText)"
+    
+    guard let url = URL(string: urlStr) else {
+        completion(nil)
+        return
+    }
+
+    let task = URLSession.shared.dataTask(with: url) { data, _, error in
+        if let error = error {
+            print("HTTP request failed: \(error)")
+            completion(nil)
+            return
+        }
+        guard let data = data else {
+            completion(nil)
+            return
+        }
+
+        do {
+            let json = try JSONSerialization.jsonObject(with: data) as? [Any]
+            
+            // json[0] array olmalı
+            guard let sentences = json?[0] as? [[Any]] else {
+                completion(nil)
+                return
+            }
+            
+            // Tüm segmentleri birleştir
+            let translatedText = sentences.compactMap { segment -> String? in
+                return segment.first as? String
+            }.joined()
+            
+            completion(translatedText)
+            
+        } catch {
+            print("JSON parse error: \(error)")
+            completion(nil)
+        }
+    }
+
+    task.resume()
 }

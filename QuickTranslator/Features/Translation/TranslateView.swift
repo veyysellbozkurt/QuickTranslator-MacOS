@@ -28,22 +28,30 @@ struct TranslateView: View {
             }
             
             swapButton
-                .padding(.vertical, 4)
+            .padding(.vertical, 4)
             
             if viewModel.isTranslating {
-                ProgressView(Constants.Strings.translating)
-                
+                ZStack {
+                    InputView(
+                        text: $viewModel.translatedText,
+                        language: $viewModel.targetLanguage
+                    ).opacity(0.2)
+                                                                
+                    ProgressView(Constants.Strings.translating)
+                        .progressViewStyle(.circular)
+                        .foregroundStyle(Color.white)
+                }
             } else {
                 InputView(
                     text: $viewModel.translatedText,
                     language: $viewModel.targetLanguage
                 )
             }
-            translateButton
-                .padding(.horizontal, 3)
+//            translateButton
+//                .padding(.horizontal, 3)
         }
         .padding(12)
-        .animation(.default, value: viewModel.isTranslating)
+        .animation(.bouncy, value: viewModel.isTranslating)
         .translationTask(viewModel.configuration) { session in
             await viewModel.makeTranslation(session: session)
         }
@@ -77,7 +85,7 @@ private extension TranslateView {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 24, height: 24)
-                .foregroundStyle(Color.blue)
+                .foregroundStyle(Color.app)
                 .padding(6)
                 .background(.white)
                 .clipShape(Circle())

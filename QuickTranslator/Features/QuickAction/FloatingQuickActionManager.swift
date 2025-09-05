@@ -6,43 +6,40 @@
 //
 
 import AppKit
+import Carbon.HIToolbox
 
-/// It manages the Clipboard -> Floating Panel -> ViewModel/Popover flow
 final class FloatingQuickActionManager {
     
-    private let clipboardMonitor = ClipboardMonitor()
+    private let cmdMonitor = DoubleKeyMonitor(doubleKey: .cmdC)
     private let floatingPanel: FloatingQuickActionPanel
     private let viewModel: TranslateViewModel
-    private let popover: MainPopover
     private var copiedText: String?
     
     init(
         viewModel: TranslateViewModel,
-        popover: MainPopover,
         panel: FloatingQuickActionPanel = FloatingQuickActionPanel()
     ) {
         self.viewModel = viewModel
-        self.popover = popover
         self.floatingPanel = panel
         floatingPanel.actionDelegate = self
     }
     
     func start() {
-        clipboardMonitor.onCopy = { [weak self] text in
-            guard let self else { return }
-            
-            if self.isCopiedFromApp(text) {
-                return
-            }
-            
-            self.copiedText = text
-            self.floatingPanel.showNearMouse()
+        cmdMonitor.onDoublePress = {
+            [weak self] in
+            guard let self,
+                  let text = NSPasteboard.general.string(forType: .string)?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+                
+                if self.isCopiedFromApp(text) {
+                    return
+                }
+                
+                self.copiedText = text
+            // TODO: Feature kontrolü yapılıp (icon ya da doğrudan translate çıkacak)
+//            self.floatingPanel.showNearMouse()
+                quickActionPanelDidConfirm(.init())
         }
-        clipboardMonitor.start(interval: 0.4)
-    }
-    
-    func stop() {
-        clipboardMonitor.stop()
+        cmdMonitor.start()
     }
 }
 
@@ -55,7 +52,7 @@ extension FloatingQuickActionManager: FloatingQuickActionPanelDelegate {
             viewModel.triggerTranslation()
         }
         if let button = DIContainer.shared.statusBarController.statusItem.button {
-            popover.show(from: button)
+            DIContainer.shared.mainPopover.show(from: button)
         }
     }
     

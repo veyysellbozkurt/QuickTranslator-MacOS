@@ -39,7 +39,7 @@ struct PopoverControls: View {
             Spacer()
             
             Button {
-                // show settings window
+                // TODO: Show settings window
             } label: {
                 Image(systemName: SFIcons.gear)
                     .resizable()
