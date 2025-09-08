@@ -1,5 +1,5 @@
 //
-//  FloatingQuickActionPanelController.swift
+//  QuickActionManager.swift
 //  QuickTranslator
 //
 //  Created by Veysel Bozkurt on 27.08.2025.
@@ -8,7 +8,7 @@
 import AppKit
 import Carbon.HIToolbox
 
-final class FloatingQuickActionManager {
+final class QuickActionManager {
     
     private let cmdMonitor = DoubleKeyMonitor(doubleKey: .cmdC)
     private let floatingPanel: FloatingQuickActionPanel
@@ -33,19 +33,21 @@ final class FloatingQuickActionManager {
                 if self.isCopiedFromApp(text) {
                     return
                 }
-                
                 self.copiedText = text
-            // TODO: Feature kontrolü yapılıp (icon ya da doğrudan translate çıkacak)
-//            self.floatingPanel.showNearMouse()
-                quickActionPanelDidConfirm(.init())
+            
+            if FeatureManager.shared.isEnabled(.copyAndTranslate) {
+                floatingPanel.showNearMouse()
+            } else {
+                quickActionPanelDidConfirm()
+            }
         }
         cmdMonitor.start()
     }
 }
 
 // MARK: - Floating Quick Action Panel Delegate
-extension FloatingQuickActionManager: FloatingQuickActionPanelDelegate {
-    func quickActionPanelDidConfirm(_ panel: FloatingQuickActionPanel) {
+extension QuickActionManager: FloatingQuickActionPanelDelegate {
+    func quickActionPanelDidConfirm() {
         if let text = copiedText {
             viewModel.translatedText = ""
             viewModel.inputText = text
@@ -56,11 +58,11 @@ extension FloatingQuickActionManager: FloatingQuickActionPanelDelegate {
         }
     }
     
-    func quickActionPanelDidCancel(_ panel: FloatingQuickActionPanel) {
+    func quickActionPanelDidCancel() {
     }
 }
 
-private extension FloatingQuickActionManager {
+private extension QuickActionManager {
     func isCopiedFromApp(_ text: String) -> Bool {
         let pasteboard = NSPasteboard.general
         if pasteboard.string(forType: PasteboardMarker.type) == PasteboardMarker.value {

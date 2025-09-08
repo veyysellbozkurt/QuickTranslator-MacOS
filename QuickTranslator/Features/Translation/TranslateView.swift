@@ -47,8 +47,6 @@ struct TranslateView: View {
                     language: $viewModel.targetLanguage
                 )
             }
-//            translateButton
-//                .padding(.horizontal, 3)
         }
         .padding(12)
         .animation(.bouncy, value: viewModel.isTranslating)

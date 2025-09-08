@@ -10,6 +10,6 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ notification: Notification) {
-        DIContainer.shared.quickActionController.start()
+        DIContainer.shared.quickActionManager.start()
     }
 }

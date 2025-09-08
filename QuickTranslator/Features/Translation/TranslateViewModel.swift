@@ -108,14 +108,12 @@ func translateViaWeb(text: String, from source: String = "tr", to target: String
 
         do {
             let json = try JSONSerialization.jsonObject(with: data) as? [Any]
-            
-            // json[0] array olmalı
+                        
             guard let sentences = json?[0] as? [[Any]] else {
                 completion(nil)
                 return
             }
-            
-            // Tüm segmentleri birleştir
+                        
             let translatedText = sentences.compactMap { segment -> String? in
                 return segment.first as? String
             }.joined()

@@ -6,9 +6,6 @@
 //
 
 import Foundation
-#if canImport(FoundationNetworking)
-import FoundationNetworking
-#endif
 
 public struct SwiftyTranslate {
 
@@ -55,17 +52,14 @@ public struct SwiftyTranslate {
                 completion(.failure(.invalidData))
                 return
             }
-
-            // extract array structure
+            
             guard let firstArray = object as? [Any],
                   let secondArray = firstArray.first as? [Any]
             else {
                 completion(.failure(.invalidData))
                 return
             }
-
-            // extract result
-            // strings seperated by \n are seperated in the array
+            
             var originParts: [String]?
             var resultParts: [String]?
             for sectionInSecondArray in secondArray {
@@ -82,8 +76,7 @@ public struct SwiftyTranslate {
                 if resultParts == nil { resultParts = [] }
                 resultParts?.append(translated)
             }
-
-            // (re)join seperated strings
+            
             if let originParts = originParts, let resultParts = resultParts {
                 let origin = originParts.joined()
                 let translated = resultParts.joined()

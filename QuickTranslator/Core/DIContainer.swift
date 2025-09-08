@@ -10,12 +10,12 @@ final class DIContainer {
     static let shared = DIContainer()
     
     let viewModel = TranslateViewModel()
+    
     let mainPopover: MainPopover
-    let statusBarController: StatusBarController
-    lazy var quickActionController: FloatingQuickActionManager = { FloatingQuickActionManager(viewModel: viewModel) }()
+    let statusBarController = StatusBarController()
+    lazy var quickActionManager: QuickActionManager = { QuickActionManager(viewModel: viewModel) }()
     
     init() {
         mainPopover = MainPopover(viewModel: viewModel)
-        statusBarController = StatusBarController()
     }
 }

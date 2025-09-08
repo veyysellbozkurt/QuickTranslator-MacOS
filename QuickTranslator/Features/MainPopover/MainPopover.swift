@@ -15,11 +15,6 @@ final class MainPopover {
     private let viewModel: TranslateViewModel
     private var cancellables = Set<AnyCancellable>()
     
-    // Yükseklik sınırları
-//    private let minHeight: CGFloat = 300
-//    private let maxHeight: CGFloat = 600
-//    private let baseWidth: CGFloat = 600
-    
     private let minHeight: CGFloat = 350
     private let maxHeight: CGFloat = 650
     private let baseWidth: CGFloat = 350
@@ -41,8 +36,18 @@ final class MainPopover {
         popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         popover.contentViewController?.view.window?.becomeKey()
     }
+}
+
+private extension MainPopover {
+    func makeRootView(viewModel: TranslateViewModel) -> some View {
+        VStack {
+            TranslateView(viewModel: viewModel)
+            PopoverControls(popover: popover)
+        }
+        .background(Color.accentColor.opacity(0.15))
+    }
     
-    private func setupDynamicHeightObserver() {
+    func setupDynamicHeightObserver() {
         viewModel.$inputText
             .combineLatest(viewModel.$translatedText)
             .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
@@ -52,8 +57,7 @@ final class MainPopover {
             .store(in: &cancellables)
     }
     
-    private func updatePopoverHeight(sourceText: String, translatedText: String) {
-        // Eğer her iki metin de boşsa minimum yüksekliğe dön
+    func updatePopoverHeight(sourceText: String, translatedText: String) {
         if sourceText.isEmpty && translatedText.isEmpty {
             NSAnimationContext.runAnimationGroup { context in
                 context.duration = 0.3
@@ -73,29 +77,17 @@ final class MainPopover {
         }
     }
     
-    private func calculateRequiredHeight(sourceText: String, translatedText: String) -> CGFloat {
+    func calculateRequiredHeight(sourceText: String, translatedText: String) -> CGFloat {
         let baseHeight: CGFloat = 200
         let lineHeight: CGFloat = 20
         let maxCharsPerLine: CGFloat = 50
-        
-        // Kaynak metin yüksekliği
+                
         let sourceLines = max(1, ceil(CGFloat(sourceText.count) / maxCharsPerLine))
-        let sourceHeight = sourceLines * lineHeight + 40 // Padding ekle
-        
-        // Çeviri metni yüksekliği
+        let sourceHeight = sourceLines * lineHeight + 40
+                
         let translatedLines = max(1, ceil(CGFloat(translatedText.count) / maxCharsPerLine))
         let translatedHeight = translatedLines * lineHeight + 40
         
         return baseHeight + sourceHeight + translatedHeight
-    }
-}
-
-private extension MainPopover {
-    func makeRootView(viewModel: TranslateViewModel) -> some View {
-        VStack {
-            TranslateView(viewModel: viewModel)
-            PopoverControls(popover: popover)
-        }
-        .background(Color.accentColor.opacity(0.15))
     }
 }
