@@ -10,7 +10,7 @@ import Carbon.HIToolbox
 
 final class QuickActionManager {
     
-    private let cmdMonitor = DoubleKeyMonitor(doubleKey: .cmdX)
+    private let cmdMonitor = DoubleKeyMonitor(doubleKey: .cmdC)
     private let floatingPanel: FloatingQuickActionPanel
     private let viewModel: TranslateViewModel
     private var copiedText: String?
