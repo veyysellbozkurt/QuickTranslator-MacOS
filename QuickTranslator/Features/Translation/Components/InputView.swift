@@ -96,12 +96,12 @@ struct InputView: View {
         } label: {
             Image(systemName: SFIcons.copy)
                 .resizable()
-                .frame(width: 16, height: 18)
-                .padding(8)
+                .frame(width: 16, height: 17)
+                .padding(4)
                 .foregroundStyle(text.isEmpty ? Color.secondary : Color.app)
         }
         .buttonStyle(BounceButtonStyle())
-        .padding(6)
+        .padding(4)
         .disabled(text.isEmpty)
     }
     

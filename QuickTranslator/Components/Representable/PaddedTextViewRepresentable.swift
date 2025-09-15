@@ -28,7 +28,7 @@ struct PaddedTextViewRepresentable: NSViewRepresentable {
         textView.textContainerInset = inset
         textView.autoresizingMask = [.width]
         textView.delegate = context.coordinator
-        textView.textColor = textView.textColor?.withAlphaComponent(0.85)
+        textView.textColor = textView.textColor?.withAlphaComponent(0.8)
         textView.backgroundColor = textView.backgroundColor.withAlphaComponent(0.75)
         textView.font = NSFont.systemFont(ofSize: 14, weight: .regular)
         textView.onEnterKeyPress = onEnterKeyPress

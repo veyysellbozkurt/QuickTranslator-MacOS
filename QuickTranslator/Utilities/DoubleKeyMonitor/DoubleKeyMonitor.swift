@@ -17,7 +17,7 @@ final class DoubleKeyMonitor {
     
     var onDoublePress: (() -> Void)?
     
-    init(doubleKey: DoubleKey, doubleTapInterval: TimeInterval = 2.0) {
+    init(doubleKey: DoubleKey, doubleTapInterval: TimeInterval = 1.2) {
         self.doubleKey = doubleKey
         self.doubleTapInterval = doubleTapInterval
     }

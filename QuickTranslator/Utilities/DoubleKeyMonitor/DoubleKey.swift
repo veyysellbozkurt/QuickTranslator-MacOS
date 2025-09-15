@@ -12,6 +12,7 @@ struct DoubleKey: Equatable {
     let modifierFlags: CGEventFlags
     
     static let cmdC = DoubleKey(keyCode: CGKeyCode(kVK_ANSI_C), modifierFlags: .maskCommand)
+    static let cmdX = DoubleKey(keyCode: CGKeyCode(kVK_ANSI_X), modifierFlags: .maskCommand)
     static let cmdV = DoubleKey(keyCode: CGKeyCode(kVK_ANSI_V), modifierFlags: .maskCommand)
     static let optionX = DoubleKey(keyCode: CGKeyCode(kVK_ANSI_X), modifierFlags: .maskAlternate)
 }

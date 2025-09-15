@@ -28,7 +28,7 @@ struct TranslateView: View {
             }
             
             swapButton
-            .padding(.vertical, 4)
+            .padding(.vertical, 3)
             
             if viewModel.isTranslating {
                 ZStack {
@@ -48,7 +48,7 @@ struct TranslateView: View {
                 )
             }
         }
-        .padding(12)
+        .padding([.horizontal, .top], 10)
         .animation(.bouncy, value: viewModel.isTranslating)
         .translationTask(viewModel.configuration) { session in
             await viewModel.makeTranslation(session: session)
