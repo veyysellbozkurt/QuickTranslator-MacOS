@@ -18,34 +18,28 @@ struct TranslateView: View {
     
     var body: some View {
         VStack {
+            ExchangeLanguageView(sourceLanguage: $viewModel.sourceLanguage,
+                                 targetLanguage: $viewModel.targetLanguage) {
+                viewModel.swapInputs()
+            }
             
-            InputView(
-                text: $viewModel.inputText,
-                language: $viewModel.sourceLanguage,
-                placeholder: Constants.Strings.inputPlaceholder
-            ) {
+            InputView(text: $viewModel.inputText,
+                      language: $viewModel.sourceLanguage,
+                      placeholder: Constants.Strings.inputPlaceholder) {
                 viewModel.triggerTranslation()
             }
             
-            swapButton
-            .padding(.vertical, 3)
-            
-            if viewModel.isTranslating {
-                ZStack {
-                    InputView(
-                        text: $viewModel.translatedText,
-                        language: $viewModel.targetLanguage
-                    ).opacity(0.2)
-                                                                
+            ZStack {
+                InputView(text: $viewModel.translatedText,
+                          language: $viewModel.targetLanguage,
+                          placeholder: Constants.Strings.outputPlaceholder)
+                .opacity(viewModel.isTranslating ? 0.2 : 1)
+                
+                if viewModel.isTranslating {
                     ProgressView(Constants.Strings.translating)
                         .progressViewStyle(.circular)
                         .foregroundStyle(Color.white)
                 }
-            } else {
-                InputView(
-                    text: $viewModel.translatedText,
-                    language: $viewModel.targetLanguage
-                )
             }
         }
         .padding([.horizontal, .top], 10)
@@ -67,30 +61,11 @@ private extension TranslateView {
                 .foregroundStyle(.white)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(height: 40)
+        .frame(height: 32)
         .frame(maxWidth: .infinity)
         .background(Color(nsColor: .app))
         .clipShape(.buttonBorder)
-        .keyboardShortcut(.init("t"), modifiers: [.control])
         .buttonStyle(BounceButtonStyle())
-    }
-    
-    var swapButton: some View {
-        Button {
-            viewModel.swapInputs()
-        } label: {
-            Image(.swap)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 24, height: 24)
-                .foregroundStyle(Color.app)
-                .padding(6)
-                .background(.white)
-                .clipShape(Circle())
-        }
-        .clipShape(Circle())
-        .buttonStyle(BounceButtonStyle())
-        .shadow(color: .white.opacity(0.4), radius: 3)
     }
 }
 

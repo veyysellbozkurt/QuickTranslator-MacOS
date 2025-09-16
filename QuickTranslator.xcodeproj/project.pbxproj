@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1F0E8E2E78510E0072BDD8 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F0E8D2E7851090072BDD8 /* TypeAliases.swift */; };
+		2B1F0E902E7989940072BDD8 /* ExchangeLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F0E8F2E7989940072BDD8 /* ExchangeLanguageView.swift */; };
 		2B4AB4A52E5F256B005DF24C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B4AB49E2E5F256B005DF24C /* Assets.xcassets */; };
 		2B4AB4A62E5F256B005DF24C /* EnterKeyHandlerTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4832E5F256B005DF24C /* EnterKeyHandlerTextView.swift */; };
 		2B4AB4A72E5F256B005DF24C /* FloatingQuickActionPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4842E5F256B005DF24C /* FloatingQuickActionPanel.swift */; };
@@ -57,6 +59,8 @@
 		2B12E7892E5351010029301B /* QuickTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B12E79C2E5351040029301B /* QuickTranslatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTranslatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B12E7A62E5351040029301B /* QuickTranslatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTranslatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B1F0E8D2E7851090072BDD8 /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		2B1F0E8F2E7989940072BDD8 /* ExchangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeLanguageView.swift; sourceTree = "<group>"; };
 		2B4AB4832E5F256B005DF24C /* EnterKeyHandlerTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterKeyHandlerTextView.swift; sourceTree = "<group>"; };
 		2B4AB4842E5F256B005DF24C /* FloatingQuickActionPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingQuickActionPanel.swift; sourceTree = "<group>"; };
 		2B4AB4862E5F256B005DF24C /* PaddedTextViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextViewRepresentable.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 		2B4AB48D2E5F256B005DF24C /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				2B1F0E8D2E7851090072BDD8 /* TypeAliases.swift */,
 				2B4AB48C2E5F256B005DF24C /* Constants.swift */,
 			);
 			path = Constants;
@@ -292,6 +297,7 @@
 		2B4AB4BA2E5F33DD005DF24C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2B1F0E8F2E7989940072BDD8 /* ExchangeLanguageView.swift */,
 				2B4AB4882E5F256B005DF24C /* InputView.swift */,
 			);
 			path = Components;
@@ -529,6 +535,8 @@
 				2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */,
 				2B4AB4DE2E674163005DF24C /* SwiftyTranslationSession.swift in Sources */,
 				2B4AB4CA2E61F743005DF24C /* PasteboardMarker.swift in Sources */,
+				2B1F0E8E2E78510E0072BDD8 /* TypeAliases.swift in Sources */,
+				2B1F0E902E7989940072BDD8 /* ExchangeLanguageView.swift in Sources */,
 				2B4AB4B52E5F256B005DF24C /* TranslateView.swift in Sources */,
 				2B4AB4C32E607BD6005DF24C /* DIContainer.swift in Sources */,
 				2B4AB4B62E5F256B005DF24C /* TranslateViewModel.swift in Sources */,

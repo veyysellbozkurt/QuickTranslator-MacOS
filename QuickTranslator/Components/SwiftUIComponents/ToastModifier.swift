@@ -12,11 +12,7 @@ struct ToastModifier: ViewModifier {
     let message: String
     let duration: TimeInterval
     
-    init(isPresented: Binding<Bool>, message: String, duration: TimeInterval = 1.0) {
-        self._isPresented = isPresented
-        self.message = message
-        self.duration = duration
-    }
+    @State private var timer: Timer?
     
     func body(content: Content) -> some View {
         ZStack {
@@ -24,24 +20,33 @@ struct ToastModifier: ViewModifier {
             
             if isPresented {
                 VStack {
-                    Spacer()
                     Text(message)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 10)
                         .background(.black.opacity(0.8))
                         .foregroundColor(.white)
-                        .cornerRadius(12)
+                        .cornerRadius(10)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
-                        .padding(.bottom, 40)
-                        .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-                                withAnimation {
-                                    isPresented = false
-                                }
-                            }
-                        }
+                        .padding(.bottom, 10)
                 }
-                .animation(.easeInOut, value: isPresented)
+            }
+        }
+        .onChange(of: isPresented) { _, newValue in
+            if newValue {
+                resetTimer()
+            } else {
+                timer?.invalidate()
+                timer = nil
+            }
+        }
+        .animation(.easeInOut, value: isPresented)
+    }
+    
+    private func resetTimer() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { _ in
+            withAnimation {
+                isPresented = false
             }
         }
     }

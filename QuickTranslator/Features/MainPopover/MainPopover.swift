@@ -15,9 +15,9 @@ final class MainPopover {
     private let viewModel: TranslateViewModel
     private var cancellables = Set<AnyCancellable>()
     
-    private let minHeight: CGFloat = 350
+    private let minHeight: CGFloat = 300
     private let maxHeight: CGFloat = 650
-    private let baseWidth: CGFloat = 350
+    private let baseWidth: CGFloat = 400
     
     init(viewModel: TranslateViewModel) {
         self.viewModel = viewModel
@@ -44,7 +44,7 @@ private extension MainPopover {
             TranslateView(viewModel: viewModel)
             PopoverControls(popover: popover)
         }
-        .background(Color.app.opacity(0.15))
+        .background(Color.app.opacity(0.45))
     }
     
     func setupDynamicHeightObserver() {

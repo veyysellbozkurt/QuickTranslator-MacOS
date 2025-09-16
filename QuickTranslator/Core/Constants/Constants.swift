@@ -9,7 +9,8 @@ import Foundation
 
 enum Constants {
     enum Strings {
-        static let inputPlaceholder = ""
+        static let inputPlaceholder = "Enter text and start to translate by pressing Enter ↩︎.\nControl + Enter to start a new line"
+        static let outputPlaceholder = "Translated text is here..."
         static let translateButton = "Translate"
         static let translating = "Translating..."
         static let quit = "Quit"
