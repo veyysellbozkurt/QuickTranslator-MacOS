@@ -10,11 +10,15 @@ import SwiftData
 
 @main
 struct QuickTranslatorApp: App {
-
+    
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @State private var isPinned: Bool = false
-
+    
     var body: some Scene {
-            Settings {}
+        WindowGroup {
+            EmptyView()
+        }
+        Settings {
+            SettingsView(windowManager: DIContainer.shared.settingsWindowManager)
+        }
     }
 }

@@ -13,6 +13,7 @@ final class DIContainer {
     
     let mainPopover: MainPopover
     let statusBarController = StatusBarController()
+    let settingsWindowManager = SettingsWindowManager()
     lazy var quickActionManager: QuickActionManager = { QuickActionManager(viewModel: viewModel) }()
     
     init() {

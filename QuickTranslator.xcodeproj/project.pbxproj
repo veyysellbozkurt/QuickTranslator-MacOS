@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1ACDC22E7AC71000E5429E /* SettingsWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC12E7AC71000E5429E /* SettingsWindowManager.swift */; };
+		2B1ACDC42E7AC73000E5429E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC32E7AC73000E5429E /* SettingsView.swift */; };
+		2B1ACDC72E7ACDF700E5429E /* Afterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC62E7ACDF400E5429E /* Afterable.swift */; };
+		2B1ACDC92E7ACF2B00E5429E /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC82E7ACF2B00E5429E /* NSObject.swift */; };
 		2B1F0E8E2E78510E0072BDD8 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F0E8D2E7851090072BDD8 /* TypeAliases.swift */; };
 		2B1F0E902E7989940072BDD8 /* ExchangeLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F0E8F2E7989940072BDD8 /* ExchangeLanguageView.swift */; };
 		2B4AB4A52E5F256B005DF24C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B4AB49E2E5F256B005DF24C /* Assets.xcassets */; };
@@ -59,6 +63,10 @@
 		2B12E7892E5351010029301B /* QuickTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B12E79C2E5351040029301B /* QuickTranslatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTranslatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B12E7A62E5351040029301B /* QuickTranslatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTranslatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B1ACDC12E7AC71000E5429E /* SettingsWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowManager.swift; sourceTree = "<group>"; };
+		2B1ACDC32E7AC73000E5429E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2B1ACDC62E7ACDF400E5429E /* Afterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Afterable.swift; sourceTree = "<group>"; };
+		2B1ACDC82E7ACF2B00E5429E /* NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
 		2B1F0E8D2E7851090072BDD8 /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		2B1F0E8F2E7989940072BDD8 /* ExchangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeLanguageView.swift; sourceTree = "<group>"; };
 		2B4AB4832E5F256B005DF24C /* EnterKeyHandlerTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterKeyHandlerTextView.swift; sourceTree = "<group>"; };
@@ -149,6 +157,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2B1ACDC02E7AC70B00E5429E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2B1ACDC52E7ACB5800E5429E /* Views */,
+				2B1ACDC12E7AC71000E5429E /* SettingsWindowManager.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		2B1ACDC52E7ACB5800E5429E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2B1ACDC32E7AC73000E5429E /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		2B4AB4852E5F256B005DF24C /* AppKitComponents */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,7 +232,9 @@
 		2B4AB4922E5F256B005DF24C /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				2B1ACDC62E7ACDF400E5429E /* Afterable.swift */,
 				2B4AB4912E5F256B005DF24C /* UserDefaults+Ext.swift */,
+				2B1ACDC82E7ACF2B00E5429E /* NSObject.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -260,6 +287,7 @@
 		2B4AB4A22E5F256B005DF24C /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				2B1ACDC02E7AC70B00E5429E /* Settings */,
 				2B4AB4BF2E607506005DF24C /* StatusBar */,
 				2B4AB4BC2E606A9C005DF24C /* MainPopover */,
 				2B4AB4BB2E5F3416005DF24C /* QuickAction */,
@@ -521,16 +549,19 @@
 				2B4AB4AA2E5F256B005DF24C /* PopoverControls.swift in Sources */,
 				2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */,
 				2B4AB4E02E6741AE005DF24C /* SwiftyTranslate.swift in Sources */,
+				2B1ACDC72E7ACDF700E5429E /* Afterable.swift in Sources */,
 				2B4AB4AB2E5F256B005DF24C /* Constants.swift in Sources */,
 				2B4AB4AC2E5F256B005DF24C /* AppDelegate.swift in Sources */,
 				2B4AB4AD2E5F256B005DF24C /* QuickTranslatorApp.swift in Sources */,
 				2B4AB4AE2E5F256B005DF24C /* UserDefaults+Ext.swift in Sources */,
+				2B1ACDC92E7ACF2B00E5429E /* NSObject.swift in Sources */,
 				2B4AB4AF2E5F256B005DF24C /* BounceButtonStyle.swift in Sources */,
 				2B4AB4B02E5F256B005DF24C /* DoubleKeyMonitor.swift in Sources */,
 				2B4AB4B12E5F256B005DF24C /* QuickActionManager.swift in Sources */,
 				2B4AB4C12E607667005DF24C /* StatusBarController.swift in Sources */,
 				2B4AB4B32E5F256B005DF24C /* Language.swift in Sources */,
 				2B62A1EA2E6B07D9000ADA9E /* FeatureManager.swift in Sources */,
+				2B1ACDC42E7AC73000E5429E /* SettingsView.swift in Sources */,
 				2BA5C8062E6F1B000025BE1F /* ToastModifier.swift in Sources */,
 				2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */,
 				2B4AB4DE2E674163005DF24C /* SwiftyTranslationSession.swift in Sources */,
@@ -539,6 +570,7 @@
 				2B1F0E902E7989940072BDD8 /* ExchangeLanguageView.swift in Sources */,
 				2B4AB4B52E5F256B005DF24C /* TranslateView.swift in Sources */,
 				2B4AB4C32E607BD6005DF24C /* DIContainer.swift in Sources */,
+				2B1ACDC22E7AC71000E5429E /* SettingsWindowManager.swift in Sources */,
 				2B4AB4B62E5F256B005DF24C /* TranslateViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -706,7 +738,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickTranslator/Resources/Info.plist;
-				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_LSUIElement = NO;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "QuickTranslator needs accessibility permission to detect Cmd+C";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -736,7 +769,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickTranslator/Resources/Info.plist;
-				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_LSUIElement = NO;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "QuickTranslator needs accessibility permission to detect Cmd+C";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
