@@ -55,9 +55,9 @@ final class SettingsWindowManager: ObservableObject {
         
         let visualEffectView = NSVisualEffectView(frame: window.contentView!.bounds)
         visualEffectView.autoresizingMask = [.width, .height]
-        visualEffectView.blendingMode = .behindWindow
-        visualEffectView.material = .sidebar // istediğin materyal: .hudWindow, .menu, .sidebar vs.
-        visualEffectView.state = .active
+        visualEffectView.blendingMode = .withinWindow
+        visualEffectView.material = .titlebar
+        visualEffectView.state = .followsWindowActiveState
         
         // NSHostingController
         let hostingController = NSHostingController(rootView: container)

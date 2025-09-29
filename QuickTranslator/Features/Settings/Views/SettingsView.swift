@@ -32,9 +32,8 @@ struct SettingsView: View {
                     Label("About", systemImage: "info.circle")
                 }
         }
-        .frame(width: 500, height: 400)
+        .tabViewStyle(DefaultTabViewStyle())
         .padding()
-        .background(.ultraThinMaterial)
     }
 }
 

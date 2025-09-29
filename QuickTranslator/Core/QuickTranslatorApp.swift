@@ -14,11 +14,13 @@ struct QuickTranslatorApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
-        WindowGroup {
-            EmptyView()
-        }
         Settings {
             SettingsView(windowManager: DIContainer.shared.settingsWindowManager)
+                .frame(width: 500)
+                .fixedSize(horizontal: false, vertical: true)
+                .background(.thinMaterial)
+                .makeSettingsVibrant()
         }
+        .windowStyle(.hiddenTitleBar)
     }
 }
