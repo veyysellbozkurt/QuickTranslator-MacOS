@@ -15,12 +15,14 @@ struct QuickTranslatorApp: App {
     
     var body: some Scene {
         Settings {
-            SettingsView(windowManager: DIContainer.shared.settingsWindowManager)
-                .frame(width: 500)
-                .fixedSize(horizontal: false, vertical: true)
-                .background(.thinMaterial)
-                .makeSettingsVibrant()
         }
-        .windowStyle(.hiddenTitleBar)
+        .commands {
+            CommandGroup(replacing: .appSettings) {
+                Button("Settings…") {
+                    DIContainer.shared.settingsWindowManager.showSettings()
+                }
+                .keyboardShortcut(",", modifiers: .command)
+            }
+        }
     }
 }

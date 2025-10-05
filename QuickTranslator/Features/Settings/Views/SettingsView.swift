@@ -7,71 +7,47 @@
 
 import SwiftUI
 
-struct SettingsView: View {
-    let windowManager: SettingsWindowManager
-
-    var body: some View {
-        TabView {
-            GeneralSettingsView()
-                .tabItem {
-                    Label("General", systemImage: "gear")
-                }
-
-            TranslationSettingsView()
-                .tabItem {
-                    Label("Translation", systemImage: "globe")
-                }
-
-            ShortcutsSettingsView()
-                .tabItem {
-                    Label("Shortcuts", systemImage: "keyboard")
-                }
-
-            AboutSettingsView(windowManager: windowManager)
-                .tabItem {
-                    Label("About", systemImage: "info.circle")
-                }
-        }
-        .tabViewStyle(DefaultTabViewStyle())
-        .padding()
-    }
-}
-
 // MARK: - General Settings Tab
 struct GeneralSettingsView: View {
     @State private var launchAtLogin = false
     @State private var showNotifications = true
     @State private var autoCopyTranslation = false
     @State private var enableSoundEffects = true
+    @State private var theme = "System"
+    @State private var opacity: Double = 0.95
     
     var body: some View {
-        Form {
-            Section(header: Text("Application")) {
-                Toggle("Launch at login", isOn: $launchAtLogin)
-                Toggle("Show notifications", isOn: $showNotifications)
-                Toggle("Auto-copy translation", isOn: $autoCopyTranslation)
-                Toggle("Enable sound effects", isOn: $enableSoundEffects)
-            }
-            
-            Section(header: Text("Appearance")) {
-                Picker("Theme", selection: .constant("System")) {
-                    Text("System").tag("System")
-                    Text("Light").tag("Light")
-                    Text("Dark").tag("Dark")
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                SettingsSection(title: "Application") {
+                    SettingsToggle(title: "Launch at login", isOn: $launchAtLogin)
+                    SettingsToggle(title: "Show notifications", isOn: $showNotifications)
+                    SettingsToggle(title: "Auto-copy translation", isOn: $autoCopyTranslation)
+                    SettingsToggle(title: "Enable sound effects", isOn: $enableSoundEffects)
                 }
-                .pickerStyle(SegmentedPickerStyle())
                 
-                Slider(value: .constant(0.95), in: 0.5...1.0, step: 0.05) {
-                    Text("Opacity")
-                } minimumValueLabel: {
-                    Text("50%")
-                } maximumValueLabel: {
-                    Text("100%")
+                SettingsSection(title: "Appearance") {
+                    SettingsPicker(
+                        title: "Theme",
+                        selection: $theme,
+                        options: ["System", "Light", "Dark"]
+                    )
+                    
+                    SettingsSlider(
+                        title: "Opacity",
+                        value: $opacity,
+                        range: 0.5...1.0,
+                        step: 0.05,
+                        minLabel: "50%",
+                        maxLabel: "100%"
+                    )
                 }
             }
+            .padding(20)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .formStyle(.grouped)
-        .padding()
+//        .background(Color(nsColor: .windowBackgroundColor))
+//        .background(Color.app.opacity(0.45))
     }
 }
 
@@ -84,83 +60,50 @@ struct TranslationSettingsView: View {
     @State private var translationProvider = "Google"
     
     var body: some View {
-        Form {
-            Section(header: Text("Languages")) {
-                Picker("Default source language", selection: $sourceLanguage) {
-                    Text("Auto Detect").tag("Auto")
-                    Text("English").tag("en")
-                    Text("Turkish").tag("tr")
-                    Text("German").tag("de")
-                    Text("French").tag("fr")
-                    Text("Spanish").tag("es")
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                
+                SettingsSection(title: "Languages") {
+//                    SettingsPicker(title: "Default source language", selection: $sourceLanguage, options: ["Auto", "English", "Turkish", "German", "French", "Spanish"])
+//                    
+//                    SettingsPicker(title: "Default target language", selection: $targetLanguage, options: ["Turkish", "English", "German", "French", "Spanish"])
+//                    
+//                    SettingsPicker(title: "Translation provider", selection: $translationProvider, options: ["Google", "DeepL", "Microsoft"])
                 }
                 
-                Picker("Default target language", selection: $targetLanguage) {
-                    Text("Turkish").tag("tr")
-                    Text("English").tag("en")
-                    Text("German").tag("de")
-                    Text("French").tag("fr")
-                    Text("Spanish").tag("es")
-                }
-                
-                Picker("Translation provider", selection: $translationProvider) {
-                    Text("Google Translate").tag("Google")
-                    Text("DeepL").tag("DeepL")
-                    Text("Microsoft Translator").tag("Microsoft")
-                }
-            }
-            
-            Section(header: Text("History")) {
-                Toggle("Enable translation history", isOn: $enableHistory)
-                if enableHistory {
-                    Stepper("Maximum history items: \(maxHistoryItems)", value: $maxHistoryItems, in: 10...500, step: 10)
-                }
-                Button("Clear History") {
-                    // Clear history
+                SettingsSection(title: "History") {
+                    SettingsToggle(title: "Enable translation history", isOn: $enableHistory)
+                    
+                    if enableHistory {
+                        SettingsStepper(title: "Maximum history items", value: $maxHistoryItems, range: 10...500, step: 10)
+                    }
+                    
+                    Button("Clear History") {
+                        // Clear history
+                    }
+                    .buttonStyle(.bordered)
                 }
             }
+            .padding(20)
         }
-        .formStyle(.grouped)
-        .padding()
+//        .background(Color(nsColor: .windowBackgroundColor))
+//        .background(Color.app.opacity(0.45))
     }
 }
 
 // MARK: - Shortcuts Settings Tab
 struct ShortcutsSettingsView: View {
     var body: some View {
-        Form {
-            Section(header: Text("Global Shortcuts")) {
-                HStack {
-                    Text("Quick translate:")
-                    Spacer()
-                    Text("⌘ + ⇧ + T")
-                        .font(.system(.body, design: .monospaced))
-                        .padding(4)
-                        .background(Color.secondary.opacity(0.2))
-                        .cornerRadius(4)
-                }
-                HStack {
-                    Text("Show/Hide window:")
-                    Spacer()
-                    Text("⌃ + Space")
-                        .font(.system(.body, design: .monospaced))
-                        .padding(4)
-                        .background(Color.secondary.opacity(0.2))
-                        .cornerRadius(4)
-                }
-                HStack {
-                    Text("Translate clipboard:")
-                    Spacer()
-                    Text("⌘ + ⌥ + T")
-                        .font(.system(.body, design: .monospaced))
-                        .padding(4)
-                        .background(Color.secondary.opacity(0.2))
-                        .cornerRadius(4)
-                }
+        ScrollView {
+            SettingsSection(title: "Global Shortcuts") {
+                SettingsShortcut(title: "Quick translate", keys: "⌘ + ⇧ + T")
+                SettingsShortcut(title: "Show/Hide window", keys: "⌃ + Space")
+                SettingsShortcut(title: "Translate clipboard", keys: "⌘ + ⌥ + T")
             }
+            .padding(20)
         }
-        .formStyle(.grouped)
-        .padding()
+//        .background(Color(nsColor: .windowBackgroundColor))
+//        .background(Color.app.opacity(0.45))
     }
 }
 
@@ -183,6 +126,7 @@ struct AboutSettingsView: View {
             Text("A fast and efficient translation tool for macOS.")
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
+                .padding(.horizontal)
             
             Spacer()
             
@@ -204,7 +148,128 @@ struct AboutSettingsView: View {
                 }.buttonStyle(.borderedProminent)
             }
         }
-        .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//        .background(Color.app.opacity(0.45))
+        .padding(20)
+    }
+}
+
+// MARK: - Reusable Custom Components
+
+struct SettingsSection<Content: View>: View {
+    let title: String
+    let content: () -> Content
+    
+    init(title: String, @ViewBuilder content: @escaping () -> Content) {
+        self.title = title
+        self.content = content
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(title.uppercased())
+                .font(.caption)
+                .fontWeight(.semibold)
+                .foregroundStyle(.secondary)
+            
+            VStack(alignment: .leading, spacing: 10) {
+                content()
+            }
+            .padding(12)
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color(nsColor: .controlBackgroundColor)))
+        }
+    }
+}
+
+struct SettingsToggle: View {
+    let title: String
+    @Binding var isOn: Bool
+    
+    var body: some View {
+        HStack {
+            Text(title)
+            Spacer()
+            Toggle("", isOn: $isOn)
+                .labelsHidden()
+        }
+    }
+}
+
+struct SettingsPicker: View {
+    let title: String
+    @Binding var selection: String
+    let options: [String]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            Picker("", selection: $selection) {
+                ForEach(options, id: \.self) { option in
+                    Text(option).tag(option)
+                }
+            }
+            .pickerStyle(.segmented)
+            .frame(width: 220)
+        }
+    }
+}
+
+struct SettingsSlider: View {
+    let title: String
+    @Binding var value: Double
+    let range: ClosedRange<Double>
+    let step: Double
+    let minLabel: String
+    let maxLabel: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            Slider(value: $value, in: range, step: step)
+                .frame(width: 220)
+            HStack {
+                Text(minLabel)
+                Spacer()
+                Text(maxLabel)
+            }
+            .font(.caption)
+            .foregroundStyle(.secondary)
+        }
+    }
+}
+
+struct SettingsStepper: View {
+    let title: String
+    @Binding var value: Int
+    let range: ClosedRange<Int>
+    let step: Int
+    
+    var body: some View {
+        HStack {
+            Text("\(title): \(value)")
+            Spacer()
+            Stepper("", value: $value, in: range, step: step)
+                .labelsHidden()
+        }
+    }
+}
+
+struct SettingsShortcut: View {
+    let title: String
+    let keys: String
+    
+    var body: some View {
+        HStack {
+            Text(title)
+            Spacer()
+            Text(keys)
+                .font(.system(.body, design: .monospaced))
+                .padding(4)
+                .background(Color.secondary.opacity(0.2))
+                .cornerRadius(4)
+        }
     }
 }

@@ -12,16 +12,36 @@ struct ExchangeLanguageView: View {
     @Binding var sourceLanguage: Language
     @Binding var targetLanguage: Language
     
+    @State private var displaySourceLanguage: Language = .englishGB
+    @State private var displayeTargetLanguage: Language = .englishUS
+    
     @State private var showSourceLanguagePicker = false
     @State private var showTargetLanguagePicker = false
+    
+    @Namespace private var swapNamespace
+    @State private var isSwapped = false
     
     var onChange: EmptyCallback?
     
     var body: some View {
-        HStack {
-            languageSelector(for: $sourceLanguage, isPresented: $showSourceLanguagePicker)
-            swapButton
-            languageSelector(for: $targetLanguage, isPresented: $showTargetLanguagePicker)
+        HStack(spacing: 8) {
+            if !isSwapped {
+                languageSelector(for: $displaySourceLanguage, isPresented: $showSourceLanguagePicker)
+                    .matchedGeometryEffect(id: "source", in: swapNamespace)
+                swapButton
+                languageSelector(for: $displayeTargetLanguage, isPresented: $showTargetLanguagePicker)
+                    .matchedGeometryEffect(id: "target", in: swapNamespace)
+            } else {
+                languageSelector(for: $displayeTargetLanguage, isPresented: $showTargetLanguagePicker)
+                    .matchedGeometryEffect(id: "target", in: swapNamespace)
+                swapButton
+                languageSelector(for: $displaySourceLanguage, isPresented: $showSourceLanguagePicker)
+                    .matchedGeometryEffect(id: "source", in: swapNamespace)
+            }
+        }
+        .onAppear {
+            displaySourceLanguage = sourceLanguage
+            displayeTargetLanguage = targetLanguage
         }
     }
     
@@ -33,49 +53,22 @@ struct ExchangeLanguageView: View {
                 Text(language.wrappedValue.title)
                     .font(.body)
                 Spacer()
-                Image(systemName: SFIcons.chevronDown)
+                Image(systemName: "chevron.down")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
             .padding(.horizontal, 10)
             .frame(maxWidth: .infinity)
             .frame(height: 28)
-            .background(Color.secondary.opacity(0.2))
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .background(Color.secondary.opacity(0.3))
+            .clipShape(RoundedRectangle(cornerRadius: 8))            
         }
-        .padding(.horizontal, 2)
         .buttonStyle(BounceButtonStyle())
-        .popover(isPresented: isPresented) {
-            languagePickerPopover(for: language)
-        }
     }
     
-    private func languagePickerPopover(for language: Binding<Language>) -> some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                ForEach(Language.allCases, id: \.self) { lang in
-                    Button {
-                        language.wrappedValue = lang
-                        showSourceLanguagePicker = false
-                        showTargetLanguagePicker = false
-                    } label: {
-                        Text(lang.title)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 12)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .contentShape(Rectangle())
-                    }
-                    .buttonStyle(.plain)
-                    Divider()
-                }
-            }
-        }
-        .frame(width: 200, height: 250)
-    }
-    
-    var swapButton: some View {
+    private var swapButton: some View {
         Button {
-            onChange?()
+            performSwap()
         } label: {
             Image(.swap)
                 .resizable()
@@ -86,8 +79,16 @@ struct ExchangeLanguageView: View {
                 .background(.white)
                 .clipShape(Circle())
         }
-        .clipShape(Circle())
         .rotationEffect(.degrees(90))
         .buttonStyle(BounceButtonStyle())
+    }
+}
+
+private extension ExchangeLanguageView {
+    func performSwap() {
+        withAnimation(.snappy(extraBounce: 0.1)) {
+            isSwapped.toggle()
+        }
+        onChange?()
     }
 }

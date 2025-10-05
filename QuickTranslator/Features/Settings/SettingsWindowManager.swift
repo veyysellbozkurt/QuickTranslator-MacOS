@@ -105,17 +105,17 @@ struct PreferencesContainerView: View {
     @ObservedObject var selection: Coordinator
     
     class Coordinator: NSObject, ObservableObject {
-        @Published var selection: Int = 0
+        @Published var index: Int = 0
         
-        @objc func selectGeneral() { selection = 0 }
-        @objc func selectTranslation() { selection = 1 }
-        @objc func selectShortcuts() { selection = 2 }
-        @objc func selectAbout() { selection = 3 }
+        @objc func selectGeneral() { index = 0 }
+        @objc func selectTranslation() { index = 1 }
+        @objc func selectShortcuts() { index = 2 }
+        @objc func selectAbout() { index = 3 }
     }
     
     func contentView(selection: Coordinator) -> some View {
         Group {
-            switch selection.selection {
+            switch selection.index {
                 case 0: GeneralSettingsView()
                 case 1: TranslationSettingsView()
                 case 2: ShortcutsSettingsView()
@@ -126,64 +126,18 @@ struct PreferencesContainerView: View {
     }
     
     var body: some View {
+        let tabs: [TabItem] = [
+            .init(label: "General", systemImageName: "gear"),
+            .init(label: "Translation", systemImageName: "globe"),
+            .init(label: "Shortcuts", systemImageName: "keyboard"),
+            .init(label: "About", systemImageName: "info.circle"),            
+        ]
+        
         VStack {
-            CustomTabBar(selection: selection, windowManager: windowManager)
+            CustomTabBar(tabs: tabs, selectedIndex: $selection.index)
             Divider()
             contentView(selection: selection)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-
-struct CustomTabBar: View {
-    @ObservedObject var selection: PreferencesContainerView.Coordinator
-    let windowManager: SettingsWindowManager
-    
-    let tabs: [(label: String, systemImage: String)] = [
-        ("General", "gear"),
-        ("Translation", "globe"),
-        ("Shortcuts", "keyboard"),
-        ("About", "info.circle")
-    ]
-    
-    @State private var hoveringIndex: Int? = nil
-    
-    var body: some View {
-        HStack(spacing: 2) {
-            ForEach(0..<tabs.count, id: \.self) { index in
-                let tab = tabs[index]
-                Button(action: {
-                    selection.selection = index
-                }) {
-                    VStack {
-                        Image(systemName: tab.systemImage)
-                            .font(.system(size: 18))
-                        Spacer()
-                        Text(tab.label)
-                            .font(.caption)
-                    }
-                    .foregroundColor(selection.selection == index ? .white : .primary)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 40)
-                    .padding(.vertical, 6)
-                    .background(
-                        RoundedRectangle(cornerRadius: 6)
-                            .fill(
-                                selection.selection == index ? Color.gray.opacity(0.4) :
-                                    hoveringIndex == index ? Color.gray.opacity(0.2) :
-                                    Color.clear
-                            )
-                    )
-                }
-                .buttonStyle(.plain)
-                .onHover { hovering in
-                    hoveringIndex = hovering ? index : nil
-                }
-            }
-        }
-        .frame(width: 250, height: 24)
-        .background(Color.clear)
-        .padding(.bottom)
     }
 }
