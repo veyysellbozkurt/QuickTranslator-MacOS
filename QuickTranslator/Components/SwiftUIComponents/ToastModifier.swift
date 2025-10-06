@@ -23,10 +23,14 @@ struct ToastModifier: ViewModifier {
                     Text(message)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 10)
-                        .background(.black.opacity(0.8))
-                        .foregroundColor(.white)
+                        .background(Color(nsColor: .windowBackgroundColor))
+                        .foregroundColor(.primary)
                         .cornerRadius(10)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.primary.opacity(0.2), lineWidth: 1)
+                        )
                         .padding(.bottom, 10)
                 }
             }
@@ -49,11 +53,5 @@ struct ToastModifier: ViewModifier {
                 isPresented = false
             }
         }
-    }
-}
-
-extension View {
-    func toast(isPresented: Binding<Bool>, message: String, duration: TimeInterval = 1.0) -> some View {
-        self.modifier(ToastModifier(isPresented: isPresented, message: message, duration: duration))
     }
 }

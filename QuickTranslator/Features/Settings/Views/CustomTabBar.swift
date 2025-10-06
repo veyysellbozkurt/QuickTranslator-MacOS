@@ -55,7 +55,7 @@ struct CustomTabBar: View {
                             .font(.callout)
                             .lineLimit(1)
                     }
-                    .foregroundColor(selectedIndex == index ? .accentColor : .primary)
+                    .foregroundColor(selectedIndex == index ? .app : .primary)
                     .padding(.vertical, 6)
                     .padding(.horizontal, 12)
                     .background(
@@ -80,7 +80,7 @@ struct CustomTabBar: View {
         ZStack {
             if selectedIndex == index {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.accentColor.opacity(0.1))
+                    .fill(Color.app.opacity(0.1))
                     .matchedGeometryEffect(id: "background", in: namespace)
             }
             else if hoveringIndex == index {

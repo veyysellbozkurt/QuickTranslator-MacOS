@@ -25,6 +25,8 @@ final class SettingsWindowManager: ObservableObject {
         
         settingsWindow?.makeKeyAndOrderFront(nil)
         settingsWindow?.center()
+        settingsWindow?.contentViewController?.view.window?.becomeKey()
+        
         NSApp.activate(ignoringOtherApps: true)
     }
     
@@ -34,10 +36,9 @@ final class SettingsWindowManager: ObservableObject {
         updateDockIconVisibility()
     }
     
-    private func createSettingsWindow() {
-        // Tek coordinator instance
-        let coordinator = PreferencesContainerView.Coordinator()
-        let container = PreferencesContainerView(windowManager: self, selection: coordinator)
+    private func createSettingsWindow() {        
+        let coordinator = SettingsContainerView.Coordinator()
+        let container = SettingsContainerView(windowManager: self, selection: coordinator)
         
         // Window
         let window = NSWindow(
@@ -96,48 +97,5 @@ class SettingsWindowDelegate: NSObject, NSWindowDelegate {
     
     func windowWillClose(_ notification: Notification) {
         manager.hideSettings()
-    }
-}
-
-// MARK: - Preferences Container View
-struct PreferencesContainerView: View {
-    let windowManager: SettingsWindowManager
-    @ObservedObject var selection: Coordinator
-    
-    class Coordinator: NSObject, ObservableObject {
-        @Published var index: Int = 0
-        
-        @objc func selectGeneral() { index = 0 }
-        @objc func selectTranslation() { index = 1 }
-        @objc func selectShortcuts() { index = 2 }
-        @objc func selectAbout() { index = 3 }
-    }
-    
-    func contentView(selection: Coordinator) -> some View {
-        Group {
-            switch selection.index {
-                case 0: GeneralSettingsView()
-                case 1: TranslationSettingsView()
-                case 2: ShortcutsSettingsView()
-                case 3: AboutSettingsView(windowManager: windowManager)
-                default: GeneralSettingsView()
-            }
-        }
-    }
-    
-    var body: some View {
-        let tabs: [TabItem] = [
-            .init(label: "General", systemImageName: "gear"),
-            .init(label: "Translation", systemImageName: "globe"),
-            .init(label: "Shortcuts", systemImageName: "keyboard"),
-            .init(label: "About", systemImageName: "info.circle"),            
-        ]
-        
-        VStack {
-            CustomTabBar(tabs: tabs, selectedIndex: $selection.index)
-            Divider()
-            contentView(selection: selection)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

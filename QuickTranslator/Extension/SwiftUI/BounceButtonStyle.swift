@@ -12,7 +12,10 @@ struct BounceButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .scaleEffect(configuration.isPressed ? scaleAmount : 1.0)
-            .animation(.spring(response: 0.3, dampingFraction: 0.5), value: configuration.isPressed)
+                    .scaleEffect(configuration.isPressed ? scaleAmount : 1.0)
+                    .animation(
+                        .interpolatingSpring(stiffness: 300, damping: 15),
+                        value: configuration.isPressed
+                    )
     }
 }

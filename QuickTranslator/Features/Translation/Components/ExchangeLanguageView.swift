@@ -13,7 +13,7 @@ struct ExchangeLanguageView: View {
     @Binding var targetLanguage: Language
     
     @State private var displaySourceLanguage: Language = .englishGB
-    @State private var displayeTargetLanguage: Language = .englishUS
+    @State private var displaysTargetLanguage: Language = .englishUS
     
     @State private var showSourceLanguagePicker = false
     @State private var showTargetLanguagePicker = false
@@ -29,10 +29,10 @@ struct ExchangeLanguageView: View {
                 languageSelector(for: $displaySourceLanguage, isPresented: $showSourceLanguagePicker)
                     .matchedGeometryEffect(id: "source", in: swapNamespace)
                 swapButton
-                languageSelector(for: $displayeTargetLanguage, isPresented: $showTargetLanguagePicker)
+                languageSelector(for: $displaysTargetLanguage, isPresented: $showTargetLanguagePicker)
                     .matchedGeometryEffect(id: "target", in: swapNamespace)
             } else {
-                languageSelector(for: $displayeTargetLanguage, isPresented: $showTargetLanguagePicker)
+                languageSelector(for: $displaysTargetLanguage, isPresented: $showTargetLanguagePicker)
                     .matchedGeometryEffect(id: "target", in: swapNamespace)
                 swapButton
                 languageSelector(for: $displaySourceLanguage, isPresented: $showSourceLanguagePicker)
@@ -41,7 +41,7 @@ struct ExchangeLanguageView: View {
         }
         .onAppear {
             displaySourceLanguage = sourceLanguage
-            displayeTargetLanguage = targetLanguage
+            displaysTargetLanguage = targetLanguage
         }
     }
     
@@ -58,12 +58,37 @@ struct ExchangeLanguageView: View {
                     .foregroundColor(.secondary)
             }
             .padding(.horizontal, 10)
-            .frame(maxWidth: .infinity)
             .frame(height: 28)
             .background(Color.secondary.opacity(0.3))
             .clipShape(RoundedRectangle(cornerRadius: 8))            
         }
         .buttonStyle(BounceButtonStyle())
+        .popover(isPresented: isPresented) {
+            languagePickerPopover(for: language)
+        }
+    }
+    
+    private func languagePickerPopover(for language: Binding<Language>) -> some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                ForEach(Language.allCases, id: \.self) { lang in
+                    Button {
+                        language.wrappedValue = lang
+                        showSourceLanguagePicker = false
+                        showTargetLanguagePicker = false
+                    } label: {
+                        Text(lang.title)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 12)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    Divider()
+                }
+            }
+        }
+        .frame(width: 200, height: 250)
     }
     
     private var swapButton: some View {

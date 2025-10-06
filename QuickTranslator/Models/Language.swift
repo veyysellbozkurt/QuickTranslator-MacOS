@@ -6,52 +6,52 @@
 //
 
 enum Language: String, CaseIterable {
-    case englishUS
-    case englishGB
-    case spanishES
-    case spanishMX
-    case frenchFR
-    case frenchCA
-    case german
-    case italian
-    case japanese
-    case russian
+    case albanian
+    case arabic
+    case azerbaijani
+    case basque
+    case bosnian
+    case bulgarian
+    case catalan
     case chineseSimplified
     case chineseTraditional
-    case korean
-    case portugueseBR
-    case arabic
-    case turkish
-    case azerbaijani
-    case dutch
-    case hindi
-    case indonesian
-    case polish
-    case ukrainian
-    case vietnamese
-    case thai
-    case finnish
+    case croatian
     case danish
-    case norwegian
+    case dutch
+    case englishGB
+    case englishUS
+    case finnish
+    case frenchCA
+    case frenchFR
+    case german
+    case greek
+    case hebrew
+    case hindi
     case hungarian
+    case indonesian
+    case italian
+    case japanese
+    case korean
+    case malay
+    case malta
+    case norwegian
+    case persian
+    case polish
+    case portugueseBR
     case romanian
-    case bulgarian
+    case russian
+    case serbian
     case slovak
     case slovene
-    case croatian
-    case serbian
-    case malta
-    case hebrew
-    case persian
-    case malay
-    case tagalog
-    case catalan
-    case basque
-    case swedish
-    case greek
-    case albanian
-    case bosnian
+    case spanishES
+    case spanishMX
     case swahili
+    case swedish
+    case tagalog
+    case thai
+    case turkish
+    case ukrainian
+    case vietnamese
 
     var code: String {
         switch self {

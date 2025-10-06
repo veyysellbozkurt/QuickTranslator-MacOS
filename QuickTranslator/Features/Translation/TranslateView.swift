@@ -50,25 +50,6 @@ struct TranslateView: View {
     }
 }
 
-// MARK: - UI Elements
-private extension TranslateView {
-    var translateButton: some View {
-        Button {
-            viewModel.triggerTranslation()
-        } label: {
-            Text(Constants.Strings.translateButton)
-                .font(.title3)
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-        .frame(height: 32)
-        .frame(maxWidth: .infinity)
-        .background(Color(nsColor: .app))
-        .clipShape(.buttonBorder)
-        .buttonStyle(BounceButtonStyle())
-    }
-}
-
 // MARK: - Preview
 #Preview {
     TranslateView(viewModel: TranslateViewModel())

@@ -31,8 +31,6 @@ struct InputView: View {
             onEnterKeyPress: onEnterKeyPress,
             placeholder: placeholder ?? ""
         )
-        .scrollContentBackground(.hidden)
-        .background(.clear)
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
         .overlay(alignment: .bottomTrailing) {
             copyButton

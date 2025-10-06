@@ -7,23 +7,9 @@
 
 import SwiftUI
 
+// MARK: - Show Toast
 extension View {
-    func makeSettingsVibrant() -> some View {
-        self.background(WindowAccessor { window in
-            guard let window else { return }
-            window.titlebarAppearsTransparent = true
-            window.isOpaque = false
-            window.backgroundColor = .clear
-        })
+    func toast(isPresented: Binding<Bool>, message: String, duration: TimeInterval = 1.0) -> some View {
+        self.modifier(ToastModifier(isPresented: isPresented, message: message, duration: duration))
     }
-}
-
-struct WindowAccessor: NSViewRepresentable {
-    var callback: (NSWindow?) -> Void
-    func makeNSView(context: Context) -> NSView {
-        let view = NSView()
-        DispatchQueue.main.async { self.callback(view.window) }
-        return view
-    }
-    func updateNSView(_ nsView: NSView, context: Context) {}
 }

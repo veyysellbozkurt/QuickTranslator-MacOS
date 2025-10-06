@@ -13,15 +13,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DIContainer.shared.quickActionManager.start()
         
         NSApp.setActivationPolicy(.accessory)
-                
-        performShortAfter {
-            DIContainer.shared.settingsWindowManager.showSettings()
-        }
     }
     
     /// When clicking the app icon in the Dock
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        DIContainer.shared.settingsWindowManager.showSettings()
         return true
     }
         

@@ -14,6 +14,10 @@
 		2B1ACDCB2E7C485A00E5429E /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDCA2E7C485A00E5429E /* View+Ext.swift */; };
 		2B1F0E8E2E78510E0072BDD8 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F0E8D2E7851090072BDD8 /* TypeAliases.swift */; };
 		2B1F0E902E7989940072BDD8 /* ExchangeLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F0E8F2E7989940072BDD8 /* ExchangeLanguageView.swift */; };
+		2B2F39542E93DF0F009AB506 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F39532E93DF0F009AB506 /* GeneralSettingsView.swift */; };
+		2B2F39562E93DF24009AB506 /* TranslationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F39552E93DF24009AB506 /* TranslationSettingsView.swift */; };
+		2B2F39582E93DF2F009AB506 /* ShortcutsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F39572E93DF2F009AB506 /* ShortcutsSettingsView.swift */; };
+		2B2F395A2E93DF3E009AB506 /* AboutSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F39592E93DF3E009AB506 /* AboutSettingsView.swift */; };
 		2B4AB4A52E5F256B005DF24C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B4AB49E2E5F256B005DF24C /* Assets.xcassets */; };
 		2B4AB4A62E5F256B005DF24C /* EnterKeyHandlerTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4832E5F256B005DF24C /* EnterKeyHandlerTextView.swift */; };
 		2B4AB4A72E5F256B005DF24C /* FloatingQuickActionPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4842E5F256B005DF24C /* FloatingQuickActionPanel.swift */; };
@@ -71,6 +75,10 @@
 		2B1ACDCA2E7C485A00E5429E /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		2B1F0E8D2E7851090072BDD8 /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		2B1F0E8F2E7989940072BDD8 /* ExchangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeLanguageView.swift; sourceTree = "<group>"; };
+		2B2F39532E93DF0F009AB506 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
+		2B2F39552E93DF24009AB506 /* TranslationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationSettingsView.swift; sourceTree = "<group>"; };
+		2B2F39572E93DF2F009AB506 /* ShortcutsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsSettingsView.swift; sourceTree = "<group>"; };
+		2B2F39592E93DF3E009AB506 /* AboutSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSettingsView.swift; sourceTree = "<group>"; };
 		2B4AB4832E5F256B005DF24C /* EnterKeyHandlerTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterKeyHandlerTextView.swift; sourceTree = "<group>"; };
 		2B4AB4842E5F256B005DF24C /* FloatingQuickActionPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingQuickActionPanel.swift; sourceTree = "<group>"; };
 		2B4AB4862E5F256B005DF24C /* PaddedTextViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextViewRepresentable.swift; sourceTree = "<group>"; };
@@ -172,10 +180,22 @@
 		2B1ACDC52E7ACB5800E5429E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2B2F39522E93DF07009AB506 /* Tabs */,
 				2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */,
 				2B1ACDC32E7AC73000E5429E /* SettingsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2B2F39522E93DF07009AB506 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				2B2F39592E93DF3E009AB506 /* AboutSettingsView.swift */,
+				2B2F39572E93DF2F009AB506 /* ShortcutsSettingsView.swift */,
+				2B2F39552E93DF24009AB506 /* TranslationSettingsView.swift */,
+				2B2F39532E93DF0F009AB506 /* GeneralSettingsView.swift */,
+			);
+			path = Tabs;
 			sourceTree = "<group>";
 		};
 		2B4AB4852E5F256B005DF24C /* AppKitComponents */ = {
@@ -554,7 +574,9 @@
 				2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */,
 				2B4AB4E02E6741AE005DF24C /* SwiftyTranslate.swift in Sources */,
 				2B1ACDC72E7ACDF700E5429E /* Afterable.swift in Sources */,
+				2B2F395A2E93DF3E009AB506 /* AboutSettingsView.swift in Sources */,
 				2B4AB4AB2E5F256B005DF24C /* Constants.swift in Sources */,
+				2B2F39542E93DF0F009AB506 /* GeneralSettingsView.swift in Sources */,
 				2B4AB4AC2E5F256B005DF24C /* AppDelegate.swift in Sources */,
 				2B4AB4AD2E5F256B005DF24C /* QuickTranslatorApp.swift in Sources */,
 				2B4AB4AE2E5F256B005DF24C /* UserDefaults+Ext.swift in Sources */,
@@ -566,12 +588,14 @@
 				2B4AB4B32E5F256B005DF24C /* Language.swift in Sources */,
 				2B62A1EA2E6B07D9000ADA9E /* FeatureManager.swift in Sources */,
 				2B1ACDC42E7AC73000E5429E /* SettingsView.swift in Sources */,
+				2B2F39562E93DF24009AB506 /* TranslationSettingsView.swift in Sources */,
 				2BA5C8062E6F1B000025BE1F /* ToastModifier.swift in Sources */,
 				2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */,
 				2B4AB4DE2E674163005DF24C /* SwiftyTranslationSession.swift in Sources */,
 				2B4AB4CA2E61F743005DF24C /* PasteboardMarker.swift in Sources */,
 				2BA331D72E92A9FF00D91FA7 /* CustomTabBar.swift in Sources */,
 				2B1F0E8E2E78510E0072BDD8 /* TypeAliases.swift in Sources */,
+				2B2F39582E93DF2F009AB506 /* ShortcutsSettingsView.swift in Sources */,
 				2B1ACDCB2E7C485A00E5429E /* View+Ext.swift in Sources */,
 				2B1F0E902E7989940072BDD8 /* ExchangeLanguageView.swift in Sources */,
 				2B4AB4B52E5F256B005DF24C /* TranslateView.swift in Sources */,

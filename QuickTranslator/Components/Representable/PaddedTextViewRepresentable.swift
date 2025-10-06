@@ -24,15 +24,16 @@ struct PaddedTextViewRepresentable: NSViewRepresentable {
         let textView = EnterKeyHandlerTextView()
         textView.string = text
         textView.placeholder = placeholder
+        
         textView.isRichText = false
         textView.textContainerInset = inset
         textView.autoresizingMask = [.width]
         textView.delegate = context.coordinator
-        textView.textColor = textView.textColor?.withAlphaComponent(0.8)
-        textView.backgroundColor = textView.backgroundColor.withAlphaComponent(0.75)
-        textView.font = NSFont.systemFont(ofSize: 14, weight: .regular)
-        textView.onEnterKeyPress = onEnterKeyPress
         
+        textView.textColor = textView.textColor?.withAlphaComponent(0.8)
+        textView.font = NSFont.systemFont(ofSize: 14, weight: .regular)
+        
+        textView.onEnterKeyPress = onEnterKeyPress
         
         let scrollView = NSScrollView()
         scrollView.hasVerticalScroller = true
