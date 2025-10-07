@@ -8,11 +8,6 @@
 import Foundation
 import Translation
 
-enum TranslationFeature: String, CaseIterable {
-    case selectAndTranslate
-    case copyAndTranslate
-}
-
 final class FeatureManager {
     
     static let shared = FeatureManager()
@@ -20,41 +15,44 @@ final class FeatureManager {
     
     private init() { }
     
-    // MARK: - Active Feature
-    
-    var activeFeature: TranslationFeature? {
+    // MARK: - Quick Action
+    var quickActionType: QuickActionType? {
         get {
-            guard let rawValue = userDefaults.string(forKey: .quickActionTranslationType) else { return nil }
-            return TranslationFeature(rawValue: rawValue)
+            userDefaults.value(QuickActionType.self, forKey: .selectedQuickActionType) ?? .directPopover
         }
         set {
-            if let feature = newValue {
-                userDefaults.set(feature.rawValue, forKey: .quickActionTranslationType)
-            } else {
-                userDefaults.removeObject(forKey: .quickActionTranslationType)
-            }
+            userDefaults.set(encodable: newValue, forKey: .selectedQuickActionType)
+        }
+    }
+    
+    // MARK: - Translation Service
+    var translationService: TranslationServiceType {
+        get {
+            userDefaults.value(TranslationServiceType.self, forKey: .selectedTranslationService) ?? .google
+        }
+        set {
+            userDefaults.set(encodable: newValue, forKey: .selectedTranslationService)
         }
     }
     
     // MARK: - Feature Management
-    
-    func enable(_ feature: TranslationFeature) {
-        activeFeature = feature
+    func enable(_ feature: QuickActionType) {
+        quickActionType = feature
     }
     
     func disable() {
-        activeFeature = nil
+        quickActionType = nil
     }
     
-    func toggle(_ feature: TranslationFeature) {
-        if activeFeature == feature {
+    func toggle(_ feature: QuickActionType) {
+        if quickActionType == feature {
             disable()
         } else {
             enable(feature)
         }
     }
     
-    func isEnabled(_ feature: TranslationFeature) -> Bool {
-        return activeFeature == feature
+    func isEnabled(_ feature: QuickActionType) -> Bool {
+        return quickActionType == feature
     }
 }

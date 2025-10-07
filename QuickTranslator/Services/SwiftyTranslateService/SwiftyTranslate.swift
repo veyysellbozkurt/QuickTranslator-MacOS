@@ -3,105 +3,104 @@
 //  SwiftyTranslate
 //
 //  Created by Christoph Pageler on 15.12.20.
+//  Refactored by Veysel Bozkurt on 07.10.2025.
 //
 
 import Foundation
 
+public enum SwiftyTranslateError: Error {
+    case invalidURL
+    case noData
+    case tooManyRequests
+    case invalidResponse
+    case invalidFormat
+}
+
 public struct SwiftyTranslate {
-
-    public enum Error: Swift.Error {
-        case invalidURL
-        case noData
-        case tooManyRequests
-        case invalidData
-    }
-
+    
     public struct Translation {
-
-        public var origin: String
-        public var translated: String
-
+        public let origin: String
+        public let translated: String
     }
-
-    /// translate with closure
-    public static func translate(text: String, from: String, to: String,
-                                 completion: @escaping (Result<Translation, Error>) -> Void) {
-        var urlComponents = URLComponents(string: "https://translate.googleapis.com/translate_a/single")!
-        urlComponents.queryItems = [
-            URLQueryItem(name: "client", value: "gtx"),
-            URLQueryItem(name: "sl", value: from),
-            URLQueryItem(name: "tl", value: to),
-            URLQueryItem(name: "dt", value: "t"),
-            URLQueryItem(name: "q", value: text),
-        ]
-        guard let url = urlComponents.url else {
+        
+    public static func translate(
+        text: String,
+        from source: String,
+        to target: String,
+        completion: @escaping (Result<Translation, SwiftyTranslateError>) -> Void
+    ) {
+        guard let url = makeURL(text: text, from: source, to: target) else {
             completion(.failure(.invalidURL))
             return
         }
-
-        URLSession.shared.dataTask(with: URLRequest(url: url))
-        { (data, response, error) in
-            guard let data = data, let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.noData))
-                return
+        
+        URLSession.shared.dataTask(with: url) { data, response, _ in
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return completion(.failure(.invalidResponse))
             }
+            
             guard httpResponse.statusCode != 429 else {
-                completion(.failure(.tooManyRequests))
-                return
-            }
-            guard let object = try? JSONSerialization.jsonObject(with: data, options: []) else {
-                completion(.failure(.invalidData))
-                return
+                return completion(.failure(.tooManyRequests))
             }
             
-            guard let firstArray = object as? [Any],
-                  let secondArray = firstArray.first as? [Any]
-            else {
-                completion(.failure(.invalidData))
-                return
+            guard let data = data else {
+                return completion(.failure(.noData))
             }
             
-            var originParts: [String]?
-            var resultParts: [String]?
-            for sectionInSecondArray in secondArray {
-                guard let sectionResultArray = sectionInSecondArray as? [Any] else { continue }
-                let sectionResult = sectionResultArray[0..<2]
-                guard let translated = sectionResult.first as? String,
-                      let origin = sectionResult.last as? String
-                else {
-                    continue
-                }
-
-                if originParts == nil { originParts = [] }
-                originParts?.append(origin)
-                if resultParts == nil { resultParts = [] }
-                resultParts?.append(translated)
+            guard let translation = parse(data: data) else {
+                return completion(.failure(.invalidFormat))
             }
             
-            if let originParts = originParts, let resultParts = resultParts {
-                let origin = originParts.joined()
-                let translated = resultParts.joined()
-                completion(.success(Translation(origin: origin, translated: translated)))
-            } else {
-                completion(.failure(.invalidData))
-            }
-        }.resume()
+            completion(.success(translation))
+        }
+        .resume()
     }
-
+    
+    // MARK: - Async/Await Wrapper
+    public static func translate(
+        text: String,
+        from source: String,
+        to target: String
+    ) async throws -> Translation {
+        try await withCheckedThrowingContinuation { continuation in
+            translate(text: text, from: source, to: target) { result in
+                continuation.resume(with: result)
+            }
+        }
+    }
 }
 
-extension SwiftyTranslate {
-    /// translate with async/await
-    public static func translate(text: String, from: String, to: String) async throws -> Translation {
-        try await withCheckedThrowingContinuation({ continuation in
-            SwiftyTranslate.translate(text: text, from: from, to: to) { result in
-                switch result {
-                case .success(let value):
-                    continuation.resume(returning: value)
-                case .failure(let error):
-                    continuation.resume(throwing: error)
-                }
-            }
-        })
+// MARK: - Private Helpers
+private extension SwiftyTranslate {
+    
+    static func makeURL(text: String, from source: String, to target: String) -> URL? {
+        var components = URLComponents(string: "https://translate.googleapis.com/translate_a/single")
+        components?.queryItems = [
+            .init(name: "client", value: "gtx"),
+            .init(name: "sl", value: source),
+            .init(name: "tl", value: target),
+            .init(name: "dt", value: "t"),
+            .init(name: "q", value: text)
+        ]
+        return components?.url
+    }
+    
+    static func parse(data: Data) -> Translation? {
+        guard
+            let json = try? JSONSerialization.jsonObject(with: data) as? [Any],
+            let firstLevel = json.first as? [Any],
+            let sentences = firstLevel as? [[Any]]
+        else {
+            return nil
+        }
+
+        let translatedParts = sentences.compactMap { $0.first as? String }
+        let originParts = sentences.compactMap { $0.dropFirst().first as? String }
+
+        guard !originParts.isEmpty, !translatedParts.isEmpty else { return nil }
+
+        let origin = originParts.joined()
+        let translated = translatedParts.joined()
+        return Translation(origin: origin, translated: translated)
     }
 }

@@ -8,6 +8,11 @@
 import AppKit
 import Carbon.HIToolbox
 
+enum QuickActionType: String, Codable {
+    case floatingIconPopover
+    case directPopover
+}
+
 final class QuickActionManager {
     
     private let cmdMonitor = DoubleKeyMonitor(doubleKey: .cmdC)
@@ -35,7 +40,7 @@ final class QuickActionManager {
                 }
                 self.copiedText = text
             
-            if FeatureManager.shared.isEnabled(.copyAndTranslate) {
+            if FeatureManager.shared.quickActionType == .floatingIconPopover {
                 floatingPanel.showNearMouse()
             } else {
                 quickActionPanelDidConfirm()

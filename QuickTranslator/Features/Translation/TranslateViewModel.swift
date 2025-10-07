@@ -34,51 +34,16 @@ final class TranslateViewModel: ObservableObject {
 }
 
 extension TranslateViewModel {
-//    @MainActor
-//    func makeTranslation(session: TranslationSession) async {
-//        guard !inputText.isEmpty else { return }
-//        
-//        isTranslating = true
-//        errorMessage = nil
-//        defer { isTranslating = false }
-//        
-//        do {
-//            let response = try await session.translate(inputText)
-//            translatedText = response.targetText
-//        } catch {
-//            errorMessage = error.localizedDescription
-//        }
-//        
-//        do {
-//            let trans = try await SwiftyTranslate.translate(text: inputText, from: sourceLanguage.code, to: targetLanguage.code)
-//#if DEBUG
-//            print("\nVEYSEL <<<< gelgegl  in \(#function)-> ", trans.translated)
-//#endif
-//        } catch {
-//        }
-//    }
-    
     @MainActor
-    func makeTrans(session: SwiftyTranslationSession) async {
+    func makeTranslation(using translator: TranslationService) async {
         guard !inputText.isEmpty else { return }
-        
         isTranslating = true
-        errorMessage = nil
         defer { isTranslating = false }
-        
+
         do {
-            let response = try await session.translate(inputText)
-            translatedText = response.targetText
+            translatedText = try await translator.translate(inputText)
         } catch {
             errorMessage = error.localizedDescription
-        }
-        
-        do {
-            let trans = try await SwiftyTranslate.translate(text: inputText, from: sourceLanguage.code, to: targetLanguage.code)
-#if DEBUG
-            print("\nVEYSEL <<<< gelgegl  in \(#function)-> ", trans.translated)
-#endif
-        } catch {
         }
     }
     

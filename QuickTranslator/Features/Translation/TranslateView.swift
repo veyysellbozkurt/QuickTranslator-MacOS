@@ -44,11 +44,15 @@ struct TranslateView: View {
         }
         .padding([.horizontal, .top], 10)
         .animation(.bouncy, value: viewModel.isTranslating)
-//        .translationTask(viewModel.configuration) { session in
-//            await viewModel.makeTranslation(session: session)
-//        }
-        .swiftyTranslationTask(viewModel.configuration) { session in
-            await viewModel.makeTrans(session: session)
+        .translationTask(viewModel.configuration) { appleSession in
+            guard let config = viewModel.configuration else { return }
+            
+            let translator = UnifiedTranslatorFactory.makeTranslator(
+                configuration: config,
+                appleSession: appleSession
+            )
+            
+            await viewModel.makeTranslation(using: translator)
         }
     }
 }

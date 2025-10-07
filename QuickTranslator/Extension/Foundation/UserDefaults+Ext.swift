@@ -13,7 +13,8 @@ extension UserDefaults {
     enum Key: String {
         case sourceLanguage
         case targetLanguage
-        case quickActionTranslationType
+        case selectedQuickActionType
+        case selectedTranslationService
     }
     
     // MARK: - Set -

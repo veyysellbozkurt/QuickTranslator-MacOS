@@ -39,7 +39,7 @@
 		2B4AB4C12E607667005DF24C /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4C02E607667005DF24C /* StatusBarController.swift */; };
 		2B4AB4C32E607BD6005DF24C /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4C22E607BD6005DF24C /* DIContainer.swift */; };
 		2B4AB4CA2E61F743005DF24C /* PasteboardMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4C92E61F743005DF24C /* PasteboardMarker.swift */; };
-		2B4AB4DE2E674163005DF24C /* SwiftyTranslationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4DD2E674163005DF24C /* SwiftyTranslationSession.swift */; };
+		2B4AB4DE2E674163005DF24C /* TranslationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4DD2E674163005DF24C /* TranslationFactory.swift */; };
 		2B4AB4E02E6741AE005DF24C /* SwiftyTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4DF2E6741AE005DF24C /* SwiftyTranslate.swift */; };
 		2B62A1EA2E6B07D9000ADA9E /* FeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */; };
 		2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */; };
@@ -101,7 +101,7 @@
 		2B4AB4C02E607667005DF24C /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		2B4AB4C22E607BD6005DF24C /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		2B4AB4C92E61F743005DF24C /* PasteboardMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardMarker.swift; sourceTree = "<group>"; };
-		2B4AB4DD2E674163005DF24C /* SwiftyTranslationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTranslationSession.swift; sourceTree = "<group>"; };
+		2B4AB4DD2E674163005DF24C /* TranslationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationFactory.swift; sourceTree = "<group>"; };
 		2B4AB4DF2E6741AE005DF24C /* SwiftyTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTranslate.swift; sourceTree = "<group>"; };
 		2B4AB4E12E686E06005DF24C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureManager.swift; sourceTree = "<group>"; };
@@ -393,7 +393,6 @@
 			isa = PBXGroup;
 			children = (
 				2B4AB4DF2E6741AE005DF24C /* SwiftyTranslate.swift */,
-				2B4AB4DD2E674163005DF24C /* SwiftyTranslationSession.swift */,
 			);
 			path = SwiftyTranslateService;
 			sourceTree = "<group>";
@@ -401,6 +400,7 @@
 		2B4AB4E52E69B3F9005DF24C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				2B4AB4DD2E674163005DF24C /* TranslationFactory.swift */,
 				2B4AB4E42E69B3E2005DF24C /* SwiftyTranslateService */,
 			);
 			path = Services;
@@ -591,7 +591,7 @@
 				2B2F39562E93DF24009AB506 /* TranslationSettingsView.swift in Sources */,
 				2BA5C8062E6F1B000025BE1F /* ToastModifier.swift in Sources */,
 				2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */,
-				2B4AB4DE2E674163005DF24C /* SwiftyTranslationSession.swift in Sources */,
+				2B4AB4DE2E674163005DF24C /* TranslationFactory.swift in Sources */,
 				2B4AB4CA2E61F743005DF24C /* PasteboardMarker.swift in Sources */,
 				2BA331D72E92A9FF00D91FA7 /* CustomTabBar.swift in Sources */,
 				2B1F0E8E2E78510E0072BDD8 /* TypeAliases.swift in Sources */,
