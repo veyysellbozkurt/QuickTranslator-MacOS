@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>NSAccessibilityUsageDescription</key>
-	<string>QuickTranslator needs accessibility permission to detect Cmd+C</string>
+	<string>Allow QuickTranslator to use Accessibility features so it can detect when you copy text (Cmd + C) and translate it automatically.</string>
 </dict>
 </plist>

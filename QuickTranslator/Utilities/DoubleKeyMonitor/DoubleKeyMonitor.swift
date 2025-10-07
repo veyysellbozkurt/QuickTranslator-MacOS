@@ -42,7 +42,10 @@ final class DoubleKeyMonitor {
             userInfo: pointerToSelf
         )
         
-        guard let eventTap = eventTap else { return }
+        guard let eventTap = eventTap else {
+            showAccessibilityPermissionAlert()
+            return
+        }
         
         let runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0)
         CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, .commonModes)
@@ -68,23 +71,39 @@ private extension DoubleKeyMonitor {
             lastKeyPress = now
         }
     }
-
+    
     // MARK: - C-compatible callback
     static let eventTapCallback: CGEventTapCallBack = { _, type, event, userInfo in
         guard type == .keyDown, let userInfo = userInfo else {
             return Unmanaged.passUnretained(event)
         }
-
+        
         let monitor = Unmanaged<DoubleKeyMonitor>.fromOpaque(userInfo).takeUnretainedValue()
         let keyCode = CGKeyCode(event.getIntegerValueField(.keyboardEventKeycode))
         let flags = event.flags
-
+        
         let pressedKey = DoubleKey(keyCode: keyCode, modifierFlags: flags)
-
+        
         if monitor.doubleKey.matches(eventFlags: flags, keyCode: keyCode) {
             monitor.handleKeyPress()
         }
-
+        
         return Unmanaged.passUnretained(event)
+    }
+    
+    func showAccessibilityPermissionAlert() {
+        DispatchQueue.main.async {
+            let alert = NSAlert()
+            alert.alertStyle = .warning
+            alert.messageText = Constants.Strings.accessibilityTitle
+            alert.informativeText = Constants.Strings.accessibilityMessage
+            alert.addButton(withTitle: Constants.Strings.openSettings)
+            alert.addButton(withTitle: Constants.Strings.cancel)
+            if alert.runModal() == .alertFirstButtonReturn {
+                if let url = Constants.Urls.accessibilitySettingsURL {
+                    NSWorkspace.shared.open(url)
+                }
+            }
+        }
     }
 }
