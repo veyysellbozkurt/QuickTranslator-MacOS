@@ -7,23 +7,10 @@
 
 import SwiftUI
 import Foundation
+import Translation
 
 // MARK: - Translation Session
 public class SwiftyTranslationSession: ObservableObject {
-    
-    public struct Configuration {
-        let source: Language
-        let target: Language
-        
-        public init(source: Language, target: Language) {
-            self.source = source
-            self.target = target
-        }
-        
-        public func invalidate() {
-            // Configuration invalidation logic if needed
-        }
-    }
     
     public struct Language {
         let identifier: String
@@ -41,9 +28,9 @@ public class SwiftyTranslationSession: ObservableObject {
         }
     }
     
-    private let configuration: Configuration
+    private let configuration: TranslationSession.Configuration
     
-    init(configuration: Configuration) {
+    init(configuration: TranslationSession.Configuration) {
         self.configuration = configuration
     }
     
@@ -51,8 +38,8 @@ public class SwiftyTranslationSession: ObservableObject {
     public func translate(_ text: String) async throws -> TranslationResponse {
         let translation = try await SwiftyTranslate.translate(
             text: text,
-            from: configuration.source.identifier,
-            to: configuration.target.identifier
+            from: configuration.source?.minimalIdentifier ?? "en",
+            to: configuration.target?.minimalIdentifier ?? "es"
         )
         return TranslationResponse(targetText: translation.translated)
     }
@@ -61,7 +48,7 @@ public class SwiftyTranslationSession: ObservableObject {
 // MARK: - View Extension
 extension View {
     public func swiftyTranslationTask(
-        _ configuration: SwiftyTranslationSession.Configuration?,
+        _ configuration: TranslationSession.Configuration?,
         action: @escaping (SwiftyTranslationSession) async -> Void
     ) -> some View {
         self.modifier(SwiftyTranslationTaskModifier(configuration: configuration, action: action))
@@ -70,7 +57,7 @@ extension View {
 
 // MARK: - Task Modifier
 struct SwiftyTranslationTaskModifier: ViewModifier {
-    let configuration: SwiftyTranslationSession.Configuration?
+    let configuration: TranslationSession.Configuration?
     let action: (SwiftyTranslationSession) async -> Void
     
     func body(content: Content) -> some View {
@@ -83,7 +70,9 @@ struct SwiftyTranslationTaskModifier: ViewModifier {
     }
     
     private var configurationID: String {
-        guard let config = configuration else { return "" }
-        return "\(config.source.identifier)-\(config.target.identifier)"
+        guard let config = configuration,
+              let sourceLanguageCode = config.source?.minimalIdentifier,
+              let targetLanguageCode = config.target?.minimalIdentifier else { return "" }
+        return "\(sourceLanguageCode)-\(targetLanguageCode)"
     }
 }

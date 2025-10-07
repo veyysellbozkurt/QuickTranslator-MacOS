@@ -23,6 +23,7 @@ public struct SwiftyTranslate {
 
     }
 
+    /// translate with closure
     public static func translate(text: String, from: String, to: String,
                                  completion: @escaping (Result<Translation, Error>) -> Void) {
         var urlComponents = URLComponents(string: "https://translate.googleapis.com/translate_a/single")!
@@ -89,12 +90,8 @@ public struct SwiftyTranslate {
 
 }
 
-#if swift(>=5.5)
-@available(iOS 13.0.0, *)
-@available(macOS 10.15.0, *)
-@available(watchOS 6.0, *)
-@available(tvOS 13.0.0, *)
 extension SwiftyTranslate {
+    /// translate with async/await
     public static func translate(text: String, from: String, to: String) async throws -> Translation {
         try await withCheckedThrowingContinuation({ continuation in
             SwiftyTranslate.translate(text: text, from: from, to: to) { result in
@@ -108,4 +105,3 @@ extension SwiftyTranslate {
         })
     }
 }
-#endif

@@ -44,8 +44,11 @@ struct TranslateView: View {
         }
         .padding([.horizontal, .top], 10)
         .animation(.bouncy, value: viewModel.isTranslating)
-        .translationTask(viewModel.configuration) { session in
-            await viewModel.makeTranslation(session: session)
+//        .translationTask(viewModel.configuration) { session in
+//            await viewModel.makeTranslation(session: session)
+//        }
+        .swiftyTranslationTask(viewModel.configuration) { session in
+            await viewModel.makeTrans(session: session)
         }
     }
 }
