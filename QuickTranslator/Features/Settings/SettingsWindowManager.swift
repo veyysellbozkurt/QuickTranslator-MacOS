@@ -26,8 +26,8 @@ final class SettingsWindowManager: ObservableObject {
         settingsWindow?.makeKeyAndOrderFront(nil)
         settingsWindow?.center()
         settingsWindow?.contentViewController?.view.window?.becomeKey()
-        
-        NSApp.activate(ignoringOtherApps: true)
+                
+        NSApp.activate()
     }
     
     func hideSettings() {
@@ -50,20 +50,16 @@ final class SettingsWindowManager: ObservableObject {
         window.title = "Preferences"
         window.isReleasedWhenClosed = false
         window.titlebarAppearsTransparent = true
-        window.titleVisibility = .hidden
-        window.isOpaque = false
-        window.backgroundColor = .clear
         
         let visualEffectView = NSVisualEffectView(frame: window.contentView!.bounds)
         visualEffectView.autoresizingMask = [.width, .height]
-        visualEffectView.blendingMode = .withinWindow
-        visualEffectView.material = .titlebar
+        visualEffectView.blendingMode = .behindWindow
+        visualEffectView.material = .sidebar
         visualEffectView.state = .followsWindowActiveState
         
         // NSHostingController
         let hostingController = NSHostingController(rootView: container)
         hostingController.view.wantsLayer = true
-        hostingController.view.layer?.backgroundColor = .clear
         hostingController.view.frame = visualEffectView.bounds
         hostingController.view.autoresizingMask = [.width, .height]
         

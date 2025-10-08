@@ -44,7 +44,8 @@ private extension MainPopover {
             TranslateView(viewModel: viewModel)
             PopoverControls(popover: popover)
         }
-        .background(Color.app.opacity(0.45))
+        .background(Color.app.opacity(0.1))
+        .background(.ultraThinMaterial)
     }
     
     func setupDynamicHeightObserver() {

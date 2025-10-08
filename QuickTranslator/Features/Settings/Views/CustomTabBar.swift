@@ -44,18 +44,18 @@ struct CustomTabBar: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 18, height: 18)
-                                .scaleEffect(selectedIndex == index ? 1.1 : 1.0)
+                                .scaleEffect(selectedIndex == index ? 1.2 : 1.0)
                         } else if let systemImageName = tab.systemImageName {
                             Image(systemName: systemImageName)
                                 .font(.system(size: 18, weight: .medium))
-                                .scaleEffect(selectedIndex == index ? 1.1 : 1.0)
+                                .scaleEffect(selectedIndex == index ? 1.2 : 1.0)
                         }
                         
                         Text(tab.label)
                             .font(.callout)
                             .lineLimit(1)
                     }
-                    .foregroundColor(selectedIndex == index ? .app : .primary)
+                    .foregroundColor(.primary.opacity(0.85))
                     .padding(.vertical, 6)
                     .padding(.horizontal, 12)
                     .background(
@@ -72,7 +72,7 @@ struct CustomTabBar: View {
         .padding(6)
         .background(
             RoundedRectangle(cornerRadius: 10)            
-            .fill(Color.gray.opacity(0.1))
+            .fill(Color.gray.opacity(0.2))
         )
     }
     
@@ -80,12 +80,12 @@ struct CustomTabBar: View {
         ZStack {
             if selectedIndex == index {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.app.opacity(0.1))
+                    .fill(Color.app.opacity(0.5))
                     .matchedGeometryEffect(id: "background", in: namespace)
             }
             else if hoveringIndex == index {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.gray.opacity(0.1))
+                    .fill(Color.gray.opacity(0.2))
             }
         }
     }

@@ -59,8 +59,8 @@ struct ExchangeLanguageView: View {
             }
             .padding(.horizontal, 10)
             .frame(height: 28)
-            .background(Color.secondary.opacity(0.3))
-            .clipShape(RoundedRectangle(cornerRadius: 8))            
+            .background(Color.secondary.opacity(0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
         }
         .buttonStyle(BounceButtonStyle())
         .popover(isPresented: isPresented) {
