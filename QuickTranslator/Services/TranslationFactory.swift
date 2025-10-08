@@ -53,10 +53,20 @@ final class UnifiedTranslatorFactory {
                                appleSession: TranslationSession?) -> TranslationService {
         let source = configuration.source?.minimalIdentifier ?? "en"
         let target = configuration.target?.minimalIdentifier ?? "es"
+        let service = FeatureManager.shared.translationService
         
-        if let appleSession, FeatureManager.shared.translationService == .apple {
+        Logger.debug("TranslatorFactory called [\(source) → \(target)]")
+        
+        if let appleSession, service == .apple {
+            Logger.info("🟢 Using AppleTranslationService")
             return AppleTranslationService(session: appleSession)
-        } else {
+            
+        } else if service == .google {
+            Logger.info("🔵 Using GoogleTranslationService")
+            return GoogleTranslationService(from: source, to: target)
+            
+        }  else {
+            Logger.warning("Unknown service type — fallback to GoogleTranslationService")
             return GoogleTranslationService(from: source, to: target)
         }
     }

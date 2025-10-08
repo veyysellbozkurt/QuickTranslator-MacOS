@@ -41,6 +41,7 @@
 		2B4AB4CA2E61F743005DF24C /* PasteboardMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4C92E61F743005DF24C /* PasteboardMarker.swift */; };
 		2B4AB4DE2E674163005DF24C /* TranslationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4DD2E674163005DF24C /* TranslationFactory.swift */; };
 		2B4AB4E02E6741AE005DF24C /* SwiftyTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AB4DF2E6741AE005DF24C /* SwiftyTranslate.swift */; };
+		2B5433202E9693E500682C76 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54331F2E9693E500682C76 /* Logger.swift */; };
 		2B62A1EA2E6B07D9000ADA9E /* FeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */; };
 		2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */; };
 		2BA331D72E92A9FF00D91FA7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */; };
@@ -104,6 +105,7 @@
 		2B4AB4DD2E674163005DF24C /* TranslationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationFactory.swift; sourceTree = "<group>"; };
 		2B4AB4DF2E6741AE005DF24C /* SwiftyTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTranslate.swift; sourceTree = "<group>"; };
 		2B4AB4E12E686E06005DF24C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B54331F2E9693E500682C76 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureManager.swift; sourceTree = "<group>"; };
 		2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleKey.swift; sourceTree = "<group>"; };
 		2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 		2B4AB4992E5F256B005DF24C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				2B54331E2E9693C700682C76 /* Logger */,
 				2B62A1EB2E6B2017000ADA9E /* DoubleKeyMonitor */,
 			);
 			path = Utilities;
@@ -404,6 +407,14 @@
 				2B4AB4E42E69B3E2005DF24C /* SwiftyTranslateService */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		2B54331E2E9693C700682C76 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				2B54331F2E9693E500682C76 /* Logger.swift */,
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 		2B62A1E82E6B07CB000ADA9E /* Managers */ = {
@@ -587,6 +598,7 @@
 				2B4AB4C12E607667005DF24C /* StatusBarController.swift in Sources */,
 				2B4AB4B32E5F256B005DF24C /* Language.swift in Sources */,
 				2B62A1EA2E6B07D9000ADA9E /* FeatureManager.swift in Sources */,
+				2B5433202E9693E500682C76 /* Logger.swift in Sources */,
 				2B1ACDC42E7AC73000E5429E /* SettingsView.swift in Sources */,
 				2B2F39562E93DF24009AB506 /* TranslationSettingsView.swift in Sources */,
 				2BA5C8062E6F1B000025BE1F /* ToastModifier.swift in Sources */,
