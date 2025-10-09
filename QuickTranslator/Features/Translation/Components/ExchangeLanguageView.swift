@@ -76,6 +76,8 @@ struct ExchangeLanguageView: View {
                         language.wrappedValue = lang
                         showSourceLanguagePicker = false
                         showTargetLanguagePicker = false
+                        sourceLanguage = displaySourceLanguage
+                        targetLanguage = displaysTargetLanguage
                     } label: {
                         Text(lang.title)
                             .padding(.vertical, 10)

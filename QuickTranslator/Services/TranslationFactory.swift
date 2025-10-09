@@ -9,11 +9,6 @@ import SwiftUI
 import Foundation
 import Translation
 
-enum TranslationServiceType: String, Codable {
-    case apple
-    case google
-}
-
 protocol TranslationService {
     func translate(_ text: String) async throws -> String
 }

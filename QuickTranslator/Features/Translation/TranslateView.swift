@@ -22,7 +22,7 @@ struct TranslateView: View {
                                  targetLanguage: $viewModel.targetLanguage) {
                 viewModel.swapInputs()
             }
-            
+            HStack {
             InputView(text: $viewModel.inputText,
                       language: $viewModel.sourceLanguage,
                       placeholder: Constants.Strings.inputPlaceholder) {
@@ -42,6 +42,7 @@ struct TranslateView: View {
                 }
             }
         }
+        }
         .padding([.horizontal, .top], 10)
         .animation(.bouncy, value: viewModel.isTranslating)
         .translationTask(viewModel.configuration) { appleSession in
@@ -51,7 +52,9 @@ struct TranslateView: View {
                 configuration: config,
                 appleSession: appleSession
             )
-            
+#if DEBUG
+            print("\nVEYSEL <<<< bb  in \(#function)-> ", LanguageAvailability().supportedLanguages)
+#endif
             await viewModel.makeTranslation(using: translator)
         }
     }

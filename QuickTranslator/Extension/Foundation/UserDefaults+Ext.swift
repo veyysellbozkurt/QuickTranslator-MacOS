@@ -15,6 +15,8 @@ extension UserDefaults {
         case targetLanguage
         case selectedQuickActionType
         case selectedTranslationService
+        case selectedInputLayout
+        case launchOnStart
     }
     
     // MARK: - Set -

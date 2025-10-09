@@ -13,6 +13,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DIContainer.shared.quickActionManager.start()
         
         NSApp.setActivationPolicy(.accessory)
+        
+        performAfter(1) {
+            DIContainer.shared.settingsWindowManager.showSettings()
+        }
     }
     
     /// When clicking the app icon in the Dock

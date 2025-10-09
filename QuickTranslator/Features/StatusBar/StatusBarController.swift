@@ -15,8 +15,8 @@ final class StatusBarController {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
         if let button = statusItem.button {
-            let buttonImage = NSImage(resource: .language)
-            buttonImage.size = NSSize(width: 18, height: 18)
+            let buttonImage = NSImage(resource: .translation3)
+            buttonImage.size = NSSize(width: 21, height: 21)
             buttonImage.isTemplate = false
             button.image = buttonImage
             button.action = #selector(buttonClicked(_:))
@@ -26,6 +26,7 @@ final class StatusBarController {
     
     @objc private func buttonClicked(_ sender: AnyObject?) {
         guard let button = statusItem.button else { return }
+        FeatureManager.shared.translationService = .apple
         DIContainer.shared.mainPopover.show(from: button)
     }
 }

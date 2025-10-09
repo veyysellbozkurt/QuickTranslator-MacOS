@@ -7,20 +7,28 @@
 
 import SwiftUI
 
-
 struct AboutSettingsView: View {
     let windowManager: SettingsWindowManager
     
+    // MARK: - Bundle Bilgileri
+    private var appName: String {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "Quick Translator"
+    }
+    
+    private var appVersion: String {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0.0"
+    }
+    
     var body: some View {
         VStack(spacing: 16) {
-            Image(systemName: "globe.badge.chevron.backward")
-                .font(.system(size: 64))
+            Image(.translation3)
+                .resizable()
                 .foregroundColor(.app)
+                .frame(width: 80, height: 80)
             
             VStack(spacing: 4) {
-                Text("Quick Translator").font(.title).bold()
-                Text("Version 1.0.0").font(.subheadline).foregroundColor(.secondary)
-                Text("Build 2025.09.17").font(.caption).foregroundColor(.secondary)
+                Text(appName).font(.title).bold()
+                Text("Version \(appVersion)").font(.subheadline).foregroundColor(.secondary)
             }
             
             Text("A fast and efficient translation tool for macOS.")
@@ -32,22 +40,20 @@ struct AboutSettingsView: View {
             
             HStack(spacing: 16) {
                 Button("Support") {
-                    if let url = URL(string: "https://buymeacoffee.com/yourapp") {
+                    if let url = URL(string: "https://buymeacoffee.com/veyselbozkurt") {
                         NSWorkspace.shared.open(url)
                     }
                 }.buttonStyle(.bordered)
                 
-                Button("GitHub") {
-                    if let url = URL(string: "https://github.com/yourusername/quick-translator") {
+                Button("Send Feedback") {
+                    let email = "veyysellbozkrt@gmail.com"
+                    let subject = "Feedback for \(appName) v\(appVersion)"
+                    if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")") {
                         NSWorkspace.shared.open(url)
                     }
-                }.buttonStyle(.bordered)
-                
-                Button("Close") {
-                    windowManager.hideSettings()
                 }.buttonStyle(.borderedProminent)
             }
-        }        
+        }
         .padding(20)
     }
 }

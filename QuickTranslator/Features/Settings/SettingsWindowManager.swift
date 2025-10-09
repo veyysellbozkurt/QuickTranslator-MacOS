@@ -36,20 +36,22 @@ final class SettingsWindowManager: ObservableObject {
         updateDockIconVisibility()
     }
     
-    private func createSettingsWindow() {        
-        let coordinator = SettingsContainerView.Coordinator()
+    private var hostingController: NSHostingController<SettingsContainerView>?
+
+    private func createSettingsWindow() {
+        let coordinator = SettingsContainerView.Coordinator(manager: self)
         let container = SettingsContainerView(windowManager: self, selection: coordinator)
         
-        // Window
+        hostingController = NSHostingController(rootView: container)
+        
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 800, height: 400),
+            contentRect: NSRect(x: 0, y: 0, width: 400, height: 200),
             styleMask: [.titled, .closable, .fullSizeContentView],
             backing: .buffered,
             defer: false
         )
         window.title = "Preferences"
         window.isReleasedWhenClosed = false
-        window.titlebarAppearsTransparent = true
         
         let visualEffectView = NSVisualEffectView(frame: window.contentView!.bounds)
         visualEffectView.autoresizingMask = [.width, .height]
@@ -57,20 +59,50 @@ final class SettingsWindowManager: ObservableObject {
         visualEffectView.material = .sidebar
         visualEffectView.state = .followsWindowActiveState
         
-        // NSHostingController
-        let hostingController = NSHostingController(rootView: container)
-        hostingController.view.wantsLayer = true
-        hostingController.view.frame = visualEffectView.bounds
-        hostingController.view.autoresizingMask = [.width, .height]
-        
-        visualEffectView.addSubview(hostingController.view)
+        hostingController!.view.frame = visualEffectView.bounds
+        hostingController!.view.autoresizingMask = [.width, .height]
+        visualEffectView.addSubview(hostingController!.view)
         window.contentView = visualEffectView
         
-        // Save references
         settingsWindow = window
         windowDelegate = SettingsWindowDelegate(manager: self)
         window.delegate = windowDelegate
     }
+    
+    func updateWindowSize(animated: Bool = true) {
+        guard let window = settingsWindow,
+              let hostingView = window.contentView?.subviews.first(where: { $0 is NSHostingView<AnyView> })
+              ?? window.contentView?.subviews.first
+        else { return }
+
+        let targetSize = hostingView.fittingSize
+
+        let currentFrame = window.frame
+        let newHeight = max(targetSize.height, 200) // minimum height
+        let newWidth = max(targetSize.width, 400)   // minimum width
+
+        // Üst köşeyi sabit tutmak için y-origin'i hesapla
+        let deltaHeight = newHeight - currentFrame.height
+        let newOrigin = NSPoint(x: currentFrame.origin.x,
+                                y: currentFrame.origin.y - deltaHeight)
+
+        if animated {
+            NSAnimationContext.runAnimationGroup { context in
+                context.duration = 0.25
+                window.animator().setFrame(NSRect(x: newOrigin.x,
+                                                  y: newOrigin.y,
+                                                  width: newWidth,
+                                                  height: newHeight), display: true)
+            }
+        } else {
+            window.setFrame(NSRect(x: newOrigin.x,
+                                   y: newOrigin.y,
+                                   width: newWidth,
+                                   height: newHeight), display: true)
+        }
+    }
+
+
     
     private func updateDockIconVisibility() {
         DispatchQueue.main.async {

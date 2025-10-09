@@ -8,7 +8,7 @@
 import Foundation
 import Translation
 
-final class FeatureManager {
+final class FeatureManager: ObservableObject {
     
     static let shared = FeatureManager()
     private let userDefaults = UserDefaults.standard
@@ -35,7 +35,34 @@ final class FeatureManager {
         }
     }
     
-    // MARK: - Feature Management
+    // MARK: - Launch on Start
+    var launchOnStart: Bool {
+        get {
+            userDefaults.bool(forKey: .launchOnStart)
+        }
+        set {
+            userDefaults.set(newValue, forKey: .launchOnStart)
+        }
+    }
+    
+    // MARK: - Input Layout
+    var inputLayout: InputLayout {
+        get {
+            userDefaults.value(InputLayout.self, forKey: .selectedInputLayout) ?? .horizontal
+        }
+        set {
+            userDefaults.set(encodable: newValue, forKey: .selectedInputLayout)
+        }
+    }
+}
+
+
+
+
+
+
+// MARK: - Feature Management
+extension FeatureManager {
     func enable(_ feature: QuickActionType) {
         quickActionType = feature
     }

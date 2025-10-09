@@ -8,42 +8,81 @@
 import SwiftUI
 
 struct GeneralSettingsView: View {
-    @State private var launchAtLogin = false
-    @State private var showNotifications = true
-    @State private var autoCopyTranslation = false
-    @State private var enableSoundEffects = true
-    @State private var theme = "System"
-    @State private var opacity: Double = 0.95
+    @State private var selectedLayout: InputLayout = FeatureManager.shared.inputLayout
+    @ObservedObject private var featureManager = FeatureManager.shared
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
-                SettingsSection(title: "Application") {
-                    SettingsToggle(title: "Launch at login", isOn: $launchAtLogin)
-                    SettingsToggle(title: "Show notifications", isOn: $showNotifications)
-                    SettingsToggle(title: "Auto-copy translation", isOn: $autoCopyTranslation)
-                    SettingsToggle(title: "Enable sound effects", isOn: $enableSoundEffects)
-                }
-                
-                SettingsSection(title: "Appearance") {
-                    SettingsPicker(
-                        title: "Theme",
-                        selection: $theme,
-                        options: ["System", "Light", "Dark"]
-                    )
+        VStack(alignment: .leading, spacing: 16) {
+            
+            SettingsSection(title: "Launch Settings") {
+                VStack(alignment: .leading, spacing: 8) {
+                    Toggle("Launch on system startup", isOn: $featureManager.launchOnStart)
+                        .toggleStyle(.switch)
                     
-                    SettingsSlider(
-                        title: "Opacity",
-                        value: $opacity,
-                        range: 0.5...1.0,
-                        step: 0.05,
-                        minLabel: "50%",
-                        maxLabel: "100%"
-                    )
+                    Text("The app will automatically start when you log in to your Mac.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
             }
-            .padding(20)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            
+            SettingsSection(title: "Input Layout") {
+                VStack(alignment: .leading, spacing: 10) {
+                    Picker("Layout Style \t", selection: $selectedLayout) {
+                        ForEach(InputLayout.allCases, id: \.self) { layout in
+                            Label(layout.displayName, systemImage: layout.iconName)
+                                .tag(layout)
+                        }
+                    }
+                    .pickerStyle(.inline)
+                    .onChange(of: selectedLayout) {
+                        featureManager.inputLayout = selectedLayout
+                    }
+                    
+                    Text(selectedLayout.description)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .animation(.default, value: selectedLayout)
+                }
+            }
+            
+            SettingsSection(title: "Quit") {
+                Button(action: {
+                    NSApp.terminate(nil)
+                }) {
+                    HStack {
+                        Text("Quit QuickTranslator")
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.regular)
+            }
+        }
+        .padding()
+    }
+}
+
+
+struct SettingsSection<Content: View>: View {
+    let title: String
+    let content: () -> Content
+    
+    init(title: String, @ViewBuilder content: @escaping () -> Content) {
+        self.title = title
+        self.content = content
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title.uppercased())
+                .font(.caption)
+                .fontWeight(.semibold)
+                .foregroundStyle(.secondary)
+            
+            VStack(alignment: .leading) {
+                content()
+            }
+            .padding(12)
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color(nsColor: .controlBackgroundColor).opacity(0.5)))
         }
     }
 }
