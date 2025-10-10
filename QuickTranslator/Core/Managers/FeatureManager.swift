@@ -16,7 +16,7 @@ final class FeatureManager: ObservableObject {
     private init() { }
     
     // MARK: - Quick Action
-    var quickActionType: QuickActionType? {
+    var quickActionType: QuickActionType {
         get {
             userDefaults.value(QuickActionType.self, forKey: .selectedQuickActionType) ?? .directPopover
         }
@@ -54,32 +54,14 @@ final class FeatureManager: ObservableObject {
             userDefaults.set(encodable: newValue, forKey: .selectedInputLayout)
         }
     }
-}
-
-
-
-
-
-
-// MARK: - Feature Management
-extension FeatureManager {
-    func enable(_ feature: QuickActionType) {
-        quickActionType = feature
-    }
     
-    func disable() {
-        quickActionType = nil
-    }
-    
-    func toggle(_ feature: QuickActionType) {
-        if quickActionType == feature {
-            disable()
-        } else {
-            enable(feature)
+    // MARK: - Double Key Interval
+    var doubleKeyInterval: Double {
+        get {
+            userDefaults.double(forKey: .doubleKeyInterval)
         }
-    }
-    
-    func isEnabled(_ feature: QuickActionType) -> Bool {
-        return quickActionType == feature
+        set {
+            userDefaults.set(newValue, forKey: .doubleKeyInterval)
+        }
     }
 }

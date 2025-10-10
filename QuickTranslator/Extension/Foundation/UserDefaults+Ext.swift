@@ -16,6 +16,7 @@ extension UserDefaults {
         case selectedQuickActionType
         case selectedTranslationService
         case selectedInputLayout
+        case doubleKeyInterval
         case launchOnStart
     }
     
@@ -32,6 +33,10 @@ extension UserDefaults {
         set(value, forKey: key.rawValue)
     }
     
+    func set(_ value: Double, forKey key: Key) {
+        set(value, forKey: key.rawValue)
+    }
+    
     func set(_ value: String, forKey key: Key) {
         set(value, forKey: key.rawValue)
     }
@@ -44,6 +49,10 @@ extension UserDefaults {
     //    MARK: - Get
     func int(forKey key: Key) -> Int {
         return integer(forKey: key.rawValue)
+    }
+    
+    func double(forKey key: Key) -> Double {
+        return double(forKey: key.rawValue)
     }
     
     func bool(forKey key: Key) -> Bool {

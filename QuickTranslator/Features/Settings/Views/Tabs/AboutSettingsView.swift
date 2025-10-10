@@ -51,7 +51,9 @@ struct AboutSettingsView: View {
                     if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")") {
                         NSWorkspace.shared.open(url)
                     }
-                }.buttonStyle(.borderedProminent)
+                }
+                .buttonStyle(.borderedProminent)
+                .foregroundStyle(.app)
             }
         }
         .padding(20)

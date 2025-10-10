@@ -30,7 +30,7 @@ struct SettingsContainerView: View {
             switch selection.index {
                 case 0: GeneralSettingsView()
                 case 1: TranslationSettingsView()
-                case 2: ShortcutsSettingsView()
+                case 2: QuickActionView()
                 case 3: GeneralSettingsView()
                 case 4: AboutSettingsView(windowManager: windowManager)
                 default: GeneralSettingsView()

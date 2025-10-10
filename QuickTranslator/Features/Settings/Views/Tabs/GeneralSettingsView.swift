@@ -18,6 +18,7 @@ struct GeneralSettingsView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Toggle("Launch on system startup", isOn: $featureManager.launchOnStart)
                         .toggleStyle(.switch)
+                        .tint(.app)
                     
                     Text("The app will automatically start when you log in to your Mac.")
                         .font(.caption)
@@ -33,6 +34,7 @@ struct GeneralSettingsView: View {
                                 .tag(layout)
                         }
                     }
+                    .tint(.app)
                     .pickerStyle(.inline)
                     .onChange(of: selectedLayout) {
                         featureManager.inputLayout = selectedLayout
@@ -54,6 +56,7 @@ struct GeneralSettingsView: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
+                .foregroundStyle(.app)
                 .controlSize(.regular)
             }
         }
