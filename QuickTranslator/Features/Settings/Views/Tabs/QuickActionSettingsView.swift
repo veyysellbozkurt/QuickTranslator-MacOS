@@ -1,5 +1,5 @@
 //
-//  QuickActionView.swift
+//  QuickActionSettingsView.swift
 //  QuickTranslator
 //
 //  Created by Veysel Bozkurt on 6.10.2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct QuickActionView: View {
+struct QuickActionSettingsView: View {
     @ObservedObject private var featureManager = FeatureManager.shared
     @State private var selectedAction: QuickActionType = FeatureManager.shared.quickActionType
     @State private var doubleKeyInterval: Double = FeatureManager.shared.doubleKeyInterval
