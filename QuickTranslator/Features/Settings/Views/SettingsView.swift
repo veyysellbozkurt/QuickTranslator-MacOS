@@ -62,7 +62,7 @@ struct SettingsContainerView: View {
                 windowManager.updateWindowSize(animated: false)
             }
         }
-        .onChange(of: selection.index) { _ in
+        .onChange(of: selection.index) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 windowManager.updateWindowSize()
             }

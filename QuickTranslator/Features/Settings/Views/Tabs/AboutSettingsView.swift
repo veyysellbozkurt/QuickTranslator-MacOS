@@ -36,20 +36,35 @@ struct AboutSettingsView: View {
                 .foregroundColor(.secondary)
                 .padding(.horizontal)
             
-            Spacer()
+//            Spacer()
+            
+            Divider()
             
             HStack(spacing: 16) {
-                Button("Support") {
-                    if let url = URL(string: "https://buymeacoffee.com/veyselbozkurt") {
-                        NSWorkspace.shared.open(url)
+                Group {
+                    Button("Support") {
+                        if let url = URL(string: "https://buymeacoffee.com/veyselbozkurt") {
+                            NSWorkspace.shared.open(url)
+                        }
                     }
-                }.buttonStyle(.bordered)
-                
-                Button("Send Feedback") {
-                    let email = "veyysellbozkrt@gmail.com"
-                    let subject = "Feedback for \(appName) v\(appVersion)"
-                    if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")") {
-                        NSWorkspace.shared.open(url)
+                    
+                    Button {
+                        NSWorkspace.shared.open(Constants.Urls.buyMeCoffee)
+                    } label: {
+                        Image(.buyMeCoffee)
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    .frame(height: 30)
+                    .clipShape(.buttonBorder)
+                    .buttonStyle(BounceButtonStyle())
+                    
+                    Button("Send Feedback") {
+                        let email = "veyysellbozkrt@gmail.com"
+                        let subject = "Feedback for \(appName) v\(appVersion)"
+                        if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")") {
+                            NSWorkspace.shared.open(url)
+                        }
                     }
                 }
                 .buttonStyle(.borderedProminent)

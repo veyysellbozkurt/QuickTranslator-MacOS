@@ -52,9 +52,6 @@ struct TranslateView: View {
                 configuration: config,
                 appleSession: appleSession
             )
-#if DEBUG
-            print("\nVEYSEL <<<< bb  in \(#function)-> ", LanguageAvailability().supportedLanguages)
-#endif
             await viewModel.makeTranslation(using: translator)
         }
     }

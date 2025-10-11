@@ -105,7 +105,7 @@ struct EngineCard: View {
                 }
             }
             .padding(20)
-            .frame(maxWidth: .infinity, minHeight: 180, alignment: .topLeading)
+//            .frame(maxWidth: .infinity, minHeight: 60, alignment: .topLeading)
             .background(
                 RoundedRectangle(cornerRadius: 12)
                     .fill(isSelected ? Color.accentColor.opacity(0.12) : Color(.windowBackgroundColor))

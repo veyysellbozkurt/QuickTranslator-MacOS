@@ -45,18 +45,19 @@ final class SettingsWindowManager: ObservableObject {
         hostingController = NSHostingController(rootView: container)
         
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 400, height: 200),
+            contentRect: NSRect(x: 0, y: 0, width: 600, height: 500),
             styleMask: [.titled, .closable, .fullSizeContentView],
             backing: .buffered,
             defer: false
         )
         window.title = "Preferences"
+        window.titlebarAppearsTransparent = true
         window.isReleasedWhenClosed = false
         
         let visualEffectView = NSVisualEffectView(frame: window.contentView!.bounds)
         visualEffectView.autoresizingMask = [.width, .height]
         visualEffectView.blendingMode = .behindWindow
-        visualEffectView.material = .sidebar
+        visualEffectView.material = .hudWindow
         visualEffectView.state = .followsWindowActiveState
         
         hostingController!.view.frame = visualEffectView.bounds
@@ -79,29 +80,29 @@ final class SettingsWindowManager: ObservableObject {
 
         let currentFrame = window.frame
         let newHeight = max(targetSize.height, 200) // minimum height
-        let newWidth = max(targetSize.width, 400)   // minimum width
+        let newWidth = currentFrame.width           // width sabit kalsın
 
         // Üst köşeyi sabit tutmak için y-origin'i hesapla
         let deltaHeight = newHeight - currentFrame.height
         let newOrigin = NSPoint(x: currentFrame.origin.x,
                                 y: currentFrame.origin.y - deltaHeight)
 
+        let newFrame = NSRect(
+            x: newOrigin.x,
+            y: newOrigin.y,
+            width: newWidth,
+            height: newHeight
+        )
+
         if animated {
             NSAnimationContext.runAnimationGroup { context in
-                context.duration = 0.25
-                window.animator().setFrame(NSRect(x: newOrigin.x,
-                                                  y: newOrigin.y,
-                                                  width: newWidth,
-                                                  height: newHeight), display: true)
+                context.duration = 0.5
+                window.animator().setFrame(newFrame, display: true)
             }
         } else {
-            window.setFrame(NSRect(x: newOrigin.x,
-                                   y: newOrigin.y,
-                                   width: newWidth,
-                                   height: newHeight), display: true)
+            window.setFrame(newFrame, display: true)
         }
     }
-
 
     
     private func updateDockIconVisibility() {
