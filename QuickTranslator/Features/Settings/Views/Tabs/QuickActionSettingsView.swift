@@ -11,14 +11,14 @@ import AVKit
 struct QuickActionSettingsView: View {
     @ObservedObject private var featureManager = FeatureManager.shared
     @State private var selectedAction: QuickActionType = FeatureManager.shared.quickActionType
-    @State private var doubleKeyInterval: Double = FeatureManager.shared.doubleKeyInterval
+    @State private var floatingIconVisibilityDuration: Double = FeatureManager.shared.floatingIconVisibilityDuration
     
     @State private var player: AVPlayer? = nil
     @State private var showVideo = false
     @State private var showVideoPopover = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 24) {
+        VStack(alignment: .center, spacing: 24) {
             SettingsSection(title: "Quick Action") {
                 VStack(alignment: .leading, spacing: 16) {
                     
@@ -38,9 +38,6 @@ struct QuickActionSettingsView: View {
                     .onChange(of: selectedAction) {
                         featureManager.quickActionType = selectedAction
                         playVideo(for: selectedAction)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            DIContainer.shared.settingsWindowManager.updateWindowSize(animated: false)
-                        }
                     }
                     
                     Button {
@@ -59,20 +56,22 @@ struct QuickActionSettingsView: View {
             }
             
             SettingsSection(title: "Time Interval") {
-                // MARK: - Time Interval
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Double Key Interval: \(String(format: "%.1f", doubleKeyInterval))s")
+                    Text("Floating Icon Visibility Duration: \(String(format: "%.1f", floatingIconVisibilityDuration))s")
+                        .fontWeight(.medium)
                     
-                    Slider(value: $doubleKeyInterval, in: 0.1...5.0, step: 0.1)
+                    Slider(value: $floatingIconVisibilityDuration, in: 1...5, step: 1)
                         .tint(.app)
-                        .onChange(of: doubleKeyInterval) {
-                            featureManager.doubleKeyInterval = doubleKeyInterval
+                        .onChange(of: floatingIconVisibilityDuration) {
+                            featureManager.floatingIconVisibilityDuration = floatingIconVisibilityDuration
                         }
                     
-                    Text("Maximum delay between double ⌘ + C presses. Default is 1.0s")
+                    Text("Set how long the floating icon remains visible after a double key press before it automatically hides.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
+                .frame(width: 350)
             }
         }
         .padding()

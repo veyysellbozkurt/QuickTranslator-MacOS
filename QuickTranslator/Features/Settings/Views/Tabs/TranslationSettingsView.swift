@@ -74,7 +74,6 @@ struct TranslationSettingsView: View {
                 
             }
             .padding(30)
-            .frame(width: viewWidth, alignment: .leading)                    
     }
 }
 
@@ -181,7 +180,6 @@ struct OfflineInfo: View {
                         .cornerRadius(8)
                         
                     } else {
-                        // Güvenilir Buton Kullanımı
                         Button {
                             if NSWorkspace.shared.open(systemURL) {
                                 showSystemSteps = true
@@ -210,7 +208,6 @@ struct InfoBox: View {
             Text(message)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(15)
         .frame(maxWidth: .infinity, alignment: .leading)

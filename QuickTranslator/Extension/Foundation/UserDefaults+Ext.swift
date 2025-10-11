@@ -16,7 +16,7 @@ extension UserDefaults {
         case selectedQuickActionType
         case selectedTranslationService
         case selectedInputLayout
-        case doubleKeyInterval
+        case floatingIconVisibilityDuration
         case launchOnStart
     }
     

@@ -56,12 +56,12 @@ final class FeatureManager: ObservableObject {
     }
     
     // MARK: - Double Key Interval
-    var doubleKeyInterval: Double {
+    var floatingIconVisibilityDuration: Double {
         get {
-            userDefaults.double(forKey: .doubleKeyInterval)
+            userDefaults.double(forKey: .floatingIconVisibilityDuration)
         }
         set {
-            userDefaults.set(newValue, forKey: .doubleKeyInterval)
+            userDefaults.set(newValue, forKey: .floatingIconVisibilityDuration)
         }
     }
 }

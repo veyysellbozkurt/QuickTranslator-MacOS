@@ -54,56 +54,14 @@ final class SettingsWindowManager: ObservableObject {
         window.titlebarAppearsTransparent = true
         window.isReleasedWhenClosed = false
         
-        let visualEffectView = NSVisualEffectView(frame: window.contentView!.bounds)
-        visualEffectView.autoresizingMask = [.width, .height]
-        visualEffectView.blendingMode = .behindWindow
-        visualEffectView.material = .hudWindow
-        visualEffectView.state = .followsWindowActiveState
-        
-        hostingController!.view.frame = visualEffectView.bounds
+        hostingController!.view.frame = window.contentView!.bounds
         hostingController!.view.autoresizingMask = [.width, .height]
-        visualEffectView.addSubview(hostingController!.view)
-        window.contentView = visualEffectView
+        window.contentView = hostingController!.view
         
         settingsWindow = window
         windowDelegate = SettingsWindowDelegate(manager: self)
         window.delegate = windowDelegate
     }
-    
-    func updateWindowSize(animated: Bool = true) {
-        guard let window = settingsWindow,
-              let hostingView = window.contentView?.subviews.first(where: { $0 is NSHostingView<AnyView> })
-              ?? window.contentView?.subviews.first
-        else { return }
-
-        let targetSize = hostingView.fittingSize
-
-        let currentFrame = window.frame
-        let newHeight = max(targetSize.height, 200) // minimum height
-        let newWidth = currentFrame.width           // width sabit kalsın
-
-        // Üst köşeyi sabit tutmak için y-origin'i hesapla
-        let deltaHeight = newHeight - currentFrame.height
-        let newOrigin = NSPoint(x: currentFrame.origin.x,
-                                y: currentFrame.origin.y - deltaHeight)
-
-        let newFrame = NSRect(
-            x: newOrigin.x,
-            y: newOrigin.y,
-            width: newWidth,
-            height: newHeight
-        )
-
-        if animated {
-            NSAnimationContext.runAnimationGroup { context in
-                context.duration = 0.5
-                window.animator().setFrame(newFrame, display: true)
-            }
-        } else {
-            window.setFrame(newFrame, display: true)
-        }
-    }
-
     
     private func updateDockIconVisibility() {
         DispatchQueue.main.async {

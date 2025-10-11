@@ -57,15 +57,5 @@ struct SettingsContainerView: View {
                 .background(GeometryReader { _ in Color.clear })
         }
         .padding()
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                windowManager.updateWindowSize(animated: false)
-            }
-        }
-        .onChange(of: selection.index) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                windowManager.updateWindowSize()
-            }
-        }
     }
 }

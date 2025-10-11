@@ -72,7 +72,7 @@ struct CustomTabBar: View {
         .padding(6)
         .background(
             RoundedRectangle(cornerRadius: 10)            
-            .fill(Color.gray.opacity(0.2))
+            .fill(Color.gray.opacity(0.08))
         )
     }
     

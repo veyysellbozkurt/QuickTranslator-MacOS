@@ -85,7 +85,10 @@ struct SettingsSection<Content: View>: View {
                 content()
             }
             .padding(12)
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color(nsColor: .controlBackgroundColor).opacity(0.5)))
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.gray.opacity(0.08))                    
+            )
         }
     }
 }

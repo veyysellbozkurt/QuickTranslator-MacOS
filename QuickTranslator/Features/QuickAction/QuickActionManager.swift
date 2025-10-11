@@ -36,7 +36,7 @@ final class QuickActionManager {
                 self.copiedText = text
             
             if FeatureManager.shared.quickActionType == .floatingIconPopover {
-                floatingPanel.showNearMouse()
+                floatingPanel.showNearMouse(autoHideAfter: FeatureManager.shared.floatingIconVisibilityDuration)
             } else {
                 quickActionPanelDidConfirm()
             }
