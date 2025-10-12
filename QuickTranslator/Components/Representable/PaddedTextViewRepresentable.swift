@@ -16,6 +16,7 @@ struct PaddedTextViewRepresentable: NSViewRepresentable {
     var onEnterKeyPress: (() -> Void)? = nil
     var placeholder: String = ""
     var isOutput: Bool = false
+    var isEditable: Bool = true
     
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
@@ -26,6 +27,7 @@ struct PaddedTextViewRepresentable: NSViewRepresentable {
         textView.string = text
         textView.placeholder = placeholder
         
+        textView.isEditable = isEditable
         textView.isRichText = false
         textView.textContainerInset = inset
         textView.autoresizingMask = [.width]

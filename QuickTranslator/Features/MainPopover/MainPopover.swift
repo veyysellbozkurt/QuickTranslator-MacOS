@@ -57,7 +57,6 @@ private extension MainPopover {
         .background(.ultraThinMaterial)
     }
     
-    // Input/translatedText değiştikçe yükseklik ayarla
     func setupDynamicHeightObserver() {
         viewModel.$inputText
             .combineLatest(viewModel.$translatedText)
@@ -114,7 +113,7 @@ private extension MainPopover {
     }
     
     func calculateRequiredHeight(sourceText: String, translatedText: String) -> CGFloat {
-        let baseHeight: CGFloat = 200
+        let baseHeight: CGFloat = 10
         let lineHeight: CGFloat = 20
         let maxCharsPerLine: CGFloat = 50
                 

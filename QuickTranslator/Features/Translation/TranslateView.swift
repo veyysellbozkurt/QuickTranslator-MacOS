@@ -23,7 +23,7 @@ struct TranslateView: View {
                                  targetLanguage: $viewModel.targetLanguage) {
                 viewModel.swapInputs()
             }
-                        
+            
             Group {
                 if featureManager.inputLayout == .horizontal {
                     HStack(spacing: 8) {
@@ -61,7 +61,9 @@ struct TranslateView: View {
         ZStack {
             InputView(text: $viewModel.translatedText,
                       language: $viewModel.targetLanguage,
-                      placeholder: Constants.Strings.outputPlaceholder, isOutput: true)
+                      placeholder: Constants.Strings.outputPlaceholder,
+                      isOutput: true,
+                      isEditable: false)
             .opacity(viewModel.isTranslating ? 0.2 : 1)
             
             if viewModel.isTranslating {

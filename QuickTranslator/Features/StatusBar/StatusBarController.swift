@@ -26,7 +26,7 @@ final class StatusBarController {
     
     @objc private func buttonClicked(_ sender: AnyObject?) {
         guard let button = statusItem.button else { return }
-        FeatureManager.shared.translationService = .apple
+        // Seçimi zorla .apple yapma — kullanıcı tercihini koru
         DIContainer.shared.mainPopover.show(from: button)
     }
 }

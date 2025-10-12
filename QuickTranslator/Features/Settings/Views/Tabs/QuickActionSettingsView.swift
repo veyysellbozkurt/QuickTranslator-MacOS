@@ -18,13 +18,13 @@ struct QuickActionSettingsView: View {
     @State private var showVideoPopover = false
     
     var body: some View {
-        VStack(alignment: .center, spacing: 24) {
+        VStack(alignment: .leading, spacing: 16) {
             SettingsSection(title: "Quick Action") {
                 VStack(alignment: .leading, spacing: 16) {
                     
                     // MARK: - Picker
                     Text("Choose what happens when you double press ⌘ + C:")
-                        .font(.callout)
+                        .font(.caption2)
                         .foregroundStyle(.secondary)
                     
                     Picker("Action Type", selection: $selectedAction) {
@@ -43,10 +43,10 @@ struct QuickActionSettingsView: View {
                     Button {
                         showVideoPopover.toggle()
                     } label: {
-                        Label("Show Preview Video", systemImage: "play.circle.fill")
+                        Label("Show Preview", systemImage: "play.circle.fill")
                     }
                     .buttonStyle(.borderedProminent)
-                    .foregroundStyle(.app.opacity(0.8))
+                    .foregroundStyle(.app.opacity(0.5))
                     .popover(isPresented: $showVideoPopover) {
                         VideoPopoverView(player: player, selectedAction: selectedAction)
                             .frame(width: 400, height: 250)
@@ -67,7 +67,7 @@ struct QuickActionSettingsView: View {
                         }
                     
                     Text("Set how long the floating icon remains visible after a double key press before it automatically hides.")
-                        .font(.caption)
+                        .font(.caption2)
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }

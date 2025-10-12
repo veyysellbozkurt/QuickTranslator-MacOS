@@ -31,8 +31,7 @@ struct SettingsContainerView: View {
                 case 0: GeneralSettingsView()
                 case 1: TranslationSettingsView()
                 case 2: QuickActionSettingsView()
-                case 3: GeneralSettingsView()
-                case 4: AboutSettingsView(windowManager: windowManager)
+                case 3: AboutSettingsView()
                 default: GeneralSettingsView()
             }
         }
@@ -43,7 +42,6 @@ struct SettingsContainerView: View {
             .init(label: "General", systemImageName: "gear"),
             .init(label: "Translation", systemImageName: "character.bubble.fill"),
             .init(label: "Quick Action", systemImageName: "lasso.badge.sparkles"),
-            .init(label: "Guide", systemImageName: "lightbulb.min.fill"),
             .init(label: "About", systemImageName: "info.circle.fill"),
         ]
         

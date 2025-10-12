@@ -15,6 +15,10 @@ final class FeatureManager: ObservableObject {
         
     private init() {
         inputLayout = userDefaults.value(InputLayout.self, forKey: .selectedInputLayout) ?? .horizontal
+        // Translation Service başlangıç değeri UserDefaults’tan yüklenir
+        _translationService = Published(
+            initialValue: userDefaults.value(TranslationServiceType.self, forKey: .selectedTranslationService) ?? .google
+        )
     }
     
     // MARK: - Input Layout
@@ -35,12 +39,9 @@ final class FeatureManager: ObservableObject {
     }
     
     // MARK: - Translation Service
-    var translationService: TranslationServiceType {
-        get {
-            userDefaults.value(TranslationServiceType.self, forKey: .selectedTranslationService) ?? .google
-        }
-        set {
-            userDefaults.set(encodable: newValue, forKey: .selectedTranslationService)
+    @Published var translationService: TranslationServiceType {
+        didSet {
+            userDefaults.set(encodable: translationService, forKey: .selectedTranslationService)
         }
     }
     
@@ -64,3 +65,4 @@ final class FeatureManager: ObservableObject {
         }
     }
 }
+

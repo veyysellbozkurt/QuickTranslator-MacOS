@@ -14,6 +14,7 @@ struct InputView: View {
     var placeholder: String?
     var onEnterKeyPress: (() -> Void)? = nil
     var isOutput: Bool = false
+    var isEditable: Bool = true
     
     @State private var showToast = false
     @State private var showLanguagePicker = false
@@ -31,7 +32,8 @@ struct InputView: View {
             text: $text,
             onEnterKeyPress: onEnterKeyPress,
             placeholder: placeholder ?? "",
-            isOutput: isOutput
+            isOutput: isOutput,
+            isEditable: isEditable
         )
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
         .overlay(alignment: .bottomTrailing) {

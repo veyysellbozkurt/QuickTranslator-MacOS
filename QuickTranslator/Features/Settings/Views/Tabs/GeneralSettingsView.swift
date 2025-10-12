@@ -26,7 +26,7 @@ struct GeneralSettingsView: View {
                         }
                     
                     Text("The app will automatically start when you log in to your Mac.")
-                        .font(.caption)
+                        .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
             }
@@ -43,7 +43,7 @@ struct GeneralSettingsView: View {
                     .pickerStyle(.inline)
                     
                     Text(featureManager.inputLayout.description)
-                        .font(.caption)
+                        .font(.caption2)
                         .foregroundStyle(.secondary)
                         .animation(.default, value: featureManager.inputLayout)
                 }
