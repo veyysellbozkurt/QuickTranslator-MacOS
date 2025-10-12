@@ -9,16 +9,22 @@ import SwiftUI
 
 struct GeneralSettingsView: View {
     @State private var selectedLayout: InputLayout = FeatureManager.shared.inputLayout
+    @State private var launchOnStart: Bool = FeatureManager.shared.launchOnStart
     @ObservedObject private var featureManager = FeatureManager.shared
+    @StateObject private var manager = LaunchAtLoginManager()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             
             SettingsSection(title: "Launch Settings") {
                 VStack(alignment: .leading, spacing: 8) {
-                    Toggle("Launch on system startup", isOn: $featureManager.launchOnStart)
+                    Toggle("Launch on system startup", isOn: $launchOnStart)
                         .toggleStyle(.switch)
                         .tint(.app)
+                        .onChange(of: launchOnStart) {
+                            featureManager.launchOnStart = launchOnStart
+                            manager.toggleLaunchAtLogin()
+                        }
                     
                     Text("The app will automatically start when you log in to your Mac.")
                         .font(.caption)
@@ -87,7 +93,7 @@ struct SettingsSection<Content: View>: View {
             .padding(12)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.gray.opacity(0.08))                    
+                    .fill(Color.gray.opacity(0.08))
             )
         }
     }

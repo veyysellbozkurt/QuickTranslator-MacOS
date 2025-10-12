@@ -44,6 +44,7 @@
 		2B5433202E9693E500682C76 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54331F2E9693E500682C76 /* Logger.swift */; };
 		2B62A1EA2E6B07D9000ADA9E /* FeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */; };
 		2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */; };
+		2B69CD5E2E9BC63600C8A6CC /* LaunchAtLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69CD5D2E9BC63600C8A6CC /* LaunchAtLoginManager.swift */; };
 		2BA331D72E92A9FF00D91FA7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */; };
 		2BA5C8062E6F1B000025BE1F /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */; };
 		2BDE7C342E986E4700DFD7FD /* InputLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE7C332E986E4700DFD7FD /* InputLayout.swift */; };
@@ -112,6 +113,7 @@
 		2B54331F2E9693E500682C76 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureManager.swift; sourceTree = "<group>"; };
 		2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleKey.swift; sourceTree = "<group>"; };
+		2B69CD5D2E9BC63600C8A6CC /* LaunchAtLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginManager.swift; sourceTree = "<group>"; };
 		2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
 		2BDE7C332E986E4700DFD7FD /* InputLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputLayout.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 		2B4AB4992E5F256B005DF24C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				2B69CD5D2E9BC63600C8A6CC /* LaunchAtLoginManager.swift */,
 				2B54331E2E9693C700682C76 /* Logger */,
 				2B62A1EB2E6B2017000ADA9E /* DoubleKeyMonitor */,
 			);
@@ -630,6 +633,7 @@
 				2B4AB4C32E607BD6005DF24C /* DIContainer.swift in Sources */,
 				2B1ACDC22E7AC71000E5429E /* SettingsWindowManager.swift in Sources */,
 				2B4AB4B62E5F256B005DF24C /* TranslateViewModel.swift in Sources */,
+				2B69CD5E2E9BC63600C8A6CC /* LaunchAtLoginManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,6 +820,7 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = veyselBozkurt.QuickTranslator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -850,6 +855,7 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = veyselBozkurt.QuickTranslator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
