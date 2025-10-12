@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct GeneralSettingsView: View {
-    @State private var selectedLayout: InputLayout = FeatureManager.shared.inputLayout
-    @State private var launchOnStart: Bool = FeatureManager.shared.launchOnStart
     @ObservedObject private var featureManager = FeatureManager.shared
+    @State private var launchOnStart: Bool = FeatureManager.shared.launchOnStart
     @StateObject private var manager = LaunchAtLoginManager()
     
     var body: some View {
@@ -34,7 +33,7 @@ struct GeneralSettingsView: View {
             
             SettingsSection(title: "Input Layout") {
                 VStack(alignment: .leading, spacing: 10) {
-                    Picker("Layout Style \t", selection: $selectedLayout) {
+                    Picker("Layout Style \t", selection: $featureManager.inputLayout) {
                         ForEach(InputLayout.allCases, id: \.self) { layout in
                             Label(layout.displayName, systemImage: layout.iconName)
                                 .tag(layout)
@@ -42,14 +41,11 @@ struct GeneralSettingsView: View {
                     }
                     .tint(.app)
                     .pickerStyle(.inline)
-                    .onChange(of: selectedLayout) {
-                        featureManager.inputLayout = selectedLayout
-                    }
                     
-                    Text(selectedLayout.description)
+                    Text(featureManager.inputLayout.description)
                         .font(.caption)
                         .foregroundStyle(.secondary)
-                        .animation(.default, value: selectedLayout)
+                        .animation(.default, value: featureManager.inputLayout)
                 }
             }
             

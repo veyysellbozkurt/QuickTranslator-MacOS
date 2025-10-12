@@ -15,6 +15,7 @@ struct PaddedTextViewRepresentable: NSViewRepresentable {
     var inset: CGSize = .init(width: 8, height: 8)
     var onEnterKeyPress: (() -> Void)? = nil
     var placeholder: String = ""
+    var isOutput: Bool = false
     
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
@@ -30,8 +31,14 @@ struct PaddedTextViewRepresentable: NSViewRepresentable {
         textView.autoresizingMask = [.width]
         textView.delegate = context.coordinator
         
-        textView.textColor = textView.textColor?.withAlphaComponent(0.8)
-        textView.font = NSFont.systemFont(ofSize: 14, weight: .regular)
+        if isOutput {
+            textView.textColor = .app.withAlphaComponent(0.9)
+            textView.placeholderColor = .app.withAlphaComponent(0.6)
+        } else {
+            textView.textColor = textView.textColor?.withAlphaComponent(0.8)
+        }
+        
+        textView.font = NSFont.systemFont(ofSize: 13, weight: .regular)
         
         textView.onEnterKeyPress = onEnterKeyPress
         

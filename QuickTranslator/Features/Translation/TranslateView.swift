@@ -11,6 +11,7 @@ import Translation
 struct TranslateView: View {
     
     @StateObject private var viewModel: TranslateViewModel
+    @ObservedObject private var featureManager = FeatureManager.shared
     
     init(viewModel: TranslateViewModel) {
         _viewModel = .init(wrappedValue: viewModel)
@@ -22,29 +23,21 @@ struct TranslateView: View {
                                  targetLanguage: $viewModel.targetLanguage) {
                 viewModel.swapInputs()
             }
-            HStack {
-            InputView(text: $viewModel.inputText,
-                      language: $viewModel.sourceLanguage,
-                      placeholder: Constants.Strings.inputPlaceholder) {
-                viewModel.triggerTranslation()
-            }
-            
-            ZStack {
-                InputView(text: $viewModel.translatedText,
-                          language: $viewModel.targetLanguage,
-                          placeholder: Constants.Strings.outputPlaceholder)
-                .opacity(viewModel.isTranslating ? 0.2 : 1)
-                
-                if viewModel.isTranslating {
-                    ProgressView(Constants.Strings.translating)
-                        .progressViewStyle(.circular)
-                        .foregroundStyle(Color.white)
+                        
+            Group {
+                if featureManager.inputLayout == .horizontal {
+                    HStack(spacing: 8) {
+                        inputsSection
+                    }
+                } else {
+                    VStack(spacing: 8) {
+                        inputsSection
+                    }
                 }
             }
         }
-        }
-        .padding([.horizontal, .top], 10)
         .animation(.bouncy, value: viewModel.isTranslating)
+        .animation(.snappy, value: featureManager.inputLayout)
         .translationTask(viewModel.configuration) { appleSession in
             guard let config = viewModel.configuration else { return }
             
@@ -53,6 +46,29 @@ struct TranslateView: View {
                 appleSession: appleSession
             )
             await viewModel.makeTranslation(using: translator)
+        }
+    }
+    
+    // MARK: - Inputs
+    @ViewBuilder
+    private var inputsSection: some View {
+        InputView(text: $viewModel.inputText,
+                  language: $viewModel.sourceLanguage,
+                  placeholder: Constants.Strings.inputPlaceholder) {
+            viewModel.triggerTranslation()
+        }
+        
+        ZStack {
+            InputView(text: $viewModel.translatedText,
+                      language: $viewModel.targetLanguage,
+                      placeholder: Constants.Strings.outputPlaceholder, isOutput: true)
+            .opacity(viewModel.isTranslating ? 0.2 : 1)
+            
+            if viewModel.isTranslating {
+                ProgressView(Constants.Strings.translating)
+                    .progressViewStyle(.circular)
+                    .foregroundStyle(Color.white)
+            }
         }
     }
 }

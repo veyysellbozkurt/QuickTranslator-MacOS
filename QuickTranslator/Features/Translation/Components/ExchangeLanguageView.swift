@@ -51,15 +51,15 @@ struct ExchangeLanguageView: View {
         } label: {
             HStack {
                 Text(language.wrappedValue.title)
-                    .font(.body)
+                    .font(.system(size: 13, weight: .medium))
                 Spacer()
                 Image(systemName: "chevron.down")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
             .padding(.horizontal, 10)
-            .frame(height: 28)
-            .background(Color.secondary.opacity(0.1))
+            .frame(height: 24)
+            .background(Color.secondary.opacity(0.07))
             .clipShape(RoundedRectangle(cornerRadius: 8))
         }
         .buttonStyle(BounceButtonStyle())
@@ -80,6 +80,7 @@ struct ExchangeLanguageView: View {
                         targetLanguage = displaysTargetLanguage
                     } label: {
                         Text(lang.title)
+                            .font(.system(size: 14, weight: .medium))
                             .padding(.vertical, 10)
                             .padding(.horizontal, 12)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -103,7 +104,7 @@ struct ExchangeLanguageView: View {
                 .frame(width: 16, height: 16)
                 .foregroundStyle(Color.app)
                 .padding(6)
-                .background(.white)
+                .background(Color.gray.opacity(0.1))
                 .clipShape(Circle())
         }
         .rotationEffect(.degrees(90))

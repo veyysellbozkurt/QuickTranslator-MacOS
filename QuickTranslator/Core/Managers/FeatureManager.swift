@@ -12,8 +12,17 @@ final class FeatureManager: ObservableObject {
     
     static let shared = FeatureManager()
     private let userDefaults = UserDefaults.standard
+        
+    private init() {
+        inputLayout = userDefaults.value(InputLayout.self, forKey: .selectedInputLayout) ?? .horizontal
+    }
     
-    private init() { }
+    // MARK: - Input Layout
+    @Published var inputLayout: InputLayout {
+        didSet {
+            userDefaults.set(encodable: inputLayout, forKey: .selectedInputLayout)
+        }
+    }
     
     // MARK: - Quick Action
     var quickActionType: QuickActionType {
@@ -42,16 +51,6 @@ final class FeatureManager: ObservableObject {
         }
         set {
             userDefaults.set(newValue, forKey: .launchOnStart)
-        }
-    }
-    
-    // MARK: - Input Layout
-    var inputLayout: InputLayout {
-        get {
-            userDefaults.value(InputLayout.self, forKey: .selectedInputLayout) ?? .horizontal
-        }
-        set {
-            userDefaults.set(encodable: newValue, forKey: .selectedInputLayout)
         }
     }
     

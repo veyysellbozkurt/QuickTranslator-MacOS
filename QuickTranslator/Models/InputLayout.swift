@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 enum InputLayout: String, Codable, CaseIterable {
     case vertical
@@ -35,6 +36,33 @@ extension InputLayout: Identifiable {
             return "Inputs will appear side by side."
         case .vertical:
             return "Inputs will appear stacked vertically."
+        }
+    }
+    
+    var minHeight: CGFloat {
+        switch self {
+        case .horizontal:
+            return 240
+        case .vertical:
+            return 300
+        }
+    }
+    
+    var maxHeight: CGFloat {
+        switch self {
+        case .horizontal:
+            return 500
+        case .vertical:
+            return 600
+        }
+    }
+    
+    var baseWidth: CGFloat {
+        switch self {
+        case .horizontal:
+            return 500
+        case .vertical:
+            return 400
         }
     }
 }

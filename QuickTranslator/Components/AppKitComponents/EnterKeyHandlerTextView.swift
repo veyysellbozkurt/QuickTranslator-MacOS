@@ -12,6 +12,7 @@ final class EnterKeyHandlerTextView: NSTextView {
     private let enterKeyCode = 36
     var onEnterKeyPress: (() -> Void)?
     var placeholder: String = "" { didSet { needsDisplay = true }}
+    var placeholderColor: NSColor = .gray.withAlphaComponent(0.5)
     
     override func keyDown(with event: NSEvent) {
         if event.keyCode == enterKeyCode {
@@ -30,8 +31,8 @@ final class EnterKeyHandlerTextView: NSTextView {
         
         if string.isEmpty {
             let attributes: [NSAttributedString.Key: Any] = [
-                .foregroundColor: NSColor.placeholderTextColor,
-                .font: self.font ?? NSFont.systemFont(ofSize: NSFont.systemFontSize)
+                .foregroundColor: placeholderColor,
+                .font: NSFont.systemFont(ofSize: 12, weight: .regular)
             ]
             placeholder.draw(in: dirtyRect.insetBy(dx: 12, dy: 8), withAttributes: attributes)
         }

@@ -19,22 +19,23 @@ struct PopoverControls: View {
             } label: {
                 Image(systemName: isPinned ? SFIcons.pinFill : SFIcons.pin)
                     .resizable()
+                    .foregroundStyle(isPinned ? .app : .secondary)
             }
-            .frame(width: 16, height: 24)
+            .frame(width: 12, height: 18)
             .buttonStyle(BounceButtonStyle())
 
-            Spacer()
-            
-            Button {
-                NSWorkspace.shared.open(Constants.Urls.buyMeCoffee)
-            } label: {
-                Image(.buyMeCoffee)
-                    .resizable()
-                    .scaledToFit()
-            }
-            .frame(height: 30)
-            .clipShape(.buttonBorder)
-            .buttonStyle(BounceButtonStyle())
+//            Spacer()
+//            
+//            Button {
+//                NSWorkspace.shared.open(Constants.Urls.buyMeCoffee)
+//            } label: {
+//                Image(.buyMeCoffee)
+//                    .resizable()
+//                    .scaledToFit()
+//            }
+//            .frame(height: 28)
+//            .clipShape(.buttonBorder)
+//            .buttonStyle(BounceButtonStyle())
             
             Spacer()
             
@@ -43,13 +44,14 @@ struct PopoverControls: View {
             } label: {
                 Image(systemName: SFIcons.gear)
                     .resizable()
+                    .foregroundStyle(.secondary)
             }
-            .frame(width: 26, height: 24)
+            .frame(width: 20, height: 18)
             .buttonStyle(BounceButtonStyle())
 
         }
-        .padding(.horizontal, 12)
-        .frame(height: 44)
-        .background(Color.secondary.opacity(0.1))
+        .padding(.horizontal, 16)
+        .frame(height: 32)
+        .background(Color.secondary.opacity(0.07))
     }
 }

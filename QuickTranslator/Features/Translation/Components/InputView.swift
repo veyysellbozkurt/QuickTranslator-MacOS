@@ -13,6 +13,7 @@ struct InputView: View {
     @Binding var language: Language
     var placeholder: String?
     var onEnterKeyPress: (() -> Void)? = nil
+    var isOutput: Bool = false
     
     @State private var showToast = false
     @State private var showLanguagePicker = false
@@ -29,7 +30,8 @@ struct InputView: View {
         PaddedTextViewRepresentable(
             text: $text,
             onEnterKeyPress: onEnterKeyPress,
-            placeholder: placeholder ?? ""
+            placeholder: placeholder ?? "",
+            isOutput: isOutput
         )
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
         .overlay(alignment: .bottomTrailing) {
@@ -43,12 +45,12 @@ struct InputView: View {
         } label: {
             Image(systemName: SFIcons.copy)
                 .resizable()
-                .frame(width: 16, height: 17)
+                .frame(width: 14, height: 15)
                 .padding(4)
                 .foregroundStyle(text.isEmpty ? Color.secondary : Color.app)
         }
         .buttonStyle(BounceButtonStyle())
-        .padding(4)
+        .padding(6)
         .disabled(text.isEmpty)
     }
     

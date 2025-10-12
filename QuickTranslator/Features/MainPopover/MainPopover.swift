@@ -15,12 +15,19 @@ final class MainPopover {
     private let viewModel: TranslateViewModel
     private var cancellables = Set<AnyCancellable>()
     
-    private let minHeight: CGFloat = 300
-    private let maxHeight: CGFloat = 650
-    private let baseWidth: CGFloat = 400
+    // Dinamik metrikler (layout değişince güncellenecek)
+    private var minHeight: CGFloat
+    private var maxHeight: CGFloat
+    private var baseWidth: CGFloat
     
     init(viewModel: TranslateViewModel) {
         self.viewModel = viewModel
+        // Başlangıç metrikleri
+        let layout = FeatureManager.shared.inputLayout
+        self.minHeight = layout.minHeight
+        self.maxHeight = layout.maxHeight
+        self.baseWidth = layout.baseWidth
+        
         popover = NSPopover()
         popover.contentSize = NSSize(width: baseWidth, height: minHeight)
         popover.behavior = .transient
@@ -29,6 +36,7 @@ final class MainPopover {
         popover.contentViewController = NSHostingController(rootView: rootView)
         
         setupDynamicHeightObserver()
+        setupLayoutObserver()
     }
     
     @objc
@@ -42,12 +50,14 @@ private extension MainPopover {
     func makeRootView(viewModel: TranslateViewModel) -> some View {
         VStack {
             TranslateView(viewModel: viewModel)
+                .padding(.horizontal, 8)
+                .padding(.top, 8)
             PopoverControls(popover: popover)
         }
-        .background(Color.app.opacity(0.1))
         .background(.ultraThinMaterial)
     }
     
+    // Input/translatedText değiştikçe yükseklik ayarla
     func setupDynamicHeightObserver() {
         viewModel.$inputText
             .combineLatest(viewModel.$translatedText)
@@ -56,6 +66,31 @@ private extension MainPopover {
                 self?.updatePopoverHeight(sourceText: sourceText, translatedText: translatedText)
             }
             .store(in: &cancellables)
+    }
+    
+    // Layout değişimini dinle ve metrikleri güncelle
+    func setupLayoutObserver() {
+        FeatureManager.shared.$inputLayout
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newLayout in
+                self?.updateBaseMetrics(from: newLayout)
+                self?.updateSize()
+            }
+            .store(in: &cancellables)
+    }
+    
+    // Yeni layout’a göre min/max/width’i güncelle
+    func updateBaseMetrics(from layout: InputLayout) {
+        self.minHeight = layout.minHeight
+        self.maxHeight = layout.maxHeight
+        self.baseWidth = layout.baseWidth
+    }
+    
+    // Mevcut içerik durumuna göre popover boyutunu güncelle
+    func updateSize() {
+        let sourceText = viewModel.inputText
+        let translatedText = viewModel.translatedText
+        updatePopoverHeight(sourceText: sourceText, translatedText: translatedText)
     }
     
     func updatePopoverHeight(sourceText: String, translatedText: String) {
