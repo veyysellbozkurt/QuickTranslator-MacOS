@@ -13,58 +13,60 @@ struct TranslationSettingsView: View {
     @State private var showSystemSteps = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            SettingsSection(title: "Translation Engine") {
-                Text("Choose which translation engine to use.")
-                    .foregroundColor(.secondary)
-                    .font(.subheadline)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(nil)
-                
-                HStack(spacing: 20) {
-                    EngineCard(
-                        title: "Apple Translate",
-                        subtitle: "Works completely offline.\nLimited language support and quality.",
-                        image: Image(systemName: "applelogo"),
-                        isSelected: featureManager.translationService == .apple
-                    ) {
-                        withAnimation(.easeInOut(duration: 0.2)) {
-                            featureManager.translationService = .apple
-                        }
-                    }
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                SettingsSection(title: "Translation Engine") {
+                    Text("Choose which translation engine to use.")
+                        .foregroundColor(.secondary)
+                        .font(.subheadline)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(nil)
                     
-                    EngineCard(
-                        title: "Google Translate",
-                        subtitle: "Versatile online translations. Requires an internet connection.",
-                        image: Image(systemName: "globe"),
-                        isSelected: featureManager.translationService == .google
-                    ) {
-                        withAnimation(.easeInOut(duration: 0.2)) {
-                            featureManager.translationService = .google
+                    HStack(spacing: 20) {
+                        EngineCard(
+                            title: "Apple Translate",
+                            subtitle: "Works completely offline.\nLimited language support and quality.",
+                            image: Image(systemName: "applelogo"),
+                            isSelected: featureManager.translationService == .apple
+                        ) {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                featureManager.translationService = .apple
+                            }
+                        }
+                        
+                        EngineCard(
+                            title: "Google Translate",
+                            subtitle: "Versatile online translations. Requires an internet connection.",
+                            image: Image(systemName: "globe"),
+                            isSelected: featureManager.translationService == .google
+                        ) {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                featureManager.translationService = .google
+                            }
                         }
                     }
                 }
-            }
-            
-            SettingsSection(title: "") {
-                ZStack {
-                    if featureManager.translationService == .apple {
-                        OfflineInfo(showSystemSteps: $showSystemSteps)
+                
+                SettingsSection(title: "") {
+                    ZStack {
+                        if featureManager.translationService == .apple {
+                            OfflineInfo(showSystemSteps: $showSystemSteps)
+                                .transition(.opacity.combined(with: .scale(scale: 0.98)))
+                                .id("appleInfo")
+                        } else {
+                            InfoBox(
+                                title: "Unlimited Language Support",
+                                message: "SwiftyTranslate uses online APIs to support almost all major world languages."
+                            )
                             .transition(.opacity.combined(with: .scale(scale: 0.98)))
-                            .id("appleInfo")
-                    } else {
-                        InfoBox(
-                            title: "Unlimited Language Support",
-                            message: "SwiftyTranslate uses online APIs to support almost all major world languages."
-                        )
-                        .transition(.opacity.combined(with: .scale(scale: 0.98)))
-                        .id("googleInfo")
+                            .id("googleInfo")
+                        }
                     }
+                    .animation(.easeInOut(duration: 0.2), value: featureManager.translationService)
                 }
-                .animation(.easeInOut(duration: 0.2), value: featureManager.translationService)
             }
+            .padding()
         }
-        .padding()
     }
 }
 

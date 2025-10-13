@@ -63,6 +63,23 @@ final class SettingsWindowManager: ObservableObject {
         window.delegate = windowDelegate
     }
     
+    func updateWindowHeight(to newHeight: CGFloat, animated: Bool = true) {
+        guard let window = settingsWindow else { return }
+        var frame = window.frame
+        let newY = frame.origin.y + (frame.height - newHeight)
+        frame.origin.y = newY
+        frame.size.height = newHeight
+        
+        if animated {
+            NSAnimationContext.runAnimationGroup { context in
+                context.duration = 0.25
+                window.animator().setFrame(frame, display: true)
+            }
+        } else {
+            window.setFrame(frame, display: true)
+        }
+    }
+    
     private func updateDockIconVisibility() {
         DispatchQueue.main.async {
             if self.isSettingsOpen {
