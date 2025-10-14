@@ -8,7 +8,7 @@
 import Foundation
 import AppKit
 
-enum MenuBarIconEnum: String {
+enum MenuBarIconEnum: String, CaseIterable, Hashable {
     case light
     case blue
     

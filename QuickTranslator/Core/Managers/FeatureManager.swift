@@ -14,10 +14,15 @@ final class FeatureManager: ObservableObject {
     private let userDefaults = UserDefaults.standard
         
     private init() {
-        inputLayout = userDefaults.value(InputLayout.self, forKey: .selectedInputLayout) ?? .horizontal
-        _translationService = Published(
-            initialValue: userDefaults.value(TranslationServiceType.self, forKey: .selectedTranslationService) ?? .google
-        )
+        let savedLayout = userDefaults.value(InputLayout.self, forKey: .selectedInputLayout) ?? .horizontal
+        self.inputLayout = savedLayout
+        
+        let savedService = userDefaults.value(TranslationServiceType.self, forKey: .selectedTranslationService) ?? .google
+        self._translationService = Published(initialValue: savedService)
+        
+        let savedValue = userDefaults.string(forKey: .menuBarIconName) ?? nil
+        let icon = MenuBarIconEnum(rawValue: savedValue ?? "") ?? MenuBarIconEnum.light
+        self._menuBarIcon = Published(initialValue: icon)
     }
     
     // MARK: - Input Layout
@@ -65,13 +70,9 @@ final class FeatureManager: ObservableObject {
     }
     
     // MARK: - Menu Bar icon
-    var menuBarIcon: MenuBarIconEnum {
-        get {
-            let savedValue = userDefaults.string(forKey: .menuBarIconName) ?? nil
-            return MenuBarIconEnum(rawValue: savedValue ?? "") ?? MenuBarIconEnum.light
-        }
-        set {
-            userDefaults.set(newValue.rawValue, forKey: .menuBarIconName)
+    @Published var menuBarIcon: MenuBarIconEnum {
+        didSet {
+            userDefaults.set(menuBarIcon.rawValue, forKey: .menuBarIconName)
         }
     }
 }
