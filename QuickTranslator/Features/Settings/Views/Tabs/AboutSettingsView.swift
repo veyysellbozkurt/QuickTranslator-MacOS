@@ -21,7 +21,7 @@ struct AboutSettingsView: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            Image(.translation3)
+            Image(nsImage: FeatureManager.shared.menuBarIcon.image)
                 .resizable()
                 .foregroundColor(.app)
                 .frame(width: 80, height: 80)

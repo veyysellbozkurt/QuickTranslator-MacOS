@@ -32,7 +32,7 @@ final class EnterKeyHandlerTextView: NSTextView {
         if string.isEmpty {
             let attributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: placeholderColor,
-                .font: NSFont.systemFont(ofSize: 12, weight: .regular)
+                .font: NSFont.systemFont(ofSize: 13, weight: .medium)
             ]
             placeholder.draw(in: dirtyRect.insetBy(dx: 12, dy: 8), withAttributes: attributes)
         }

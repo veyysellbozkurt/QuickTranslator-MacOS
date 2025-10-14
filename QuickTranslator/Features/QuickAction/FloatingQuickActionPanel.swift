@@ -42,14 +42,14 @@ final class FloatingQuickActionPanel: NSPanel {
         if let layer = button.layer {
             layer.masksToBounds = false
             layer.backgroundColor = NSColor.white.cgColor
-            layer.cornerRadius = 16
+            layer.cornerRadius = 12
             layer.shadowColor = NSColor.labelColor.cgColor
             layer.shadowOpacity = 0.8
             layer.shadowOffset = CGSize(width: 0, height: 0)
             layer.shadowRadius = 5
         }
 
-        let buttonImage = NSImage(resource: .language)
+        let buttonImage = FeatureManager.shared.menuBarIcon.image
         buttonImage.size = NSSize(width: 32, height: 32)
         buttonImage.isTemplate = false
         button.image = buttonImage

@@ -15,7 +15,7 @@ final class StatusBarController {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
         if let button = statusItem.button {
-            let buttonImage = NSImage(resource: .translation3)
+            let buttonImage = FeatureManager.shared.menuBarIcon.image
             buttonImage.size = NSSize(width: 21, height: 21)
             buttonImage.isTemplate = false
             button.image = buttonImage
@@ -26,7 +26,6 @@ final class StatusBarController {
     
     @objc private func buttonClicked(_ sender: AnyObject?) {
         guard let button = statusItem.button else { return }
-        // Seçimi zorla .apple yapma — kullanıcı tercihini koru
         DIContainer.shared.mainPopover.show(from: button)
     }
 }

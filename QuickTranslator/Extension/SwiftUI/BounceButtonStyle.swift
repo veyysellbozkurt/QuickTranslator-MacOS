@@ -14,7 +14,7 @@ struct BounceButtonStyle: ButtonStyle {
         configuration.label
                     .scaleEffect(configuration.isPressed ? scaleAmount : 1.0)
                     .animation(
-                        .interpolatingSpring(stiffness: 300, damping: 15),
+                        .interpolatingSpring(stiffness: 500, damping: 20),
                         value: configuration.isPressed
                     )
     }

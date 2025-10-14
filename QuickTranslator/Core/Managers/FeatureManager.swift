@@ -15,7 +15,6 @@ final class FeatureManager: ObservableObject {
         
     private init() {
         inputLayout = userDefaults.value(InputLayout.self, forKey: .selectedInputLayout) ?? .horizontal
-        // Translation Service başlangıç değeri UserDefaults’tan yüklenir
         _translationService = Published(
             initialValue: userDefaults.value(TranslationServiceType.self, forKey: .selectedTranslationService) ?? .google
         )
@@ -64,5 +63,15 @@ final class FeatureManager: ObservableObject {
             userDefaults.set(newValue, forKey: .floatingIconVisibilityDuration)
         }
     }
+    
+    // MARK: - Menu Bar icon
+    var menuBarIcon: MenuBarIconEnum {
+        get {
+            let savedValue = userDefaults.string(forKey: .menuBarIconName) ?? nil
+            return MenuBarIconEnum(rawValue: savedValue ?? "") ?? MenuBarIconEnum.light
+        }
+        set {
+            userDefaults.set(newValue.rawValue, forKey: .menuBarIconName)
+        }
+    }
 }
-

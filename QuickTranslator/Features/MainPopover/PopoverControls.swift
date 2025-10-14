@@ -46,7 +46,7 @@ struct PopoverControls: View {
                     .resizable()
                     .foregroundStyle(.secondary)
             }
-            .frame(width: 20, height: 18)
+            .frame(width: 20, height: 19)
             .buttonStyle(BounceButtonStyle())
 
         }

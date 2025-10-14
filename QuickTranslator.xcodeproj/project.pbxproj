@@ -42,6 +42,7 @@
 		2B4EA0372E9B058D00525C49 /* MainPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4EA0342E9B058D00525C49 /* MainPopover.swift */; };
 		2B4EA0382E9B058D00525C49 /* PopoverControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4EA0352E9B058D00525C49 /* PopoverControls.swift */; };
 		2B5433202E9693E500682C76 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54331F2E9693E500682C76 /* Logger.swift */; };
+		2B5E8F302E9F0014009D8792 /* MenuBarIconEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E8F2F2E9F0006009D8792 /* MenuBarIconEnum.swift */; };
 		2B62A1EA2E6B07D9000ADA9E /* FeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */; };
 		2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */; };
 		2B69CD5E2E9BC63600C8A6CC /* LaunchAtLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69CD5D2E9BC63600C8A6CC /* LaunchAtLoginManager.swift */; };
@@ -111,6 +112,7 @@
 		2B4EA0342E9B058D00525C49 /* MainPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopover.swift; sourceTree = "<group>"; };
 		2B4EA0352E9B058D00525C49 /* PopoverControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverControls.swift; sourceTree = "<group>"; };
 		2B54331F2E9693E500682C76 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		2B5E8F2F2E9F0006009D8792 /* MenuBarIconEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarIconEnum.swift; sourceTree = "<group>"; };
 		2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureManager.swift; sourceTree = "<group>"; };
 		2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleKey.swift; sourceTree = "<group>"; };
 		2B69CD5D2E9BC63600C8A6CC /* LaunchAtLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginManager.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 		2B4AB49D2E5F256B005DF24C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2B5E8F2F2E9F0006009D8792 /* MenuBarIconEnum.swift */,
 				2BDE7C372E99CE3700DFD7FD /* QuickActionType.swift */,
 				2BDE7C352E986E5400DFD7FD /* TranslationServiceType.swift */,
 				2BDE7C332E986E4700DFD7FD /* InputLayout.swift */,
@@ -608,6 +611,7 @@
 				2B4AB4AC2E5F256B005DF24C /* AppDelegate.swift in Sources */,
 				2B4AB4AD2E5F256B005DF24C /* QuickTranslatorApp.swift in Sources */,
 				2B4AB4AE2E5F256B005DF24C /* UserDefaults+Ext.swift in Sources */,
+				2B5E8F302E9F0014009D8792 /* MenuBarIconEnum.swift in Sources */,
 				2B1ACDC92E7ACF2B00E5429E /* NSObject.swift in Sources */,
 				2BDE7C382E99CE3700DFD7FD /* QuickActionType.swift in Sources */,
 				2B4AB4AF2E5F256B005DF24C /* BounceButtonStyle.swift in Sources */,

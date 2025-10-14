@@ -15,7 +15,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.setActivationPolicy(.accessory)
         
         performShortAfter {
-            DIContainer.shared.settingsWindowManager.showSettings()
+//            DIContainer.shared.settingsWindowManager.showSettings()
+            DIContainer.shared.mainPopover.show(from: DIContainer.shared.statusBarController.statusItem.button!)
         }
     }
     

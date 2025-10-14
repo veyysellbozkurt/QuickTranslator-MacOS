@@ -17,6 +17,7 @@ extension UserDefaults {
         case selectedTranslationService
         case selectedInputLayout
         case floatingIconVisibilityDuration
+        case menuBarIconName
         case launchOnStart
     }
     
@@ -59,7 +60,7 @@ extension UserDefaults {
         return bool(forKey: key.rawValue)
     }
     
-    func string(forKey key: Key) -> String? {
+    func string(forKey key: Key) -> String? {        
         return string(forKey: key.rawValue)
     }
     
