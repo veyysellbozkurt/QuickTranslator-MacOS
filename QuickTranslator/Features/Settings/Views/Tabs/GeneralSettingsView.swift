@@ -68,7 +68,7 @@ extension GeneralSettingsView {
     // MARK: - Menu Bar Icon
     private var menuBarIconSection: some View {
         SettingsSection(title: "Menu Bar Icon") {
-            Text("The app will automatically start when you log in to your Mac.")
+            Text("You need to restart the app for the changes to take effect.")
                 .font(.caption2)
                 .foregroundStyle(.secondary)
             
@@ -90,7 +90,7 @@ extension GeneralSettingsView {
                 Image(nsImage: icon.image)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 40, height: 40)
+                    .frame(width: 30, height: 30)
                     .cornerRadius(8)
                     .padding(.horizontal, 6)
 
