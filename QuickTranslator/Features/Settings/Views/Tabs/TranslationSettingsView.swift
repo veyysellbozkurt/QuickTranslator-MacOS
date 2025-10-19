@@ -13,19 +13,18 @@ struct TranslationSettingsView: View {
     @State private var showSystemSteps = false
     
     var body: some View {
-        ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 SettingsSection(title: "Translation Engine") {
                     Text("Choose which translation engine to use.")
                         .foregroundColor(.secondary)
                         .font(.subheadline)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(nil)
+//                        .multilineTextAlignment(.leading)
+//                        .lineLimit(nil)
                     
-                    HStack(spacing: 20) {
+                    VStack(spacing: 16) {
                         EngineCard(
                             title: "Apple Translate",
-                            subtitle: "Works completely offline.\nLimited language support and quality.",
+                            subtitle: "Works completely offline. Limited language support and quality.",
                             image: Image(systemName: "applelogo"),
                             isSelected: featureManager.translationService == .apple
                         ) {
@@ -67,7 +66,6 @@ struct TranslationSettingsView: View {
             }
             .padding()
         }
-    }
 }
 
 private struct EngineCardStyle: ButtonStyle {
@@ -95,36 +93,32 @@ struct EngineCard: View {
     
     var body: some View {
         Button(action: action) {
-            VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 12) {
                 image
                     .resizable()
                     .scaledToFit()
                     .frame(width: 28, height: 28)
                     .foregroundColor(isSelected ? .accentColor : .secondary)
-                    .accessibilityHidden(true)
+//                    .accessibilityHidden(true)
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
                         .font(.headline.bold())
                         .foregroundStyle(.primary)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(nil)
+//                        .multilineTextAlignment(.leading)
+//                        .lineLimit(nil)
                     
                     Text(subtitle)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(nil)
-                        .fixedSize(horizontal: false, vertical: true)
+//                        .multilineTextAlignment(.leading)
+//                        .lineLimit(nil)
+//                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+//            .frame(maxWidth: .infinity, alignment: .leading)
         }
         .buttonStyle(EngineCardStyle(isSelected: isSelected))
-        .accessibilityElement(children: .combine)
-        .accessibilityAddTraits(isSelected ? [.isSelected, .isButton] : .isButton)
-        .accessibilityLabel(Text(title))
-        .accessibilityHint(Text("Click to select"))
     }
 }
 
@@ -264,7 +258,7 @@ struct InfoBox: View {
                 .fixedSize(horizontal: false, vertical: true)
         }
         .padding(12)
-        .frame(maxWidth: .infinity, alignment: .leading)
+//        .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 8)
                 .fill(Color.secondary.opacity(0.08))

@@ -30,6 +30,12 @@ struct SettingsContainerView: View {
                 default: GeneralSettingsView()
             }
         }
+        .background(
+            GeometryReader { geo in
+                Color.clear
+                    .preference(key: ViewHeightKey.self, value: geo.size.height)
+            }
+        )
     }
     
     var body: some View {
@@ -40,31 +46,25 @@ struct SettingsContainerView: View {
             .init(label: "About", systemImageName: "info.circle.fill"),
         ]
         
-        GeometryReader { geo in
-            VStack(spacing: 0) {
-                CustomTabBar(tabs: tabs, selectedIndex: $selection.index)
-                    .padding(.bottom, 10)
-                    .padding(.horizontal, 50)
-                Divider()
-                contentView(selection: selection)
-                    .padding()
-            }
-            .padding()
-            .background(
-                GeometryReader { innerGeo in
-                    Color.clear
-                        .onAppear {
-                            windowManager.updateWindowHeight(to: innerGeo.size.height)
-                        }
-                        .onChange(of: selection.index) {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                withAnimation(.easeInOut(duration: 0.25)) {
-                                    windowManager.updateWindowHeight(to: innerGeo.size.height)
-                                }
-                            }
-                        }
-                }
-            )
+        VStack(spacing: 0) {
+            CustomTabBar(tabs: tabs, selectedIndex: $selection.index)
+                .padding(.bottom, 10)
+                .padding(.horizontal, 50)
+            Divider()
+            contentView(selection: selection)
+                .padding()
         }
+        .padding()
+        .onPreferenceChange(ViewHeightKey.self) { height in
+            guard height > 0 else { return }
+            windowManager.updateWindowHeight(to: height)
+        }
+    }
+}
+
+fileprivate struct ViewHeightKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
     }
 }

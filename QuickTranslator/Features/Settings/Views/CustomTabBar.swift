@@ -29,12 +29,12 @@ struct CustomTabBar: View {
     @Namespace private var namespace
     
     var body: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 4) {
             ForEach(0..<tabs.count, id: \.self) { index in
                 let tab = tabs[index]
                 
                 Button(action: {
-                    withAnimation(.smooth(extraBounce: 0.2)) {
+                    withAnimation(.interpolatingSpring) {
                         selectedIndex = index
                     }
                 }) {
@@ -64,9 +64,6 @@ struct CustomTabBar: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .onHover { hovering in
-                    hoveringIndex = hovering ? index : nil
-                }
             }
         }
         .padding(6)
