@@ -10,34 +10,30 @@ import SwiftUI
 struct SettingsContainerView: View {
     let windowManager: SettingsWindowManager
     @ObservedObject var selection: Coordinator
+    @State private var previousIndex = 0
     
+    // MARK: - Coordinator
     class Coordinator: NSObject, ObservableObject {
         @Published var index: Int = 0
         weak var manager: SettingsWindowManager?
-        
         init(manager: SettingsWindowManager?) {
             self.manager = manager
         }
     }
     
-    func contentView(selection: Coordinator) -> some View {
-        Group {
-            switch selection.index {
-                case 0: GeneralSettingsView()
-                case 1: TranslationSettingsView()
-                case 2: QuickActionSettingsView()
-                case 3: AboutSettingsView()
-                default: GeneralSettingsView()
-            }
+    // MARK: - Content Switch
+    @ViewBuilder
+    func contentView(for index: Int) -> some View {
+        switch index {
+            case 0: GeneralSettingsView()
+            case 1: TranslationSettingsView()
+            case 2: QuickActionSettingsView()
+            case 3: AboutSettingsView()
+            default: GeneralSettingsView()
         }
-        .background(
-            GeometryReader { geo in
-                Color.clear
-                    .preference(key: ViewHeightKey.self, value: geo.size.height)
-            }
-        )
     }
     
+    // MARK: - Body
     var body: some View {
         let tabs: [TabItem] = [
             .init(label: "General", systemImageName: "gear"),
@@ -51,20 +47,40 @@ struct SettingsContainerView: View {
                 .padding(.bottom, 10)
                 .padding(.horizontal, 50)
             Divider()
-            contentView(selection: selection)
-                .padding()
+            
+            ZStack {
+                contentView(for: selection.index)
+                    .padding()
+                    .id(selection.index)
+                    .transition(.asymmetric(
+                        insertion: .move(edge: selection.index > previousIndex ? .trailing : .leading).combined(with: .opacity),
+                        removal: .move(edge: selection.index > previousIndex ? .leading : .trailing).combined(with: .opacity)
+                    ))
+                    .animation(.easeInOut(duration: 0.35), value: selection.index)
+                
+                SizeReader { size in
+                    windowManager.updateWindowHeight(to: size.height)
+                }
+                .allowsHitTesting(false)
+            }
+            .onChange(of: selection.index) {
+                previousIndex = selection.index
+            }
         }
         .padding()
-        .onPreferenceChange(ViewHeightKey.self) { height in
-            guard height > 0 else { return }
-            windowManager.updateWindowHeight(to: height)
-        }
     }
 }
 
-fileprivate struct ViewHeightKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
+struct SizeReader: View {
+    var onChange: (CGSize) -> Void
+    
+    var body: some View {
+        GeometryReader { geo in
+            Color.clear
+                .onAppear { onChange(geo.size) }
+                .onChange(of: geo.size) {
+                    onChange(geo.size)
+                }
+        }
     }
 }

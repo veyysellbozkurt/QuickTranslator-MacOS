@@ -5,268 +5,237 @@
 //  Created by Veysel Bozkurt on 6.10.2025.
 //
 
+// TranslationSettingsView_Simplified.swift
+// QuickTranslator
+// Refactor by ChatGPT — simplified structure, UI and UX
+
 import SwiftUI
 import AppKit
 
-struct TranslationSettingsView: View {
-    @ObservedObject private var featureManager = FeatureManager.shared
-    @State private var showSystemSteps = false
-    
-    var body: some View {
-            VStack(alignment: .leading, spacing: 16) {
-                SettingsSection(title: "Translation Engine") {
-                    Text("Choose which translation engine to use.")
-                        .foregroundColor(.secondary)
-                        .font(.subheadline)
-//                        .multilineTextAlignment(.leading)
-//                        .lineLimit(nil)
-                    
-                    VStack(spacing: 16) {
-                        EngineCard(
-                            title: "Apple Translate",
-                            subtitle: "Works completely offline. Limited language support and quality.",
-                            image: Image(systemName: "applelogo"),
-                            isSelected: featureManager.translationService == .apple
-                        ) {
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                featureManager.translationService = .apple
-                            }
-                        }
-                        
-                        EngineCard(
-                            title: "Google Translate",
-                            subtitle: "Versatile online translations. Requires an internet connection.",
-                            image: Image(systemName: "globe"),
-                            isSelected: featureManager.translationService == .google
-                        ) {
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                featureManager.translationService = .google
-                            }
-                        }
-                    }
-                }
-                
-                SettingsSection(title: "") {
-                    ZStack {
-                        if featureManager.translationService == .apple {
-                            OfflineInfo(showSystemSteps: $showSystemSteps)
-                                .transition(.opacity.combined(with: .scale(scale: 0.98)))
-                                .id("appleInfo")
-                        } else {
-                            InfoBox(
-                                title: "Unlimited Language Support",
-                                message: "SwiftyTranslate uses online APIs to support almost all major world languages."
-                            )
-                            .transition(.opacity.combined(with: .scale(scale: 0.98)))
-                            .id("googleInfo")
-                        }
-                    }
-                    .animation(.easeInOut(duration: 0.2), value: featureManager.translationService)
-                }
-            }
-            .padding()
-        }
-}
+/// Simple, single-file replacement for the original TranslationSettingsView.
+/// Key ideas:
+///  - Use a compact Picker (segmented) for engine selection instead of custom card buttons.
+///  - Keep explanatory text short and contextual.
+///  - Reduce nesting and duplicated components.
+///  - Make Offline instructions a single clear CTA that reveals steps after opening System Settings.
+///  - Separate ViewModel for logic so view is lightweight and testable.
 
-private struct EngineCardStyle: ButtonStyle {
-    let isSelected: Bool
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(isSelected ? Color.accentColor.opacity(0.12) : Color(.windowBackgroundColor))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(isSelected ? Color.accentColor : Color.gray.opacity(0.4), lineWidth: 1.5)
-                    )
-            )
+enum TranslationEngine: String, CaseIterable, Identifiable {
+    case apple = "apple"
+    case google = "google"
+
+    var id: String { rawValue }
+    var title: String {
+        switch self {
+        case .apple: return "Apple Translate"
+        case .google: return "Google Translate"
+        }
+    }
+    var subtitle: String {
+        switch self {
+        case .apple: return "Offline support — limited languages"
+        case .google: return "Online — full language coverage"
+        }
+    }
+    var systemImage: String {
+        switch self {
+        case .apple: return "applelogo"
+        case .google: return "globe"
+        }
     }
 }
 
-struct EngineCard: View {
-    let title: String
-    let subtitle: String
-    let image: Image
-    let isSelected: Bool
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            HStack(spacing: 12) {
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 28, height: 28)
-                    .foregroundColor(isSelected ? .accentColor : .secondary)
-//                    .accessibilityHidden(true)
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(title)
-                        .font(.headline.bold())
-                        .foregroundStyle(.primary)
-//                        .multilineTextAlignment(.leading)
-//                        .lineLimit(nil)
-                    
-                    Text(subtitle)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-//                        .multilineTextAlignment(.leading)
-//                        .lineLimit(nil)
-//                        .fixedSize(horizontal: false, vertical: true)
-                }
-            }
-//            .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .buttonStyle(EngineCardStyle(isSelected: isSelected))
-    }
-}
+final class TranslationSettingsViewModel: ObservableObject {
+    @Published var engine: TranslationEngine
+    @Published var supportedLanguageCount: Int
+    @Published var didOpenSystemSettings = false
 
-private final class OfflineInfoViewModel: ObservableObject {
-    @Published var showSystemSteps = false
-    let supportedLanguageCount: Int
-    let systemSteps: [String]
-    let systemURL: URL?
-    
-    init(
-        supportedLanguageCount: Int = 21,
-        systemSteps: [String] = [
-            "Open the **General** section.",
-            "Go to **Language & Region**.",
-            "Click the **‘Translation Languages…’** button at the bottom."
-        ],
-        systemURL: URL? = URL(string: "x-apple.systempreferences:com.apple.Localization-Settings.Extension")
-    ) {
+    init(engine: TranslationEngine = .google, supportedLanguageCount: Int = 21) {
+        self.engine = engine
         self.supportedLanguageCount = supportedLanguageCount
-        self.systemSteps = systemSteps
-        self.systemURL = systemURL
     }
-    
+
     func openSystemSettings() {
-        guard let url = systemURL else { return }
+        guard let url = URL(string: "x-apple.systempreferences:com.apple.Localization-Settings.Extension") else { return }
         if NSWorkspace.shared.open(url) {
-            showSystemSteps = true
+            // small delay may be needed on real device; we set flag immediately for simple UX
+            didOpenSystemSettings = true
         } else {
-            Logger.warning("Failed to open System Settings URL: \(url.absoluteString)")
+            // fallback: try plain settings URL or do nothing
+            didOpenSystemSettings = true // still reveal steps so user can follow manually
         }
     }
 }
 
-struct OfflineInfo: View {
-    @Binding var showSystemSteps: Bool
-    @StateObject private var viewModel = OfflineInfoViewModel()
-    
+struct TranslationSettingsView: View {
+    @StateObject private var vm = TranslationSettingsViewModel()
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            InfoBox(
-                title: "Offline Mode Enabled",
-                message: "You need to download languages for offline translation. Downloading and language management are handled via macOS System Settings."
-            )
-            
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Apple Translate Supported Languages: \(viewModel.supportedLanguageCount)")
-                    .font(.headline)
-                    .padding(.bottom, 5)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(nil)
-                
-                Text("The full list of these languages and their download status can be viewed in the macOS **Translation Languages** window.")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            
-            VStack(alignment: .leading, spacing: 12) {
-                Text("To download languages, you need to go to System Settings.")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(nil)
-                
-                HStack(alignment: .top) {
-                    if showSystemSteps || viewModel.showSystemSteps {
-                        StepsListView(steps: viewModel.systemSteps)
-                            .transition(.opacity.combined(with: .scale(scale: 0.98)))
-                    } else {
-                        Button {
-                            viewModel.openSystemSettings()
-                            showSystemSteps = viewModel.showSystemSteps
-                        } label: {
-                            Label("Open System Settings", systemImage: "gearshape.fill")
-                                .multilineTextAlignment(.leading)
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .accessibilityLabel(Text("Open System Settings"))
-                        .accessibilityHint(Text("Opens System Settings to download translation languages"))
-                        .transition(.opacity.combined(with: .scale(scale: 0.98)))
-                    }
-                    Spacer()
-                }
-            }
-        }
-    }
-}
+            header
 
-private struct StepsListView: View {
-    let steps: [String]
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Please follow these steps in the **System Settings** window that just opened:")
-                .font(.subheadline).bold()
-                .multilineTextAlignment(.leading)
-                .lineLimit(nil)
-            VStack(alignment: .leading, spacing: 4) {
-                ForEach(steps.indices, id: \.self) { index in
-                    HStack(spacing: 8) {
-                        Image(systemName: "\(index + 1).circle.fill")
-                            .foregroundColor(.accentColor)
-                            .accessibilityHidden(true)
-                        Text(.init(steps[index]))
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(nil)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-            }
-        }
-        .padding(12)
-        .background(Color.accentColor.opacity(0.1))
-        .cornerRadius(8)
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel(Text("System Settings steps"))
-    }
-}
+            enginePicker
 
-struct InfoBox: View {
-    let title: String
-    let message: String
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(title)
-                .font(.headline.bold())
-                .multilineTextAlignment(.leading)
-                .lineLimit(nil)
-            Text(message)
+            Divider()
+
+            details
+        }
+//        .padding()
+        .frame(minWidth: 360)
+    }
+
+    private var header: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("Translation Engine")
+                .font(.title3).bold()
+
+            Text("Pick an engine. Apple works offline for some languages; Google provides the broadest online coverage.")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
-                .multilineTextAlignment(.leading)
-                .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
         }
-        .padding(12)
-//        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.secondary.opacity(0.08))
-        )
+    }
+
+    private var enginePicker: some View {
+        Picker("Engine", selection: $vm.engine) {
+            ForEach(TranslationEngine.allCases) { engine in
+                Label(engine.title, systemImage: engine.systemImage)
+                    .tag(engine)
+            }
+        }
+        .pickerStyle(.segmented)
+        .accessibilityLabel(Text("Translation engine"))
+    }
+
+    @ViewBuilder
+    private var details: some View {
+        switch vm.engine {
+        case .apple:
+            VStack(alignment: .leading, spacing: 12) {
+                HStack(alignment: .top, spacing: 12) {
+                    Image(systemName: vm.engine.systemImage)
+                        .frame(width: 36, height: 36)
+                        .font(.title2)
+                        .foregroundStyle(.primary)
+
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(vm.engine.title).font(.headline)
+                        Text(vm.engine.subtitle).font(.subheadline).foregroundColor(.secondary)
+                    }
+                }
+
+                InfoCard(title: "Offline Mode Enabled", message: "You can download languages for offline use via System Settings.") {
+                    Button(action: { vm.openSystemSettings() }) {
+                        Label("Open System Settings", systemImage: "gearshape")
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+
+                if vm.didOpenSystemSettings {
+                    StepsListViewSimple(steps: [
+                        "Open System Settings → General",
+                        "Choose Language & Region",
+                        "Open Translation Languages and download desired languages"
+                    ])
+                } else {
+                    Text("Apple supports approximately \(vm.supportedLanguageCount) languages for offline translation.")
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                }
+            }
+            .transition(.opacity.combined(with: .move(edge: .top)))
+
+        case .google:
+            VStack(alignment: .leading, spacing: 12) {
+                HStack(alignment: .top, spacing: 12) {
+                    Image(systemName: vm.engine.systemImage)
+                        .frame(width: 36, height: 36)
+                        .font(.title2)
+                        .foregroundStyle(.primary)
+
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(vm.engine.title).font(.headline)
+                        Text(vm.engine.subtitle).font(.subheadline).foregroundColor(.secondary)
+                    }
+                }
+
+                InfoCard(title: "Unlimited Language Support", message: "Uses online APIs for broad language coverage. Requires network access.") {
+                    EmptyView()
+                }
+            }
+            .transition(.opacity.combined(with: .move(edge: .bottom)))
+        }
     }
 }
 
-#Preview {
-    TranslationSettingsView()
+// MARK: - Small reusable components
+
+struct InfoCard<Content: View>: View {
+    let title: String
+    let message: String
+    let trailing: () -> Content
+
+    init(title: String, message: String, @ViewBuilder trailing: @escaping () -> Content) {
+        self.title = title
+        self.message = message
+        self.trailing = trailing
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title).bold()
+                    Text(message).font(.subheadline).foregroundColor(.secondary)
+                }
+                Spacer()
+                trailing()
+            }
+        }
+        .padding(12)
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color.secondary.opacity(0.06)))
+    }
+}
+
+struct StepsListViewSimple: View {
+    let steps: [String]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Steps to download languages:")
+                .font(.subheadline).bold()
+
+            ForEach(Array(steps.enumerated()), id: \ .0) { idx, step in
+                HStack(alignment: .top, spacing: 8) {
+                    Text("\(idx + 1).")
+                        .bold()
+                        .frame(width: 20, alignment: .leading)
+                    Text(step)
+                        .font(.subheadline)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+        }
+        .padding(10)
+        .background(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.secondary.opacity(0.2)))
+    }
+}
+
+// MARK: - Preview
+
+struct TranslationSettingsView_Simplified_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            TranslationSettingsView()
+                .previewDisplayName("Simplified - Google")
+
+            TranslationSettingsView()
+                .previewDisplayName("Simplified - Apple")
+                .onAppear {
+                    // can't mutate preview VM easily; this is illustrative
+                }
+        }
         .padding()
+        .previewLayout(.sizeThatFits)
+    }
 }
