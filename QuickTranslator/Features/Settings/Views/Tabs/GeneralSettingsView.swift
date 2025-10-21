@@ -17,7 +17,6 @@ struct GeneralSettingsView: View {
             launchSettingsSection
             inputLayoutSection
             menuBarIconSection
-            quitSection
         }
         .padding()
     }
@@ -119,16 +118,16 @@ extension GeneralSettingsView {
     }
     
     // MARK: - Quit
-    private var quitSection: some View {
-        SettingsSection(title: "Quit") {
-            Button(action: { NSApp.terminate(nil) }) {
-                Text("Quit QuickTranslator")
-            }
-            .buttonStyle(.borderedProminent)
-            .foregroundStyle(.app)
-            .controlSize(.regular)
-        }
-    }
+//    private var quitSection: some View {
+//        SettingsSection(title: "Quit") {
+//            Button(action: { NSApp.terminate(nil) }) {
+//                Text("Quit QuickTranslator")
+//            }
+//            .buttonStyle(.borderedProminent)
+//            .foregroundStyle(.app)
+//            .controlSize(.regular)
+//        }
+//    }
 }
 
 // MARK: - Shared Section Component

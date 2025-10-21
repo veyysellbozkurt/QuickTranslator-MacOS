@@ -23,32 +23,30 @@ struct PopoverControls: View {
             }
             .frame(width: 12, height: 18)
             .buttonStyle(BounceButtonStyle())
-
-//            Spacer()
-//            
-//            Button {
-//                NSWorkspace.shared.open(Constants.Urls.buyMeCoffee)
-//            } label: {
-//                Image(.buyMeCoffee)
-//                    .resizable()
-//                    .scaledToFit()
-//            }
-//            .frame(height: 28)
-//            .clipShape(.buttonBorder)
-//            .buttonStyle(BounceButtonStyle())
             
             Spacer()
             
-            Button {
-                DIContainer.shared.settingsWindowManager.showSettings()
-            } label: {
-                Image(systemName: SFIcons.gear)
-                    .resizable()
-                    .foregroundStyle(.secondary)
+            HStack(spacing: 12) {
+                Button {
+                    NSApp.terminate(nil)
+                } label: {
+                    Image(systemName: SFIcons.power)
+                        .resizable()
+                        .foregroundStyle(.secondary)
+                }
+                .frame(width: 16, height: 17)
+                .buttonStyle(BounceButtonStyle())
+                
+                Button {
+                    DIContainer.shared.settingsWindowManager.showSettings()
+                } label: {
+                    Image(systemName: SFIcons.gear)
+                        .resizable()
+                        .foregroundStyle(.secondary)
+                }
+                .frame(width: 20, height: 19)
+                .buttonStyle(BounceButtonStyle())
             }
-            .frame(width: 20, height: 19)
-            .buttonStyle(BounceButtonStyle())
-
         }
         .padding(.horizontal, 16)
         .frame(height: 32)
