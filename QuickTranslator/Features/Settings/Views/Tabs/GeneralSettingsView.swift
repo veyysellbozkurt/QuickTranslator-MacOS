@@ -26,18 +26,19 @@ extension GeneralSettingsView {
     
     // MARK: - Launch Settings
     private var launchSettingsSection: some View {
-        SettingsSection(title: "Launch Settings") {
+        SettingsSection(title: Constants.Strings.launchSettingsTitle) {
             VStack(alignment: .leading, spacing: 8) {
-                Toggle("Launch on system startup", isOn: $launchOnStart)
+                Toggle(Constants.Strings.launchOnStartup, isOn: $launchOnStart)
                     .toggleStyle(.switch)
+                    .font(.appSmallTitle())
                     .tint(.app)
                     .onChange(of: launchOnStart) {
                         featureManager.launchOnStart = launchOnStart
                         manager.toggleLaunchAtLogin()
                     }
                 
-                Text("The app will automatically start when you log in to your Mac.")
-                    .font(.caption2)
+                Text(Constants.Strings.launchOnStartupDescription)
+                    .font(.appCaption())
                     .foregroundStyle(.secondary)
             }
         }
@@ -45,19 +46,21 @@ extension GeneralSettingsView {
     
     // MARK: - Input Layout
     private var inputLayoutSection: some View {
-        SettingsSection(title: "Input Layout") {
+        SettingsSection(title: Constants.Strings.inputLayoutTitle) {
             VStack(alignment: .leading, spacing: 10) {
                 Picker("Layout Style", selection: $featureManager.inputLayout) {
                     ForEach(InputLayout.allCases, id: \.self) { layout in
                         Label(layout.displayName, systemImage: layout.iconName)
                             .tag(layout)
+                            .font(.appSmallTitle())
                     }
                 }
+                .font(.appSmallTitle())
                 .tint(.app)
                 .pickerStyle(.inline)
                 
                 Text(featureManager.inputLayout.description)
-                    .font(.caption2)
+                    .font(.appCaption())
                     .foregroundStyle(.secondary)
                     .animation(.default, value: featureManager.inputLayout)
             }
@@ -66,9 +69,9 @@ extension GeneralSettingsView {
     
     // MARK: - Menu Bar Icon
     private var menuBarIconSection: some View {
-        SettingsSection(title: "Menu Bar Icon") {
-            Text("You need to restart the app for the changes to take effect.")
-                .font(.caption2)
+        SettingsSection(title: Constants.Strings.menuBarIconTitle) {
+            Text(Constants.Strings.menuBarIconDescription)
+                .font(.appCaption())
                 .foregroundStyle(.secondary)
             
             HStack(spacing: 20) {
@@ -94,7 +97,7 @@ extension GeneralSettingsView {
                     .padding(.horizontal, 6)
 
                 Text(icon.rawValue.capitalized)
-                    .font(.caption2)
+                    .font(.appCaption())
                     .foregroundStyle(.secondary)
             }
             .padding(6)
@@ -116,18 +119,6 @@ extension GeneralSettingsView {
             }
         }
     }
-    
-    // MARK: - Quit
-//    private var quitSection: some View {
-//        SettingsSection(title: "Quit") {
-//            Button(action: { NSApp.terminate(nil) }) {
-//                Text("Quit QuickTranslator")
-//            }
-//            .buttonStyle(.borderedProminent)
-//            .foregroundStyle(.app)
-//            .controlSize(.regular)
-//        }
-//    }
 }
 
 // MARK: - Shared Section Component
@@ -143,8 +134,7 @@ struct SettingsSection<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(title.uppercased())
-                .font(.caption)
-                .fontWeight(.semibold)
+                .font(.appFont(.semibold, size: 11))
                 .foregroundStyle(.secondary)
             
             VStack(alignment: .leading) {

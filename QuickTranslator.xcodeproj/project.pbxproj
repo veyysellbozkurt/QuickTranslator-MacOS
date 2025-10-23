@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B030CB42EAAD3AC0042F673 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B030CB32EAAD3AC0042F673 /* FontManager.swift */; };
+		2B030CE32EAADCB50042F673 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B030CE22EAADCB50042F673 /* Inter-SemiBold.ttf */; };
+		2B030CE42EAADCB50042F673 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B030CDF2EAADCB50042F673 /* Inter-Light.ttf */; };
+		2B030CE52EAADCB50042F673 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B030CE02EAADCB50042F673 /* Inter-Medium.ttf */; };
+		2B030CE62EAADCB50042F673 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B030CE12EAADCB50042F673 /* Inter-Regular.ttf */; };
+		2B030CE72EAADCB50042F673 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B030CDE2EAADCB50042F673 /* Inter-Bold.ttf */; };
+		2B030CE82EAADE910042F673 /* NSFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B030CB92EAAD4320042F673 /* NSFont+Ext.swift */; };
+		2B030CE92EAADEA20042F673 /* Font+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B030CB72EAAD3FE0042F673 /* Font+Ext.swift */; };
+		2B030CF02EAAF3A80042F673 /* MailAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B030CEF2EAAF3A50042F673 /* MailAppHelper.swift */; };
 		2B1ACDC22E7AC71000E5429E /* SettingsWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC12E7AC71000E5429E /* SettingsWindowManager.swift */; };
 		2B1ACDC42E7AC73000E5429E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC32E7AC73000E5429E /* SettingsView.swift */; };
 		2B1ACDC72E7ACDF700E5429E /* Afterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC62E7ACDF400E5429E /* Afterable.swift */; };
@@ -72,6 +81,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B030CB32EAAD3AC0042F673 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
+		2B030CB72EAAD3FE0042F673 /* Font+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Ext.swift"; sourceTree = "<group>"; };
+		2B030CB92EAAD4320042F673 /* NSFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont+Ext.swift"; sourceTree = "<group>"; };
+		2B030CDE2EAADCB50042F673 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
+		2B030CDF2EAADCB50042F673 /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
+		2B030CE02EAADCB50042F673 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
+		2B030CE12EAADCB50042F673 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		2B030CE22EAADCB50042F673 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		2B030CEF2EAAF3A50042F673 /* MailAppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailAppHelper.swift; sourceTree = "<group>"; };
 		2B12E7892E5351010029301B /* QuickTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B12E79C2E5351040029301B /* QuickTranslatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTranslatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B12E7A62E5351040029301B /* QuickTranslatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTranslatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +180,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B030CA82EAAD2870042F673 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2B030CDE2EAADCB50042F673 /* Inter-Bold.ttf */,
+				2B030CDF2EAADCB50042F673 /* Inter-Light.ttf */,
+				2B030CE02EAADCB50042F673 /* Inter-Medium.ttf */,
+				2B030CE12EAADCB50042F673 /* Inter-Regular.ttf */,
+				2B030CE22EAADCB50042F673 /* Inter-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		2B12E7802E5351010029301B = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +310,7 @@
 		2B4AB4942E5F256B005DF24C /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				2B030CB72EAAD3FE0042F673 /* Font+Ext.swift */,
 				2B1ACDCA2E7C485A00E5429E /* View+Ext.swift */,
 				2B4AB4932E5F256B005DF24C /* BounceButtonStyle.swift */,
 			);
@@ -299,6 +330,8 @@
 		2B4AB4992E5F256B005DF24C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				2B030CEF2EAAF3A50042F673 /* MailAppHelper.swift */,
+				2B030CB32EAAD3AC0042F673 /* FontManager.swift */,
 				2B69CD5D2E9BC63600C8A6CC /* LaunchAtLoginManager.swift */,
 				2B54331E2E9693C700682C76 /* Logger */,
 				2B62A1EB2E6B2017000ADA9E /* DoubleKeyMonitor */,
@@ -323,6 +356,7 @@
 		2B4AB49F2E5F256B005DF24C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2B030CA82EAAD2870042F673 /* Fonts */,
 				2B4AB49E2E5F256B005DF24C /* Assets.xcassets */,
 				2B4AB4E12E686E06005DF24C /* Info.plist */,
 			);
@@ -397,6 +431,7 @@
 		2B4AB4C62E61D5A0005DF24C /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
+				2B030CB92EAAD4320042F673 /* NSFont+Ext.swift */,
 			);
 			path = AppKit;
 			sourceTree = "<group>";
@@ -569,6 +604,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B030CE32EAADCB50042F673 /* Inter-SemiBold.ttf in Resources */,
+				2B030CE42EAADCB50042F673 /* Inter-Light.ttf in Resources */,
+				2B030CE52EAADCB50042F673 /* Inter-Medium.ttf in Resources */,
+				2B030CE62EAADCB50042F673 /* Inter-Regular.ttf in Resources */,
+				2B030CE72EAADCB50042F673 /* Inter-Bold.ttf in Resources */,
 				2BDE7C3A2E99D29100DFD7FD /* FloatingIconDemo.mov in Resources */,
 				2B4AB4A52E5F256B005DF24C /* Assets.xcassets in Resources */,
 			);
@@ -599,8 +639,10 @@
 				2B4AB4A72E5F256B005DF24C /* FloatingQuickActionPanel.swift in Sources */,
 				2B4AB4A82E5F256B005DF24C /* PaddedTextViewRepresentable.swift in Sources */,
 				2BDE7C342E986E4700DFD7FD /* InputLayout.swift in Sources */,
+				2B030CF02EAAF3A80042F673 /* MailAppHelper.swift in Sources */,
 				2B4AB4A92E5F256B005DF24C /* InputView.swift in Sources */,
 				2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */,
+				2B030CB42EAAD3AC0042F673 /* FontManager.swift in Sources */,
 				2B4AB4E02E6741AE005DF24C /* SwiftyTranslate.swift in Sources */,
 				2B1ACDC72E7ACDF700E5429E /* Afterable.swift in Sources */,
 				2B2F395A2E93DF3E009AB506 /* AboutSettingsView.swift in Sources */,
@@ -623,6 +665,7 @@
 				2B5433202E9693E500682C76 /* Logger.swift in Sources */,
 				2B1ACDC42E7AC73000E5429E /* SettingsView.swift in Sources */,
 				2B2F39562E93DF24009AB506 /* TranslationSettingsView.swift in Sources */,
+				2B030CE82EAADE910042F673 /* NSFont+Ext.swift in Sources */,
 				2BA5C8062E6F1B000025BE1F /* ToastModifier.swift in Sources */,
 				2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */,
 				2B4AB4DE2E674163005DF24C /* TranslationFactory.swift in Sources */,
@@ -637,6 +680,7 @@
 				2B4AB4C32E607BD6005DF24C /* DIContainer.swift in Sources */,
 				2B1ACDC22E7AC71000E5429E /* SettingsWindowManager.swift in Sources */,
 				2B4AB4B62E5F256B005DF24C /* TranslateViewModel.swift in Sources */,
+				2B030CE92EAADEA20042F673 /* Font+Ext.swift in Sources */,
 				2B69CD5E2E9BC63600C8A6CC /* LaunchAtLoginManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

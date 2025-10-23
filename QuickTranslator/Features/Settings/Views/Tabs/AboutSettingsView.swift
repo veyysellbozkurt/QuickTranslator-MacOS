@@ -7,17 +7,7 @@
 
 import SwiftUI
 
-struct AboutSettingsView: View {
-    
-    private var appName: String {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "Quick Translator"
-    }
-    
-    private var appVersion: String {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0.0"
-    }
-        
-    private let appStoreReviewURLString = "https://apps.apple.com/app/idYOUR_APP_ID?action=write-review"
+struct AboutSettingsView: View {        
     
     var body: some View {
         VStack(spacing: 16) {
@@ -27,62 +17,43 @@ struct AboutSettingsView: View {
                 .frame(width: 80, height: 80)
             
             VStack(spacing: 4) {
-                Text(appName).font(.title).bold()
-                Text("Version \(appVersion)").font(.subheadline).foregroundColor(.secondary)
+                Text(Constants.appName)
+                    .font(.appHeader())
+                Text(String(format: Constants.Strings.versionPrefix, Constants.appVersion))
+                    .font(.appCaption())
+                    .foregroundColor(.secondary)
             }
             
-            Text("A fast and efficient translation tool for macOS.")
+            Text(Constants.Strings.aboutAppDescription)
+                .font(.appSmallTitle())
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
                 .padding(.horizontal)
-                        
+            
             Divider()
-                        
+            
             HStack(spacing: 16) {
-                Group {
-                    RateButton(action: openStoreReview)
-                    
-                    // Buy Me a Coffee görsel buton
-                    Button {
-                        NSWorkspace.shared.open(Constants.Urls.buyMeCoffee)
-                    } label: {
-                        Image(.buyMeCoffee)
-                            .resizable()
-                            .scaledToFit()
-                    }
-                    .frame(height: 30)
-                    .clipShape(.buttonBorder)
-                    .buttonStyle(BounceButtonStyle())
-                    
-                    // Send Feedback (varsayılan e‑posta uygulamasını açar)
-                    Button("Send Feedback") {
-                        openEmail(
-                            to: "veyysellbozkrt@gmail.com",
-                            subject: "Feedback for \(appName) v\(appVersion)",
-                            body: """
-                            Hi,
-
-                            Here is my feedback for \(appName) v\(appVersion):
-
-                            - What I liked:
-                            - What can be improved:
-                            - Suggestions:
-
-                            Thanks!
-                            """
-                        )
-                    }
+                RateButton(action: openStoreReview)
+                
+                Button {
+                    NSWorkspace.shared.open(Constants.Urls.buyMeCoffee)
+                } label: {
+                    Image(.buyMeCoffee)
+                        .resizable()
+                        .scaledToFit()
                 }
-                .buttonStyle(.borderedProminent)
-                .foregroundStyle(.app)
+                .frame(height: 30)
+                .clipShape(.buttonBorder)
+                .buttonStyle(BounceButtonStyle())
+                
+                FeedbackButton(action: { MailAppHelper.openMailApp() })
             }
             
-            // Küçük bilgilendirme: oy vermeyi teşvik
             VStack(spacing: 6) {
-                Text("Enjoying \(appName)?")
-                    .font(.headline)
-                Text("Your rating helps others discover the app and supports future improvements.")
-                    .font(.caption)
+                Text(String(format: Constants.Strings.enjoyAppTitle, Constants.appName))
+                    .font(.appTitle())
+                Text(Constants.Strings.enjoyAppDescription)
+                    .font(.appCaption())
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
@@ -93,25 +64,6 @@ struct AboutSettingsView: View {
     }
 }
 
-private extension AboutSettingsView {
-    func openEmail(to: String, subject: String, body: String) {
-        let allowed = CharacterSet.urlQueryAllowed
-        let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: allowed) ?? ""
-        let bodyEncoded = body.addingPercentEncoding(withAllowedCharacters: allowed) ?? ""
-        
-        let urlString = "mailto:\(to)?subject=\(subjectEncoded)&body=\(bodyEncoded)"
-        if let url = URL(string: urlString) {
-            NSWorkspace.shared.open(url)
-        }
-    }
-    
-    func openStoreReview() {
-        guard let url = URL(string: appStoreReviewURLString) else { return }
-        NSWorkspace.shared.open(url)
-    }
-}
-
-// MARK: - Custom Rate Button
 private struct RateButton: View {
     let action: () -> Void
     
@@ -120,24 +72,59 @@ private struct RateButton: View {
             HStack(spacing: 8) {
                 Image(systemName: "star.circle.fill")
                     .font(.system(size: 16, weight: .medium))
-                Text("Rate on the App Store")
-                    .font(.system(size: 14, weight: .medium))
+                Text(Constants.Strings.rateButtonTitle)
+                    .font(.appButton())
             }
             .padding(.horizontal, 8)
-            .padding(.vertical, 6)
+            .frame(height: 36)
             .background(
                 Capsule()
                     .fill(Color.app.opacity(0.15))
             )
         }
-        .buttonStyle(.plain) // İçeride kendi görselleştirmemiz var
+        .buttonStyle(.plain)
         .foregroundStyle(.app)
         .overlay(
             Capsule()
                 .stroke(Color.app.opacity(0.5), lineWidth: 1)
         )
         .contentShape(Capsule())
-        .help("Open the App Store review page")
-        .accessibilityLabel("Rate on the App Store")
+        .help(Constants.Strings.rateButtonHelp)
+    }
+}
+
+private struct FeedbackButton: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 8) {
+                Image(systemName: "envelope.fill")
+                    .font(.system(size: 16, weight: .medium))
+                Text(Constants.Strings.feedbackButtonTitle)
+                    .font(.appButton())
+            }
+            .padding(.horizontal, 8)
+            .frame(height: 36)
+            .background(
+                Capsule()
+                    .fill(Color.app.opacity(0.15))
+            )
+        }
+        .buttonStyle(.plain)
+        .foregroundStyle(.app)
+        .overlay(
+            Capsule()
+                .stroke(Color.app.opacity(0.5), lineWidth: 1)
+        )
+        .contentShape(Capsule())
+        .help(Constants.Strings.feedbackButtonHelp)
+    }
+}
+
+private extension AboutSettingsView {
+    func openStoreReview() {
+        guard let url = Constants.Urls.appStoreReviewURL else { return }
+        NSWorkspace.shared.open(url)
     }
 }

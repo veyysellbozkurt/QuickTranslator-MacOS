@@ -12,14 +12,6 @@
 import SwiftUI
 import AppKit
 
-/// Simple, single-file replacement for the original TranslationSettingsView.
-/// Key ideas:
-///  - Use a compact Picker (segmented) for engine selection instead of custom card buttons.
-///  - Keep explanatory text short and contextual.
-///  - Reduce nesting and duplicated components.
-///  - Make Offline instructions a single clear CTA that reveals steps after opening System Settings.
-///  - Separate ViewModel for logic so view is lightweight and testable.
-
 enum TranslationEngine: String, CaseIterable, Identifiable {
     case apple = "apple"
     case google = "google"
@@ -72,100 +64,109 @@ struct TranslationSettingsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            header
-
-            enginePicker
-
-            Divider()
-
-            details
+            engineSection
+            appleDetailsSection
+            googleDetailsSection
         }
-//        .padding()
+        .padding()
         .frame(minWidth: 360)
     }
 
-    private var header: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text("Translation Engine")
-                .font(.title3).bold()
+    // MARK: - Engine Picker Section
+    private var engineSection: some View {
+            SettingsSection(title: Constants.Strings.translationEngineTitle) {
+                Picker("Engine    ", selection: $vm.engine) {
+                    ForEach(TranslationEngine.allCases) { engine in
+                        Label(engine.title, systemImage: engine.systemImage)
+                            .tag(engine)
+                            .font(.appTitle())
+                            .padding(.leading, 4)
+                    }
+                }
+                .pickerStyle(.radioGroup)
+                .tint(.app)
+                .font(.appTitle())
 
-            Text("Pick an engine. Apple works offline for some languages; Google provides the broadest online coverage.")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
-        }
-    }
-
-    private var enginePicker: some View {
-        Picker("Engine", selection: $vm.engine) {
-            ForEach(TranslationEngine.allCases) { engine in
-                Label(engine.title, systemImage: engine.systemImage)
-                    .tag(engine)
+                Text(Constants.Strings.translationEngineDescription)
+                    .font(.appCaption())
+                    .foregroundStyle(.secondary)
             }
         }
-        .pickerStyle(.segmented)
-        .accessibilityLabel(Text("Translation engine"))
-    }
 
+    // MARK: - Apple Engine Details Section
     @ViewBuilder
-    private var details: some View {
-        switch vm.engine {
-        case .apple:
-            VStack(alignment: .leading, spacing: 12) {
-                HStack(alignment: .top, spacing: 12) {
-                    Image(systemName: vm.engine.systemImage)
-                        .frame(width: 36, height: 36)
-                        .font(.title2)
-                        .foregroundStyle(.primary)
+    private var appleDetailsSection: some View {
+            if vm.engine == .apple {
+                SettingsSection(title: Constants.Strings.appleTranslateTitle) {
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack(alignment: .top, spacing: 12) {
+                            Image(systemName: vm.engine.systemImage)
+                                .font(.appTitle())
+                                .frame(width: 36, height: 36)
+                                .foregroundStyle(.primary)
 
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(vm.engine.title).font(.headline)
-                        Text(vm.engine.subtitle).font(.subheadline).foregroundColor(.secondary)
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text(vm.engine.title).font(.appTitle())
+                                Text(vm.engine.subtitle)
+                                    .font(.appSmallTitle())
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+
+                        InfoCard(title: Constants.Strings.appleOfflineModeEnabled,
+                                 message: Constants.Strings.appleOfflineMessage) {
+                            Button(action: { vm.openSystemSettings() }) {
+                                Label(Constants.Strings.openSettings, systemImage: "gearshape")
+                                    .font(.appButton())
+                            }
+                            .buttonStyle(.borderedProminent)
+                        }
+
+                        if vm.didOpenSystemSettings {
+                            StepsListViewSimple(steps: [
+                                Constants.Strings.appleStep1,
+                                Constants.Strings.appleStep2,
+                                Constants.Strings.appleStep3
+                            ])
+                        } else {
+                            Text(String(format: Constants.Strings.appleSupportedLanguagesMessage,
+                                        vm.supportedLanguageCount))
+                                .font(.appCaption())
+                                .foregroundStyle(.secondary)
+                        }
                     }
-                }
-
-                InfoCard(title: "Offline Mode Enabled", message: "You can download languages for offline use via System Settings.") {
-                    Button(action: { vm.openSystemSettings() }) {
-                        Label("Open System Settings", systemImage: "gearshape")
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
-
-                if vm.didOpenSystemSettings {
-                    StepsListViewSimple(steps: [
-                        "Open System Settings → General",
-                        "Choose Language & Region",
-                        "Open Translation Languages and download desired languages"
-                    ])
-                } else {
-                    Text("Apple supports approximately \(vm.supportedLanguageCount) languages for offline translation.")
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
                 }
             }
-            .transition(.opacity.combined(with: .move(edge: .top)))
-
-        case .google:
-            VStack(alignment: .leading, spacing: 12) {
-                HStack(alignment: .top, spacing: 12) {
-                    Image(systemName: vm.engine.systemImage)
-                        .frame(width: 36, height: 36)
-                        .font(.title2)
-                        .foregroundStyle(.primary)
-
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(vm.engine.title).font(.headline)
-                        Text(vm.engine.subtitle).font(.subheadline).foregroundColor(.secondary)
-                    }
-                }
-
-                InfoCard(title: "Unlimited Language Support", message: "Uses online APIs for broad language coverage. Requires network access.") {
-                    EmptyView()
-                }
-            }
-            .transition(.opacity.combined(with: .move(edge: .bottom)))
         }
-    }
+
+    // MARK: - Google Engine Details Section
+    @ViewBuilder
+    private var googleDetailsSection: some View {
+            if vm.engine == .google {
+                SettingsSection(title: Constants.Strings.googleTranslateTitle) {
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack(alignment: .top, spacing: 12) {
+                            Image(systemName: vm.engine.systemImage)
+                                .font(.appTitle())
+                                .frame(width: 36, height: 36)
+                                .foregroundStyle(.primary)
+
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text(vm.engine.title).font(.appTitle())
+                                Text(vm.engine.subtitle)
+                                    .font(.appSmallTitle())
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+
+                        InfoCard(title: Constants.Strings.googleUnlimitedSupportTitle,
+                                 message: Constants.Strings.googleUnlimitedSupportMessage) {
+                            EmptyView()
+                        }
+                    }
+                }
+            }
+        }
 }
 
 // MARK: - Small reusable components
@@ -185,8 +186,8 @@ struct InfoCard<Content: View>: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(title).bold()
-                    Text(message).font(.subheadline).foregroundColor(.secondary)
+                    Text(title).font(.appTitle())
+                    Text(message).font(.appSmallTitle()).foregroundColor(.secondary)
                 }
                 Spacer()
                 trailing()
@@ -202,40 +203,21 @@ struct StepsListViewSimple: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Steps to download languages:")
-                .font(.subheadline).bold()
+            Text(Constants.Strings.appleTranslateTitle)
+                .font(.appTitle()).bold()
 
-            ForEach(Array(steps.enumerated()), id: \ .0) { idx, step in
+            ForEach(Array(steps.enumerated()), id: \.0) { idx, step in
                 HStack(alignment: .top, spacing: 8) {
                     Text("\(idx + 1).")
                         .bold()
                         .frame(width: 20, alignment: .leading)
                     Text(step)
-                        .font(.subheadline)
+                        .font(.appSmallTitle())
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
         }
         .padding(10)
         .background(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.secondary.opacity(0.2)))
-    }
-}
-
-// MARK: - Preview
-
-struct TranslationSettingsView_Simplified_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            TranslationSettingsView()
-                .previewDisplayName("Simplified - Google")
-
-            TranslationSettingsView()
-                .previewDisplayName("Simplified - Apple")
-                .onAppear {
-                    // can't mutate preview VM easily; this is illustrative
-                }
-        }
-        .padding()
-        .previewLayout(.sizeThatFits)
     }
 }

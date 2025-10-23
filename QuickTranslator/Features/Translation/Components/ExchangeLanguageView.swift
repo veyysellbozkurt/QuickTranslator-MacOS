@@ -51,14 +51,14 @@ struct ExchangeLanguageView: View {
         } label: {
             HStack {
                 Text(language.wrappedValue.title)
-                    .font(.system(size: 13, weight: .medium))
+                    .font(.appFont(.semibold, size: 13))
                 Spacer()
                 Image(systemName: "chevron.down")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
             .padding(.horizontal, 10)
-            .frame(height: 24)
+            .frame(height: 32)
             .background(Color.secondary.opacity(0.07))
             .clipShape(RoundedRectangle(cornerRadius: 8))
         }
@@ -80,7 +80,7 @@ struct ExchangeLanguageView: View {
                         targetLanguage = displaysTargetLanguage
                     } label: {
                         Text(lang.title)
-                            .font(.system(size: 14, weight: .medium))
+                            .font(.appFont(size: 13))
                             .padding(.vertical, 10)
                             .padding(.horizontal, 12)
                             .frame(maxWidth: .infinity, alignment: .leading)

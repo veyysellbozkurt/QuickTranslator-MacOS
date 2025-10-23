@@ -4,5 +4,13 @@
 <dict>
 	<key>NSAccessibilityUsageDescription</key>
 	<string>Allow QuickTranslator to use Accessibility features so it can detect when you copy text (Cmd + C) and translate it automatically.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Inter-Bold.ttf</string>
+		<string>Inter-SemiBold.ttf</string>
+		<string>Inter-Medium.ttf</string>
+		<string>Inter-Regular.ttf</string>
+		<string>Inter-Light.ttf</string>
+	</array>
 </dict>
 </plist>

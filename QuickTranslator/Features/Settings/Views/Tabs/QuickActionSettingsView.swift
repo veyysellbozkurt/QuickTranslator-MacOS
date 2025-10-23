@@ -19,20 +19,22 @@ struct QuickActionSettingsView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            SettingsSection(title: "Quick Action") {
+            SettingsSection(title: Constants.Strings.quickActionTitle) {
                 VStack(alignment: .leading, spacing: 16) {
                     
                     // MARK: - Picker
-                    Text("Choose what happens when you double press ⌘ + C:")
-                        .font(.caption2)
+                    Text(Constants.Strings.quickActionPickerDescription)
+                        .font(.appCaption())
                         .foregroundStyle(.secondary)
                     
                     Picker("Action Type", selection: $selectedAction) {
                         ForEach(QuickActionType.allCases, id: \.self) { action in
                             Label(action.displayName, systemImage: action.iconName)
                                 .tag(action)
+                                .font(.appSmallTitle())
                         }
                     }
+                    .font(.appSmallTitle())
                     .pickerStyle(.inline)
                     .tint(.app)
                     .onChange(of: selectedAction) {
@@ -43,7 +45,8 @@ struct QuickActionSettingsView: View {
                     Button {
                         showVideoPopover.toggle()
                     } label: {
-                        Label("Show Preview", systemImage: "play.circle.fill")
+                        Label(Constants.Strings.showPreviewButton, systemImage: "play.circle.fill")
+                            .font(.appSmallTitle())
                     }
                     .buttonStyle(.borderedProminent)
                     .foregroundStyle(.app.opacity(0.5))
@@ -55,10 +58,10 @@ struct QuickActionSettingsView: View {
                 }
             }
             
-            SettingsSection(title: "Time Interval") {
+            SettingsSection(title: Constants.Strings.timeIntervalTitle) {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Floating Icon Visibility Duration: \(String(format: "%.1f", floatingIconVisibilityDuration))s")
-                        .fontWeight(.medium)
+                    Text(String(format: Constants.Strings.floatingIconVisibility, floatingIconVisibilityDuration))
+                        .font(.appSmallTitle())
                     
                     Slider(value: $floatingIconVisibilityDuration, in: 1...5, step: 1)
                         .tint(.app)
@@ -66,8 +69,8 @@ struct QuickActionSettingsView: View {
                             featureManager.floatingIconVisibilityDuration = floatingIconVisibilityDuration
                         }
                     
-                    Text("Set how long the floating icon remains visible after a double key press before it automatically hides.")
-                        .font(.caption2)
+                    Text(Constants.Strings.floatingIconDescription)
+                        .font(.appCaption())
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -86,7 +89,7 @@ struct QuickActionSettingsView: View {
         let videoName: String
         switch action {
             case .directPopover: videoName = "FloatingIconDemo"
-            case .floatingIconPopover:    videoName = "FloatingIconDemo"
+            case .floatingIconPopover: videoName = "FloatingIconDemo"
         }
         
         if let url = Bundle.main.url(forResource: videoName, withExtension: "mov") {
@@ -106,7 +109,7 @@ struct VideoPopoverView: View {
     var body: some View {
         VStack(spacing: 16) {
             Text(selectedAction.displayName)
-                .font(.headline)
+                .font(.appSmallTitle())
             if let player {
                 VideoPlayer(player: player)
                     .cornerRadius(12)
@@ -122,8 +125,8 @@ struct VideoPopoverView: View {
                             Image(systemName: "play.rectangle.fill")
                                 .font(.system(size: 36))
                                 .foregroundStyle(.secondary)
-                            Text("Preview not available")
-                                .font(.caption)
+                            Text(Constants.Strings.previewNotAvailable)
+                                .font(.appCaption())
                                 .foregroundStyle(.secondary)
                         }
                     )

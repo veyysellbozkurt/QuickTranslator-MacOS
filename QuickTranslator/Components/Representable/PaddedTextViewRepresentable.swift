@@ -33,14 +33,14 @@ struct PaddedTextViewRepresentable: NSViewRepresentable {
         textView.autoresizingMask = [.width]
         textView.delegate = context.coordinator
         
-        if isOutput {
-            textView.textColor = .app.withAlphaComponent(0.95)
-            textView.placeholderColor = .app.withAlphaComponent(0.6)
-        } else {
+//        if isOutput {
+//            textView.textColor = .app.withAlphaComponent(0.95)
+//            textView.placeholderColor = .app.withAlphaComponent(0.6)
+//        } else {
             textView.textColor = NSColor.labelColor
-        }
+//        }
         
-        textView.font = NSFont.systemFont(ofSize: 13, weight: .medium)
+        textView.font = .appFont(size: 13)
         
         textView.onEnterKeyPress = onEnterKeyPress
         
