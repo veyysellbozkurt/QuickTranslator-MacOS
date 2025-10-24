@@ -71,7 +71,8 @@ struct ExchangeLanguageView: View {
     private func languagePickerPopover(for language: Binding<Language>) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                ForEach(Language.allCases, id: \.self) { lang in
+                ForEach(Language.availableLanguages, id: \.self) { lang in
+                    let isSelected = lang == language.wrappedValue
                     Button {
                         language.wrappedValue = lang
                         showSourceLanguagePicker = false
@@ -79,20 +80,31 @@ struct ExchangeLanguageView: View {
                         sourceLanguage = displaySourceLanguage
                         targetLanguage = displaysTargetLanguage
                     } label: {
-                        Text(lang.title)
-                            .font(.appFont(size: 13))
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 12)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .contentShape(Rectangle())
+                        HStack {
+                            Text(lang.title)
+                                .font(.appFont(size: 13))
+                                .foregroundColor(isSelected ? .white : .primary)
+                            Spacer()
+                            if isSelected {
+                                Image(systemName: "checkmark")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 12)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(isSelected ? Color.secondary.opacity(0.1) : Color.clear)
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                        .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
-                    Divider()
                 }
             }
         }
         .frame(width: 200, height: 250)
     }
+
     
     private var swapButton: some View {
         Button {

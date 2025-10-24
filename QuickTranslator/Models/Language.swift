@@ -106,52 +106,83 @@ enum Language: String, CaseIterable {
 
     var title: String {
         switch self {
-        case .englishUS: return "🇺🇸 English (US)"
-        case .englishGB: return "🇬🇧 English (UK)"
-        case .spanishES: return "🇪🇸 Spanish (Spain)"
-        case .spanishMX: return "🇲🇽 Spanish (Mexico)"
-        case .frenchFR: return "🇫🇷 French (France)"
-        case .frenchCA: return "🇨🇦 French (Canada)"
-        case .german: return "🇩🇪 German"
-        case .italian: return "🇮🇹 Italian"
-        case .japanese: return "🇯🇵 Japanese"
-        case .russian: return "🇷🇺 Russian"
-        case .chineseSimplified: return "🇨🇳 Chinese (Simplified)"
-        case .chineseTraditional: return "🇹🇼 Chinese (Traditional)"
-        case .korean: return "🇰🇷 Korean"
-        case .portugueseBR: return "🇧🇷 Portuguese (Brazil)"
-        case .arabic: return "🇸🇦 Arabic"
-        case .turkish: return "🇹🇷 Turkish"
-        case .azerbaijani: return "🇦🇿 Azerbaijani"
-        case .dutch: return "🇳🇱 Dutch"
-        case .hindi: return "🇮🇳 Hindi"
-        case .indonesian: return "🇮🇩 Indonesian"
-        case .polish: return "🇵🇱 Polish"
-        case .ukrainian: return "🇺🇦 Ukrainian"
-        case .vietnamese: return "🇻🇳 Vietnamese"
-        case .thai: return "🇹🇭 Thai"
-        case .finnish: return "🇫🇮 Finnish"
-        case .danish: return "🇩🇰 Danish"
-        case .norwegian: return "🇳🇴 Norwegian"
-        case .hungarian: return "🇭🇺 Hungarian"
-        case .romanian: return "🇷🇴 Romanian"
-        case .bulgarian: return "🇧🇬 Bulgarian"
-        case .slovak: return "🇸🇰 Slovak"
-        case .slovene: return "🇸🇮 Slovene"
-        case .croatian: return "🇭🇷 Croatian"
-        case .serbian: return "🇷🇸 Serbian"
-        case .malta: return "🇲🇹 Maltese"
-        case .hebrew: return "🇮🇱 Hebrew"
-        case .persian: return "🇮🇷 Persian"
-        case .malay: return "🇲🇾 Malay"
-        case .tagalog: return "🇵🇭 Tagalog"
-        case .catalan: return "🇪🇸 Catalan"
-        case .basque: return "🇪🇸 Basque"
-        case .swedish: return "🇸🇪 Swedish"
-        case .greek: return "🇬🇷 Greek"
-        case .albanian: return "🇦🇱 Albanian"
-        case .bosnian: return "🇧🇦 Bosnian"
-        case .swahili: return "🇰🇪 Swahili"
+        case .englishUS: return "🇺🇸  English (US)"
+        case .englishGB: return "🇬🇧  English (UK)"
+        case .spanishES: return "🇪🇸  Español (España)"
+        case .spanishMX: return "🇲🇽  Español (México)"
+        case .frenchFR: return "🇫🇷  Français (France)"
+        case .frenchCA: return "🇨🇦  Français (Canada)"
+        case .german: return "🇩🇪  Deutsch"
+        case .italian: return "🇮🇹  Italiano"
+        case .japanese: return "🇯🇵  日本語"
+        case .russian: return "🇷🇺  Русский"
+        case .chineseSimplified: return "🇨🇳  简体中文"
+        case .chineseTraditional: return "🇹🇼  繁體中文"
+        case .korean: return "🇰🇷  한국어"
+        case .portugueseBR: return "🇧🇷  Português (Brasil)"
+        case .arabic: return "🇸🇦  العربية"
+        case .turkish: return "🇹🇷  Türkçe"
+        case .azerbaijani: return "🇦🇿  Azərbaycan dili"
+        case .dutch: return "🇳🇱  Nederlands"
+        case .hindi: return "🇮🇳  हिन्दी"
+        case .indonesian: return "🇮🇩  Bahasa Indonesia"
+        case .polish: return "🇵🇱  Polski"
+        case .ukrainian: return "🇺🇦  Українська"
+        case .vietnamese: return "🇻🇳  Tiếng Việt"
+        case .thai: return "🇹🇭  ภาษาไทย"
+        case .finnish: return "🇫🇮  Suomi"
+        case .danish: return "🇩🇰  Dansk"
+        case .norwegian: return "🇳🇴  Norsk"
+        case .hungarian: return "🇭🇺  Magyar"
+        case .romanian: return "🇷🇴  Română"
+        case .bulgarian: return "🇧🇬  Български"
+        case .slovak: return "🇸🇰  Slovenčina"
+        case .slovene: return "🇸🇮  Slovenščina"
+        case .croatian: return "🇭🇷  Hrvatski"
+        case .serbian: return "🇷🇸  Српски"
+        case .malta: return "🇲🇹  Malti"
+        case .hebrew: return "🇮🇱  עברית"
+        case .persian: return "🇮🇷  فارسی"
+        case .malay: return "🇲🇾  Bahasa Melayu"
+        case .tagalog: return "🇵🇭  Tagalog"
+        case .catalan: return "🇪🇸  Català"
+        case .basque: return "🇪🇸  Euskara"
+        case .swedish: return "🇸🇪  Svenska"
+        case .greek: return "🇬🇷  Ελληνικά"
+        case .albanian: return "🇦🇱  Shqip"
+        case .bosnian: return "🇧🇦  Bosanski"
+        case .swahili: return "🇰🇪  Kiswahili"
         }
+    }
+
+    
+    static var availableLanguages: [Language] {
+        guard FeatureManager.shared.translationService == .apple else {
+            return Language.allCases
+        }
+        
+        return [
+            .arabic,
+            .chineseSimplified,
+            .chineseTraditional,
+            .dutch,
+            .englishUS,
+            .englishGB,
+            .frenchFR,
+            .german,
+            .hindi,
+            .indonesian,
+            .italian,
+            .japanese,
+            .korean,
+            .polish,
+            .portugueseBR,
+            .russian,
+            .spanishES,
+            .thai,
+            .turkish,
+            .ukrainian,
+            .vietnamese
+        ]
     }
 }
