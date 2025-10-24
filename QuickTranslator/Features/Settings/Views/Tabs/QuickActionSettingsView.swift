@@ -27,7 +27,7 @@ struct QuickActionSettingsView: View {
                         .font(.appCaption())
                         .foregroundStyle(.secondary)
                     
-                    Picker("Action Type", selection: $selectedAction) {
+                    Picker("Action Type   ", selection: $selectedAction) {
                         ForEach(QuickActionType.allCases, id: \.self) { action in
                             Label(action.displayName, systemImage: action.iconName)
                                 .tag(action)

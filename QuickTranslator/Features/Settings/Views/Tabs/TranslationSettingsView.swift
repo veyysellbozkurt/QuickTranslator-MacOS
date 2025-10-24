@@ -75,20 +75,22 @@ struct TranslationSettingsView: View {
     // MARK: - Engine Picker Section
     private var engineSection: some View {
             SettingsSection(title: Constants.Strings.translationEngineTitle) {
-                Picker("Engine    ", selection: $vm.engine) {
+                Picker("Engine   ", selection: $vm.engine) {
                     ForEach(TranslationEngine.allCases) { engine in
                         Label(engine.title, systemImage: engine.systemImage)
                             .tag(engine)
-                            .font(.appTitle())
+                            .font(.appSmallTitle())
                             .padding(.leading, 4)
                     }
                 }
                 .pickerStyle(.radioGroup)
                 .tint(.app)
-                .font(.appTitle())
+                .font(.appSmallTitle())
 
                 Text(Constants.Strings.translationEngineDescription)
                     .font(.appCaption())
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
                     .foregroundStyle(.secondary)
             }
         }
@@ -145,7 +147,7 @@ struct TranslationSettingsView: View {
             if vm.engine == .google {
                 SettingsSection(title: Constants.Strings.googleTranslateTitle) {
                     VStack(alignment: .leading, spacing: 12) {
-                        HStack(alignment: .top, spacing: 12) {
+                        HStack(alignment: .top, spacing: 6) {
                             Image(systemName: vm.engine.systemImage)
                                 .font(.appTitle())
                                 .frame(width: 36, height: 36)

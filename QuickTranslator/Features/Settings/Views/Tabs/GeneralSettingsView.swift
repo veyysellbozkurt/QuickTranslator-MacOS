@@ -70,15 +70,15 @@ extension GeneralSettingsView {
     // MARK: - Menu Bar Icon
     private var menuBarIconSection: some View {
         SettingsSection(title: Constants.Strings.menuBarIconTitle) {
-            Text(Constants.Strings.menuBarIconDescription)
-                .font(.appCaption())
-                .foregroundStyle(.secondary)
-            
             HStack(spacing: 20) {
                 ForEach(MenuBarIconEnum.allCases, id: \.self) { icon in
                     menuBarIconButton(for: icon)
                 }
             }
+            
+            Text(Constants.Strings.menuBarIconDescription)
+                .font(.appCaption())
+                .foregroundStyle(.secondary)
         }
     }
     
