@@ -48,7 +48,7 @@ struct CustomTabBar: View {
                         } else if let systemImageName = tab.systemImageName {
                             Image(systemName: systemImageName)                                
                                 .font(.system(size: 18, weight: .medium))
-                                .scaleEffect(selectedIndex == index ? 1.2 : 1.0)
+                                .scaleEffect(selectedIndex == index ? 1.15 : 1.0)
                         }
                         
                         Text(tab.label)

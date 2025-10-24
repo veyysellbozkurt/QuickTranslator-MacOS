@@ -5,10 +5,6 @@
 //  Created by Veysel Bozkurt on 6.10.2025.
 //
 
-// TranslationSettingsView_Simplified.swift
-// QuickTranslator
-// Refactor by ChatGPT — simplified structure, UI and UX
-
 import SwiftUI
 import AppKit
 

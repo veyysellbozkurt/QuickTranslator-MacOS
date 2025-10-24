@@ -140,10 +140,11 @@ struct SettingsSection<Content: View>: View {
             VStack(alignment: .leading) {
                 content()
             }
-            .padding(12)
+            .padding(16)
             .background(
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.gray.opacity(0.08))
+                    .strokeBorder(.gray.opacity(0.1), lineWidth: 2)
             )
         }
     }
