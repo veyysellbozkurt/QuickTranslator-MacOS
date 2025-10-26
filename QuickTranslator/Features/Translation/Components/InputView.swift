@@ -49,7 +49,7 @@ struct InputView: View {
                 .resizable()
                 .frame(width: 14, height: 15)
                 .padding(4)
-                .foregroundStyle(text.isEmpty ? Color.secondary : Color.app)
+                .foregroundStyle(text.isEmpty ? .textPlaceholder : .app.opacity(0.8))
         }
         .buttonStyle(BounceButtonStyle())
         .padding(6)

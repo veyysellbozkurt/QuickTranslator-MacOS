@@ -19,7 +19,7 @@ struct PopoverControls: View {
             } label: {
                 Image(systemName: isPinned ? SFIcons.pinFill : SFIcons.pin)
                     .resizable()
-                    .foregroundStyle(isPinned ? .app : .secondary)
+                    .foregroundStyle(isPinned ? .app : .iconTint)
             }
             .frame(width: 12, height: 18)
             .buttonStyle(BounceButtonStyle())
@@ -32,7 +32,7 @@ struct PopoverControls: View {
                 } label: {
                     Image(systemName: SFIcons.power)
                         .resizable()
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.iconTint)
                 }
                 .frame(width: 16, height: 17)
                 .buttonStyle(BounceButtonStyle())
@@ -42,14 +42,14 @@ struct PopoverControls: View {
                 } label: {
                     Image(systemName: SFIcons.gear)
                         .resizable()
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.iconTint)
                 }
                 .frame(width: 20, height: 19)
                 .buttonStyle(BounceButtonStyle())
             }
         }
         .padding(.horizontal, 16)
-        .frame(height: 32)
-        .background(Color.secondary.opacity(0.07))
+        .frame(height: 34)
+        .background(.hoverBackground.opacity(0.4))
     }
 }

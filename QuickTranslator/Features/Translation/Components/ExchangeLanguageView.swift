@@ -55,13 +55,17 @@ struct ExchangeLanguageView: View {
                 Spacer()
                 Image(systemName: "chevron.down")
                     .font(.subheadline)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.iconTint)
             }
             .padding(.horizontal, 10)
-            .frame(height: 32)
-            .background(Color.secondary.opacity(0.07))
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .frame(height: 28)
+            .background(.hoverBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
         }
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(.borderDefault, lineWidth: 1)
+        )
         .buttonStyle(BounceButtonStyle())
         .popover(isPresented: isPresented) {
             languagePickerPopover(for: language)
@@ -83,25 +87,26 @@ struct ExchangeLanguageView: View {
                         HStack {
                             Text(lang.title)
                                 .font(.appFont(size: 13))
-                                .foregroundColor(isSelected ? .white : .primary)
+                                .foregroundColor(isSelected ? .textPrimary : .textSecondary)
                             Spacer()
                             if isSelected {
                                 Image(systemName: "checkmark")
                                     .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.iconTint)
+                                    .padding(.trailing, 8)
                             }
                         }
                         .padding(.vertical, 10)
                         .padding(.horizontal, 12)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(isSelected ? Color.secondary.opacity(0.1) : Color.clear)
+                        .background(isSelected ? Color.hoverBackground : Color.clear)
                         .clipShape(RoundedRectangle(cornerRadius: 4))
                         .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                 }
             }
-        }
+        }        
         .frame(width: 200, height: 250)
     }
 
@@ -114,9 +119,9 @@ struct ExchangeLanguageView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 16, height: 16)
-                .foregroundStyle(Color.app)
+                .foregroundStyle(.app)
                 .padding(6)
-                .background(Color.gray.opacity(0.1))
+                .background(Color.hoverBackground)
                 .clipShape(Circle())
         }
         .rotationEffect(.degrees(90))
