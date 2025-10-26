@@ -15,4 +15,5 @@ enum SFIcons {
     static let power = "power"
     static let gear = "gear"
     static let copy = "square.on.square"
+    static let checkmark = "checkmark"
 }
