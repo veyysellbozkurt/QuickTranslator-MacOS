@@ -45,9 +45,9 @@ struct InputView: View {
         Button {
             copyTextToClipboard()
         } label: {
-            Image(systemName: SFIcons.copy)
+            Image(.copy)
                 .resizable()
-                .frame(width: 14, height: 15)
+                .frame(width: 15, height: 16)
                 .padding(4)
                 .foregroundStyle(text.isEmpty ? Color.secondary : Color.app)
         }

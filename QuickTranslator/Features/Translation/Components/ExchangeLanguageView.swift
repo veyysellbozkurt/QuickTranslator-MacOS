@@ -53,8 +53,8 @@ struct ExchangeLanguageView: View {
                 Text(language.wrappedValue.title)
                     .font(.appFont(.semibold, size: 13))
                 Spacer()
-                Image(systemName: "chevron.down")
-                    .font(.subheadline)
+                Image(systemName: SFIcons.chevronDown)
+                    .fontWeight(.medium)
                     .foregroundColor(.secondary)
             }
             .padding(.horizontal, 10)
@@ -86,7 +86,7 @@ struct ExchangeLanguageView: View {
                                 .foregroundColor(isSelected ? .white : .primary)
                             Spacer()
                             if isSelected {
-                                Image(systemName: "checkmark")
+                                Image(systemName: SFIcons.checkmark)
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
                             }
@@ -113,7 +113,7 @@ struct ExchangeLanguageView: View {
             Image(.swap)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 16, height: 16)
+                .frame(width: 18, height: 18)
                 .foregroundStyle(Color.app)
                 .padding(6)
                 .background(Color.gray.opacity(0.1))
