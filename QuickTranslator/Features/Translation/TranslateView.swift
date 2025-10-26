@@ -23,6 +23,7 @@ struct TranslateView: View {
                                  targetLanguage: $viewModel.targetLanguage) {
                 viewModel.swapInputs()
             }
+                                 .padding(.horizontal, 6)
             
             Group {
                 if featureManager.inputLayout == .horizontal {
@@ -69,7 +70,7 @@ struct TranslateView: View {
             if viewModel.isTranslating {
                 ProgressView(Constants.Strings.translating)
                     .progressViewStyle(.circular)
-                    .foregroundStyle(Color.white)
+                    .foregroundStyle(.textPrimary)
             }
         }
     }

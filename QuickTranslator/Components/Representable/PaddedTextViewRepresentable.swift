@@ -12,7 +12,7 @@ import AppKit
 /// Updates the bound SwiftUI `String` whenever the text changes.
 struct PaddedTextViewRepresentable: NSViewRepresentable {
     @Binding var text: String
-    var inset: CGSize = .init(width: 8, height: 8)
+    var inset: CGSize = .init(width: 10, height: 10)
     var onEnterKeyPress: (() -> Void)? = nil
     var placeholder: String = ""
     var isOutput: Bool = false
@@ -33,13 +33,7 @@ struct PaddedTextViewRepresentable: NSViewRepresentable {
         textView.autoresizingMask = [.width]
         textView.delegate = context.coordinator
         
-//        if isOutput {
-//            textView.textColor = .app.withAlphaComponent(0.95)
-//            textView.placeholderColor = .app.withAlphaComponent(0.6)
-//        } else {
-            textView.textColor = NSColor.labelColor
-//        }
-        
+        textView.textColor = .textPrimary
         textView.font = .appFont(size: 13)
         
         textView.onEnterKeyPress = onEnterKeyPress
@@ -47,7 +41,7 @@ struct PaddedTextViewRepresentable: NSViewRepresentable {
         let scrollView = NSScrollView()
         scrollView.hasVerticalScroller = true
         scrollView.drawsBackground = true
-        scrollView.backgroundColor = textView.backgroundColor.withAlphaComponent(0.75)
+        scrollView.backgroundColor = .hoverBackground
         scrollView.documentView = textView
         
         return scrollView

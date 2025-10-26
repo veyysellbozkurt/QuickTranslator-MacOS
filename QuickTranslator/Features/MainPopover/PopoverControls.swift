@@ -8,48 +8,62 @@
 import SwiftUI
 
 struct PopoverControls: View {
+    @ObservedObject private var featureManager = FeatureManager.shared
     @State private var isPinned = false
     var popover: NSPopover
 
     var body: some View {
         HStack {
-            Button {
-                isPinned.toggle()
-                popover.behavior = isPinned ? .applicationDefined : .transient
-            } label: {
-                Image(systemName: isPinned ? SFIcons.pinFill : SFIcons.pin)
-                    .resizable()
-                    .foregroundStyle(isPinned ? .app : .secondary)
+            HStack(spacing: 16) {
+                Button {
+                    isPinned.toggle()
+                    popover.behavior = isPinned ? .applicationDefined : .transient
+                } label: {
+                    Image(systemName: isPinned ? SFIcons.pinFill : SFIcons.pin)
+                        .resizable()
+                        .foregroundStyle(isPinned ? .app : .iconTint)
+                }
+                .frame(width: 12, height: 18)
+                .buttonStyle(BounceButtonStyle())
+                
+                Button {
+                    featureManager.selectedTheme = (featureManager.selectedTheme == .dark) ? .light : .dark
+                    DIContainer.shared.themeManager.apply(theme: featureManager.selectedTheme)
+                } label: {
+                    Image(featureManager.selectedTheme == .dark ? .sun : .moon)
+                        .resizable()
+                        .foregroundStyle(.iconTint)
+                }
+                .frame(width: 17, height: 17)
+                .buttonStyle(BounceButtonStyle())
             }
-            .frame(width: 12, height: 18)
-            .buttonStyle(BounceButtonStyle())
             
             Spacer()
             
-            HStack(spacing: 12) {
+            HStack(spacing: 16) {
                 Button {
                     NSApp.terminate(nil)
                 } label: {
-                    Image(systemName: SFIcons.power)
+                    Image(.power)
                         .resizable()
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.iconTint)
                 }
-                .frame(width: 16, height: 17)
+                .frame(width: 17, height: 17)
                 .buttonStyle(BounceButtonStyle())
                 
                 Button {
                     DIContainer.shared.settingsWindowManager.showSettings()
                 } label: {
-                    Image(systemName: SFIcons.gear)
+                    Image(.settings)
                         .resizable()
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.iconTint)
                 }
-                .frame(width: 20, height: 19)
+                .frame(width: 17, height: 17)
                 .buttonStyle(BounceButtonStyle())
             }
         }
         .padding(.horizontal, 16)
-        .frame(height: 32)
-        .background(Color.secondary.opacity(0.07))
+        .frame(height: 34)
+        .background(.hoverBackground.opacity(0.4))
     }
 }

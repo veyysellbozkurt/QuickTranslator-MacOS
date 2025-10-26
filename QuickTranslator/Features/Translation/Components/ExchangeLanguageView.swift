@@ -51,17 +51,22 @@ struct ExchangeLanguageView: View {
         } label: {
             HStack {
                 Text(language.wrappedValue.title)
-                    .font(.appFont(.semibold, size: 13))
+                    .font(.appFont(size: 12))
                 Spacer()
-                Image(systemName: "chevron.down")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+                Image(systemName: SFIcons.chevronDown)
+                    .fontWeight(.medium)
+                    .foregroundColor(.iconTint.opacity(0.6))
             }
-            .padding(.horizontal, 10)
-            .frame(height: 32)
-            .background(Color.secondary.opacity(0.07))
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .padding(.leading, 10)
+            .padding(.trailing, 6)
+            .frame(height: 28)
+            .background(.hoverBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
         }
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(.borderDefault, lineWidth: 1)
+        )
         .buttonStyle(BounceButtonStyle())
         .popover(isPresented: isPresented) {
             languagePickerPopover(for: language)
@@ -83,10 +88,10 @@ struct ExchangeLanguageView: View {
                         HStack {
                             Text(lang.title)
                                 .font(.appFont(size: 13))
-                                .foregroundColor(isSelected ? .white : .primary)
+                                .foregroundColor(isSelected ? .textPrimary : .textSecondary)
                             Spacer()
                             if isSelected {
-                                Image(systemName: "checkmark")
+                                Image(systemName: SFIcons.checkmark)
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
                             }
@@ -94,14 +99,14 @@ struct ExchangeLanguageView: View {
                         .padding(.vertical, 10)
                         .padding(.horizontal, 12)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(isSelected ? Color.secondary.opacity(0.1) : Color.clear)
+                        .background(isSelected ? Color.hoverBackground : Color.clear)
                         .clipShape(RoundedRectangle(cornerRadius: 4))
                         .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                 }
             }
-        }
+        }        
         .frame(width: 200, height: 250)
     }
 
@@ -113,10 +118,10 @@ struct ExchangeLanguageView: View {
             Image(.swap)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 16, height: 16)
+                .frame(width: 18, height: 18)
                 .foregroundStyle(Color.app)
                 .padding(6)
-                .background(Color.gray.opacity(0.1))
+                .background(Color.hoverBackground)
                 .clipShape(Circle())
         }
         .rotationEffect(.degrees(90))

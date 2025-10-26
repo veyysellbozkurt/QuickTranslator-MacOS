@@ -57,6 +57,9 @@
 		2B69CD5E2E9BC63600C8A6CC /* LaunchAtLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69CD5D2E9BC63600C8A6CC /* LaunchAtLoginManager.swift */; };
 		2BA331D72E92A9FF00D91FA7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */; };
 		2BA5C8062E6F1B000025BE1F /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */; };
+		2BB17E722EAD92130027A4F3 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB17E712EAD92130027A4F3 /* Colors.xcassets */; };
+		2BB17E9A2EAE6E5F0027A4F3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB17E992EAE6E5E0027A4F3 /* Theme.swift */; };
+		2BB17E9C2EAEB8DC0027A4F3 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB17E9B2EAEB8DC0027A4F3 /* ThemeManager.swift */; };
 		2BDE7C342E986E4700DFD7FD /* InputLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE7C332E986E4700DFD7FD /* InputLayout.swift */; };
 		2BDE7C362E986E5400DFD7FD /* TranslationServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE7C352E986E5400DFD7FD /* TranslationServiceType.swift */; };
 		2BDE7C382E99CE3700DFD7FD /* QuickActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE7C372E99CE3700DFD7FD /* QuickActionType.swift */; };
@@ -136,6 +139,9 @@
 		2B69CD5D2E9BC63600C8A6CC /* LaunchAtLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginManager.swift; sourceTree = "<group>"; };
 		2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
+		2BB17E712EAD92130027A4F3 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		2BB17E992EAE6E5E0027A4F3 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		2BB17E9B2EAEB8DC0027A4F3 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		2BDE7C332E986E4700DFD7FD /* InputLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputLayout.swift; sourceTree = "<group>"; };
 		2BDE7C352E986E5400DFD7FD /* TranslationServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationServiceType.swift; sourceTree = "<group>"; };
 		2BDE7C372E99CE3700DFD7FD /* QuickActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionType.swift; sourceTree = "<group>"; };
@@ -293,6 +299,7 @@
 				2B4AB48E2E5F256B005DF24C /* AppDelegate.swift */,
 				2B4AB4C22E607BD6005DF24C /* DIContainer.swift */,
 				2B4AB48F2E5F256B005DF24C /* QuickTranslatorApp.swift */,
+				2BB17E9B2EAEB8DC0027A4F3 /* ThemeManager.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -342,6 +349,7 @@
 		2B4AB49D2E5F256B005DF24C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2BB17E992EAE6E5E0027A4F3 /* Theme.swift */,
 				2B5E8F2F2E9F0006009D8792 /* MenuBarIconEnum.swift */,
 				2BDE7C372E99CE3700DFD7FD /* QuickActionType.swift */,
 				2BDE7C352E986E5400DFD7FD /* TranslationServiceType.swift */,
@@ -358,6 +366,7 @@
 			children = (
 				2B030CA82EAAD2870042F673 /* Fonts */,
 				2B4AB49E2E5F256B005DF24C /* Assets.xcassets */,
+				2BB17E712EAD92130027A4F3 /* Colors.xcassets */,
 				2B4AB4E12E686E06005DF24C /* Info.plist */,
 			);
 			path = Resources;
@@ -381,8 +390,8 @@
 				2B4AB4902E5F256B005DF24C /* Core */,
 				2B4AB4A22E5F256B005DF24C /* Features */,
 				2B4AB4E52E69B3F9005DF24C /* Services */,
-				2B4AB48B2E5F256B005DF24C /* Components */,
 				2B4AB49D2E5F256B005DF24C /* Models */,
+				2B4AB48B2E5F256B005DF24C /* Components */,
 				2B4AB4952E5F256B005DF24C /* Extension */,
 				2B4AB4992E5F256B005DF24C /* Utilities */,
 				2B4AB49F2E5F256B005DF24C /* Resources */,
@@ -609,6 +618,7 @@
 				2B030CE52EAADCB50042F673 /* Inter-Medium.ttf in Resources */,
 				2B030CE62EAADCB50042F673 /* Inter-Regular.ttf in Resources */,
 				2B030CE72EAADCB50042F673 /* Inter-Bold.ttf in Resources */,
+				2BB17E722EAD92130027A4F3 /* Colors.xcassets in Resources */,
 				2BDE7C3A2E99D29100DFD7FD /* FloatingIconDemo.mov in Resources */,
 				2B4AB4A52E5F256B005DF24C /* Assets.xcassets in Resources */,
 			);
@@ -644,9 +654,11 @@
 				2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */,
 				2B030CB42EAAD3AC0042F673 /* FontManager.swift in Sources */,
 				2B4AB4E02E6741AE005DF24C /* SwiftyTranslate.swift in Sources */,
+				2BB17E9A2EAE6E5F0027A4F3 /* Theme.swift in Sources */,
 				2B1ACDC72E7ACDF700E5429E /* Afterable.swift in Sources */,
 				2B2F395A2E93DF3E009AB506 /* AboutSettingsView.swift in Sources */,
 				2B4AB4AB2E5F256B005DF24C /* Constants.swift in Sources */,
+				2BB17E9C2EAEB8DC0027A4F3 /* ThemeManager.swift in Sources */,
 				2B2F39542E93DF0F009AB506 /* GeneralSettingsView.swift in Sources */,
 				2B4EA0372E9B058D00525C49 /* MainPopover.swift in Sources */,
 				2B4EA0382E9B058D00525C49 /* PopoverControls.swift in Sources */,

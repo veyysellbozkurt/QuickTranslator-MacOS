@@ -39,17 +39,19 @@ struct InputView: View {
         .overlay(alignment: .bottomTrailing) {
             copyButton
         }
+        .shadow(color: .borderDefault.opacity(0.4), radius: 1, x: 0, y: 1)
+        .padding(2)
     }
     
     private var copyButton: some View {
         Button {
             copyTextToClipboard()
         } label: {
-            Image(systemName: SFIcons.copy)
+            Image(.copy)
                 .resizable()
-                .frame(width: 14, height: 15)
+                .frame(width: 15, height: 16)
                 .padding(4)
-                .foregroundStyle(text.isEmpty ? Color.secondary : Color.app)
+                .foregroundStyle(text.isEmpty ? .textPlaceholder : .app.opacity(0.8))
         }
         .buttonStyle(BounceButtonStyle())
         .padding(6)

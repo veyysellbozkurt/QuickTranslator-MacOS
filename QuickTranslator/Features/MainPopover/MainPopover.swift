@@ -22,7 +22,6 @@ final class MainPopover {
     
     init(viewModel: TranslateViewModel) {
         self.viewModel = viewModel
-        // Başlangıç metrikleri
         let layout = FeatureManager.shared.inputLayout
         self.minHeight = layout.minHeight
         self.maxHeight = layout.maxHeight
@@ -32,7 +31,7 @@ final class MainPopover {
         popover.contentSize = NSSize(width: baseWidth, height: minHeight)
         popover.behavior = .transient
         
-        let rootView = makeRootView(viewModel: viewModel)
+        let rootView = makeRootView(viewModel: viewModel).background(.appWindowBackground)
         popover.contentViewController = NSHostingController(rootView: rootView)
         
         setupDynamicHeightObserver()
@@ -43,6 +42,7 @@ final class MainPopover {
     func show(from button: NSStatusBarButton) {
         popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         popover.contentViewController?.view.window?.becomeKey()
+        DIContainer.shared.themeManager.applyCurrentFeatureTheme()
     }
 }
 
@@ -67,7 +67,6 @@ private extension MainPopover {
             .store(in: &cancellables)
     }
     
-    // Layout değişimini dinle ve metrikleri güncelle
     func setupLayoutObserver() {
         FeatureManager.shared.$inputLayout
             .receive(on: DispatchQueue.main)
@@ -78,14 +77,12 @@ private extension MainPopover {
             .store(in: &cancellables)
     }
     
-    // Yeni layout’a göre min/max/width’i güncelle
     func updateBaseMetrics(from layout: InputLayout) {
         self.minHeight = layout.minHeight
         self.maxHeight = layout.maxHeight
         self.baseWidth = layout.baseWidth
     }
     
-    // Mevcut içerik durumuna göre popover boyutunu güncelle
     func updateSize() {
         let sourceText = viewModel.inputText
         let translatedText = viewModel.translatedText

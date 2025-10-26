@@ -23,12 +23,36 @@ final class FeatureManager: ObservableObject {
         let savedValue = userDefaults.string(forKey: .menuBarIconName) ?? nil
         let icon = MenuBarIconEnum(rawValue: savedValue ?? "") ?? MenuBarIconEnum.light
         self._menuBarIcon = Published(initialValue: icon)
+        
+        let savedThemeValue = userDefaults.value(Theme.self, forKey: .selectedTheme) ?? DIContainer.shared.themeManager.systemTheme
+        self._selectedTheme = Published(initialValue: savedThemeValue)
     }
     
     // MARK: - Input Layout
     @Published var inputLayout: InputLayout {
         didSet {
             userDefaults.set(encodable: inputLayout, forKey: .selectedInputLayout)
+        }
+    }
+    
+    // MARK: - Theme
+    @Published var selectedTheme: Theme {
+        didSet {
+            userDefaults.set(encodable: selectedTheme, forKey: .selectedTheme)
+        }
+    }
+    
+    // MARK: - Menu Bar icon
+    @Published var menuBarIcon: MenuBarIconEnum {
+        didSet {
+            userDefaults.set(menuBarIcon.rawValue, forKey: .menuBarIconName)
+        }
+    }
+    
+    // MARK: - Translation Service
+    @Published var translationService: TranslationServiceType {
+        didSet {
+            userDefaults.set(encodable: translationService, forKey: .selectedTranslationService)
         }
     }
     
@@ -39,13 +63,6 @@ final class FeatureManager: ObservableObject {
         }
         set {
             userDefaults.set(encodable: newValue, forKey: .selectedQuickActionType)
-        }
-    }
-    
-    // MARK: - Translation Service
-    @Published var translationService: TranslationServiceType {
-        didSet {
-            userDefaults.set(encodable: translationService, forKey: .selectedTranslationService)
         }
     }
     
@@ -66,13 +83,6 @@ final class FeatureManager: ObservableObject {
         }
         set {
             userDefaults.set(newValue, forKey: .floatingIconVisibilityDuration)
-        }
-    }
-    
-    // MARK: - Menu Bar icon
-    @Published var menuBarIcon: MenuBarIconEnum {
-        didSet {
-            userDefaults.set(menuBarIcon.rawValue, forKey: .menuBarIconName)
         }
     }
 }
