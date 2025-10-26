@@ -19,6 +19,7 @@ extension UserDefaults {
         case floatingIconVisibilityDuration
         case menuBarIconName
         case launchOnStart
+        case selectedTheme
     }
     
     // MARK: - Set -

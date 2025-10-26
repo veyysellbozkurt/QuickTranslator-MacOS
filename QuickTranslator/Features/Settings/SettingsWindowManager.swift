@@ -26,6 +26,7 @@ final class SettingsWindowManager: ObservableObject {
         settingsWindow?.makeKeyAndOrderFront(nil)
         settingsWindow?.center()
         settingsWindow?.contentViewController?.view.window?.becomeKey()
+        DIContainer.shared.themeManager.applyCurrentFeatureTheme()
                 
         NSApp.activate()
     }

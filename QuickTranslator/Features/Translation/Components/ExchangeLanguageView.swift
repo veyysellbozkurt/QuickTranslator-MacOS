@@ -51,13 +51,14 @@ struct ExchangeLanguageView: View {
         } label: {
             HStack {
                 Text(language.wrappedValue.title)
-                    .font(.appFont(.semibold, size: 13))
+                    .font(.appFont(size: 12))
                 Spacer()
                 Image(systemName: SFIcons.chevronDown)
                     .fontWeight(.medium)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.iconTint.opacity(0.6))
             }
-            .padding(.horizontal, 10)
+            .padding(.leading, 10)
+            .padding(.trailing, 6)
             .frame(height: 28)
             .background(.hoverBackground)
             .clipShape(RoundedRectangle(cornerRadius: 10))

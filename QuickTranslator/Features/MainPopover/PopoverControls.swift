@@ -8,25 +8,39 @@
 import SwiftUI
 
 struct PopoverControls: View {
+    @ObservedObject private var featureManager = FeatureManager.shared
     @State private var isPinned = false
     var popover: NSPopover
 
     var body: some View {
         HStack {
-            Button {
-                isPinned.toggle()
-                popover.behavior = isPinned ? .applicationDefined : .transient
-            } label: {
-                Image(systemName: isPinned ? SFIcons.pinFill : SFIcons.pin)
-                    .resizable()
-                    .foregroundStyle(isPinned ? .app : .iconTint)
+            HStack(spacing: 16) {
+                Button {
+                    isPinned.toggle()
+                    popover.behavior = isPinned ? .applicationDefined : .transient
+                } label: {
+                    Image(systemName: isPinned ? SFIcons.pinFill : SFIcons.pin)
+                        .resizable()
+                        .foregroundStyle(isPinned ? .app : .iconTint)
+                }
+                .frame(width: 12, height: 18)
+                .buttonStyle(BounceButtonStyle())
+                
+                Button {
+                    featureManager.selectedTheme = (featureManager.selectedTheme == .dark) ? .light : .dark
+                    DIContainer.shared.themeManager.apply(theme: featureManager.selectedTheme)
+                } label: {
+                    Image(featureManager.selectedTheme == .dark ? .sun : .moon)
+                        .resizable()
+                        .foregroundStyle(.iconTint)
+                }
+                .frame(width: 17, height: 17)
+                .buttonStyle(BounceButtonStyle())
             }
-            .frame(width: 12, height: 18)
-            .buttonStyle(BounceButtonStyle())
             
             Spacer()
             
-            HStack(spacing: 14) {
+            HStack(spacing: 16) {
                 Button {
                     NSApp.terminate(nil)
                 } label: {
