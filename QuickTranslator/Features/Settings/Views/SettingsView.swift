@@ -52,35 +52,17 @@ struct SettingsContainerView: View {
                 contentView(for: selection.index)
                     .padding()
                     .id(selection.index)
-                    .transition(.asymmetric(
-                        insertion: .move(edge: selection.index > previousIndex ? .trailing : .leading).combined(with: .opacity),
-                        removal: .move(edge: selection.index > previousIndex ? .leading : .trailing).combined(with: .opacity)
-                    ))
-                    .animation(.easeInOut(duration: 0.35), value: selection.index)
-                
-                SizeReader { size in
-                    windowManager.updateWindowHeight(to: size.height)
-                }
-                .allowsHitTesting(false)
+                    
+//                    .transition(.asymmetric(
+//                        insertion: .move(edge: selection.index > previousIndex ? .trailing : .leading).combined(with: .opacity),
+//                        removal: .move(edge: selection.index > previousIndex ? .leading : .trailing).combined(with: .opacity)
+//                    ))
+//                    .animation(.easeInOut(duration: 0.35), value: selection.index)
             }
             .onChange(of: selection.index) {
                 previousIndex = selection.index
             }
         }
         .padding()
-    }
-}
-
-struct SizeReader: View {
-    var onChange: (CGSize) -> Void
-    
-    var body: some View {
-        GeometryReader { geo in
-            Color.clear
-                .onAppear { onChange(geo.size) }
-                .onChange(of: geo.size) {
-                    onChange(geo.size)
-                }
-        }
     }
 }

@@ -88,6 +88,7 @@ struct TranslationSettingsView: View {
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
                     .foregroundStyle(.secondary)
+                    .padding(.top, 8)
             }
         }
 
