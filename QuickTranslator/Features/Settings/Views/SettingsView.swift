@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingsContainerView: View {
+    @State private var contentSize: CGSize = .zero
     let windowManager: SettingsWindowManager
     @ObservedObject var selection: Coordinator
     @State private var previousIndex = 0
@@ -52,35 +53,21 @@ struct SettingsContainerView: View {
                 contentView(for: selection.index)
                     .padding()
                     .id(selection.index)
-                    .transition(.asymmetric(
-                        insertion: .move(edge: selection.index > previousIndex ? .trailing : .leading).combined(with: .opacity),
-                        removal: .move(edge: selection.index > previousIndex ? .leading : .trailing).combined(with: .opacity)
-                    ))
-                    .animation(.easeInOut(duration: 0.35), value: selection.index)
-                
-                SizeReader { size in
-                    windowManager.updateWindowHeight(to: size.height)
-                }
-                .allowsHitTesting(false)
             }
             .onChange(of: selection.index) {
                 previousIndex = selection.index
             }
         }
-        .padding()
-    }
-}
-
-struct SizeReader: View {
-    var onChange: (CGSize) -> Void
-    
-    var body: some View {
-        GeometryReader { geo in
-            Color.clear
-                .onAppear { onChange(geo.size) }
-                .onChange(of: geo.size) {
-                    onChange(geo.size)
-                }
+        .background(GeometryReader { geometry in
+            Color.clear.onAppear {
+                contentSize = geometry.size
+            }
+        })
+        .onChange(of: contentSize) {                    
+            if let window = NSApplication.shared.windows.first {
+                window.setContentSize(NSSize(width: contentSize.width, height: contentSize.height))
+            }
         }
+        .padding()
     }
 }
