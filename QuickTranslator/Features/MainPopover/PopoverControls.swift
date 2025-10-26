@@ -26,25 +26,25 @@ struct PopoverControls: View {
             
             Spacer()
             
-            HStack(spacing: 12) {
+            HStack(spacing: 14) {
                 Button {
                     NSApp.terminate(nil)
                 } label: {
-                    Image(systemName: SFIcons.power)
+                    Image(.power)
                         .resizable()
                         .foregroundStyle(.iconTint)
                 }
-                .frame(width: 16, height: 17)
+                .frame(width: 17, height: 17)
                 .buttonStyle(BounceButtonStyle())
                 
                 Button {
                     DIContainer.shared.settingsWindowManager.showSettings()
                 } label: {
-                    Image(systemName: SFIcons.gear)
+                    Image(.settings)
                         .resizable()
                         .foregroundStyle(.iconTint)
                 }
-                .frame(width: 20, height: 19)
+                .frame(width: 17, height: 17)
                 .buttonStyle(BounceButtonStyle())
             }
         }
