@@ -19,7 +19,7 @@ struct GeneralSettingsView: View {
             menuBarIconSection
         }
         .padding()
-        .frame(height: 400)
+        .frame(height: 360)
     }
 }
 

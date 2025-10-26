@@ -65,7 +65,7 @@ struct TranslationSettingsView: View {
             googleDetailsSection
         }
         .padding()
-        .frame(height: 310)
+        .frame(height: 285)
     }
 
     // MARK: - Engine Picker Section
