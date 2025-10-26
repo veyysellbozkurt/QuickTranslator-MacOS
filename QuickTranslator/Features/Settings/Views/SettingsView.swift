@@ -11,7 +11,6 @@ struct SettingsContainerView: View {
     @State private var contentSize: CGSize = .zero
     let windowManager: SettingsWindowManager
     @ObservedObject var selection: Coordinator
-    @State private var previousIndex = 0
     
     // MARK: - Coordinator
     class Coordinator: NSObject, ObservableObject {
@@ -52,20 +51,6 @@ struct SettingsContainerView: View {
             ZStack {
                 contentView(for: selection.index)
                     .padding()
-                    .id(selection.index)
-            }
-            .onChange(of: selection.index) {
-                previousIndex = selection.index
-            }
-        }
-        .background(GeometryReader { geometry in
-            Color.clear.onAppear {
-                contentSize = geometry.size
-            }
-        })
-        .onChange(of: contentSize) {                    
-            if let window = NSApplication.shared.windows.first {
-                window.setContentSize(NSSize(width: contentSize.width, height: contentSize.height))
             }
         }
         .padding()

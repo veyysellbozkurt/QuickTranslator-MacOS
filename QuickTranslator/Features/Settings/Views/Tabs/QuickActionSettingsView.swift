@@ -78,6 +78,7 @@ struct QuickActionSettingsView: View {
             }
         }
         .padding()
+        .frame(height: 310)
         .animation(.easeInOut(duration: 0.25), value: showVideo)
         .onAppear {
             playVideo(for: selectedAction)

@@ -65,7 +65,7 @@ struct TranslationSettingsView: View {
             googleDetailsSection
         }
         .padding()
-        .frame(minWidth: 360)
+        .frame(height: 310)
     }
 
     // MARK: - Engine Picker Section
@@ -85,7 +85,7 @@ struct TranslationSettingsView: View {
 
                 Text(Constants.Strings.translationEngineDescription)
                     .font(.appCaption())
-                    .lineLimit(2)
+                    .lineLimit(nil)
                     .multilineTextAlignment(.leading)
                     .foregroundStyle(.secondary)
                     .padding(.top, 8)

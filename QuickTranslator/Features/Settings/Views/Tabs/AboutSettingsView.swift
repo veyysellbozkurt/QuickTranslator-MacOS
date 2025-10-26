@@ -61,6 +61,8 @@ struct AboutSettingsView: View {
             .padding(.top, 4)
         }
         .padding(20)
+        .frame(height: 280)
+        
     }
 }
 
