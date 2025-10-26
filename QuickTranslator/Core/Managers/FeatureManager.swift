@@ -24,7 +24,7 @@ final class FeatureManager: ObservableObject {
         let icon = MenuBarIconEnum(rawValue: savedValue ?? "") ?? MenuBarIconEnum.light
         self._menuBarIcon = Published(initialValue: icon)
         
-        let savedThemeValue = userDefaults.value(Theme.self, forKey: .selectedTheme) ?? DIContainer.shared.themeManager.systemTheme
+        let savedThemeValue = userDefaults.value(Theme.self, forKey: .selectedTheme) ?? .dark
         self._selectedTheme = Published(initialValue: savedThemeValue)
     }
     
