@@ -21,15 +21,15 @@ struct ToastModifier: ViewModifier {
             if isPresented {
                 VStack {
                     Text(message)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 10)
-                        .background(Color(nsColor: .windowBackgroundColor))
-                        .foregroundColor(.primary)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(.headerBackground)
+                        .foregroundColor(.textPrimary)
                         .cornerRadius(10)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(.primary.opacity(0.2), lineWidth: 1)
+                                .stroke(.controlGreen.opacity(0.4), lineWidth: 2)
                         )
                         .padding(.bottom, 10)
                 }
