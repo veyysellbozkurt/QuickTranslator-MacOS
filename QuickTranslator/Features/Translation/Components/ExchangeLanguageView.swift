@@ -91,7 +91,7 @@ struct ExchangeLanguageView: View {
                             Spacer()
                             if isSelected {
                                 Image(systemName: "checkmark")
-                                    .fontWeight(.bold)
+                                    .fontWeight(.heavy)
                                     .foregroundColor(.iconTint)
                                     .padding(.trailing, 8)
                             }
