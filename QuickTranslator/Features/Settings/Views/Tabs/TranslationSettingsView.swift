@@ -79,10 +79,10 @@ struct TranslationSettingsView: View {
                             .padding(.leading, 4)
                     }
                 }
+                .font(.appSmallTitle13())
                 .foregroundStyle(.textPrimary)
                 .pickerStyle(.radioGroup)
                 .tint(.app)
-                .font(.appSmallTitle())
             }
         }
 
@@ -100,7 +100,7 @@ struct TranslationSettingsView: View {
                                     .foregroundStyle(.textPrimary)
                                 
                                 VStack(alignment: .leading, spacing: 6) {
-                                    Text(vm.engine.title).font(.appTitle())
+                                    Text(vm.engine.title).font(.appSmallTitle13())
                                     Text(vm.engine.subtitle)
                                         .font(.appSmallTitle())
                                         .foregroundStyle(.textPrimary)
@@ -112,7 +112,6 @@ struct TranslationSettingsView: View {
                                 Button(action: { vm.openSystemSettings() }) {
                                     Label(Constants.Strings.openSettings, systemImage: "gearshape")
                                         .font(.appButton())
-                                        .foregroundStyle(.textSecondary)
                                 }
                                 .buttonStyle(.borderedProminent)
                             }
@@ -148,7 +147,7 @@ struct TranslationSettingsView: View {
                                 .foregroundStyle(.textPrimary)
 
                             VStack(alignment: .leading, spacing: 6) {
-                                Text(vm.engine.title).font(.appTitle())
+                                Text(vm.engine.title).font(.appSmallTitle13())
                                 Text(vm.engine.subtitle)
                                     .font(.appSmallTitle())
                                     .foregroundStyle(.textSecondary)
@@ -182,8 +181,8 @@ struct InfoCard<Content: View>: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(title).font(.appTitle())
-                    Text(message).font(.appSmallTitle()).foregroundColor(.secondary)
+                    Text(title).font(.appSmallTitle13()).foregroundStyle(.textPrimary)
+                    Text(message).font(.appSmallTitle()).foregroundColor(.textSecondary)
                 }
                 Spacer()
                 trailing()
@@ -201,19 +200,20 @@ struct StepsListViewSimple: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(Constants.Strings.appleTranslateTitle)
                 .font(.appTitle()).bold()
+                .foregroundStyle(.textPrimary)
 
             ForEach(Array(steps.enumerated()), id: \.0) { idx, step in
-                HStack(alignment: .top, spacing: 8) {
+                HStack(alignment: .top, spacing: 4) {
                     Text("\(idx + 1).")
-                        .bold()
-                        .frame(width: 20, alignment: .leading)
+                        .font(.appSmallTitle())
+                        .foregroundStyle(.textPrimary)
                     Text(step)
                         .font(.appSmallTitle())
-                        .fixedSize(horizontal: false, vertical: true)
+                        .foregroundStyle(.textPrimary)
                 }
             }
         }
         .padding(10)
-        .background(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.secondary.opacity(0.2)))
+        .background(RoundedRectangle(cornerRadius: 8).strokeBorder(.gray.opacity(0.1)))
     }
 }

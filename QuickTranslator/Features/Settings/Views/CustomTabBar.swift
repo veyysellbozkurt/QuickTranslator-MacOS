@@ -44,20 +44,20 @@ struct CustomTabBar: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 18, height: 18)
-                                .foregroundStyle(.textPrimary)
+                                .foregroundStyle(.tabText)
                                 .scaleEffect(selectedIndex == index ? 1.2 : 1.0)
                         } else if let systemImageName = tab.systemImageName {
                             Image(systemName: systemImageName)
                                 .font(.system(size: 18, weight: .medium))
-                                .foregroundStyle(.textPrimary)
+                                .foregroundStyle(.tabText)
                                 .scaleEffect(selectedIndex == index ? 1.15 : 1.0)
                         }
                         
                         Text(tab.label)
                             .font(.appSmallTitle())
-                            .foregroundStyle(.textPrimary)
+                            .foregroundStyle(.tabText)
                     }
-                    .padding(.vertical, 6)
+                    .padding(.vertical, 8)
                     .padding(.horizontal, 12)
                     .background(
                         background(index: index)
@@ -81,12 +81,13 @@ struct CustomTabBar: View {
         ZStack {
             if selectedIndex == index {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(.app.opacity(0.8))
+                    .fill(.app.opacity(0.3))
+                    .strokeBorder(.app.opacity(0.9), lineWidth: 1.5)
                     .matchedGeometryEffect(id: "background", in: namespace)
             }
             else if hoveringIndex == index {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.gray.opacity(0.2))
+                    .strokeBorder(.tabText.opacity(0.4), lineWidth: 1)
             }
         }
     }

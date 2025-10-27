@@ -38,8 +38,8 @@ struct SettingsSection<Content: View>: View {
             .padding(.vertical, 8)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.gray.opacity(0.08))
-                    .strokeBorder(.gray.opacity(0.1), lineWidth: 2)
+                    .fill(.hoverBackground.opacity(0.3))
+                    .strokeBorder(.hoverBackground.opacity(0.6), lineWidth: 1.5)
             )
         }
     }

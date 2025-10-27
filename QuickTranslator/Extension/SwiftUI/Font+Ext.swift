@@ -28,6 +28,16 @@ extension Font {
         FontManager.shared.swiftUIFont(weight: .medium, size: 14)
     }
     
+    static func appTitleSemibold() -> Font {
+        // Önemli başlıklar semibold
+        FontManager.shared.swiftUIFont(weight: .semibold, size: 13)
+    }
+    
+    static func appSmallTitle13() -> Font {
+        // Önemli başlıklar semibold
+        FontManager.shared.swiftUIFont(weight: .medium, size: 13)
+    }
+    
     static func appSmallTitle() -> Font {
         // Küçük başlıklar / alt başlıklar
         FontManager.shared.swiftUIFont(weight: .medium, size: 12)

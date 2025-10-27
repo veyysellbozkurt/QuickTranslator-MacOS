@@ -28,9 +28,11 @@ struct QuickActionSettingsView: View {
                             Label(action.displayName, systemImage: action.iconName)
                                 .tag(action)
                                 .font(.appSmallTitle())
+                                .foregroundStyle(.textPrimary)
                         }
                     }
-                    .font(.appSmallTitle())
+                    .font(.appSmallTitle13())
+                    .foregroundStyle(.textPrimary)
                     .pickerStyle(.inline)
                     .tint(.app)
                     .onChange(of: selectedAction) {
@@ -59,6 +61,7 @@ struct QuickActionSettingsView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(String(format: Constants.Strings.floatingIconVisibility, floatingIconVisibilityDuration))
                         .font(.appSmallTitle())
+                        .foregroundStyle(.textPrimary)
                     
                     Slider(value: $floatingIconVisibilityDuration, in: 1...5, step: 1)
                         .tint(.app)
@@ -116,10 +119,10 @@ struct VideoPopoverView: View {
                         VStack(spacing: 8) {
                             Image(systemName: "play.rectangle.fill")
                                 .font(.system(size: 36))
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(.textSecondary)
                             Text(Constants.Strings.previewNotAvailable)
                                 .font(.appCaption())
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(.textSecondary)
                         }
                     )
             }

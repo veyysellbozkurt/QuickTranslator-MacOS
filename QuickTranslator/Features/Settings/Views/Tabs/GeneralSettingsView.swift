@@ -31,7 +31,7 @@ extension GeneralSettingsView {
             VStack(alignment: .leading, spacing: 8) {
                 Toggle(Constants.Strings.launchOnStartup, isOn: $launchOnStart)
                     .toggleStyle(.switch)
-                    .font(.appSmallTitle())
+                    .font(.appSmallTitle13())
                     .tint(.app)
                     .foregroundStyle(.textPrimary)
                     .onChange(of: launchOnStart) {
@@ -54,7 +54,7 @@ extension GeneralSettingsView {
                             .font(.appSmallTitle())
                     }
                 }
-                .font(.appSmallTitle())
+                .font(.appSmallTitle13())
                 .tint(.app)
                 .foregroundStyle(.textPrimary)
                 .pickerStyle(.inline)
@@ -66,7 +66,7 @@ extension GeneralSettingsView {
     private var menuBarIconSection: some View {
         SettingsSection(title: Constants.Strings.menuBarIconTitle,
                         footnote: Constants.Strings.menuBarIconDescription) {
-            HStack(spacing: 20) {
+            HStack(spacing: 12) {
                 ForEach(MenuBarIconEnum.allCases, id: \.self) { icon in
                     menuBarIconButton(for: icon)
                 }
@@ -86,7 +86,7 @@ extension GeneralSettingsView {
                     .scaledToFit()
                     .frame(width: 30, height: 30)
                     .cornerRadius(8)
-                    .padding(.horizontal, 6)
+                    .padding(.horizontal, 8)
 
                 Text(icon.rawValue.capitalized)
                     .font(.appCaption())

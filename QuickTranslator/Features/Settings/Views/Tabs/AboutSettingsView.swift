@@ -13,22 +13,20 @@ struct AboutSettingsView: View {
         VStack(spacing: 16) {
             Image(nsImage: FeatureManager.shared.menuBarIcon.image)
                 .resizable()
-                .foregroundColor(.app)
                 .frame(width: 80, height: 80)
             
             VStack(spacing: 4) {
                 Text(Constants.appName)
                     .font(.appHeader())
+                    .foregroundStyle(.textPrimary)
                 Text(String(format: Constants.Strings.versionPrefix, Constants.appVersion))
                     .font(.appCaption())
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.textSecondary)
             }
             
             Text(Constants.Strings.aboutAppDescription)
                 .font(.appSmallTitle())
-                .multilineTextAlignment(.center)
-                .foregroundColor(.secondary)
-                .padding(.horizontal)
+                .foregroundColor(.textSecondary)
             
             Divider()
             
@@ -52,17 +50,14 @@ struct AboutSettingsView: View {
             VStack(spacing: 6) {
                 Text(String(format: Constants.Strings.enjoyAppTitle, Constants.appName))
                     .font(.appTitle())
+                    .foregroundStyle(.textPrimary)
                 Text(Constants.Strings.enjoyAppDescription)
                     .font(.appCaption())
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
+                    .foregroundStyle(.textSecondary)
             }
             .padding(.top, 4)
         }
-        .padding(20)
         .frame(height: 300)
-        
     }
 }
 
@@ -78,19 +73,18 @@ private struct RateButton: View {
                     .font(.appButton())
             }
             .padding(.horizontal, 8)
-            .frame(height: 36)
+            .frame(height: 32)
             .background(
                 Capsule()
-                    .fill(Color.app.opacity(0.15))
+                    .fill(.app.opacity(0.1))
             )
         }
         .buttonStyle(.plain)
         .foregroundStyle(.app)
         .overlay(
             Capsule()
-                .stroke(Color.app.opacity(0.5), lineWidth: 1)
+                .stroke(.app.opacity(0.5), lineWidth: 1.2)
         )
-        .contentShape(Capsule())
         .help(Constants.Strings.rateButtonHelp)
     }
 }
@@ -107,19 +101,18 @@ private struct FeedbackButton: View {
                     .font(.appButton())
             }
             .padding(.horizontal, 8)
-            .frame(height: 36)
+            .frame(height: 32)
             .background(
                 Capsule()
-                    .fill(Color.app.opacity(0.15))
+                    .fill(.app.opacity(0.1))
             )
         }
         .buttonStyle(.plain)
         .foregroundStyle(.app)
         .overlay(
             Capsule()
-                .stroke(Color.app.opacity(0.5), lineWidth: 1)
+                .stroke(.app.opacity(0.5), lineWidth: 1.2)
         )
-        .contentShape(Capsule())
         .help(Constants.Strings.feedbackButtonHelp)
     }
 }
