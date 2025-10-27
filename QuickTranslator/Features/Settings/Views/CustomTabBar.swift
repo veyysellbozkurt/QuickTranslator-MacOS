@@ -44,18 +44,19 @@ struct CustomTabBar: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 18, height: 18)
+                                .foregroundStyle(.textPrimary)
                                 .scaleEffect(selectedIndex == index ? 1.2 : 1.0)
                         } else if let systemImageName = tab.systemImageName {
-                            Image(systemName: systemImageName)                                
+                            Image(systemName: systemImageName)
                                 .font(.system(size: 18, weight: .medium))
+                                .foregroundStyle(.textPrimary)
                                 .scaleEffect(selectedIndex == index ? 1.15 : 1.0)
                         }
                         
                         Text(tab.label)
-                            .font(.callout)
-                            .lineLimit(1)
+                            .font(.appSmallTitle())
+                            .foregroundStyle(.textPrimary)
                     }
-                    .foregroundColor(.primary.opacity(0.85))
                     .padding(.vertical, 6)
                     .padding(.horizontal, 12)
                     .background(
@@ -64,12 +65,15 @@ struct CustomTabBar: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
+                .onHover { isHovering in
+                    hoveringIndex = isHovering ? index : (hoveringIndex == index ? nil : hoveringIndex)
+                }
             }
         }
         .padding(6)
         .background(
-            RoundedRectangle(cornerRadius: 10)            
-            .fill(Color.gray.opacity(0.08))
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.hoverBackground.opacity(0.5))
         )
     }
     
@@ -77,7 +81,7 @@ struct CustomTabBar: View {
         ZStack {
             if selectedIndex == index {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.app.opacity(0.5))
+                    .fill(.app.opacity(0.8))
                     .matchedGeometryEffect(id: "background", in: namespace)
             }
             else if hoveringIndex == index {

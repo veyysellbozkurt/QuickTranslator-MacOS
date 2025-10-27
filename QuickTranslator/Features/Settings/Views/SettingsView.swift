@@ -53,6 +53,6 @@ struct SettingsContainerView: View {
                     .padding()
             }
         }
-        .padding()
+        .padding([.horizontal, .bottom])
     }
 }

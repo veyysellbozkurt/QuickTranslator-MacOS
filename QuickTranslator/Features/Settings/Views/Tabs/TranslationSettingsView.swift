@@ -59,18 +59,18 @@ struct TranslationSettingsView: View {
     @StateObject private var vm = TranslationSettingsViewModel()
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 20) {
             engineSection
             appleDetailsSection
             googleDetailsSection
         }
-        .padding()
-        .frame(height: 285)
+        .frame(height: 300)
     }
 
     // MARK: - Engine Picker Section
     private var engineSection: some View {
-            SettingsSection(title: Constants.Strings.translationEngineTitle) {
+            SettingsSection(title: Constants.Strings.translationEngineTitle,
+                            footnote: Constants.Strings.translationEngineDescription) {
                 Picker("Engine   ", selection: $vm.engine) {
                     ForEach(TranslationEngine.allCases) { engine in
                         Label(engine.title, systemImage: engine.systemImage)
@@ -79,16 +79,10 @@ struct TranslationSettingsView: View {
                             .padding(.leading, 4)
                     }
                 }
+                .foregroundStyle(.textPrimary)
                 .pickerStyle(.radioGroup)
                 .tint(.app)
                 .font(.appSmallTitle())
-
-                Text(Constants.Strings.translationEngineDescription)
-                    .font(.appCaption())
-                    .lineLimit(nil)
-                    .multilineTextAlignment(.leading)
-                    .foregroundStyle(.secondary)
-                    .padding(.top, 8)
             }
         }
 
@@ -97,41 +91,44 @@ struct TranslationSettingsView: View {
     private var appleDetailsSection: some View {
             if vm.engine == .apple {
                 SettingsSection(title: Constants.Strings.appleTranslateTitle) {
-                    VStack(alignment: .leading, spacing: 12) {
-                        HStack(alignment: .top, spacing: 12) {
-                            Image(systemName: vm.engine.systemImage)
-                                .font(.appTitle())
-                                .frame(width: 36, height: 36)
-                                .foregroundStyle(.primary)
-
-                            VStack(alignment: .leading, spacing: 6) {
-                                Text(vm.engine.title).font(.appTitle())
-                                Text(vm.engine.subtitle)
-                                    .font(.appSmallTitle())
-                                    .foregroundStyle(.secondary)
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 12) {
+                            HStack(alignment: .top, spacing: 12) {
+                                Image(systemName: vm.engine.systemImage)
+                                    .font(.appTitle())
+                                    .frame(width: 36, height: 36)
+                                    .foregroundStyle(.textPrimary)
+                                
+                                VStack(alignment: .leading, spacing: 6) {
+                                    Text(vm.engine.title).font(.appTitle())
+                                    Text(vm.engine.subtitle)
+                                        .font(.appSmallTitle())
+                                        .foregroundStyle(.textPrimary)
+                                }
                             }
-                        }
-
-                        InfoCard(title: Constants.Strings.appleOfflineModeEnabled,
-                                 message: Constants.Strings.appleOfflineMessage) {
-                            Button(action: { vm.openSystemSettings() }) {
-                                Label(Constants.Strings.openSettings, systemImage: "gearshape")
-                                    .font(.appButton())
+                            
+                            InfoCard(title: Constants.Strings.appleOfflineModeEnabled,
+                                     message: Constants.Strings.appleOfflineMessage) {
+                                Button(action: { vm.openSystemSettings() }) {
+                                    Label(Constants.Strings.openSettings, systemImage: "gearshape")
+                                        .font(.appButton())
+                                        .foregroundStyle(.textSecondary)
+                                }
+                                .buttonStyle(.borderedProminent)
                             }
-                            .buttonStyle(.borderedProminent)
-                        }
-
-                        if vm.didOpenSystemSettings {
-                            StepsListViewSimple(steps: [
-                                Constants.Strings.appleStep1,
-                                Constants.Strings.appleStep2,
-                                Constants.Strings.appleStep3
-                            ])
-                        } else {
-                            Text(String(format: Constants.Strings.appleSupportedLanguagesMessage,
-                                        vm.supportedLanguageCount))
+                            
+                            if vm.didOpenSystemSettings {
+                                StepsListViewSimple(steps: [
+                                    Constants.Strings.appleStep1,
+                                    Constants.Strings.appleStep2,
+                                    Constants.Strings.appleStep3
+                                ])
+                            } else {
+                                Text(String(format: Constants.Strings.appleSupportedLanguagesMessage,
+                                            vm.supportedLanguageCount))
                                 .font(.appCaption())
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(.textSecondary)
+                            }
                         }
                     }
                 }
@@ -148,13 +145,13 @@ struct TranslationSettingsView: View {
                             Image(systemName: vm.engine.systemImage)
                                 .font(.appTitle())
                                 .frame(width: 36, height: 36)
-                                .foregroundStyle(.primary)
+                                .foregroundStyle(.textPrimary)
 
                             VStack(alignment: .leading, spacing: 6) {
                                 Text(vm.engine.title).font(.appTitle())
                                 Text(vm.engine.subtitle)
                                     .font(.appSmallTitle())
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(.textSecondary)
                             }
                         }
 

@@ -54,10 +54,12 @@ final class SettingsWindowManager: ObservableObject {
         window.title = "Preferences"
         window.titlebarAppearsTransparent = true
         window.isReleasedWhenClosed = false
+        window.backgroundColor = .appWindowBackground        
         
         hostingController!.view.frame = window.contentView!.bounds
         hostingController!.view.autoresizingMask = [.width, .height]
         window.contentView = hostingController!.view
+        
         
         settingsWindow = window
         windowDelegate = SettingsWindowDelegate(manager: self)

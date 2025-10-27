@@ -18,14 +18,10 @@ struct QuickActionSettingsView: View {
     @State private var showVideoPopover = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            SettingsSection(title: Constants.Strings.quickActionTitle) {
+        VStack(alignment: .leading, spacing: 20) {
+            SettingsSection(title: Constants.Strings.quickActionTitle,
+                            footnote: Constants.Strings.quickActionPickerDescription) {
                 VStack(alignment: .leading, spacing: 16) {
-                    
-                    // MARK: - Picker
-                    Text(Constants.Strings.quickActionPickerDescription)
-                        .font(.appCaption())
-                        .foregroundStyle(.secondary)
                     
                     Picker("Action Type   ", selection: $selectedAction) {
                         ForEach(QuickActionType.allCases, id: \.self) { action in
@@ -58,7 +54,8 @@ struct QuickActionSettingsView: View {
                 }
             }
             
-            SettingsSection(title: Constants.Strings.timeIntervalTitle) {
+            SettingsSection(title: Constants.Strings.timeIntervalTitle,
+                            footnote: Constants.Strings.floatingIconDescription) {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(String(format: Constants.Strings.floatingIconVisibility, floatingIconVisibilityDuration))
                         .font(.appSmallTitle())
@@ -68,17 +65,11 @@ struct QuickActionSettingsView: View {
                         .onChange(of: floatingIconVisibilityDuration) {
                             featureManager.floatingIconVisibilityDuration = floatingIconVisibilityDuration
                         }
-                    
-                    Text(Constants.Strings.floatingIconDescription)
-                        .font(.appCaption())
-                        .foregroundStyle(.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .frame(width: 350)
             }
         }
-        .padding()
-        .frame(height: 290)
+        .frame(height: 280)
         .animation(.easeInOut(duration: 0.25), value: showVideo)
         .onAppear {
             playVideo(for: selectedAction)

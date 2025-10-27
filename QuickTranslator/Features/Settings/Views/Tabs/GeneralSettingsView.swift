@@ -13,12 +13,11 @@ struct GeneralSettingsView: View {
     @StateObject private var manager = LaunchAtLoginManager()
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 20) {
             launchSettingsSection
             inputLayoutSection
             menuBarIconSection
         }
-        .padding()
         .frame(height: 360)
     }
 }
@@ -27,27 +26,26 @@ extension GeneralSettingsView {
     
     // MARK: - Launch Settings
     private var launchSettingsSection: some View {
-        SettingsSection(title: Constants.Strings.launchSettingsTitle) {
+        SettingsSection(title: Constants.Strings.launchSettingsTitle,
+                        footnote: Constants.Strings.launchOnStartupDescription) {
             VStack(alignment: .leading, spacing: 8) {
                 Toggle(Constants.Strings.launchOnStartup, isOn: $launchOnStart)
                     .toggleStyle(.switch)
                     .font(.appSmallTitle())
                     .tint(.app)
+                    .foregroundStyle(.textPrimary)
                     .onChange(of: launchOnStart) {
                         featureManager.launchOnStart = launchOnStart
                         manager.toggleLaunchAtLogin()
                     }
-                
-                Text(Constants.Strings.launchOnStartupDescription)
-                    .font(.appCaption())
-                    .foregroundStyle(.secondary)
             }
         }
     }
     
     // MARK: - Input Layout
     private var inputLayoutSection: some View {
-        SettingsSection(title: Constants.Strings.inputLayoutTitle) {
+        SettingsSection(title: Constants.Strings.inputLayoutTitle,
+                        footnote: featureManager.inputLayout.description) {
             VStack(alignment: .leading, spacing: 10) {
                 Picker("Layout Style", selection: $featureManager.inputLayout) {
                     ForEach(InputLayout.allCases, id: \.self) { layout in
@@ -58,28 +56,21 @@ extension GeneralSettingsView {
                 }
                 .font(.appSmallTitle())
                 .tint(.app)
+                .foregroundStyle(.textPrimary)
                 .pickerStyle(.inline)
-                
-                Text(featureManager.inputLayout.description)
-                    .font(.appCaption())
-                    .foregroundStyle(.secondary)
-                    .animation(.default, value: featureManager.inputLayout)
             }
         }
     }
     
     // MARK: - Menu Bar Icon
     private var menuBarIconSection: some View {
-        SettingsSection(title: Constants.Strings.menuBarIconTitle) {
+        SettingsSection(title: Constants.Strings.menuBarIconTitle,
+                        footnote: Constants.Strings.menuBarIconDescription) {
             HStack(spacing: 20) {
                 ForEach(MenuBarIconEnum.allCases, id: \.self) { icon in
                     menuBarIconButton(for: icon)
                 }
             }
-            
-            Text(Constants.Strings.menuBarIconDescription)
-                .font(.appCaption())
-                .foregroundStyle(.secondary)
         }
     }
     
@@ -118,35 +109,6 @@ extension GeneralSettingsView {
             } else {
                 NSCursor.pop()
             }
-        }
-    }
-}
-
-// MARK: - Shared Section Component
-struct SettingsSection<Content: View>: View {
-    let title: String
-    let content: () -> Content
-    
-    init(title: String, @ViewBuilder content: @escaping () -> Content) {
-        self.title = title
-        self.content = content
-    }
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(title.uppercased())
-                .font(.appFont(.semibold, size: 11))
-                .foregroundStyle(.secondary)
-            
-            VStack(alignment: .leading) {
-                content()
-            }
-            .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.gray.opacity(0.08))
-                    .strokeBorder(.gray.opacity(0.1), lineWidth: 2)
-            )
         }
     }
 }
