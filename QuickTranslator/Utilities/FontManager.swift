@@ -11,15 +11,14 @@ import AppKit
 final class FontManager {
     
     static let shared = FontManager()
-    private init() {}
     
-    // MARK: - Font Ailesi
-    private let defaultFamily = "Inter"
+    private init() {}
     
     // MARK: - SwiftUI Font Helpers
     func swiftUIFont(weight: FontWeight = .regular, size: CGFloat) -> Font {
         let name = fontName(weight: weight)
         return Font.custom(name, size: size)
+//        return Font.custom("dd", size: size)
     }
     
     // MARK: - AppKit Font Helpers
@@ -36,16 +35,20 @@ final class FontManager {
     // MARK: - Font Name Resolver (PostScript Names)
     private func fontName(weight: FontWeight) -> String {
         switch weight {
-        case .light:   return "Inter-Light"
-        case .regular: return "Inter-Regular"
-        case .medium:  return "Inter-Medium"
-        case .semibold:return "Inter-SemiBold"
-        case .bold:    return "Inter-Bold"
+        case .thin:         return "Poppins-Thin"
+        case .light:        return "Poppins-Light"
+        case .extraLight:   return "Poppins-ExtraLight"
+        case .regular:      return "Poppins-Regular"
+        case .medium:       return "Poppins-Medium"
+        case .semibold:     return "Poppins-SemiBold"
+        case .bold:         return "Poppins-Bold"
+        case .extraBold:    return "Poppins-ExtraBold"
+        case .black:        return "Poppins-Black"
         }
     }
     
     // MARK: - Nested Types
     enum FontWeight {
-        case light, regular, medium, semibold, bold
+        case thin, light, extraLight, regular, medium, semibold, bold, extraBold, black
     }
 }

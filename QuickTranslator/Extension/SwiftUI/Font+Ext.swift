@@ -40,7 +40,7 @@ extension Font {
     
     static func appSmallTitle() -> Font {
         // Küçük başlıklar / alt başlıklar
-        FontManager.shared.swiftUIFont(weight: .medium, size: 12)
+        FontManager.shared.swiftUIFont(weight: .regular, size: 12)
     }
     
     static func appCaption() -> Font {
@@ -50,6 +50,6 @@ extension Font {
     
     static func appButton() -> Font {
         // Buton metinleri
-        FontManager.shared.swiftUIFont(weight: .medium, size: 14)
+        FontManager.shared.swiftUIFont(weight: .semibold, size: 12)
     }
 }

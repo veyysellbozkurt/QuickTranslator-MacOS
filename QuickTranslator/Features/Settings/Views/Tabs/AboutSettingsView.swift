@@ -17,7 +17,7 @@ struct AboutSettingsView: View {
             
             VStack(spacing: 4) {
                 Text(Constants.appName)
-                    .font(.appHeader())
+                    .font(.appFont(.extraBold, size: 20))
                     .foregroundStyle(.textPrimary)
                 Text(String(format: Constants.Strings.versionPrefix, Constants.appVersion))
                     .font(.appCaption())
