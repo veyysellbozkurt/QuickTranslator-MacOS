@@ -6,18 +6,22 @@
 //
 
 import SwiftUI
+import RevenueCat
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ notification: Notification) {
-        DIContainer.shared.quickActionManager.start()
-        
         NSApp.setActivationPolicy(.accessory)
         
+        DIContainer.shared.quickActionManager.start()
+        DIContainer.shared.subscriptionManager.configure()
+                
+        #if DEBUG
         performShortAfter {
             DIContainer.shared.settingsWindowManager.showSettings()
 //            DIContainer.shared.mainPopover.show(from: DIContainer.shared.statusBarController.statusItem.button!)
         }
+        #endif
     }
     
     /// When clicking the app icon in the Dock

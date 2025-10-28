@@ -74,6 +74,12 @@
 		2BB17EE72EB026FE0027A4F3 /* Poppins-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2BB17ED42EB022520027A4F3 /* Poppins-Regular.ttf */; };
 		2BB17EE82EB026FE0027A4F3 /* Poppins-SemiBold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2BB17ED52EB022520027A4F3 /* Poppins-SemiBold.ttf */; };
 		2BB17EE92EB026FE0027A4F3 /* Poppins-Thin.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2BB17ED62EB022520027A4F3 /* Poppins-Thin.ttf */; };
+		2BB17EEC2EB0F2610027A4F3 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 2BB17EEB2EB0F2610027A4F3 /* RevenueCat */; };
+		2BB17EEE2EB0F2610027A4F3 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2BB17EED2EB0F2610027A4F3 /* RevenueCatUI */; };
+		2BB17EF32EB145A60027A4F3 /* RevenueCatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB17EF22EB145760027A4F3 /* RevenueCatService.swift */; };
+		2BB17EF52EB145B00027A4F3 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB17EF42EB145AD0027A4F3 /* SubscriptionManager.swift */; };
+		2BB17EF82EB148560027A4F3 /* SubscriptionPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB17EF72EB148560027A4F3 /* SubscriptionPlan.swift */; };
+		2BB17EFA2EB14B540027A4F3 /* SubscriptionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB17EF92EB14B540027A4F3 /* SubscriptionStatus.swift */; };
 		2BDE7C342E986E4700DFD7FD /* InputLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE7C332E986E4700DFD7FD /* InputLayout.swift */; };
 		2BDE7C362E986E5400DFD7FD /* TranslationServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE7C352E986E5400DFD7FD /* TranslationServiceType.swift */; };
 		2BDE7C382E99CE3700DFD7FD /* QuickActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE7C372E99CE3700DFD7FD /* QuickActionType.swift */; };
@@ -182,6 +188,10 @@
 		2BB17ED42EB022520027A4F3 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		2BB17ED52EB022520027A4F3 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		2BB17ED62EB022520027A4F3 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		2BB17EF22EB145760027A4F3 /* RevenueCatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCatService.swift; sourceTree = "<group>"; };
+		2BB17EF42EB145AD0027A4F3 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
+		2BB17EF72EB148560027A4F3 /* SubscriptionPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlan.swift; sourceTree = "<group>"; };
+		2BB17EF92EB14B540027A4F3 /* SubscriptionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatus.swift; sourceTree = "<group>"; };
 		2BDE7C332E986E4700DFD7FD /* InputLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputLayout.swift; sourceTree = "<group>"; };
 		2BDE7C352E986E5400DFD7FD /* TranslationServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationServiceType.swift; sourceTree = "<group>"; };
 		2BDE7C372E99CE3700DFD7FD /* QuickActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionType.swift; sourceTree = "<group>"; };
@@ -206,6 +216,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BB17EEE2EB0F2610027A4F3 /* RevenueCatUI in Frameworks */,
+				2BB17EEC2EB0F2610027A4F3 /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,11 +335,10 @@
 		2B4AB4902E5F256B005DF24C /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				2BB17EEF2EB0FB420027A4F3 /* Lifecycle */,
 				2B62A1E82E6B07CB000ADA9E /* Managers */,
 				2B4AB48D2E5F256B005DF24C /* Constants */,
-				2B4AB48E2E5F256B005DF24C /* AppDelegate.swift */,
 				2B4AB4C22E607BD6005DF24C /* DIContainer.swift */,
-				2B4AB48F2E5F256B005DF24C /* QuickTranslatorApp.swift */,
 				2BB17E9B2EAEB8DC0027A4F3 /* ThemeManager.swift */,
 			);
 			path = Core;
@@ -378,6 +389,7 @@
 		2B4AB49D2E5F256B005DF24C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2BB17EF62EB145B80027A4F3 /* Subscription */,
 				2BB17E992EAE6E5E0027A4F3 /* Theme.swift */,
 				2B5E8F2F2E9F0006009D8792 /* MenuBarIconEnum.swift */,
 				2BDE7C372E99CE3700DFD7FD /* QuickActionType.swift */,
@@ -485,8 +497,8 @@
 		2B4AB4E52E69B3F9005DF24C /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				2B4AB4DD2E674163005DF24C /* TranslationFactory.swift */,
-				2B4AB4E42E69B3E2005DF24C /* SwiftyTranslateService */,
+				2BB17EF12EB1456D0027A4F3 /* Subscription */,
+				2BB17EF02EB1455E0027A4F3 /* Translation */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -511,6 +523,7 @@
 		2B62A1E82E6B07CB000ADA9E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				2BB17EF42EB145AD0027A4F3 /* SubscriptionManager.swift */,
 				2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */,
 			);
 			path = Managers;
@@ -541,6 +554,41 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		2BB17EEF2EB0FB420027A4F3 /* Lifecycle */ = {
+			isa = PBXGroup;
+			children = (
+				2B4AB48F2E5F256B005DF24C /* QuickTranslatorApp.swift */,
+				2B4AB48E2E5F256B005DF24C /* AppDelegate.swift */,
+			);
+			path = Lifecycle;
+			sourceTree = "<group>";
+		};
+		2BB17EF02EB1455E0027A4F3 /* Translation */ = {
+			isa = PBXGroup;
+			children = (
+				2B4AB4E42E69B3E2005DF24C /* SwiftyTranslateService */,
+				2B4AB4DD2E674163005DF24C /* TranslationFactory.swift */,
+			);
+			path = Translation;
+			sourceTree = "<group>";
+		};
+		2BB17EF12EB1456D0027A4F3 /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				2BB17EF22EB145760027A4F3 /* RevenueCatService.swift */,
+			);
+			path = Subscription;
+			sourceTree = "<group>";
+		};
+		2BB17EF62EB145B80027A4F3 /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				2BB17EF92EB14B540027A4F3 /* SubscriptionStatus.swift */,
+				2BB17EF72EB148560027A4F3 /* SubscriptionPlan.swift */,
+			);
+			path = Subscription;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -559,6 +607,8 @@
 			);
 			name = QuickTranslator;
 			packageProductDependencies = (
+				2BB17EEB2EB0F2610027A4F3 /* RevenueCat */,
+				2BB17EED2EB0F2610027A4F3 /* RevenueCatUI */,
 			);
 			productName = QuickTranslator;
 			productReference = 2B12E7892E5351010029301B /* QuickTranslator.app */;
@@ -642,6 +692,9 @@
 			);
 			mainGroup = 2B12E7802E5351010029301B;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2BB17EEA2EB0F2610027A4F3 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2B12E78A2E5351010029301B /* Products */;
 			projectDirPath = "";
@@ -699,6 +752,7 @@
 				2B4AB4A72E5F256B005DF24C /* FloatingQuickActionPanel.swift in Sources */,
 				2B4AB4A82E5F256B005DF24C /* PaddedTextViewRepresentable.swift in Sources */,
 				2BDE7C342E986E4700DFD7FD /* InputLayout.swift in Sources */,
+				2BB17EF52EB145B00027A4F3 /* SubscriptionManager.swift in Sources */,
 				2B030CF02EAAF3A80042F673 /* MailAppHelper.swift in Sources */,
 				2B4AB4A92E5F256B005DF24C /* InputView.swift in Sources */,
 				2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */,
@@ -723,11 +777,14 @@
 				2B4AB4B12E5F256B005DF24C /* QuickActionManager.swift in Sources */,
 				2B4AB4C12E607667005DF24C /* StatusBarController.swift in Sources */,
 				2B4AB4B32E5F256B005DF24C /* Language.swift in Sources */,
+				2BB17EF82EB148560027A4F3 /* SubscriptionPlan.swift in Sources */,
 				2B62A1EA2E6B07D9000ADA9E /* FeatureManager.swift in Sources */,
 				2B5433202E9693E500682C76 /* Logger.swift in Sources */,
 				2B1ACDC42E7AC73000E5429E /* SettingsView.swift in Sources */,
+				2BB17EF32EB145A60027A4F3 /* RevenueCatService.swift in Sources */,
 				2B2F39562E93DF24009AB506 /* TranslationSettingsView.swift in Sources */,
 				2B030CE82EAADE910042F673 /* NSFont+Ext.swift in Sources */,
+				2BB17EFA2EB14B540027A4F3 /* SubscriptionStatus.swift in Sources */,
 				2BA5C8062E6F1B000025BE1F /* ToastModifier.swift in Sources */,
 				2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */,
 				2B4AB4DE2E674163005DF24C /* TranslationFactory.swift in Sources */,
@@ -1082,6 +1139,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2BB17EEA2EB0F2610027A4F3 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2BB17EEB2EB0F2610027A4F3 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BB17EEA2EB0F2610027A4F3 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		2BB17EED2EB0F2610027A4F3 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BB17EEA2EB0F2610027A4F3 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2B12E7812E5351010029301B /* Project object */;
 }

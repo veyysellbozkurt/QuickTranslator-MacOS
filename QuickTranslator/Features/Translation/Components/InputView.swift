@@ -39,7 +39,7 @@ struct InputView: View {
         .overlay(alignment: .bottomTrailing) {
             copyButton
         }
-        .shadow(color: .borderDefault.opacity(0.4), radius: 1, x: 0, y: 1)
+        .shadow(color: .textPrimary.opacity(0.15), radius: 0.5, x: 0, y: 1)
         .padding(2)
     }
     

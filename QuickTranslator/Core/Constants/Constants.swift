@@ -75,6 +75,10 @@ enum Constants {
         static let appStoreReviewURL = URL(string: "https://apps.apple.com/app/idYOUR_APP_ID?action=write-review")
     }
     
+    enum Keys {
+        static let revenueCatAPIKey = ""
+    }
+    
     static var appName: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "Quick Translator"
     }
