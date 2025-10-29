@@ -42,6 +42,9 @@ final class MainPopover {
         popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         popover.contentViewController?.view.window?.becomeKey()
         DIContainer.shared.themeManager.applyCurrentFeatureTheme()
+        Task { @MainActor in
+            await SubscriptionManager.shared.checkSubscriptionStatus()
+        }
     }
 }
 
