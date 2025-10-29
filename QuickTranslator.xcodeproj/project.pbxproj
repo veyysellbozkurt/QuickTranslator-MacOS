@@ -51,6 +51,7 @@
 		2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */; };
 		2B69CD5E2E9BC63600C8A6CC /* LaunchAtLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69CD5D2E9BC63600C8A6CC /* LaunchAtLoginManager.swift */; };
 		2B8739502EB238B1004E20A7 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87394F2EB238B0004E20A7 /* Date+Ext.swift */; };
+		2B8739522EB2B513004E20A7 /* BePremiumButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8739512EB2B507004E20A7 /* BePremiumButton.swift */; };
 		2BA331D72E92A9FF00D91FA7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */; };
 		2BA5C8062E6F1B000025BE1F /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */; };
 		2BB17E722EAD92130027A4F3 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB17E712EAD92130027A4F3 /* Colors.xcassets */; };
@@ -175,6 +176,7 @@
 		2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleKey.swift; sourceTree = "<group>"; };
 		2B69CD5D2E9BC63600C8A6CC /* LaunchAtLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginManager.swift; sourceTree = "<group>"; };
 		2B87394F2EB238B0004E20A7 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		2B8739512EB2B507004E20A7 /* BePremiumButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BePremiumButton.swift; sourceTree = "<group>"; };
 		2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
 		2BB17E712EAD92130027A4F3 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 		2B4AB48A2E5F256B005DF24C /* SwiftUIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				2B8739512EB2B507004E20A7 /* BePremiumButton.swift */,
 				2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */,
 			);
 			path = SwiftUIComponents;
@@ -777,6 +780,7 @@
 				2BDE7C382E99CE3700DFD7FD /* QuickActionType.swift in Sources */,
 				2B4AB4AF2E5F256B005DF24C /* BounceButtonStyle.swift in Sources */,
 				2B4AB4B02E5F256B005DF24C /* DoubleKeyMonitor.swift in Sources */,
+				2B8739522EB2B513004E20A7 /* BePremiumButton.swift in Sources */,
 				2B4AB4B12E5F256B005DF24C /* QuickActionManager.swift in Sources */,
 				2B4AB4C12E607667005DF24C /* StatusBarController.swift in Sources */,
 				2B4AB4B32E5F256B005DF24C /* Language.swift in Sources */,

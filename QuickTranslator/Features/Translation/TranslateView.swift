@@ -27,11 +27,11 @@ struct TranslateView: View {
             
             Group {
                 if featureManager.inputLayout == .horizontal {
-                    HStack(spacing: 8) {
+                    HStack(spacing: 6) {
                         inputsSection
                     }
                 } else {
-                    VStack(spacing: 8) {
+                    VStack(spacing: 6) {
                         inputsSection
                     }
                 }

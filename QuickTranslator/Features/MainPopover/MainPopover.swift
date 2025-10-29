@@ -14,8 +14,7 @@ final class MainPopover {
     private let popover: NSPopover
     private let viewModel: TranslateViewModel
     private var cancellables = Set<AnyCancellable>()
-    
-    // Dinamik metrikler (layout değişince güncellenecek)
+        
     private var minHeight: CGFloat
     private var maxHeight: CGFloat
     private var baseWidth: CGFloat
@@ -50,8 +49,8 @@ private extension MainPopover {
     func makeRootView(viewModel: TranslateViewModel) -> some View {
         VStack {
             TranslateView(viewModel: viewModel)
-                .padding(.horizontal, 8)
-                .padding(.top, 8)
+                .padding(.horizontal, 6)
+                .padding(.top, 6)
             PopoverControls(popover: popover)
         }
         .background(.ultraThinMaterial)

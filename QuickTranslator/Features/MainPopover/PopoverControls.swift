@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PopoverControls: View {
     @ObservedObject private var featureManager = FeatureManager.shared
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @State private var isPinned = false
     var popover: NSPopover
 
@@ -40,6 +41,12 @@ struct PopoverControls: View {
             
             Spacer()
             
+            if !subscriptionManager.isSubscribed {
+                BePremiumButton()
+            }
+            
+            Spacer()
+            
             HStack(spacing: 16) {
                 Button {
                     NSApp.terminate(nil)
@@ -63,7 +70,7 @@ struct PopoverControls: View {
             }
         }
         .padding(.horizontal, 16)
-        .frame(height: 34)
+        .frame(height: SubscriptionManager.shared.isSubscribed ? 36 : 48)
         .background(.hoverBackground.opacity(0.4))
     }
 }

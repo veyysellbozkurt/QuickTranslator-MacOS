@@ -42,7 +42,7 @@ extension InputLayout: Identifiable {
     var minHeight: CGFloat {
         switch self {
         case .horizontal:
-            return 240
+            return 260
         case .vertical:
             return 300
         }
@@ -51,7 +51,7 @@ extension InputLayout: Identifiable {
     var maxHeight: CGFloat {
         switch self {
         case .horizontal:
-            return 500
+            return 550
         case .vertical:
             return 600
         }
