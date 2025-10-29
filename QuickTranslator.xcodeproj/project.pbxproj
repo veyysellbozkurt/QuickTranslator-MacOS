@@ -50,6 +50,7 @@
 		2B62A1EA2E6B07D9000ADA9E /* FeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */; };
 		2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */; };
 		2B69CD5E2E9BC63600C8A6CC /* LaunchAtLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69CD5D2E9BC63600C8A6CC /* LaunchAtLoginManager.swift */; };
+		2B8739502EB238B1004E20A7 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87394F2EB238B0004E20A7 /* Date+Ext.swift */; };
 		2BA331D72E92A9FF00D91FA7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */; };
 		2BA5C8062E6F1B000025BE1F /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */; };
 		2BB17E722EAD92130027A4F3 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB17E712EAD92130027A4F3 /* Colors.xcassets */; };
@@ -173,6 +174,7 @@
 		2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureManager.swift; sourceTree = "<group>"; };
 		2B62A1EE2E6B203F000ADA9E /* DoubleKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleKey.swift; sourceTree = "<group>"; };
 		2B69CD5D2E9BC63600C8A6CC /* LaunchAtLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginManager.swift; sourceTree = "<group>"; };
+		2B87394F2EB238B0004E20A7 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
 		2BB17E712EAD92130027A4F3 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 		2B4AB4922E5F256B005DF24C /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				2B87394F2EB238B0004E20A7 /* Date+Ext.swift */,
 				2B1ACDC62E7ACDF400E5429E /* Afterable.swift */,
 				2B4AB4912E5F256B005DF24C /* UserDefaults+Ext.swift */,
 				2B1ACDC82E7ACF2B00E5429E /* NSObject.swift */,
@@ -799,6 +802,7 @@
 				2B4AB4C32E607BD6005DF24C /* DIContainer.swift in Sources */,
 				2B1ACDC22E7AC71000E5429E /* SettingsWindowManager.swift in Sources */,
 				2B4AB4B62E5F256B005DF24C /* TranslateViewModel.swift in Sources */,
+				2B8739502EB238B1004E20A7 /* Date+Ext.swift in Sources */,
 				2B030CE92EAADEA20042F673 /* Font+Ext.swift in Sources */,
 				2BB17EAA2EAFA0650027A4F3 /* SettingsSection.swift in Sources */,
 				2B69CD5E2E9BC63600C8A6CC /* LaunchAtLoginManager.swift in Sources */,

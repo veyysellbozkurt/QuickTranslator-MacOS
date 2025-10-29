@@ -14,14 +14,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.setActivationPolicy(.accessory)
         
         DIContainer.shared.quickActionManager.start()
-        DIContainer.shared.subscriptionManager.configure()
-                
-        #if DEBUG
-        performShortAfter {
-            DIContainer.shared.settingsWindowManager.showSettings()
-//            DIContainer.shared.mainPopover.show(from: DIContainer.shared.statusBarController.statusItem.button!)
+        
+        Task { @MainActor in
+            SubscriptionManager.shared.configure()
+            await SubscriptionManager.shared.checkSubscriptionStatusIfNeeded()
         }
-        #endif
     }
     
     /// When clicking the app icon in the Dock

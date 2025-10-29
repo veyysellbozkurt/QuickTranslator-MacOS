@@ -17,7 +17,6 @@ final class DIContainer {
     private(set) var statusBarController = StatusBarController()
     private(set) var settingsWindowManager = SettingsWindowManager()
     private(set) var themeManager = ThemeManager()
-    private(set) var subscriptionManager = SubscriptionManager()
     lazy var quickActionManager: QuickActionManager = { QuickActionManager(viewModel: viewModel) }()
     
     private init() {

@@ -79,6 +79,10 @@ enum Constants {
         static let revenueCatAPIKey = ""
     }
     
+    enum Subscription {
+        static let entitlementID = ""
+    }
+    
     static var appName: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "Quick Translator"
     }

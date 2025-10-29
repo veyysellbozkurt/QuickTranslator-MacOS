@@ -20,6 +20,7 @@ extension UserDefaults {
         case menuBarIconName
         case launchOnStart
         case selectedTheme
+        case lastRestoreDate
     }
     
     // MARK: - Set -
