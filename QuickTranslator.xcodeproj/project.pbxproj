@@ -11,7 +11,9 @@
 		2B030CE82EAADE910042F673 /* NSFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B030CB92EAAD4320042F673 /* NSFont+Ext.swift */; };
 		2B030CE92EAADEA20042F673 /* Font+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B030CB72EAAD3FE0042F673 /* Font+Ext.swift */; };
 		2B030CF02EAAF3A80042F673 /* MailAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B030CEF2EAAF3A50042F673 /* MailAppHelper.swift */; };
-		2B1ACDC22E7AC71000E5429E /* SettingsWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC12E7AC71000E5429E /* SettingsWindowManager.swift */; };
+		2B0A90322EB3E538003B4E1F /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A90312EB3E538003B4E1F /* PaywallView.swift */; };
+		2B0A90342EB3E5D3003B4E1F /* PaywallWindowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A90332EB3E5D3003B4E1F /* PaywallWindowPresenter.swift */; };
+		2B1ACDC22E7AC71000E5429E /* SettingsWindowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC12E7AC71000E5429E /* SettingsWindowPresenter.swift */; };
 		2B1ACDC42E7AC73000E5429E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC32E7AC73000E5429E /* SettingsView.swift */; };
 		2B1ACDC72E7ACDF700E5429E /* Afterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC62E7ACDF400E5429E /* Afterable.swift */; };
 		2B1ACDC92E7ACF2B00E5429E /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC82E7ACF2B00E5429E /* NSObject.swift */; };
@@ -131,10 +133,12 @@
 		2B030CB72EAAD3FE0042F673 /* Font+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Ext.swift"; sourceTree = "<group>"; };
 		2B030CB92EAAD4320042F673 /* NSFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont+Ext.swift"; sourceTree = "<group>"; };
 		2B030CEF2EAAF3A50042F673 /* MailAppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailAppHelper.swift; sourceTree = "<group>"; };
+		2B0A90312EB3E538003B4E1F /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		2B0A90332EB3E5D3003B4E1F /* PaywallWindowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallWindowPresenter.swift; sourceTree = "<group>"; };
 		2B12E7892E5351010029301B /* QuickTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B12E79C2E5351040029301B /* QuickTranslatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTranslatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B12E7A62E5351040029301B /* QuickTranslatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTranslatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B1ACDC12E7AC71000E5429E /* SettingsWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowManager.swift; sourceTree = "<group>"; };
+		2B1ACDC12E7AC71000E5429E /* SettingsWindowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowPresenter.swift; sourceTree = "<group>"; };
 		2B1ACDC32E7AC73000E5429E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2B1ACDC62E7ACDF400E5429E /* Afterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Afterable.swift; sourceTree = "<group>"; };
 		2B1ACDC82E7ACF2B00E5429E /* NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
@@ -242,6 +246,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B0A90302EB3E527003B4E1F /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				2B0A90332EB3E5D3003B4E1F /* PaywallWindowPresenter.swift */,
+				2B0A90312EB3E538003B4E1F /* PaywallView.swift */,
+			);
+			path = Paywall;
+			sourceTree = "<group>";
+		};
 		2B12E7802E5351010029301B = {
 			isa = PBXGroup;
 			children = (
@@ -266,7 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				2B1ACDC52E7ACB5800E5429E /* Views */,
-				2B1ACDC12E7AC71000E5429E /* SettingsWindowManager.swift */,
+				2B1ACDC12E7AC71000E5429E /* SettingsWindowPresenter.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -422,6 +435,7 @@
 		2B4AB4A22E5F256B005DF24C /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				2B0A90302EB3E527003B4E1F /* Paywall */,
 				2B1ACDC02E7AC70B00E5429E /* Settings */,
 				2B4AB4BF2E607506005DF24C /* StatusBar */,
 				2B4EA0362E9B058D00525C49 /* MainPopover */,
@@ -779,6 +793,7 @@
 				2B1ACDC92E7ACF2B00E5429E /* NSObject.swift in Sources */,
 				2BDE7C382E99CE3700DFD7FD /* QuickActionType.swift in Sources */,
 				2B4AB4AF2E5F256B005DF24C /* BounceButtonStyle.swift in Sources */,
+				2B0A90342EB3E5D3003B4E1F /* PaywallWindowPresenter.swift in Sources */,
 				2B4AB4B02E5F256B005DF24C /* DoubleKeyMonitor.swift in Sources */,
 				2B8739522EB2B513004E20A7 /* BePremiumButton.swift in Sources */,
 				2B4AB4B12E5F256B005DF24C /* QuickActionManager.swift in Sources */,
@@ -804,7 +819,8 @@
 				2B1F0E902E7989940072BDD8 /* ExchangeLanguageView.swift in Sources */,
 				2B4AB4B52E5F256B005DF24C /* TranslateView.swift in Sources */,
 				2B4AB4C32E607BD6005DF24C /* DIContainer.swift in Sources */,
-				2B1ACDC22E7AC71000E5429E /* SettingsWindowManager.swift in Sources */,
+				2B0A90322EB3E538003B4E1F /* PaywallView.swift in Sources */,
+				2B1ACDC22E7AC71000E5429E /* SettingsWindowPresenter.swift in Sources */,
 				2B4AB4B62E5F256B005DF24C /* TranslateViewModel.swift in Sources */,
 				2B8739502EB238B1004E20A7 /* Date+Ext.swift in Sources */,
 				2B030CE92EAADEA20042F673 /* Font+Ext.swift in Sources */,

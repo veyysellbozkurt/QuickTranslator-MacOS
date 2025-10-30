@@ -42,7 +42,9 @@ struct PopoverControls: View {
             Spacer()
             
             if !subscriptionManager.isSubscribed {
-                BePremiumButton()
+                BePremiumButton {
+                    DIContainer.shared.paywallWindowPresenter.openPaywall()
+                }
             }
             
             Spacer()
@@ -59,7 +61,7 @@ struct PopoverControls: View {
                 .buttonStyle(BounceButtonStyle())
                 
                 Button {
-                    DIContainer.shared.settingsWindowManager.showSettings()
+                    DIContainer.shared.settingsWindowPresenter.openSettings()
                 } label: {
                     Image(.settings)
                         .resizable()

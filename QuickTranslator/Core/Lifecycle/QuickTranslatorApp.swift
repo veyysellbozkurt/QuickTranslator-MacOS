@@ -19,7 +19,7 @@ struct QuickTranslatorApp: App {
         .commands {
             CommandGroup(replacing: .appSettings) {
                 Button("Settings…") {
-                    DIContainer.shared.settingsWindowManager.showSettings()
+                    DIContainer.shared.settingsWindowPresenter.openSettings()
                 }
                 .keyboardShortcut(",", modifiers: .command)
             }

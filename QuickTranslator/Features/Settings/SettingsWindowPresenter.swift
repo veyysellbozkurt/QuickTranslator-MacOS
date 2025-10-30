@@ -1,5 +1,5 @@
 //
-//  SettingsWindowManager.swift
+//  SettingsWindowPresenter.swift
 //  QuickTranslator
 //
 //  Created by Veysel Bozkurt on 28.08.2025.
@@ -8,14 +8,13 @@
 import SwiftUI
 import AppKit
 
-// MARK: - Window Manager
-final class SettingsWindowManager: ObservableObject {
+final class SettingsWindowPresenter: ObservableObject {
     
     private var settingsWindow: NSWindow?
     private var windowDelegate: SettingsWindowDelegate?
-    @Published var isSettingsOpen = false
+    @Published private var isSettingsOpen = false
     
-    func showSettings() {
+    func openSettings() {
         if settingsWindow == nil {
             createSettingsWindow()
         }
@@ -23,16 +22,18 @@ final class SettingsWindowManager: ObservableObject {
         isSettingsOpen = true
         updateDockIconVisibility()
         
-        settingsWindow?.makeKeyAndOrderFront(nil)
-        settingsWindow?.center()
-        settingsWindow?.contentViewController?.view.window?.becomeKey()
+        if let window = settingsWindow {
+            window.makeKeyAndOrderFront(nil)
+            window.center()
+            window.orderFrontRegardless()
+            window.makeKey()
+        }
+                                
+        NSApp.activate(ignoringOtherApps: true)
         DIContainer.shared.themeManager.applyCurrentFeatureTheme()
-                
-        NSApp.activate()
     }
     
-    func hideSettings() {
-        settingsWindow?.orderOut(nil)
+    func closeSettings() {
         isSettingsOpen = false
         updateDockIconVisibility()
     }
@@ -51,19 +52,22 @@ final class SettingsWindowManager: ObservableObject {
             backing: .buffered,
             defer: false
         )
+        
         window.title = "Preferences"
         window.titlebarAppearsTransparent = true
         window.isReleasedWhenClosed = false
-        window.backgroundColor = .appWindowBackground        
+        window.backgroundColor = .appWindowBackground
+        window.isMovableByWindowBackground = true
         
         hostingController!.view.frame = window.contentView!.bounds
         hostingController!.view.autoresizingMask = [.width, .height]
         window.contentView = hostingController!.view
         
         
-        settingsWindow = window
+        
         windowDelegate = SettingsWindowDelegate(manager: self)
         window.delegate = windowDelegate
+        settingsWindow = window
     }
     
     private func updateDockIconVisibility() {
@@ -79,13 +83,13 @@ final class SettingsWindowManager: ObservableObject {
 
 // MARK: - Window Delegate
 class SettingsWindowDelegate: NSObject, NSWindowDelegate {
-    private let manager: SettingsWindowManager
+    private let manager: SettingsWindowPresenter
     
-    init(manager: SettingsWindowManager) {
+    init(manager: SettingsWindowPresenter) {
         self.manager = manager
     }
     
     func windowWillClose(_ notification: Notification) {
-        manager.hideSettings()
+        manager.closeSettings()
     }
 }

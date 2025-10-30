@@ -15,7 +15,8 @@ final class DIContainer {
     
     private(set) var mainPopover: MainPopover
     private(set) var statusBarController = StatusBarController()
-    private(set) var settingsWindowManager = SettingsWindowManager()
+    private(set) var settingsWindowPresenter = SettingsWindowPresenter()
+    private(set) var paywallWindowPresenter = PaywallWindowPresenter()
     private(set) var themeManager = ThemeManager()
     lazy var quickActionManager: QuickActionManager = { QuickActionManager(viewModel: viewModel) }()
     

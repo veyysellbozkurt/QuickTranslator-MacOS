@@ -9,14 +9,14 @@ import SwiftUI
 
 struct SettingsContainerView: View {
     @State private var contentSize: CGSize = .zero
-    let windowManager: SettingsWindowManager
+    let windowManager: SettingsWindowPresenter
     @ObservedObject var selection: Coordinator
     
     // MARK: - Coordinator
     class Coordinator: NSObject, ObservableObject {
         @Published var index: Int = 0
-        weak var manager: SettingsWindowManager?
-        init(manager: SettingsWindowManager?) {
+        weak var manager: SettingsWindowPresenter?
+        init(manager: SettingsWindowPresenter?) {
             self.manager = manager
         }
     }
