@@ -41,8 +41,8 @@ final class MainPopover {
     func show(from button: NSStatusBarButton) {
         popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         popover.contentViewController?.view.window?.becomeKey()
-        DIContainer.shared.themeManager.applyCurrentFeatureTheme()
         Task { @MainActor in
+            DIContainer.shared.themeManager.applyCurrentFeatureTheme()
             await SubscriptionManager.shared.checkSubscriptionStatus()
         }
     }

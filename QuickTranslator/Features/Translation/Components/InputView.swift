@@ -26,7 +26,6 @@ struct InputView: View {
         .toast(isPresented: $showToast, message: "Copied to Clipboard ✅")
     }
     
-    // MARK: - Text View + Copy Button
     private var textView: some View {
         PaddedTextViewRepresentable(
             text: $text,

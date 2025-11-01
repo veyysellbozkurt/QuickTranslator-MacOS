@@ -9,7 +9,7 @@ import SwiftUI
 import Translation
 
 final class TranslateViewModel: ObservableObject {
-        
+    @Published var highlightOutput = false
     @Published var configuration: TranslationSession.Configuration?
     @Published var sourceLanguage: Language = .englishUS { didSet { updateConfiguration() }}
     @Published var targetLanguage: Language = .spanishES { didSet { updateConfiguration() }}
