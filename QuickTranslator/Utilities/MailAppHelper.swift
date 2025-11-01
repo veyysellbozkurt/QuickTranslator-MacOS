@@ -33,5 +33,4 @@ final class MailAppHelper {
             NSWorkspace.shared.open(url)
         }
     }
-    
 }

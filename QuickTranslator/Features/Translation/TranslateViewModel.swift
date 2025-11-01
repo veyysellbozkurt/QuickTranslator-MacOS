@@ -20,6 +20,8 @@ final class TranslateViewModel: ObservableObject {
     @Published var isTranslating: Bool = false
     @Published var errorMessage: String?
     
+    @Published var shakeOffset: CGFloat = 0
+    
     private var canTranslate: Bool {
         !inputText.isEmpty && !isTranslating
     }
@@ -35,18 +37,29 @@ final class TranslateViewModel: ObservableObject {
 
 extension TranslateViewModel {
     @MainActor
-    func makeTranslation(using translator: TranslationService) async {
+    func makeTranslation(using appleSession: TranslationSession) async {
+        guard DailyUsageManager.shared.isLimitReached == false else {
+            triggerShakeAnimation()
+            return
+        }
+        guard let configuration else { return }
+        let translator = UnifiedTranslatorFactory.makeTranslator(
+            configuration: configuration,
+            appleSession: appleSession
+        )
+        
         guard !inputText.isEmpty else { return }
         isTranslating = true
         defer { isTranslating = false }
-
+        
         do {
             translatedText = try await translator.translate(inputText)
+            DailyUsageManager.shared.recordTranslation()
         } catch {
             errorMessage = error.localizedDescription
         }
     }
-    
+        
     func triggerTranslation() {
         guard configuration == nil, !inputText.isEmpty else {
             configuration?.invalidate()
@@ -70,5 +83,17 @@ private extension TranslateViewModel {
                               target: .init(identifier: targetLanguage.code))
         Storage.set(sourceLanguage.rawValue, forKey: .sourceLanguage)
         Storage.set(targetLanguage.rawValue, forKey: .targetLanguage)
+    }
+    
+    @MainActor
+    func triggerShakeAnimation() {
+        let values: [CGFloat] = [6, -6, 4, -4, 2, -2, 0]
+        for (index, value) in values.enumerated() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.05) {
+                withAnimation(.linear(duration: 0.05)) {
+                    self.shakeOffset = value
+                }
+            }
+        }
     }
 }

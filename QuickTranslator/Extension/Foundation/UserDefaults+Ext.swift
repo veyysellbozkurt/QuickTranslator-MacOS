@@ -21,6 +21,8 @@ extension UserDefaults {
         case launchOnStart
         case selectedTheme
         case lastRestoreDate
+        case remainingTranslationsCount
+        case lastLimitResetDate
     }
     
     // MARK: - Set -

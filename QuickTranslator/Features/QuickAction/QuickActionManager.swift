@@ -29,11 +29,11 @@ final class QuickActionManager {
             [weak self] in
             guard let self,
                   let text = NSPasteboard.general.string(forType: .string)?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
-                
-                if self.isCopiedFromApp(text) {
-                    return
-                }
-                self.copiedText = text
+            
+            if self.isCopiedFromApp(text) {
+                return
+            }
+            self.copiedText = text
             
             if FeatureManager.shared.quickActionType == .floatingIconPopover {
                 floatingPanel.showNearMouse(autoHideAfter: FeatureManager.shared.floatingIconVisibilityDuration)

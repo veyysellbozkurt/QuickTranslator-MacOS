@@ -55,6 +55,7 @@
 		2B8739502EB238B1004E20A7 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87394F2EB238B0004E20A7 /* Date+Ext.swift */; };
 		2B8739522EB2B513004E20A7 /* BePremiumButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8739512EB2B507004E20A7 /* BePremiumButton.swift */; };
 		2B87395A2EB641B0004E20A7 /* DailyLimitReachedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8739592EB641B0004E20A7 /* DailyLimitReachedView.swift */; };
+		2B87395C2EB68B5E004E20A7 /* DailyUsageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87395B2EB68B57004E20A7 /* DailyUsageManager.swift */; };
 		2BA331D72E92A9FF00D91FA7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */; };
 		2BA5C8062E6F1B000025BE1F /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */; };
 		2BB17E722EAD92130027A4F3 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB17E712EAD92130027A4F3 /* Colors.xcassets */; };
@@ -183,6 +184,7 @@
 		2B87394F2EB238B0004E20A7 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		2B8739512EB2B507004E20A7 /* BePremiumButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BePremiumButton.swift; sourceTree = "<group>"; };
 		2B8739592EB641B0004E20A7 /* DailyLimitReachedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLimitReachedView.swift; sourceTree = "<group>"; };
+		2B87395B2EB68B57004E20A7 /* DailyUsageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsageManager.swift; sourceTree = "<group>"; };
 		2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
 		2BB17E712EAD92130027A4F3 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 		2B62A1E82E6B07CB000ADA9E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				2B87395B2EB68B57004E20A7 /* DailyUsageManager.swift */,
 				2BB17EF42EB145AD0027A4F3 /* SubscriptionManager.swift */,
 				2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */,
 			);
@@ -814,6 +817,7 @@
 				2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */,
 				2B4AB4DE2E674163005DF24C /* TranslationFactory.swift in Sources */,
 				2B4AB4CA2E61F743005DF24C /* PasteboardMarker.swift in Sources */,
+				2B87395C2EB68B5E004E20A7 /* DailyUsageManager.swift in Sources */,
 				2BA331D72E92A9FF00D91FA7 /* CustomTabBar.swift in Sources */,
 				2B1F0E8E2E78510E0072BDD8 /* TypeAliases.swift in Sources */,
 				2B2F39582E93DF2F009AB506 /* QuickActionSettingsView.swift in Sources */,

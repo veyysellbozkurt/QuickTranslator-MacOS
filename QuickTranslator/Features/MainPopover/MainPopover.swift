@@ -43,6 +43,7 @@ final class MainPopover {
         popover.contentViewController?.view.window?.becomeKey()
         Task { @MainActor in
             DIContainer.shared.themeManager.applyCurrentFeatureTheme()
+            DailyUsageManager.shared.resetIfNeeded()
             await SubscriptionManager.shared.checkSubscriptionStatus()
         }
     }

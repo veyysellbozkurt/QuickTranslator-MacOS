@@ -27,7 +27,7 @@ final class SubscriptionManager: ObservableObject {
     }
     
     func checkSubscriptionStatusIfNeeded() async {
-        guard isTimeToCheck else { return }
+        guard !isDateInToday(lastRestoreDate) else { return }
         await checkSubscriptionStatus()
     }
     
@@ -55,10 +55,6 @@ final class SubscriptionManager: ObservableObject {
 }
 
 private extension SubscriptionManager {
-    var isTimeToCheck: Bool {
-        Date().timeIntervalSince(lastRestoreDate) > 24 * 60 * 60
-    }
-    
     func saveRestoreDate() {
         lastRestoreDate = Date()
         userDefaults.set(lastRestoreDate.toString(), forKey: .lastRestoreDate)
@@ -69,5 +65,9 @@ private extension SubscriptionManager {
            let date = Date.fromString(stringDate) {
             lastRestoreDate = date
         }
+    }
+    
+    func isDateInToday(_ date: Date) -> Bool {
+        Calendar.current.isDateInToday(date)
     }
 }

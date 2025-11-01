@@ -9,17 +9,15 @@ import SwiftUI
 import Translation
 
 struct TranslateView: View {
-
+    
     @StateObject private var viewModel: TranslateViewModel
     @ObservedObject private var featureManager = FeatureManager.shared
-    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
-
-    @State private var shakeOffset: CGFloat = 0
-
+    @ObservedObject private var dailyUsageManager = DailyUsageManager.shared
+        
     init(viewModel: TranslateViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-
+    
     var body: some View {
         VStack(spacing: 6) {
             languageExchangeSection
@@ -40,19 +38,13 @@ struct TranslateView: View {
         .animation(.bouncy, value: viewModel.isTranslating)
         .animation(.snappy, value: featureManager.inputLayout)
         .translationTask(viewModel.configuration) { appleSession in
-            guard let config = viewModel.configuration else { return }
-            let translator = UnifiedTranslatorFactory.makeTranslator(
-                configuration: config,
-                appleSession: appleSession
-            )
-            await viewModel.makeTranslation(using: translator)
+            await viewModel.makeTranslation(using: appleSession)
         }
     }
 }
 
 // MARK: - Sections
 private extension TranslateView {
-
     var languageExchangeSection: some View {
         ExchangeLanguageView(
             sourceLanguage: $viewModel.sourceLanguage,
@@ -61,21 +53,17 @@ private extension TranslateView {
             viewModel.swapInputs()
         }
     }
-
+    
     var inputArea: some View {
         InputView(
             text: $viewModel.inputText,
             language: $viewModel.sourceLanguage,
             placeholder: Constants.Strings.inputPlaceholder
         ) {
-            if SubscriptionManager.shared.isSubscribed {
-                viewModel.triggerTranslation()
-            } else {
-                shakeDailyLimit()
-            }
+            viewModel.triggerTranslation()
         }
     }
-
+    
     var outputArea: some View {
         ZStack {
             InputView(
@@ -93,38 +81,14 @@ private extension TranslateView {
                     .foregroundStyle(.textPrimary)
             }
         }
-        .subscriptionStyle(subscriptionManager.isSubscribed)
+        .opacity(dailyUsageManager.isLimitReached ? 0.4 : 1)
         .overlay(
             Group {
-                if !subscriptionManager.isSubscribed {
+                if dailyUsageManager.isLimitReached {
                     DailyLimitReachedView()
-                        .offset(x: shakeOffset)
+                        .offset(x: viewModel.shakeOffset)
                 }
             }
         )
-    }
-}
-
-// MARK: - Shake Animasyonu
-private extension TranslateView {
-    func shakeDailyLimit() {
-        let values: [CGFloat] = [6, -6, 4, -4, 2, -2, 0]
-        for (index, value) in values.enumerated() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.05) {
-                withAnimation(.linear(duration: 0.05)) {
-                    shakeOffset = value
-                }
-            }
-        }
-    }
-}
-
-// MARK: - Helpers
-private extension View {
-    /// Apply subscription-based opacity & hit testing
-    func subscriptionStyle(_ isSubscribed: Bool) -> some View {
-        self
-            .opacity(isSubscribed ? 1 : 0.4)
-            .allowsHitTesting(isSubscribed)
     }
 }
