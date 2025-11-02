@@ -76,7 +76,7 @@ enum Constants {
     }
     
     enum Keys {
-        static let revenueCatAPIKey = ""
+        static let revenueCatAPIKey = "appl_mmneBSXjoetGxSZexFRgmnQUmES"
     }
     
     enum Subscription {

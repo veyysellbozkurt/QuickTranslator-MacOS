@@ -19,7 +19,7 @@ struct DailyLimitReachedView: View {
             
             (Text("You’ve reached your ")
             + Text("daily limit").foregroundColor(.controlRed).bold()
-            + Text(" (6/6)"))
+             + Text(" (\(DailyUsageManager.shared.dailyLimit)/\(DailyUsageManager.shared.dailyLimit))"))
                 .font(.appSmallTitle13())
                 .foregroundColor(.textPrimary)
                 .multilineTextAlignment(.center)

@@ -17,8 +17,8 @@ final class DailyUsageManager: ObservableObject {
     private(set) var remainingTranslations: Int = 8
     
     private var lastResetDate: Date = .now
-    private let dailyLimit: Int = 8
     private let userDefaults = UserDefaults.standard
+    let dailyLimit: Int = 8
     
     private var cancellables = Set<AnyCancellable>()
     
