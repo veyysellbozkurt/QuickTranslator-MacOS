@@ -29,21 +29,6 @@ struct PaywallView: View {
             .ignoresSafeArea()
             
             VStack {
-                HStack {
-                    Button(action: {
-                        dismiss()
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 28))
-                            .foregroundStyle(.white.opacity(0.7), .white.opacity(0.15))
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(.leading, 20)
-                    .padding(.top, 10)
-                    
-                    Spacer()
-                }
-                
                 ScrollView {
                     VStack(spacing: 40) {
                         
@@ -67,6 +52,7 @@ struct PaywallView: View {
                                 .font(.appTitle())
                                 .foregroundColor(.white.opacity(0.7))
                         }
+                        .padding(.top, 12)
                                                 
                         // Free Features Section
                         VStack(alignment: .leading, spacing: 16) {
@@ -131,30 +117,6 @@ struct PaywallView: View {
                             }
                         }
                         
-                        // Subscribe Button
-                        Button(action: {
-                        }) {
-                            HStack {
-                                Text(selectedPlan == .yearly ? "7 Gün Ücretsiz Dene" : "3 Gün Ücretsiz Dene")
-                                    .font(.appExtraLargeTitle())
-                                
-                                Image(systemName: "arrow.right")
-                            }
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background(
-                                LinearGradient(
-                                    colors: [.blue, .cyan],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            )
-                            .cornerRadius(16)
-                            .shadow(color: .blue.opacity(0.5), radius: 20, x: 0, y: 10)
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        
                         // Restore and Terms
                         VStack(spacing: 12) {
                             // Restore Purchase
@@ -181,6 +143,47 @@ struct PaywallView: View {
                         .padding(.bottom, 30)
                     }
                     .padding(.horizontal, 20)
+                }
+                
+                // Subscribe Button
+                Button(action: {
+                }) {
+                    HStack {
+                        Text(selectedPlan == .yearly ? "7 Gün Ücretsiz Dene" : "3 Gün Ücretsiz Dene")
+                            .font(.appExtraLargeTitle())
+                        
+                        Image(systemName: "arrow.right")
+                    }
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
+                    .background(
+                        LinearGradient(
+                            colors: [.blue, .cyan],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                    .cornerRadius(14)
+                    .shadow(color: .blue.opacity(0.5), radius: 20, x: 0, y: 10)
+                }
+                .buttonStyle(BounceButtonStyle())
+                .padding()
+            }
+            .overlay(alignment: .topLeading) {
+                HStack {
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 28))
+                            .foregroundStyle(.white.opacity(0.7), .white.opacity(0.15))
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .padding(.leading, 20)
+                    .padding(.top, 10)
+                    
+                    Spacer()
                 }
             }
         }

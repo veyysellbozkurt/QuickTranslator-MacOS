@@ -103,6 +103,6 @@ struct PricingCard: View {
                     )
             )
         }
-        .buttonStyle(PlainButtonStyle())
+        .buttonStyle(BounceButtonStyle())
     }
 }
