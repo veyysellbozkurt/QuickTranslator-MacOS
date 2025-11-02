@@ -72,7 +72,7 @@ enum Constants {
     enum Urls {
         static let buyMeCoffee = URL(string: "https://buymeacoffee.com/veyselbozkurt")!
         static let accessibilitySettingsURL = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")
-        static let appStoreReviewURL = URL(string: "https://apps.apple.com/app/idYOUR_APP_ID?action=write-review")
+        static let appStoreReviewURL = URL(string: "https://apps.apple.com/app/id6754808002?action=write-review")
     }
     
     enum Keys {

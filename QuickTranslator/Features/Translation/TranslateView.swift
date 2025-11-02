@@ -40,6 +40,11 @@ struct TranslateView: View {
         .translationTask(viewModel.configuration) { appleSession in
             await viewModel.makeTranslation(using: appleSession)
         }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                RatingService.shared.requestRatingIfNeeded()
+            }
+        }
     }
 }
 

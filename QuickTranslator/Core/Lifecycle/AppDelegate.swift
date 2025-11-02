@@ -19,10 +19,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             SubscriptionManager.shared.configure()
             await SubscriptionManager.shared.checkSubscriptionStatusIfNeeded()
         }
-        
-        performShortAfter {
-            PaywallWindowPresenter().openPaywall()
-        }
     }
     
     /// When clicking the app icon in the Dock

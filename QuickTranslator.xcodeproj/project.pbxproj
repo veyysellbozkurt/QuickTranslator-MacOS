@@ -23,6 +23,7 @@
 		2B2C081C2EB7EB50003C0499 /* FeatureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C081B2EB7EB50003C0499 /* FeatureRow.swift */; };
 		2B2C081E2EB7EB5B003C0499 /* PricingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C081D2EB7EB5B003C0499 /* PricingCard.swift */; };
 		2B2C08202EB80298003C0499 /* AppSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C081F2EB80294003C0499 /* AppSessionManager.swift */; };
+		2B2C08222EB80BB8003C0499 /* RatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C08212EB80BB8003C0499 /* RatingService.swift */; };
 		2B2F39542E93DF0F009AB506 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F39532E93DF0F009AB506 /* GeneralSettingsView.swift */; };
 		2B2F39562E93DF24009AB506 /* TranslationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F39552E93DF24009AB506 /* TranslationSettingsView.swift */; };
 		2B2F39582E93DF2F009AB506 /* QuickActionSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F39572E93DF2F009AB506 /* QuickActionSettingsView.swift */; };
@@ -153,6 +154,7 @@
 		2B2C081B2EB7EB50003C0499 /* FeatureRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureRow.swift; sourceTree = "<group>"; };
 		2B2C081D2EB7EB5B003C0499 /* PricingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricingCard.swift; sourceTree = "<group>"; };
 		2B2C081F2EB80294003C0499 /* AppSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSessionManager.swift; sourceTree = "<group>"; };
+		2B2C08212EB80BB8003C0499 /* RatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingService.swift; sourceTree = "<group>"; };
 		2B2F39532E93DF0F009AB506 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		2B2F39552E93DF24009AB506 /* TranslationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationSettingsView.swift; sourceTree = "<group>"; };
 		2B2F39572E93DF2F009AB506 /* QuickActionSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionSettingsView.swift; sourceTree = "<group>"; };
@@ -564,6 +566,7 @@
 		2B62A1E82E6B07CB000ADA9E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				2B2C08212EB80BB8003C0499 /* RatingService.swift */,
 				2B2C081F2EB80294003C0499 /* AppSessionManager.swift */,
 				2B87395B2EB68B57004E20A7 /* DailyUsageManager.swift */,
 				2BB17EF42EB145AD0027A4F3 /* SubscriptionManager.swift */,
@@ -827,6 +830,7 @@
 				2BB17EF82EB148560027A4F3 /* SubscriptionPlan.swift in Sources */,
 				2B62A1EA2E6B07D9000ADA9E /* FeatureManager.swift in Sources */,
 				2B5433202E9693E500682C76 /* Logger.swift in Sources */,
+				2B2C08222EB80BB8003C0499 /* RatingService.swift in Sources */,
 				2B1ACDC42E7AC73000E5429E /* SettingsView.swift in Sources */,
 				2BB17EF32EB145A60027A4F3 /* RevenueCatService.swift in Sources */,
 				2B2F39562E93DF24009AB506 /* TranslationSettingsView.swift in Sources */,

@@ -31,7 +31,9 @@ struct AboutSettingsView: View {
             Divider()
             
             HStack(spacing: 16) {
-                RateButton(action: openStoreReview)
+                RateButton {
+                    RatingService.shared.openAppStoreReview()
+                }
                 
                 Button {
                     NSWorkspace.shared.open(Constants.Urls.buyMeCoffee)
@@ -114,12 +116,5 @@ private struct FeedbackButton: View {
                 .stroke(.app.opacity(0.5), lineWidth: 1.2)
         )
         .help(Constants.Strings.feedbackButtonHelp)
-    }
-}
-
-private extension AboutSettingsView {
-    func openStoreReview() {
-        guard let url = Constants.Urls.appStoreReviewURL else { return }
-        NSWorkspace.shared.open(url)
     }
 }
