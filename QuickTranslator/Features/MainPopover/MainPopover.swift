@@ -44,6 +44,7 @@ final class MainPopover {
         Task { @MainActor in
             DIContainer.shared.themeManager.applyCurrentFeatureTheme()
             DailyUsageManager.shared.resetIfNeeded()
+            AppSessionManager.shared.updateDaysSinceInstall()
             await SubscriptionManager.shared.checkSubscriptionStatus()
         }
     }

@@ -22,6 +22,7 @@
 		2B1F0E902E7989940072BDD8 /* ExchangeLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F0E8F2E7989940072BDD8 /* ExchangeLanguageView.swift */; };
 		2B2C081C2EB7EB50003C0499 /* FeatureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C081B2EB7EB50003C0499 /* FeatureRow.swift */; };
 		2B2C081E2EB7EB5B003C0499 /* PricingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C081D2EB7EB5B003C0499 /* PricingCard.swift */; };
+		2B2C08202EB80298003C0499 /* AppSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C081F2EB80294003C0499 /* AppSessionManager.swift */; };
 		2B2F39542E93DF0F009AB506 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F39532E93DF0F009AB506 /* GeneralSettingsView.swift */; };
 		2B2F39562E93DF24009AB506 /* TranslationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F39552E93DF24009AB506 /* TranslationSettingsView.swift */; };
 		2B2F39582E93DF2F009AB506 /* QuickActionSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F39572E93DF2F009AB506 /* QuickActionSettingsView.swift */; };
@@ -151,6 +152,7 @@
 		2B1F0E8F2E7989940072BDD8 /* ExchangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeLanguageView.swift; sourceTree = "<group>"; };
 		2B2C081B2EB7EB50003C0499 /* FeatureRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureRow.swift; sourceTree = "<group>"; };
 		2B2C081D2EB7EB5B003C0499 /* PricingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricingCard.swift; sourceTree = "<group>"; };
+		2B2C081F2EB80294003C0499 /* AppSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSessionManager.swift; sourceTree = "<group>"; };
 		2B2F39532E93DF0F009AB506 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		2B2F39552E93DF24009AB506 /* TranslationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationSettingsView.swift; sourceTree = "<group>"; };
 		2B2F39572E93DF2F009AB506 /* QuickActionSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionSettingsView.swift; sourceTree = "<group>"; };
@@ -562,6 +564,7 @@
 		2B62A1E82E6B07CB000ADA9E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				2B2C081F2EB80294003C0499 /* AppSessionManager.swift */,
 				2B87395B2EB68B57004E20A7 /* DailyUsageManager.swift */,
 				2BB17EF42EB145AD0027A4F3 /* SubscriptionManager.swift */,
 				2B62A1E92E6B07D5000ADA9E /* FeatureManager.swift */,
@@ -808,6 +811,7 @@
 				2B4EA0372E9B058D00525C49 /* MainPopover.swift in Sources */,
 				2B4EA0382E9B058D00525C49 /* PopoverControls.swift in Sources */,
 				2B4AB4AC2E5F256B005DF24C /* AppDelegate.swift in Sources */,
+				2B2C08202EB80298003C0499 /* AppSessionManager.swift in Sources */,
 				2B4AB4AD2E5F256B005DF24C /* QuickTranslatorApp.swift in Sources */,
 				2B4AB4AE2E5F256B005DF24C /* UserDefaults+Ext.swift in Sources */,
 				2B5E8F302E9F0014009D8792 /* MenuBarIconEnum.swift in Sources */,

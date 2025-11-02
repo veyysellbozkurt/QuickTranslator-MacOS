@@ -23,6 +23,7 @@ extension UserDefaults {
         case lastRestoreDate
         case remainingTranslationsCount
         case lastLimitResetDate
+        case firstAppLaunchDate
     }
     
     // MARK: - Set -

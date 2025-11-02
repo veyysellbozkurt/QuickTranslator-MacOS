@@ -18,9 +18,12 @@ final class DailyUsageManager: ObservableObject {
     
     private var lastResetDate: Date = .now
     private let userDefaults = UserDefaults.standard
-    let dailyLimit: Int = 8
-    
     private var cancellables = Set<AnyCancellable>()
+    
+    var dailyLimit: Int {
+        let daysSinceInstall = AppSessionManager.shared.daysSinceInstall
+        return daysSinceInstall < 3 ? 20 : 8
+    }
     
     private init() {
         loadState()
@@ -32,10 +35,7 @@ final class DailyUsageManager: ObservableObject {
     // MARK: - Public API
     
     func recordTranslation() {
-        if SubscriptionManager.shared.isSubscribed {
-            return
-        }
-        
+        if SubscriptionManager.shared.isSubscribed { return }
         guard !isLimitReached else { return }
         
         remainingTranslations -= 1
@@ -79,9 +79,7 @@ private extension DailyUsageManager {
         }
         
         let savedCount = userDefaults.int(forKey: .remainingTranslationsCount)
-        if savedCount > 0 {
-            remainingTranslations = savedCount
-        }
+        remainingTranslations = savedCount > 0 ? savedCount : dailyLimit
     }
     
     func observeSubscription() {
