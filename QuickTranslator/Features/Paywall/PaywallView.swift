@@ -17,7 +17,6 @@ struct PaywallView: View {
     
     var body: some View {
         ZStack {
-            // Gradient Background
             LinearGradient(
                 colors: [
                     Color(red: 0.1, green: 0.2, blue: 0.35),
@@ -29,8 +28,7 @@ struct PaywallView: View {
             )
             .ignoresSafeArea()
             
-            VStack(spacing: 0) {
-                // Close Button
+            VStack {
                 HStack {
                     Button(action: {
                         dismiss()
@@ -47,9 +45,10 @@ struct PaywallView: View {
                 }
                 
                 ScrollView {
-                    VStack(spacing: 30) {
+                    VStack(spacing: 40) {
+                        
                         // Header
-                        VStack(spacing: 12) {
+                        VStack(spacing: 8) {
                             Image(systemName: "crown.fill")
                                 .font(.system(size: 50))
                                 .foregroundStyle(
@@ -59,58 +58,47 @@ struct PaywallView: View {
                                         endPoint: .bottomTrailing
                                     )
                                 )
-                                .padding(.top, 20)
                             
-                            Text("Premium'a Yükselt")
-                                .font(.system(size: 32, weight: .bold))
+                            Text("Sınırsız Çeviriye Geç")
+                                .font(.appLargeHeader())
                                 .foregroundColor(.white)
                             
-                            Text("Tüm özelliklerin kilidini aç ve sınırsız kullan")
-                                .font(.system(size: 16))
+                            Text("Tüm özellikler sende, sadece limit kalkıyor.")
+                                .font(.appTitle())
                                 .foregroundColor(.white.opacity(0.7))
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal, 40)
                         }
-                        
-                        // Features
-                        VStack(spacing: 16) {
-                            FeatureRow(
-                                icon: "infinity",
-                                title: "Sınırsız Çeviri",
-                                subtitle: "Günlük limit olmadan kullan"
-                            )
+                                                
+                        // Free Features Section
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Ücretsiz Kullanabileceğin Özellikler 🎁")
+                                .font(.appTitle())
+                                .foregroundColor(.white.opacity(0.7))
+                                
                             
-                            FeatureRow(
-                                icon: "camera.viewfinder",
-                                title: "OCR Çeviri",
-                                subtitle: "Görsellerden metin çevir"
-                            )
-                            
-                            FeatureRow(
-                                icon: "speaker.wave.3.fill",
-                                title: "Yüksek Kalite Ses",
-                                subtitle: "Profesyonel sesli okuma"
-                            )
-                            
-                            FeatureRow(
-                                icon: "sparkles",
-                                title: "Öncelikli Destek",
-                                subtitle: "7/24 premium destek"
-                            )
-                            
-                            FeatureRow(
-                                icon: "arrow.down.circle.fill",
-                                title: "Çevrimdışı Mod",
-                                subtitle: "İnternetsiz kullan"
-                            )
-                            
-                            FeatureRow(
-                                icon: "paintbrush.fill",
-                                title: "Özel Temalar",
-                                subtitle: "Premium tema koleksiyonu"
-                            )
+                            VStack(spacing: 16) {
+                                FeatureRow(icon: "moon.circle.fill",
+                                           title: "Koyu / Açık Mod",
+                                           subtitle: "İstediğin tema stilini seç ve anında değiştir")
+
+                                FeatureRow(icon: "rectangle.split.2x1.fill",
+                                           title: "Dikey ve Yatay Yerleşim",
+                                           subtitle: "Çeviri penceresini dilediğin düzende kullan")
+
+                                FeatureRow(icon: "bolt.circle.fill",
+                                           title: "Anında Çeviri (Floating Icon)",
+                                           subtitle: "Ekrandaki metinleri tek tıkla çevir")
+
+                                FeatureRow(icon: "menubar.rectangle",
+                                           title: "Menü Çubuğu İkon Seçimi",
+                                           subtitle: "Menü çubuğundaki uygulama ikonunu kişiselleştir")
+
+                                FeatureRow(icon: "wifi.slash",
+                                           title: "Çevrimdışı Çeviri",
+                                           subtitle: "İnternet bağlantısı olmadan çeviri yap")
+
+                            }
                         }
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, 40)
                         
                         // Pricing Cards
                         VStack(spacing: 16) {
@@ -142,21 +130,19 @@ struct PaywallView: View {
                                 selectedPlan = .monthly
                             }
                         }
-                        .padding(.horizontal, 20)
                         
                         // Subscribe Button
                         Button(action: {
-                            // Subscribe action
                         }) {
                             HStack {
                                 Text(selectedPlan == .yearly ? "7 Gün Ücretsiz Dene" : "3 Gün Ücretsiz Dene")
-                                    .font(.system(size: 18, weight: .semibold))
+                                    .font(.appExtraLargeTitle())
                                 
                                 Image(systemName: "arrow.right")
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
-                            .padding(.vertical, 18)
+                            .padding(.vertical, 16)
                             .background(
                                 LinearGradient(
                                     colors: [.blue, .cyan],
@@ -168,190 +154,35 @@ struct PaywallView: View {
                             .shadow(color: .blue.opacity(0.5), radius: 20, x: 0, y: 10)
                         }
                         .buttonStyle(PlainButtonStyle())
-                        .padding(.horizontal, 20)
-                        .padding(.top, 10)
                         
-                        // Restore Purchase
-                        Button(action: {
-                            // Restore action
-                        }) {
-                            Text("Satın Alımı Geri Yükle")
-                                .font(.system(size: 15))
-                                .foregroundColor(.white.opacity(0.6))
-                        }
-                        .padding(.top, 8)
-                        
-                        // Terms
-                        HStack(spacing: 20) {
-                            Button("Gizlilik Politikası") {
-                                // Privacy action
+                        // Restore and Terms
+                        VStack(spacing: 12) {
+                            // Restore Purchase
+                            Button(action: {
+                            }) {
+                                Text("Satın Alımı Geri Yükle")
+                                    .font(.appSmallTitle13())
+                                    .foregroundColor(.white.opacity(0.6))
                             }
                             
-                            Text("•")
-                            
-                            Button("Kullanım Şartları") {
-                                // Terms action
+                            // Terms
+                            HStack(spacing: 24) {
+                                Button("Gizlilik Politikası") {
+                                }
+                                
+                                Text("•")
+                                
+                                Button("Kullanım Şartları") {
+                                }
                             }
+                            .font(.appSmallTitle13())
+                            .foregroundColor(.white.opacity(0.5))
                         }
-                        .font(.system(size: 13))
-                        .foregroundColor(.white.opacity(0.5))
                         .padding(.bottom, 30)
                     }
+                    .padding(.horizontal, 20)
                 }
             }
         }
     }
-}
-
-struct FeatureRow: View {
-    let icon: String
-    let title: String
-    let subtitle: String
-    
-    var body: some View {
-        HStack(spacing: 16) {
-            ZStack {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [.blue.opacity(0.3), .cyan.opacity(0.2)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 50, height: 50)
-                
-                Image(systemName: icon)
-                    .font(.system(size: 22))
-                    .foregroundColor(.cyan)
-            }
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text(title)
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(.white)
-                
-                Text(subtitle)
-                    .font(.system(size: 13))
-                    .foregroundColor(.white.opacity(0.6))
-            }
-            
-            Spacer()
-            
-            Image(systemName: "checkmark.circle.fill")
-                .font(.system(size: 24))
-                .foregroundColor(.green)
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
-        .background(
-            RoundedRectangle(cornerRadius: 14)
-                .fill(.white.opacity(0.05))
-        )
-    }
-}
-
-struct PricingCard: View {
-    let title: String
-    let subtitle: String
-    let price: String
-    let period: String
-    let monthlyEquivalent: String?
-    let discount: String?
-    let isSelected: Bool
-    let isRecommended: Bool
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            VStack(spacing: 0) {
-                // Recommended Badge
-                if isRecommended {
-                    HStack {
-                        Spacer()
-                        
-                        Text(discount ?? "En Popüler")
-                            .font(.system(size: 12, weight: .bold))
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 6)
-                            .background(
-                                LinearGradient(
-                                    colors: [.purple, .pink],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            )
-                            .cornerRadius(20)
-                        
-                        Spacer()
-                    }
-                    .offset(y: -8)
-                }
-                
-                HStack {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(title)
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.white)
-                        
-                        Text(subtitle)
-                            .font(.system(size: 13))
-                            .foregroundColor(.white.opacity(0.7))
-                    }
-                    
-                    Spacer()
-                    
-                    VStack(alignment: .trailing, spacing: 4) {
-                        HStack(alignment: .firstTextBaseline, spacing: 4) {
-                            Text(price)
-                                .font(.system(size: 24, weight: .bold))
-                                .foregroundColor(.cyan)
-                            
-                            Text(period)
-                                .font(.system(size: 14))
-                                .foregroundColor(.white.opacity(0.6))
-                        }
-                        
-                        if let monthly = monthlyEquivalent {
-                            Text(monthly)
-                                .font(.system(size: 12))
-                                .foregroundColor(.white.opacity(0.5))
-                        }
-                    }
-                }
-                .padding(20)
-            }
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .strokeBorder(
-                        isSelected ?
-                            LinearGradient(
-                                colors: [.cyan, .blue],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ) :
-                            LinearGradient(
-                                colors: [.white.opacity(0.2), .white.opacity(0.1)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ),
-                        lineWidth: isSelected ? 2 : 1
-                    )
-                    .background(
-                        RoundedRectangle(cornerRadius: 20)
-                            .fill(
-                                isSelected ?
-                                    .white.opacity(0.1) :
-                                    .white.opacity(0.05)
-                            )
-                    )
-            )
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-}
-
-#Preview {
-    PaywallView()
 }

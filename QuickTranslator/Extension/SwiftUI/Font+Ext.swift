@@ -13,9 +13,19 @@ extension Font {
         FontManager.shared.swiftUIFont(weight: weight, size: size)
     }
     
+    static func appLargeHeader() -> Font {
+        // App ana başlıkları
+        FontManager.shared.swiftUIFont(weight: .extraBold, size: 26)
+    }
+    
     static func appHeader() -> Font {
         // App ana başlıkları
         FontManager.shared.swiftUIFont(weight: .bold, size: 20)
+    }
+    
+    static func appExtraLargeTitle() -> Font {
+        // App ana başlıkları
+        FontManager.shared.swiftUIFont(weight: .semibold, size: 18)
     }
     
     static func appLargeTitle() -> Font {

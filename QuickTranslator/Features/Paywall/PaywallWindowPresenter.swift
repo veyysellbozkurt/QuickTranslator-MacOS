@@ -44,7 +44,7 @@ final class PaywallWindowPresenter: ObservableObject {
         hostingController = NSHostingController(rootView: contentView)
         
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 600, height: 600),
+            contentRect: NSRect(x: 0, y: 0, width: 630, height: 700),
             styleMask: [.borderless],
             backing: .buffered,
             defer: false
