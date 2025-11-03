@@ -63,8 +63,6 @@ final class SettingsWindowPresenter: ObservableObject {
         hostingController!.view.autoresizingMask = [.width, .height]
         window.contentView = hostingController!.view
         
-        
-        
         windowDelegate = SettingsWindowDelegate(manager: self)
         window.delegate = windowDelegate
         settingsWindow = window

@@ -18,7 +18,7 @@ struct GeneralSettingsView: View {
             inputLayoutSection
             menuBarIconSection
         }
-        .frame(height: 460)
+        .frame(height: 360)
     }
 }
 

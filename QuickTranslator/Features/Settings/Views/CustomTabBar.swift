@@ -34,7 +34,7 @@ struct CustomTabBar: View {
                 let tab = tabs[index]
                 
                 Button(action: {
-                    withAnimation(.interpolatingSpring) {
+                    withAnimation(.linear(duration: 0.3)) {
                         selectedIndex = index
                     }
                 }) {
@@ -70,6 +70,7 @@ struct CustomTabBar: View {
                 }
             }
         }
+        .frame(height: 60)
         .padding(6)
         .background(
             RoundedRectangle(cornerRadius: 10)

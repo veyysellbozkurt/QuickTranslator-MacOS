@@ -44,7 +44,7 @@ struct SettingsContainerView: View {
         
         VStack(spacing: 0) {
             CustomTabBar(tabs: tabs, selectedIndex: $selection.index)
-                .padding(.bottom, 10)
+                .padding(.vertical, 10)
                 .padding(.horizontal, 50)
             Divider()
             

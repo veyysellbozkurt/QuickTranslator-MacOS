@@ -12,56 +12,52 @@ struct CompactSegmentedPicker<T: Hashable>: View {
     @Binding var selection: T
     let iconProvider: (T) -> String
     let titleProvider: (T) -> String
-    
-    @State private var hoveredOption: T?
+
     @Namespace private var animation
     
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {            
-            HStack(spacing: 2) {
-                ForEach(options, id: \.self) { option in
-                    Button(action: {
-                        withAnimation(.spring(response: 0.5, dampingFraction: 0.9)) {
-                            selection = option
-                        }
-                    }) {
-                        HStack(spacing: 6) {
-                            Image(systemName: iconProvider(option))
-                                .font(.system(size: 14, weight: .medium))
-                            
-                            Text(titleProvider(option))
-                                .font(.system(size: 12, weight: .medium))
-                        }
-                        .foregroundColor(selection == option ? .white : .primary)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(
-                            ZStack {
-                                if selection == option {
-                                    Capsule()
-                                        .fill(Color.accentColor)
-                                        .matchedGeometryEffect(id: "segmentBackground", in: animation)
-                                }
-                            }
-                        )
-                        .contentShape(Capsule())
-                    }
-                    .buttonStyle(.plain)
-                    .onHover { hovering in
-                        hoveredOption = hovering ? option : nil
-                    }
-                }
-            }
-            .padding(4)
-            .background(
+    // Küçük yardımcı hesaplamalar
+    private func buttonColor(for option: T) -> Color {
+        selection == option ? .white : .primary
+    }
+    
+    private func background(for option: T) -> some View {
+        Group {
+            if selection == option {
                 Capsule()
-                    .fill(Color(NSColor.controlBackgroundColor))
-            )
+                    .fill(Color.app)
+                    .matchedGeometryEffect(id: "segmentBackground", in: animation)
+            }
         }
+    }
+    
+    var body: some View {
+        HStack(spacing: 2) {
+            ForEach(options, id: \.self) { option in
+                Button {
+                    withAnimation(.spring(response: 0.45, dampingFraction: 0.85)) {
+                        selection = option
+                    }
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: iconProvider(option))
+                            .font(.system(size: 14, weight: .medium))
+                        Text(titleProvider(option))
+                            .font(.system(size: 12, weight: .medium))
+                    }
+                    .foregroundColor(buttonColor(for: option))
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(background(for: option))
+                    .contentShape(Capsule())
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(4)
         .background(
             Capsule()
-                .fill(Color(NSColor.textBackgroundColor))
-                .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+                .fill(Color(NSColor.controlBackgroundColor))
+                .shadow(color: .black.opacity(0.06), radius: 6, x: 0, y: 1)
         )
     }
 }
