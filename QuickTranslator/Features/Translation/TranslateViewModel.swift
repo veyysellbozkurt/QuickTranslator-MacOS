@@ -14,7 +14,11 @@ final class TranslateViewModel: ObservableObject {
     @Published var sourceLanguage: Language = .englishUS { didSet { updateConfiguration() }}
     @Published var targetLanguage: Language = .spanishES { didSet { updateConfiguration() }}
     
-    @Published var inputText: String = ""
+    @Published var inputText: String = "" {
+        didSet {
+            if inputText.isEmpty { translatedText = "" }
+        }
+    }
     @Published var translatedText: String = ""
     
     @Published var isTranslating: Bool = false
@@ -59,7 +63,7 @@ extension TranslateViewModel {
             errorMessage = error.localizedDescription
         }
     }
-        
+    
     func triggerTranslation() {
         guard configuration == nil, !inputText.isEmpty else {
             configuration?.invalidate()
@@ -70,7 +74,10 @@ extension TranslateViewModel {
     
     func swapInputs() {
         swap(&sourceLanguage, &targetLanguage)
-        inputText = translatedText
+        if !translatedText.isEmpty {
+            inputText = translatedText
+            translatedText = ""
+        }
         
         updateConfiguration()
     }
