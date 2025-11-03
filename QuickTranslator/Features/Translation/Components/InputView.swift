@@ -23,7 +23,7 @@ struct InputView: View {
         VStack(alignment: .leading, spacing: 4) {
             textView
         }
-        .toast(isPresented: $showToast, message: "Copied to Clipboard ✅")
+        .toast(isPresented: $showToast, message: "Copied to Clipboard")
     }
     
     private var textView: some View {
