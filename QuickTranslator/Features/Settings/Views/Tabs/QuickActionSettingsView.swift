@@ -23,18 +23,12 @@ struct QuickActionSettingsView: View {
                             footnote: Constants.Strings.quickActionPickerDescription) {
                 VStack(alignment: .leading, spacing: 16) {
                     
-                    Picker("Action Type   ", selection: $selectedAction) {
-                        ForEach(QuickActionType.allCases, id: \.self) { action in
-                            Label(action.displayName, systemImage: action.iconName)
-                                .tag(action)
-                                .font(.appSmallTitle())
-                                .foregroundStyle(.textPrimary)
-                        }
-                    }
-                    .font(.appSmallTitle13())
-                    .foregroundStyle(.textPrimary)
-                    .pickerStyle(.inline)
-                    .tint(.app)
+                    CompactSegmentedPicker(
+                        options: QuickActionType.allCases,
+                        selection: $selectedAction,
+                        iconProvider: \.iconName,
+                        titleProvider: \.displayName
+                    )
                     .onChange(of: selectedAction) {
                         featureManager.quickActionType = selectedAction
                         playVideo(for: selectedAction)

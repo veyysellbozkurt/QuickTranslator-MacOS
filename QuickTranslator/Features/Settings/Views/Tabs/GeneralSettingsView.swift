@@ -18,7 +18,7 @@ struct GeneralSettingsView: View {
             inputLayoutSection
             menuBarIconSection
         }
-        .frame(height: 360)
+        .frame(height: 460)
     }
 }
 
@@ -45,20 +45,13 @@ extension GeneralSettingsView {
     // MARK: - Input Layout
     private var inputLayoutSection: some View {
         SettingsSection(title: Constants.Strings.inputLayoutTitle,
-                        footnote: featureManager.inputLayout.description) {
-            VStack(alignment: .leading, spacing: 10) {
-                Picker("Layout Style", selection: $featureManager.inputLayout) {
-                    ForEach(InputLayout.allCases, id: \.self) { layout in
-                        Label(layout.displayName, systemImage: layout.iconName)
-                            .tag(layout)
-                            .font(.appSmallTitle())
-                    }
-                }
-                .font(.appSmallTitle13())
-                .tint(.app)
-                .foregroundStyle(.textPrimary)
-                .pickerStyle(.inline)
-            }
+                        footnote: featureManager.inputLayout.description) {            
+            CompactSegmentedPicker(
+                options: InputLayout.allCases,
+                selection: $featureManager.inputLayout,
+                iconProvider: \.iconName,
+                titleProvider: \.displayName
+            )
         }
     }
     
@@ -87,7 +80,7 @@ extension GeneralSettingsView {
                     .frame(width: 30, height: 30)
                     .cornerRadius(8)
                     .padding(.horizontal, 8)
-
+                
                 Text(icon.rawValue.capitalized)
                     .font(.appCaption())
                     .foregroundStyle(.secondary)
@@ -102,7 +95,7 @@ extension GeneralSettingsView {
         }
         .buttonStyle(.plain)
         .id(featureManager.menuBarIcon == icon)
-
+        
         .onHover { hovering in
             if hovering {
                 NSCursor.pointingHand.push()

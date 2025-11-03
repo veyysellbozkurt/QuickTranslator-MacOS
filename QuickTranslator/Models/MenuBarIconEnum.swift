@@ -20,6 +20,4 @@ enum MenuBarIconEnum: String, CaseIterable, Hashable {
                 return NSImage(resource: .menuBarIcon2)
         }
     }
-    
-    
 }

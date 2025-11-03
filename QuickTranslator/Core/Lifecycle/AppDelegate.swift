@@ -19,6 +19,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             SubscriptionManager.shared.configure()
             await SubscriptionManager.shared.checkSubscriptionStatusIfNeeded()
         }
+        perform {
+            DIContainer.shared.settingsWindowPresenter.openSettings()
+        }
     }
     
     /// When clicking the app icon in the Dock

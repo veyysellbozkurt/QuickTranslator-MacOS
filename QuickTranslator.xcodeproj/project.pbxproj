@@ -24,6 +24,7 @@
 		2B2C081E2EB7EB5B003C0499 /* PricingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C081D2EB7EB5B003C0499 /* PricingCard.swift */; };
 		2B2C08202EB80298003C0499 /* AppSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C081F2EB80294003C0499 /* AppSessionManager.swift */; };
 		2B2C08222EB80BB8003C0499 /* RatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C08212EB80BB8003C0499 /* RatingService.swift */; };
+		2B2C08242EB90605003C0499 /* CompactSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2C08232EB905E8003C0499 /* CompactSegmentedPicker.swift */; };
 		2B2F39542E93DF0F009AB506 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F39532E93DF0F009AB506 /* GeneralSettingsView.swift */; };
 		2B2F39562E93DF24009AB506 /* TranslationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F39552E93DF24009AB506 /* TranslationSettingsView.swift */; };
 		2B2F39582E93DF2F009AB506 /* QuickActionSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F39572E93DF2F009AB506 /* QuickActionSettingsView.swift */; };
@@ -155,6 +156,7 @@
 		2B2C081D2EB7EB5B003C0499 /* PricingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricingCard.swift; sourceTree = "<group>"; };
 		2B2C081F2EB80294003C0499 /* AppSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSessionManager.swift; sourceTree = "<group>"; };
 		2B2C08212EB80BB8003C0499 /* RatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingService.swift; sourceTree = "<group>"; };
+		2B2C08232EB905E8003C0499 /* CompactSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactSegmentedPicker.swift; sourceTree = "<group>"; };
 		2B2F39532E93DF0F009AB506 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		2B2F39552E93DF24009AB506 /* TranslationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationSettingsView.swift; sourceTree = "<group>"; };
 		2B2F39572E93DF2F009AB506 /* QuickActionSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionSettingsView.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 		2B4AB48A2E5F256B005DF24C /* SwiftUIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				2B2C08232EB905E8003C0499 /* CompactSegmentedPicker.swift */,
 				2B8739512EB2B507004E20A7 /* BePremiumButton.swift */,
 				2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */,
 			);
@@ -804,6 +807,7 @@
 				2B2C081C2EB7EB50003C0499 /* FeatureRow.swift in Sources */,
 				2B62A1EF2E6B203F000ADA9E /* DoubleKey.swift in Sources */,
 				2B030CB42EAAD3AC0042F673 /* FontManager.swift in Sources */,
+				2B2C08242EB90605003C0499 /* CompactSegmentedPicker.swift in Sources */,
 				2B4AB4E02E6741AE005DF24C /* SwiftyTranslate.swift in Sources */,
 				2BB17E9A2EAE6E5F0027A4F3 /* Theme.swift in Sources */,
 				2B1ACDC72E7ACDF700E5429E /* Afterable.swift in Sources */,

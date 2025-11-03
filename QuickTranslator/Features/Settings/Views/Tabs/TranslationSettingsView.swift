@@ -71,18 +71,11 @@ struct TranslationSettingsView: View {
     private var engineSection: some View {
             SettingsSection(title: Constants.Strings.translationEngineTitle,
                             footnote: Constants.Strings.translationEngineDescription) {
-                Picker("Engine   ", selection: $vm.engine) {
-                    ForEach(TranslationEngine.allCases) { engine in
-                        Label(engine.title, systemImage: engine.systemImage)
-                            .tag(engine)
-                            .font(.appSmallTitle())
-                            .padding(.leading, 4)
-                    }
-                }
-                .font(.appSmallTitle13())
-                .foregroundStyle(.textPrimary)
-                .pickerStyle(.radioGroup)
-                .tint(.app)
+                CompactSegmentedPicker(
+                    options: TranslationEngine.allCases,
+                    selection: $vm.engine,
+                    iconProvider: \.systemImage,
+                    titleProvider: \.title)
             }
         }
 
