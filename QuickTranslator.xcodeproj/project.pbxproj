@@ -63,6 +63,7 @@
 		2B87395C2EB68B5E004E20A7 /* DailyUsageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87395B2EB68B57004E20A7 /* DailyUsageManager.swift */; };
 		2BA331D72E92A9FF00D91FA7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */; };
 		2BA5C8062E6F1B000025BE1F /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */; };
+		2BAA91F32EBA89DD00D82FCA /* PaywallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAA91F22EBA89D800D82FCA /* PaywallViewModel.swift */; };
 		2BB17E722EAD92130027A4F3 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB17E712EAD92130027A4F3 /* Colors.xcassets */; };
 		2BB17E9A2EAE6E5F0027A4F3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB17E992EAE6E5E0027A4F3 /* Theme.swift */; };
 		2BB17E9C2EAEB8DC0027A4F3 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB17E9B2EAEB8DC0027A4F3 /* ThemeManager.swift */; };
@@ -197,6 +198,7 @@
 		2B87395B2EB68B57004E20A7 /* DailyUsageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsageManager.swift; sourceTree = "<group>"; };
 		2BA331D62E92A9FF00D91FA7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
+		2BAA91F22EBA89D800D82FCA /* PaywallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallViewModel.swift; sourceTree = "<group>"; };
 		2BB17E712EAD92130027A4F3 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		2BB17E992EAE6E5E0027A4F3 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		2BB17E9B2EAEB8DC0027A4F3 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				2B2C081A2EB7EB47003C0499 /* Components */,
 				2B0A90332EB3E5D3003B4E1F /* PaywallWindowPresenter.swift */,
 				2B0A90312EB3E538003B4E1F /* PaywallView.swift */,
+				2BAA91F22EBA89D800D82FCA /* PaywallViewModel.swift */,
 			);
 			path = Paywall;
 			sourceTree = "<group>";
@@ -802,6 +805,7 @@
 				2B4AB4A82E5F256B005DF24C /* PaddedTextViewRepresentable.swift in Sources */,
 				2BDE7C342E986E4700DFD7FD /* InputLayout.swift in Sources */,
 				2BB17EF52EB145B00027A4F3 /* SubscriptionManager.swift in Sources */,
+				2BAA91F32EBA89DD00D82FCA /* PaywallViewModel.swift in Sources */,
 				2B030CF02EAAF3A80042F673 /* MailAppHelper.swift in Sources */,
 				2B4AB4A92E5F256B005DF24C /* InputView.swift in Sources */,
 				2B2C081C2EB7EB50003C0499 /* FeatureRow.swift in Sources */,

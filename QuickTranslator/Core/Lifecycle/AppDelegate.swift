@@ -19,8 +19,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             SubscriptionManager.shared.configure()
             await SubscriptionManager.shared.checkSubscriptionStatusIfNeeded()
         }
-        perform {
-            DIContainer.shared.settingsWindowPresenter.openSettings()
+        performAfter(2) {
+            DIContainer.shared.paywallWindowPresenter.openPaywall()
         }
     }
     

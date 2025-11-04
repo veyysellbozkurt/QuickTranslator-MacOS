@@ -73,6 +73,7 @@ enum Constants {
         static let buyMeCoffee = URL(string: "https://buymeacoffee.com/veyselbozkurt")!
         static let accessibilitySettingsURL = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")
         static let appStoreReviewURL = URL(string: "https://apps.apple.com/app/id6754808002?action=write-review")
+        static let privacyURL = URL(string: "https://veyysellbozkurt.github.io/privacy-QuickTranslator-MacOS-App/")
     }
     
     enum Keys {
@@ -80,7 +81,7 @@ enum Constants {
     }
     
     enum Subscription {
-        static let entitlementID = ""
+        static let entitlementID = "prouser"
     }
     
     static var appName: String {

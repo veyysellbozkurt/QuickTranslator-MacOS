@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RevenueCat
 
 @MainActor
 final class SubscriptionManager: ObservableObject {
@@ -14,6 +15,7 @@ final class SubscriptionManager: ObservableObject {
     
     @Published private(set) var isSubscribed: Bool = false
     @Published private(set) var lastRestoreDate: Date = .distantPast
+    @Published private(set) var packages: [Package] = []
     
     private let service = RevenueCatService()
     private let userDefaults = UserDefaults.standard
@@ -50,6 +52,18 @@ final class SubscriptionManager: ObservableObject {
             saveRestoreDate()
         case .failure:
             break
+        }
+    }
+        
+    func fetchPackages() async {
+        let result = await service.fetchPackages()
+        switch result {
+        case .success(let fetchedPackages):
+            packages = fetchedPackages
+            print("✅ \(packages.count) paket bulundu.")
+        case .failure:
+            print("⚠️ Paketler alınamadı.")
+            packages = []
         }
     }
 }

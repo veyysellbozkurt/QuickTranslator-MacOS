@@ -40,4 +40,20 @@ final class RevenueCatService {
             return .failure(.restoreFailed)
         }
     }
+    
+    func fetchPackages() async -> Result<[Package], RevenueCatError> {
+        do {
+            let offerings = try await Purchases.shared.offerings()
+            
+            guard let availablePackages = offerings.current?.availablePackages, !availablePackages.isEmpty else {
+                print("⚠️ No packages found in current offering.")
+                return .failure(.fetchFailed)
+            }
+            
+            return .success(availablePackages)
+        } catch {
+            print("⚠️ Failed to fetch offerings:", error.localizedDescription)
+            return .failure(.fetchFailed)
+        }
+    }
 }
