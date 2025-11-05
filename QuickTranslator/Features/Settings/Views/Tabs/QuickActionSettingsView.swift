@@ -34,18 +34,30 @@ struct QuickActionSettingsView: View {
                         playVideo(for: selectedAction)
                     }
                     
-                    Button {
-                        showVideoPopover.toggle()
-                    } label: {
-                        Label(Constants.Strings.showPreviewButton, systemImage: "play.circle.fill")
-                            .font(.appSmallTitle())
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .foregroundStyle(.app.opacity(0.5))
-                    .popover(isPresented: $showVideoPopover) {
-                        VideoPopoverView(player: player, selectedAction: selectedAction)
-                            .frame(width: 400, height: 250)
-                            .padding()
+                    HStack(spacing: 12) {
+                        Button {
+                            showVideoPopover.toggle()
+                        } label: {
+                            Label(Constants.Strings.showPreviewButton, systemImage: "play.circle.fill")
+                                .font(.appSmallTitle())
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .foregroundStyle(.app.opacity(0.5))
+                        .popover(isPresented: $showVideoPopover) {
+                            VideoPopoverView(player: player, selectedAction: selectedAction)
+                                .frame(width: 400, height: 250)
+                                .padding()
+                        }
+
+                        if !DoubleKeyMonitor.isAccessibilityPermissionGranted() {
+                            Button {
+                                DoubleKeyMonitor.showAccessibilityPermissionAlert()
+                            } label: {
+                                Label("Enable Accessibility", systemImage: "hand.raised.fill")
+                                    .font(.appSmallTitle())
+                            }
+                            .buttonStyle(.bordered)
+                        }
                     }
                 }
             }

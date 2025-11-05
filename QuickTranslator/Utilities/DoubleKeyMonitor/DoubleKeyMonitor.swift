@@ -7,6 +7,7 @@
 
 import AppKit
 import Cocoa
+import ApplicationServices
 
 final class DoubleKeyMonitor {
     
@@ -43,7 +44,7 @@ final class DoubleKeyMonitor {
         )
         
         guard let eventTap = eventTap else {
-            showAccessibilityPermissionAlert()
+            DoubleKeyMonitor.showAccessibilityPermissionAlert()
             return
         }
         
@@ -56,6 +57,34 @@ final class DoubleKeyMonitor {
         if let eventTap = eventTap {
             CFMachPortInvalidate(eventTap)
             self.eventTap = nil
+        }
+    }
+    
+    static func isAccessibilityPermissionGranted() -> Bool {
+        AXIsProcessTrusted()
+    }
+    
+    static func showAccessibilityPermissionAlert() {
+        DispatchQueue.main.async {
+            let alert = NSAlert()
+            alert.alertStyle = .warning
+            alert.messageText = Constants.Strings.accessibilityTitle
+
+            let textView = NSTextView(frame: NSRect(x: 0, y: 0, width: 260, height: 150))
+            textView.isEditable = false
+            textView.drawsBackground = false
+            textView.font = NSFont.systemFont(ofSize: 12)
+            textView.string = Constants.Strings.accessibilityMessage
+            alert.accessoryView = textView
+
+            alert.addButton(withTitle: Constants.Strings.openSettings)
+            alert.addButton(withTitle: Constants.Strings.cancel)
+
+            if alert.runModal() == .alertFirstButtonReturn {
+                if let url = Constants.Urls.accessibilitySettingsURL {
+                    NSWorkspace.shared.open(url)
+                }
+            }
         }
     }
 }
@@ -89,29 +118,5 @@ private extension DoubleKeyMonitor {
         }
         
         return Unmanaged.passUnretained(event)
-    }
-    
-    func showAccessibilityPermissionAlert() {
-        DispatchQueue.main.async {
-            let alert = NSAlert()
-            alert.alertStyle = .warning
-            alert.messageText = Constants.Strings.accessibilityTitle
-
-            let textView = NSTextView(frame: NSRect(x: 0, y: 0, width: 260, height: 150))
-            textView.isEditable = false
-            textView.drawsBackground = false
-            textView.font = NSFont.systemFont(ofSize: 12)
-            textView.string = Constants.Strings.accessibilityMessage
-            alert.accessoryView = textView
-
-            alert.addButton(withTitle: Constants.Strings.openSettings)
-            alert.addButton(withTitle: Constants.Strings.cancel)
-
-            if alert.runModal() == .alertFirstButtonReturn {
-                if let url = Constants.Urls.accessibilitySettingsURL {
-                    NSWorkspace.shared.open(url)
-                }
-            }
-        }
     }
 }
