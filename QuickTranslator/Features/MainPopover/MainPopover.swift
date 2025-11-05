@@ -49,6 +49,11 @@ final class MainPopover {
             await SubscriptionManager.shared.checkSubscriptionStatus()
         }
     }
+    
+    @objc
+    func hide() {
+        popover.performClose(nil)
+    }
 }
 
 private extension MainPopover {

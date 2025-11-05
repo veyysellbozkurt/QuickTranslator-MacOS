@@ -21,11 +21,20 @@ final class StatusBarController {
             button.image = buttonImage
             button.action = #selector(buttonClicked(_:))
             button.target = self
+            
+            openInitialWindow()
         }
     }
     
     @objc private func buttonClicked(_ sender: AnyObject?) {
         guard let button = statusItem.button else { return }
         DIContainer.shared.mainPopover.show(from: button)
+    }
+    
+    private func openInitialWindow() {
+        guard let button = statusItem.button else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            DIContainer.shared.mainPopover.show(from: button)
+        }
     }
 }
