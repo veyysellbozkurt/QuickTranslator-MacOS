@@ -45,14 +45,19 @@ final class PaywallWindowPresenter: ObservableObject {
         
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 630, height: 700),
-            styleMask: [.borderless],
+            styleMask: [.closable, .titled],
             backing: .buffered,
             defer: false
         )
-                
-        window.isReleasedWhenClosed = false
+        window.titleVisibility = .hidden
+        window.titlebarAppearsTransparent = true
         window.backgroundColor = .clear
+        window.styleMask.insert(.fullSizeContentView)
         window.isMovableByWindowBackground = true
+        window.standardWindowButton(.closeButton)?.isHidden = true
+        window.standardWindowButton(.miniaturizeButton)?.isHidden = true
+        window.standardWindowButton(.zoomButton)?.isHidden = true
+        window.isReleasedWhenClosed = false
         
         hostingController!.view.frame = window.contentView!.bounds
         hostingController!.view.autoresizingMask = [.width, .height]

@@ -199,7 +199,7 @@ private extension PaywallView {
             }
             .buttonStyle(PlainButtonStyle())
             .padding(.leading, 20)
-            .padding(.top, 10)
+            .padding(.top, -10)
             
             Spacer()
         }
