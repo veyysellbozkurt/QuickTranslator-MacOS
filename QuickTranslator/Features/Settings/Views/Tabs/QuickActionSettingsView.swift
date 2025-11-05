@@ -80,9 +80,6 @@ struct QuickActionSettingsView: View {
         }
         .frame(height: 280)
         .animation(.easeInOut(duration: 0.25), value: showVideo)
-        .onAppear {
-            playVideo(for: selectedAction)
-        }
     }
     
     // MARK: - Video Selection Logic
@@ -94,11 +91,15 @@ struct QuickActionSettingsView: View {
         }
         
         if let url = Bundle.main.url(forResource: videoName, withExtension: "mov") {
-            player = AVPlayer(url: url)
-            showVideo = true
+            DispatchQueue.main.async {
+                player = AVPlayer(url: url)
+                showVideo = true
+            }
         } else {
-            showVideo = false
-            player = nil
+            DispatchQueue.main.async {
+                showVideo = false
+                player = nil
+            }
         }
     }
 }
