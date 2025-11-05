@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             await SubscriptionManager.shared.checkSubscriptionStatusIfNeeded()
         }
         performAfter(2) {
-            DIContainer.shared.paywallWindowPresenter.openPaywall()
+//            DIContainer.shared.paywallWindowPresenter.openPaywall()
         }
     }
     

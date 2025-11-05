@@ -96,9 +96,17 @@ private extension DoubleKeyMonitor {
             let alert = NSAlert()
             alert.alertStyle = .warning
             alert.messageText = Constants.Strings.accessibilityTitle
-            alert.informativeText = Constants.Strings.accessibilityMessage
+
+            let textView = NSTextView(frame: NSRect(x: 0, y: 0, width: 260, height: 150))
+            textView.isEditable = false
+            textView.drawsBackground = false
+            textView.font = NSFont.systemFont(ofSize: 12)
+            textView.string = Constants.Strings.accessibilityMessage
+            alert.accessoryView = textView
+
             alert.addButton(withTitle: Constants.Strings.openSettings)
             alert.addButton(withTitle: Constants.Strings.cancel)
+
             if alert.runModal() == .alertFirstButtonReturn {
                 if let url = Constants.Urls.accessibilitySettingsURL {
                     NSWorkspace.shared.open(url)

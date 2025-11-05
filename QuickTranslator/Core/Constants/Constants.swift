@@ -18,13 +18,17 @@ enum Constants {
         static let translating = "Translating..."
         static let quit = "Quit"
         static let cancel = "Cancel"
-        static let openSettings = "Open Settings"
+        static let openSettings = "Open System Settings"
         static let accessibilityTitle = "Accessibility Permission Needed"
         static let accessibilityMessage = """
-                            QuickTranslator needs permission to monitor your keyboard shortcuts (like double ⌘ C) so it can instantly translate copied text.
-                                
-                                Please enable QuickTranslator under:
-                                System Settings → Privacy & Security → Accessibility
+                    QuickTranslator needs Accessibility permission to use global shortcuts (⌘ + C).
+                    Please go to:
+                    
+                                1. System Settings
+                                2. Privacy & Security
+                                3. Accessibility
+                                4. Enable QuickTranslator
+                                5. Restart the app
             """
         
         // --- General Settings ---
