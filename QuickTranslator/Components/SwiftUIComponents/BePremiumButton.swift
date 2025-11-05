@@ -38,7 +38,7 @@ struct BePremiumButton: View {
                         .cornerRadius(8)
                         .shadow(color: .purple.opacity(0.3), radius: 6, x: 0, y: 3)
                 )
-                .rotationEffect(.degrees(wave ? 1 : -1))
+                .rotationEffect(.degrees(wave ? 0.6 : -0.6))
                 .animation(
                     Animation.easeInOut(duration: 0.5)
                         .repeatForever(autoreverses: true),

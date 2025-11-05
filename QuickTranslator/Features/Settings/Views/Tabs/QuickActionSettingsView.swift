@@ -84,23 +84,23 @@ struct QuickActionSettingsView: View {
     
     // MARK: - Video Selection Logic
     private func playVideo(for action: QuickActionType) {
-        let videoName: String
-        switch action {
-            case .directPopover: videoName = "FloatingIconDemo"
-            case .floatingIconPopover: videoName = "FloatingIconDemo"
-        }
+//        let videoName: String
+//        switch action {
+//            case .directPopover: videoName = "FloatingIconDemo"
+//            case .floatingIconPopover: videoName = "FloatingIconDemo"
+//        }
         
-        if let url = Bundle.main.url(forResource: videoName, withExtension: "mov") {
-            DispatchQueue.main.async {
-                player = AVPlayer(url: url)
-                showVideo = true
-            }
-        } else {
-            DispatchQueue.main.async {
-                showVideo = false
-                player = nil
-            }
-        }
+//        if let url = Bundle.main.url(forResource: videoName, withExtension: "mov") {
+//            DispatchQueue.main.async {
+//                player = AVPlayer(url: url)
+//                showVideo = true
+//            }
+//        } else {
+//            DispatchQueue.main.async {
+//                showVideo = false
+//                player = nil
+//            }
+//        }
     }
 }
 
