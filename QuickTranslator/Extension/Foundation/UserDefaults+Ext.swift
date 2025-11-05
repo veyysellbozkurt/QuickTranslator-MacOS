@@ -57,7 +57,10 @@ extension UserDefaults {
         return integer(forKey: key.rawValue)
     }
     
-    func double(forKey key: Key) -> Double {
+    func double(forKey key: Key) -> Double? {
+        if object(forKey: key.rawValue) == nil {
+            return nil
+        }
         return double(forKey: key.rawValue)
     }
     
