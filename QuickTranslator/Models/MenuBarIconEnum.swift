@@ -11,6 +11,9 @@ import AppKit
 enum MenuBarIconEnum: String, CaseIterable, Hashable {
     case light
     case blue
+    case dark
+    case world
+    case gray
     
     var image: NSImage {
         switch self {
@@ -18,6 +21,12 @@ enum MenuBarIconEnum: String, CaseIterable, Hashable {
                 return NSImage(resource: .menuBarIcon1)
             case .blue:
                 return NSImage(resource: .menuBarIcon2)
+            case .dark:
+                return NSImage(resource: .menuBarIcon3)
+            case .world:
+                return NSImage(resource: .menuBarIcon4)
+            case .gray:
+                return NSImage(resource: .menuBarIcon5)
         }
     }
 }

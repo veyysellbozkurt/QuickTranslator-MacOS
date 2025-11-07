@@ -16,7 +16,7 @@ final class StatusBarController {
         
         if let button = statusItem.button {
             let buttonImage = FeatureManager.shared.menuBarIcon.image
-            buttonImage.size = NSSize(width: 21, height: 21)
+            buttonImage.size = NSSize(width: 22, height: 22)
             buttonImage.isTemplate = false
             button.image = buttonImage
             button.action = #selector(buttonClicked(_:))
