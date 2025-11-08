@@ -8,55 +8,9 @@
 import SwiftUI
 import AppKit
 
-enum TranslationEngine: String, CaseIterable, Identifiable {
-    case apple = "apple"
-    case google = "google"
-
-    var id: String { rawValue }
-    var title: String {
-        switch self {
-        case .apple: return "Apple Translate"
-        case .google: return "Google Translate"
-        }
-    }
-    var subtitle: String {
-        switch self {
-        case .apple: return "Offline support — limited languages"
-        case .google: return "Online — full language coverage"
-        }
-    }
-    var systemImage: String {
-        switch self {
-        case .apple: return "applelogo"
-        case .google: return "globe"
-        }
-    }
-}
-
-final class TranslationSettingsViewModel: ObservableObject {
-    @Published var engine: TranslationEngine
-    @Published var supportedLanguageCount: Int
-    @Published var didOpenSystemSettings = false
-
-    init(engine: TranslationEngine = .google, supportedLanguageCount: Int = 21) {
-        self.engine = engine
-        self.supportedLanguageCount = supportedLanguageCount
-    }
-
-    func openSystemSettings() {
-        guard let url = URL(string: "x-apple.systempreferences:com.apple.Localization-Settings.Extension") else { return }
-        if NSWorkspace.shared.open(url) {
-            // small delay may be needed on real device; we set flag immediately for simple UX
-            didOpenSystemSettings = true
-        } else {
-            // fallback: try plain settings URL or do nothing
-            didOpenSystemSettings = true // still reveal steps so user can follow manually
-        }
-    }
-}
-
 struct TranslationSettingsView: View {
-    @StateObject private var vm = TranslationSettingsViewModel()
+    @ObservedObject var featureManager = FeatureManager.shared
+    @State private var didOpenSystemSettings = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -72,8 +26,8 @@ struct TranslationSettingsView: View {
             SettingsSection(title: Constants.Strings.translationEngineTitle,
                             footnote: Constants.Strings.translationEngineDescription) {
                 CompactSegmentedPicker(
-                    options: TranslationEngine.allCases,
-                    selection: $vm.engine,
+                    options: TranslationServiceType.allCases,
+                    selection: $featureManager.translationService,
                     iconProvider: \.systemImage,
                     titleProvider: \.title)
             }
@@ -82,19 +36,19 @@ struct TranslationSettingsView: View {
     // MARK: - Apple Engine Details Section
     @ViewBuilder
     private var appleDetailsSection: some View {
-            if vm.engine == .apple {
+        if featureManager.translationService == .apple {
                 SettingsSection(title: Constants.Strings.appleTranslateTitle) {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 12) {
                             HStack(alignment: .top, spacing: 12) {
-                                Image(systemName: vm.engine.systemImage)
+                                Image(systemName: featureManager.translationService.systemImage)
                                     .font(.appTitle())
                                     .frame(width: 36, height: 36)
                                     .foregroundStyle(.textPrimary)
                                 
                                 VStack(alignment: .leading, spacing: 6) {
-                                    Text(vm.engine.title).font(.appSmallTitle13())
-                                    Text(vm.engine.subtitle)
+                                    Text(featureManager.translationService.title).font(.appSmallTitle13())
+                                    Text(featureManager.translationService.subtitle)
                                         .font(.appSmallTitle())
                                         .foregroundStyle(.textPrimary)
                                 }
@@ -102,14 +56,14 @@ struct TranslationSettingsView: View {
                             
                             InfoCard(title: Constants.Strings.appleOfflineModeEnabled,
                                      message: Constants.Strings.appleOfflineMessage) {
-                                Button(action: { vm.openSystemSettings() }) {
+                                Button(action: { openSystemSettings() }) {
                                     Label(Constants.Strings.openSettings, systemImage: "gearshape")
                                         .font(.appButton())
                                 }
                                 .buttonStyle(.borderedProminent)
                             }
                             
-                            if vm.didOpenSystemSettings {
+                            if didOpenSystemSettings {
                                 StepsListViewSimple(steps: [
                                     Constants.Strings.appleStep1,
                                     Constants.Strings.appleStep2,
@@ -117,7 +71,7 @@ struct TranslationSettingsView: View {
                                 ])
                             } else {
                                 Text(String(format: Constants.Strings.appleSupportedLanguagesMessage,
-                                            vm.supportedLanguageCount))
+                                            21))
                                 .font(.appCaption())
                                 .foregroundStyle(.textSecondary)
                             }
@@ -130,18 +84,18 @@ struct TranslationSettingsView: View {
     // MARK: - Google Engine Details Section
     @ViewBuilder
     private var googleDetailsSection: some View {
-            if vm.engine == .google {
+        if featureManager.translationService == .google {
                 SettingsSection(title: Constants.Strings.googleTranslateTitle) {
                     VStack(alignment: .leading, spacing: 12) {
                         HStack(alignment: .top, spacing: 6) {
-                            Image(systemName: vm.engine.systemImage)
+                            Image(systemName: featureManager.translationService.systemImage)
                                 .font(.appTitle())
                                 .frame(width: 36, height: 36)
                                 .foregroundStyle(.textPrimary)
 
                             VStack(alignment: .leading, spacing: 6) {
-                                Text(vm.engine.title).font(.appSmallTitle13())
-                                Text(vm.engine.subtitle)
+                                Text(featureManager.translationService.title).font(.appSmallTitle13())
+                                Text(featureManager.translationService.subtitle)
                                     .font(.appSmallTitle())
                                     .foregroundStyle(.textSecondary)
                             }
@@ -155,6 +109,15 @@ struct TranslationSettingsView: View {
                 }
             }
         }
+    
+    func openSystemSettings() {
+        guard let url = Constants.Urls.localizationSettingsURL else { return }
+        if NSWorkspace.shared.open(url) {
+            didOpenSystemSettings = true
+        } else {
+            didOpenSystemSettings = true
+        }
+    }
 }
 
 // MARK: - Small reusable components

@@ -38,7 +38,9 @@ final class QuickActionManager {
             if FeatureManager.shared.quickActionType == .floatingIconPopover {
                 floatingPanel.showNearMouse(autoHideAfter: FeatureManager.shared.floatingIconVisibilityDuration)
             } else {
-                quickActionPanelDidConfirm()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    self.quickActionPanelDidConfirm()
+                }
             }
         }
         cmdMonitor.start()
