@@ -55,11 +55,11 @@ enum Constants {
         
         // --- Quick Action Settings ---
         static let quickActionTitle = "Quick Action"
-        static let quickActionPickerDescription = "Choose what happens when you double press ⌘ + C:"
+        static let quickActionPickerDescription = "Choose what happens when you press DOUBLE ⌘ + C:"
         static let showPreviewButton = "Show Preview"
         static let timeIntervalTitle = "Time Interval"
         static let floatingIconVisibility = "Floating Icon Visibility Duration: %.1fs"
-        static let floatingIconDescription = "Set how long the floating icon remains visible after a double key press before it automatically hides."
+        static let floatingIconDescription = "Set how long the floating icon stays visible after a double key press."
         static let previewNotAvailable = "Preview not available"
         
         // --- About Settings ---

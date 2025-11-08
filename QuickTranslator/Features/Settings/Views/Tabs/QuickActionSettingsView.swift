@@ -41,8 +41,7 @@ struct QuickActionSettingsView: View {
                             Label(Constants.Strings.showPreviewButton, systemImage: "play.circle.fill")
                                 .font(.appSmallTitle())
                         }
-                        .buttonStyle(.borderedProminent)
-                        .foregroundStyle(.app.opacity(0.5))
+                        .buttonStyle(.bordered)
                         .popover(isPresented: $showVideoPopover) {
                             VideoPopoverView(player: player, selectedAction: selectedAction)
                                 .frame(width: 400, height: 250)
