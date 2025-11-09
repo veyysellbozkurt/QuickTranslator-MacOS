@@ -91,7 +91,15 @@ final class PaywallViewModel: ObservableObject {
 
     private func monthlyEquivalentText(for product: StoreProduct) -> String {
         let monthly = (product.price as NSDecimalNumber).doubleValue / 12.0
-        return String(format: "₺%.2f / Month", monthly)
+        if let formatter = product.priceFormatter {
+            let monthlyNumber = NSNumber(value: monthly)
+            if let formatted = formatter.string(from: monthlyNumber) {
+                return "\(formatted) / Month"
+            }
+        }
+        // If formatter is nil, use currency code before price
+        let currency = product.currencyCode ?? ""
+        return "\(currency) \(String(format: "%.2f", monthly)) / Month"
     }
 
     // MARK: - Text Builders
