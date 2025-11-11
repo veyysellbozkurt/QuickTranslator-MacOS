@@ -6,7 +6,6 @@
 //
 
 import AppKit
-import Carbon.HIToolbox
 
 final class QuickActionManager {
     
@@ -25,14 +24,12 @@ final class QuickActionManager {
     }
     
     func start() {
-        cmdMonitor.onDoublePress = {
-            [weak self] in
-            guard let self,
-                  let text = NSPasteboard.general.string(forType: .string)?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+        cmdMonitor.onDoublePress = { [weak self] in
+            guard let self else { return }
             
-            if self.isCopiedFromApp(text) {
-                return
-            }
+            guard let text = self.getPureTextFromPasteboard(),
+                              !self.isCopiedFromApp(text) else { return }
+                                                
             self.copiedText = text
             
             if FeatureManager.shared.quickActionType == .floatingIconPopover {
@@ -73,5 +70,19 @@ private extension QuickActionManager {
             return true
         }
         return false
+    }
+    
+    func getPureTextFromPasteboard() -> String? {
+        let pasteboard = NSPasteboard.general
+        guard let types = pasteboard.types, types.contains(.string) else { return nil }
+        
+        let disallowed: Set<NSPasteboard.PasteboardType> = [.png, .sound, .fileURL, .tiff]
+        guard disallowed.isDisjoint(with: Set(types)) else { return nil }
+        
+        guard let text = pasteboard.string(forType: .string)?
+                .trimmingCharacters(in: .whitespacesAndNewlines),
+              !text.isEmpty else { return nil }
+        
+        return text
     }
 }
