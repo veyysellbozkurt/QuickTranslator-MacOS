@@ -94,10 +94,10 @@
 		2BB17EF52EB145B00027A4F3 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB17EF42EB145AD0027A4F3 /* SubscriptionManager.swift */; };
 		2BB17EF82EB148560027A4F3 /* SubscriptionPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB17EF72EB148560027A4F3 /* SubscriptionPlan.swift */; };
 		2BB17EFA2EB14B540027A4F3 /* SubscriptionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB17EF92EB14B540027A4F3 /* SubscriptionStatus.swift */; };
+		2BBB87E92EC661F800E38441 /* QuickActionPreview.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2BBB87E82EC661F800E38441 /* QuickActionPreview.mp4 */; };
 		2BDE7C342E986E4700DFD7FD /* InputLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE7C332E986E4700DFD7FD /* InputLayout.swift */; };
 		2BDE7C362E986E5400DFD7FD /* TranslationServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE7C352E986E5400DFD7FD /* TranslationServiceType.swift */; };
 		2BDE7C382E99CE3700DFD7FD /* QuickActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE7C372E99CE3700DFD7FD /* QuickActionType.swift */; };
-		2BDE7C3A2E99D29100DFD7FD /* FloatingIconDemo.mov in Resources */ = {isa = PBXBuildFile; fileRef = 2BDE7C392E99D29100DFD7FD /* FloatingIconDemo.mov */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,10 +220,10 @@
 		2BB17EF42EB145AD0027A4F3 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		2BB17EF72EB148560027A4F3 /* SubscriptionPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlan.swift; sourceTree = "<group>"; };
 		2BB17EF92EB14B540027A4F3 /* SubscriptionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatus.swift; sourceTree = "<group>"; };
+		2BBB87E82EC661F800E38441 /* QuickActionPreview.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuickActionPreview.mp4; sourceTree = "<group>"; };
 		2BDE7C332E986E4700DFD7FD /* InputLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputLayout.swift; sourceTree = "<group>"; };
 		2BDE7C352E986E5400DFD7FD /* TranslationServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationServiceType.swift; sourceTree = "<group>"; };
 		2BDE7C372E99CE3700DFD7FD /* QuickActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionType.swift; sourceTree = "<group>"; };
-		2BDE7C392E99D29100DFD7FD /* FloatingIconDemo.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = FloatingIconDemo.mov; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -458,6 +458,7 @@
 		2B4AB49F2E5F256B005DF24C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2BBB87E82EC661F800E38441 /* QuickActionPreview.mp4 */,
 				2BB17ECD2EB022420027A4F3 /* Fonts */,
 				2B4AB49E2E5F256B005DF24C /* Assets.xcassets */,
 				2BB17E712EAD92130027A4F3 /* Colors.xcassets */,
@@ -490,7 +491,6 @@
 				2B4AB4952E5F256B005DF24C /* Extension */,
 				2B4AB4992E5F256B005DF24C /* Utilities */,
 				2B4AB49F2E5F256B005DF24C /* Resources */,
-				2BDE7C392E99D29100DFD7FD /* FloatingIconDemo.mov */,
 				2B4AB4A32E5F256B005DF24C /* QuickTranslator.entitlements */,
 			);
 			path = QuickTranslator;
@@ -774,13 +774,13 @@
 				2BB17ED82EB022520027A4F3 /* Poppins-Regular.ttf in Resources */,
 				2BB17ED92EB022520027A4F3 /* Poppins-ExtraBold.ttf in Resources */,
 				2BB17EDA2EB022520027A4F3 /* Poppins-Black.ttf in Resources */,
+				2BBB87E92EC661F800E38441 /* QuickActionPreview.mp4 in Resources */,
 				2BB17EDB2EB022520027A4F3 /* Poppins-Light.ttf in Resources */,
 				2BB17EDC2EB022520027A4F3 /* Poppins-Thin.ttf in Resources */,
 				2BB17EDD2EB022520027A4F3 /* Poppins-Bold.ttf in Resources */,
 				2BB17EDE2EB022520027A4F3 /* Poppins-ExtraLight.ttf in Resources */,
 				2BB17EDF2EB022520027A4F3 /* Poppins-SemiBold.ttf in Resources */,
 				2BB17E722EAD92130027A4F3 /* Colors.xcassets in Resources */,
-				2BDE7C3A2E99D29100DFD7FD /* FloatingIconDemo.mov in Resources */,
 				2B4AB4A52E5F256B005DF24C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1041,7 +1041,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9CXW4HNGPA;
@@ -1081,7 +1081,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9CXW4HNGPA;

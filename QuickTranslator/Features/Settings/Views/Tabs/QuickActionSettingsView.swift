@@ -31,7 +31,6 @@ struct QuickActionSettingsView: View {
                     )
                     .onChange(of: selectedAction) {
                         featureManager.quickActionType = selectedAction
-                        playVideo(for: selectedAction)
                     }
                     
                     HStack(spacing: 12) {
@@ -43,9 +42,8 @@ struct QuickActionSettingsView: View {
                         }
                         .buttonStyle(.bordered)
                         .popover(isPresented: $showVideoPopover) {
-                            VideoPopoverView(player: player, selectedAction: selectedAction)
-                                .frame(width: 400, height: 250)
-                                .padding()
+                            VideoPopoverView(player: player)
+                                .frame(width: 650, height: 410)
                         }
 
                         if !DoubleKeyMonitor.isAccessibilityPermissionGranted() {
@@ -77,41 +75,38 @@ struct QuickActionSettingsView: View {
                 .frame(width: 350)
             }
         }
+        .onAppear {
+            playVideo()
+        }
         .frame(height: 280)
         .animation(.easeInOut(duration: 0.25), value: showVideo)
     }
     
     // MARK: - Video Selection Logic
-    private func playVideo(for action: QuickActionType) {
-//        let videoName: String
-//        switch action {
-//            case .directPopover: videoName = "FloatingIconDemo"
-//            case .floatingIconPopover: videoName = "FloatingIconDemo"
-//        }
-        
-//        if let url = Bundle.main.url(forResource: videoName, withExtension: "mov") {
-//            DispatchQueue.main.async {
-//                player = AVPlayer(url: url)
-//                showVideo = true
-//            }
-//        } else {
-//            DispatchQueue.main.async {
-//                showVideo = false
-//                player = nil
-//            }
-//        }
+    private func playVideo() {
+        if let url = Bundle.main.url(forResource: "QuickActionPreview", withExtension: "mp4") {
+            DispatchQueue.main.async {
+                player = AVPlayer(url: url)
+                showVideo = true
+            }
+        } else {
+            DispatchQueue.main.async {
+                showVideo = false
+                player = nil
+            }
+        }
     }
 }
 
 struct VideoPopoverView: View {
     let player: AVPlayer?
-    let selectedAction: QuickActionType
 
     var body: some View {
-        VStack(spacing: 16) {
-            Text(selectedAction.displayName)
-                .font(.appSmallTitle())
+        VStack(spacing: 8) {
+            Text("Video Preview")
+                .font(.appSmallTitle13())
             if let player {
+                                
                 VideoPlayer(player: player)
                     .cornerRadius(12)
                     .onAppear {
@@ -133,6 +128,6 @@ struct VideoPopoverView: View {
                     )
             }
         }
-        .padding()
+        .padding(12)
     }
 }
