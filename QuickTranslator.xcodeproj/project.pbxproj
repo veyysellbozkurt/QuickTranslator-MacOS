@@ -12,6 +12,7 @@
 		2B030CE92EAADEA20042F673 /* Font+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B030CB72EAAD3FE0042F673 /* Font+Ext.swift */; };
 		2B030CF02EAAF3A80042F673 /* MailAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B030CEF2EAAF3A50042F673 /* MailAppHelper.swift */; };
 		2B09F2F32EC5DEB0002506A4 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B09F2F22EC5DEAD002506A4 /* String+Ext.swift */; };
+		2B09F2F52EC5E405002506A4 /* SkeletonShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B09F2F42EC5E405002506A4 /* SkeletonShimmerView.swift */; };
 		2B0A90322EB3E538003B4E1F /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A90312EB3E538003B4E1F /* PaywallView.swift */; };
 		2B0A90342EB3E5D3003B4E1F /* PaywallWindowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A90332EB3E5D3003B4E1F /* PaywallWindowPresenter.swift */; };
 		2B1ACDC22E7AC71000E5429E /* SettingsWindowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC12E7AC71000E5429E /* SettingsWindowPresenter.swift */; };
@@ -143,6 +144,7 @@
 		2B030CB92EAAD4320042F673 /* NSFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont+Ext.swift"; sourceTree = "<group>"; };
 		2B030CEF2EAAF3A50042F673 /* MailAppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailAppHelper.swift; sourceTree = "<group>"; };
 		2B09F2F22EC5DEAD002506A4 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		2B09F2F42EC5E405002506A4 /* SkeletonShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonShimmerView.swift; sourceTree = "<group>"; };
 		2B0A90312EB3E538003B4E1F /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		2B0A90332EB3E5D3003B4E1F /* PaywallWindowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallWindowPresenter.swift; sourceTree = "<group>"; };
 		2B12E7892E5351010029301B /* QuickTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -354,6 +356,7 @@
 		2B4AB48A2E5F256B005DF24C /* SwiftUIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				2B09F2F42EC5E405002506A4 /* SkeletonShimmerView.swift */,
 				2B2C08232EB905E8003C0499 /* CompactSegmentedPicker.swift */,
 				2B8739512EB2B507004E20A7 /* BePremiumButton.swift */,
 				2BA5C8052E6F1B000025BE1F /* ToastModifier.swift */,
@@ -848,6 +851,7 @@
 				2B2F39562E93DF24009AB506 /* TranslationSettingsView.swift in Sources */,
 				2B030CE82EAADE910042F673 /* NSFont+Ext.swift in Sources */,
 				2BB17EFA2EB14B540027A4F3 /* SubscriptionStatus.swift in Sources */,
+				2B09F2F52EC5E405002506A4 /* SkeletonShimmerView.swift in Sources */,
 				2BA5C8062E6F1B000025BE1F /* ToastModifier.swift in Sources */,
 				2B4AB4B42E5F256B005DF24C /* SFIcons.swift in Sources */,
 				2B4AB4DE2E674163005DF24C /* TranslationFactory.swift in Sources */,

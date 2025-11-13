@@ -78,12 +78,11 @@ private extension TranslateView {
                 isOutput: true,
                 isEditable: false
             )
-            .opacity(viewModel.isTranslating ? 0.2 : 1)
+            .opacity(viewModel.isTranslating ? 0 : 1)
             
             if viewModel.isTranslating {
-                ProgressView(Constants.Strings.translating)
-                    .progressViewStyle(.circular)
-                    .foregroundStyle(.textPrimary)
+                SkeletonShimmerView()
+                    .transition(.opacity.combined(with: .blurReplace))
             }
         }
         .opacity(dailyUsageManager.isLimitReached ? 0.4 : 1)

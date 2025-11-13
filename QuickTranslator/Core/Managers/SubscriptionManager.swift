@@ -37,7 +37,7 @@ final class SubscriptionManager: ObservableObject {
         let result = await service.fetchSubscriptionStatus()
         switch result {
         case .success(let subscribed):
-            isSubscribed = subscribed
+            isSubscribed = !subscribed
             saveRestoreDate()
         case .failure:
             break
@@ -48,7 +48,7 @@ final class SubscriptionManager: ObservableObject {
         let result = await service.restorePurchases()
         switch result {
         case .success(let subscribed):
-            isSubscribed = subscribed
+            isSubscribed = !subscribed
             saveRestoreDate()
         case .failure:
             break
