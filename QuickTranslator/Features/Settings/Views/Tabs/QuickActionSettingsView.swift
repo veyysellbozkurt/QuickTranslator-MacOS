@@ -112,7 +112,12 @@ struct VideoPopoverView: View {
                     .onAppear {
                         player.seek(to: .zero)
                         player.play()
-                        player.rate = 0.5
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            player.rate = 0.5
+                        }
+                    }
+                    .onDisappear {
+                        player.pause()
                     }
             } else {
                 RoundedRectangle(cornerRadius: 12)
