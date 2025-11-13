@@ -11,6 +11,7 @@
 		2B030CE82EAADE910042F673 /* NSFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B030CB92EAAD4320042F673 /* NSFont+Ext.swift */; };
 		2B030CE92EAADEA20042F673 /* Font+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B030CB72EAAD3FE0042F673 /* Font+Ext.swift */; };
 		2B030CF02EAAF3A80042F673 /* MailAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B030CEF2EAAF3A50042F673 /* MailAppHelper.swift */; };
+		2B09F2F32EC5DEB0002506A4 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B09F2F22EC5DEAD002506A4 /* String+Ext.swift */; };
 		2B0A90322EB3E538003B4E1F /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A90312EB3E538003B4E1F /* PaywallView.swift */; };
 		2B0A90342EB3E5D3003B4E1F /* PaywallWindowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A90332EB3E5D3003B4E1F /* PaywallWindowPresenter.swift */; };
 		2B1ACDC22E7AC71000E5429E /* SettingsWindowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1ACDC12E7AC71000E5429E /* SettingsWindowPresenter.swift */; };
@@ -141,6 +142,7 @@
 		2B030CB72EAAD3FE0042F673 /* Font+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Ext.swift"; sourceTree = "<group>"; };
 		2B030CB92EAAD4320042F673 /* NSFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont+Ext.swift"; sourceTree = "<group>"; };
 		2B030CEF2EAAF3A50042F673 /* MailAppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailAppHelper.swift; sourceTree = "<group>"; };
+		2B09F2F22EC5DEAD002506A4 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		2B0A90312EB3E538003B4E1F /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		2B0A90332EB3E5D3003B4E1F /* PaywallWindowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallWindowPresenter.swift; sourceTree = "<group>"; };
 		2B12E7892E5351010029301B /* QuickTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -393,6 +395,7 @@
 		2B4AB4922E5F256B005DF24C /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				2B09F2F22EC5DEAD002506A4 /* String+Ext.swift */,
 				2B87394F2EB238B0004E20A7 /* Date+Ext.swift */,
 				2B1ACDC62E7ACDF400E5429E /* Afterable.swift */,
 				2B4AB4912E5F256B005DF24C /* UserDefaults+Ext.swift */,
@@ -803,6 +806,7 @@
 				2B4AB4A62E5F256B005DF24C /* EnterKeyHandlerTextView.swift in Sources */,
 				2B4AB4A72E5F256B005DF24C /* FloatingQuickActionPanel.swift in Sources */,
 				2B4AB4A82E5F256B005DF24C /* PaddedTextViewRepresentable.swift in Sources */,
+				2B09F2F32EC5DEB0002506A4 /* String+Ext.swift in Sources */,
 				2BDE7C342E986E4700DFD7FD /* InputLayout.swift in Sources */,
 				2BB17EF52EB145B00027A4F3 /* SubscriptionManager.swift in Sources */,
 				2BAA91F32EBA89DD00D82FCA /* PaywallViewModel.swift in Sources */,

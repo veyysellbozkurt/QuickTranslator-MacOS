@@ -83,6 +83,10 @@ private extension QuickActionManager {
                 .trimmingCharacters(in: .whitespacesAndNewlines),
               !text.isEmpty else { return nil }
         
+        if text.isPureURL() {
+            return nil
+        }
+        
         return text
     }
 }
