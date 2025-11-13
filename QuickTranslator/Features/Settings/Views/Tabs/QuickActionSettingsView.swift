@@ -43,7 +43,7 @@ struct QuickActionSettingsView: View {
                         .buttonStyle(.bordered)
                         .popover(isPresented: $showVideoPopover) {
                             VideoPopoverView(player: player)
-                                .frame(width: 650, height: 410)
+                                .frame(width: 700, height: 450)
                         }
 
                         if !DoubleKeyMonitor.isAccessibilityPermissionGranted() {
@@ -112,6 +112,7 @@ struct VideoPopoverView: View {
                     .onAppear {
                         player.seek(to: .zero)
                         player.play()
+                        player.rate = 0.5
                     }
             } else {
                 RoundedRectangle(cornerRadius: 12)
